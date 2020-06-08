@@ -12,17 +12,21 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using QuanLyChamThi.ViewModel;
 
-namespace QuanLyChamThi
+namespace QuanLyChamThi.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for NhapKQChamThi.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class NhapKQChamThi : UserControl
     {
-        public MainWindow()
+        private NhapKQChamThiViewModel vm;
+        public NhapKQChamThi()
         {
             InitializeComponent();
+            vm = new NhapKQChamThiViewModel();
+            DataContext = vm;
         }
     }
 }
