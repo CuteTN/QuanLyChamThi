@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using QuanLyChamThi.Model;
 using QuanLyChamThi.Command;
 using System.ComponentModel;
 
@@ -24,16 +23,6 @@ namespace QuanLyChamThi.ViewModel
     }
     class NhapKQChamThiViewModel: ViewModelBase
     {
-        private ObservableCollection<pair<bool, BaiCham>> _dsBaiCham = new ObservableCollection<pair<bool, BaiCham>>();
-        public ObservableCollection<pair<bool, BaiCham>> DSBaiCham
-        {
-            get { return _dsBaiCham; }
-            set
-            {
-                _dsBaiCham = value;
-                OnPropertyChange("DSBaiCham");
-            }
-        }
 
         #region ComboBox Giảng viên chấm bài
         private BindingList<string> _dsGV;
@@ -192,7 +181,6 @@ namespace QuanLyChamThi.ViewModel
         }
         private void ThemBaiCham()
         {
-            DSBaiCham.Add(new pair<bool, BaiCham>(false, new BaiCham()));
         }
 
         private ICommand _xoaBaiChamDuocChon;
@@ -208,13 +196,6 @@ namespace QuanLyChamThi.ViewModel
         }
         private void XoaBaiChamDuocChon()
         {
-            for(int i=0; i<_dsBaiCham.Count; )
-            {
-                if (_dsBaiCham[i].Item1 == true)
-                    _dsBaiCham.RemoveAt(i);
-                else
-                    i++;
-            }
         }
 
         private ICommand _chonTatCa;
