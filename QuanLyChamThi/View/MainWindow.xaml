@@ -5,13 +5,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuanLyChamThi.ViewModel"
-        xmlns:uc="clr-namespace:QuanLyChamThi.View"
+        xmlns:page="clr-namespace:QuanLyChamThi.View"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Width="1366" Height="768">
     <Grid>
-
-        <uc:NhapKQChamThi HorizontalAlignment="Left" Height="370" Margin="142,39,0,0" VerticalAlignment="Top" Width="640"/>
-
+        <Frame x:Name="Main" Margin="159,104,0,10">
+            
+        </Frame>
     </Grid>
 
 </Window>
