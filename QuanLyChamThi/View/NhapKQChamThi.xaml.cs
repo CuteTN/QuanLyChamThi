@@ -19,7 +19,7 @@ namespace QuanLyChamThi.View
     /// <summary>
     /// Interaction logic for NhapKQChamThi.xaml
     /// </summary>
-    public partial class NhapKQChamThi : UserControl
+    public partial class NhapKQChamThi : Page
     {
         private NhapKQChamThiViewModel vm;
         public NhapKQChamThi()
