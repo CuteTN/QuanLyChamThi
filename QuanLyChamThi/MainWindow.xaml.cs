@@ -1,4 +1,5 @@
 ﻿using QuanLyChamThi.view;
+using QuanLyChamThi.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace QuanLyChamThi
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Page[] listPage = { new PageMain(), new PageReport(), new PageTestResult()};
+        private Page[] listPage = { new PageMain(), new PageReport(), new PageTestResult(), new PageTestResultDetailed()};
         public MainWindow()
         {
             InitializeComponent();
@@ -45,6 +46,8 @@ namespace QuanLyChamThi
                 mainScreen.Content = listPage[1];
             else if (e.Key == Key.D3)
                 mainScreen.Content = listPage[2];
+            else if (e.Key == Key.D4)
+                mainScreen.Content = listPage[3];
 
             if (e.Key == Key.Escape)
                 this.Close();
