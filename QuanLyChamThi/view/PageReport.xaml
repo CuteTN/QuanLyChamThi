@@ -35,7 +35,7 @@
             <TextBlock x:Name="tbTotalAssignment" Text="123" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         </StackPanel>
 
-        <ScrollViewer x:Name="svGrid" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="28" Grid.RowSpan="10" VerticalScrollBarVisibility="Auto">
+        <ScrollViewer x:Name="svGrid" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="29" Grid.RowSpan="10" VerticalScrollBarVisibility="Auto">
             <DataGrid x:Name="dgReport" AutoGenerateColumns="False" Width="{Binding ElementName=svGrid, Path=ActualWidth}" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn x:Name="colSTT" Header="STT" Width="1*"/>
