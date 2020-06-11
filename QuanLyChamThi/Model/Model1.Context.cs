@@ -37,7 +37,6 @@ namespace QuanLyChamThi.Model
         public virtual DbSet<MONHOC> MONHOC { get; set; }
         public virtual DbSet<NGUOISUDUNG> NGUOISUDUNG { get; set; }
         public virtual DbSet<SINHVIEN> SINHVIEN { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<THAMSO> THAMSO { get; set; }
     }
 }
