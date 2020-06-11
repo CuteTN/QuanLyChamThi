@@ -67,6 +67,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PageSrchTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PageMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -77,6 +81,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PageSrchTest.xaml.cs">
+      <DependentUpon>PageSrchTest.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageMain.xaml.cs">
       <DependentUpon>PageMain.xaml</DependentUpon>
     </Compile>
