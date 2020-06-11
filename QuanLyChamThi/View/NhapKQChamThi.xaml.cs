@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using QuanLyChamThi.Model;
 using QuanLyChamThi.ViewModel;
 
 namespace QuanLyChamThi.View
@@ -21,12 +22,12 @@ namespace QuanLyChamThi.View
     /// </summary>
     public partial class NhapKQChamThi : Page
     {
-        private NhapKQChamThiViewModel vm;
+        private NhapKQChamThiViewModel _vm;
         public NhapKQChamThi()
         {
             InitializeComponent();
-            vm = new NhapKQChamThiViewModel();
-            DataContext = vm;
+            _vm = new NhapKQChamThiViewModel();
+            DataContext = _vm;
         }
     }
 }

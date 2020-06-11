@@ -22,14 +22,14 @@ namespace QuanLyChamThi.View
     /// </summary>
     public partial class MainWindow : Window
     {
-        private MainWindowViewModel vm;
+        private MainWindowViewModel _vm;
         private NhapKQChamThi nhapKQChamThi;
         public MainWindow()
         {
             InitializeComponent();
-            vm = new MainWindowViewModel();
-            vm.CloseCommand = new RelayCommand(param => this.Close());
-            this.DataContext = vm;
+            _vm = new MainWindowViewModel();
+            _vm.CloseCommand = new RelayCommand(param => this.Close());
+            this.DataContext = _vm;
 
             nhapKQChamThi = new NhapKQChamThi();
             Main.Content = nhapKQChamThi;
