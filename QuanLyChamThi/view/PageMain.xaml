@@ -49,7 +49,7 @@
         <Border Grid.Column="21" Grid.Row="1" Grid.ColumnSpan="9" Grid.RowSpan="15" BorderThickness="3" BorderBrush="AntiqueWhite">
             <WrapPanel x:Name="pnlNews">
                 <Label Width="{Binding ElementName=pnlNews, Path=ActualWidth}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="TIN MỚI"/>
-                <Image Source="D:/DOWNLOAD/71669232_2928947753996924_5378131762851348480_n.jpg" Width="{Binding Path=ActualWidth, ElementName=pnlNews}" Height="{Binding Path=ActualHeight, ElementName=pnlNews}" Stretch="Uniform"/>
+                <Image Source="D:/DOWNLOAD/71669232_2928947753996924_5378131762851348480_n.jpg" Width="{Binding Path=ActualWidth, ElementName=pnlNews}" Height="{Binding Path=ActualHeight, ElementName=pnlNews}" Stretch="Fill"/>
             </WrapPanel>
         </Border>
     </Grid>

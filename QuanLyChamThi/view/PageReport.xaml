@@ -10,9 +10,9 @@
 
     <Grid Background="LightGray" x:Name="mainGrid">
 
-        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="15" Grid.RowSpan="2" Content="BÁO CÁO NĂM" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="14" Grid.RowSpan="2" Content="BÁO CÁO NĂM" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
 
-        <StackPanel Grid.Column="15" Grid.Row="0" Grid.ColumnSpan="16" Grid.RowSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Grid.Column="16" Grid.Row="1" Grid.ColumnSpan="14" Grid.RowSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label HorizontalAlignment="Left" 
                     Content="Chọn năm"/>
             <ComboBox x:Name="cbYear" 
@@ -25,12 +25,12 @@
                     Content="Tạo BC"/>
         </StackPanel>
 
-        <StackPanel Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="14" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="14" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label Content="Tổng số đề thi" HorizontalContentAlignment="Right"/>
             <TextBlock  x:Name="tbTotalExam" Text="123" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         </StackPanel>
 
-        <StackPanel Grid.Column="15" Grid.Row="3" Grid.ColumnSpan="14" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Grid.Column="16" Grid.Row="3" Grid.ColumnSpan="14" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label Content="Tổng số bài chấm" HorizontalContentAlignment="Right"/>
             <TextBlock x:Name="tbTotalAssignment" Text="123" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         </StackPanel>
@@ -49,8 +49,11 @@
         </ScrollViewer>
 
 
-        <DockPanel Grid.Column="10" Grid.Row="14" Grid.ColumnSpan="10" Grid.RowSpan="2">
+        <DockPanel Grid.Column="10" Grid.Row="15" Grid.ColumnSpan="5" LastChildFill="True">
             <Button HorizontalAlignment="Left" VerticalAlignment="Center" Content="Lưu file"/>
+        </DockPanel>
+        
+        <DockPanel Grid.Column="16" Grid.Row="15" Grid.ColumnSpan="5" LastChildFill="True">
             <Button HorizontalAlignment="Right" VerticalAlignment="Center" Content="In Báo cáo"/>
         </DockPanel>
 

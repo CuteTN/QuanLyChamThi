@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="viewmodel\PageMain.xaml.cs" />
+    <Compile Include="viewmodel\PageReport.xaml.cs" />
+    <Compile Include="viewmodel\PageTestResult.xaml.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -67,22 +70,20 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="PageMain.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="view\PageMain.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
-    <Page Include="PageReport.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="view\PageReport.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="view\PageTestResult.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PageMain.xaml.cs">
-      <DependentUpon>PageMain.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="PageReport.xaml.cs">
-      <DependentUpon>PageReport.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
