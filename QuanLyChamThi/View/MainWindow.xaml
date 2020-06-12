@@ -1,0 +1,17 @@
+﻿<Window
+        x:Class="QuanLyChamThi.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuanLyChamThi.ViewModel"
+        xmlns:page="clr-namespace:QuanLyChamThi.View"
+        mc:Ignorable="d"
+        Title="MainWindow" Width="1366" Height="768">
+    <Grid>
+        <Frame x:Name="Main" Margin="159,104,0,10">
+            
+        </Frame>
+    </Grid>
+
+</Window>
