@@ -181,6 +181,7 @@ namespace QuanLyChamThi.ViewModel
         }
         private void ThemBaiCham()
         {
+
         }
 
         private ICommand _xoaBaiChamDuocChon;

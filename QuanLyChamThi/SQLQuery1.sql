@@ -7,27 +7,27 @@ go
 create table DOKHO
 (
 	IDDifficulty int primary key,
-	TenDoKho varchar(256),
+	TenDoKho nvarchar(256),
 )
 
 create table MONHOC
 (
-	IDSubject varchar(20) primary key,
-	TenMonHoc varchar(256),
+	IDSubject nvarchar(20) primary key,
+	TenMonHoc nvarchar(256),
 )
 
 create table CAUHOI
 (
 	IDQuestion int primary key,
-	NoiDung varchar(5000),
+	NoiDung nvarchar(max),
 	IDDifficulty int foreign key references DOKHO(IDDifficulty),
-	IDSubject varchar(20) foreign key references MONHOC(IDSubject)
+	IDSubject nvarchar(20) foreign key references MONHOC(IDSubject)
 )
 
 create table DETHI
 (
-	IDTest varchar(256) primary key,
-	IDSubject varchar(20) foreign key references MONHOC(IDSubject),
+	IDTest nvarchar(256) primary key,
+	IDSubject nvarchar(20) foreign key references MONHOC(IDSubject),
 	NamHoc int,
 	HocKi int,
 	ThoiLuong int,
@@ -36,7 +36,7 @@ create table DETHI
 
 create table CHITIETDETHI
 (
-	IDTest varchar(256) foreign key references DETHI(IDTest),
+	IDTest nvarchar(256) foreign key references DETHI(IDTest),
 	Stt int,
 	IDQuestion int foreign key references CAUHOI(IDQuestion),
 	constraint PK_CHITIETDETHI primary key (IDTest, Stt)
@@ -45,43 +45,43 @@ create table CHITIETDETHI
 
 create table NGUOISUDUNG
 (
-	Username varchar(256) primary key,
+	Username nvarchar(256) primary key,
 	LoaiNguoiDung int,
-	MatKhau varchar(max),
-	HoTen varchar(256)
+	MatKhau nvarchar(max),
+	HoTen nvarchar(256)
 )
 
 create table LOP
 (
-	IDClass varchar(256) primary key,
-	IDSubject varchar(20) foreign key references MONHOC(IDSubject),
-	Username varchar(256) foreign key references NGUOISUDUNG(Username),
+	IDClass nvarchar(256) primary key,
+	IDSubject nvarchar(20) foreign key references MONHOC(IDSubject),
+	Username nvarchar(256) foreign key references NGUOISUDUNG(Username),
 	HocKi int,
 	Nam int
 )
 
 create table SINHVIEN
 (
-	IDStudent varchar(256) primary key,
-	HoTen varchar(256)
+	IDStudent nvarchar(256) primary key,
+	HoTen nvarchar(256)
 )
 
 create table CHAMTHI
 (
-	IDTestResult varchar(256) primary key,
-	IDClass varchar(256) foreign key references LOP(IDClass),
-	Username varchar(256) foreign key references NGUOISUDUNG(Username),
-	IDTest varchar(256) foreign key references DETHI(IDTest),
-	GhiChu varchar(256)
+	IDTestResult nvarchar(256) primary key,
+	IDClass nvarchar(256) foreign key references LOP(IDClass),
+	Username nvarchar(256) foreign key references NGUOISUDUNG(Username),
+	IDTest nvarchar(256) foreign key references DETHI(IDTest),
+	GhiChu nvarchar(256)
 )
 
 create table BAITHI
 (
-	IDTestResult varchar(256) foreign key references CHAMTHI(IDTestResult),
-	IDStudent varchar(256) foreign key references SINHVIEN(IDStudent),
+	IDTestResult nvarchar(256) foreign key references CHAMTHI(IDTestResult),
+	IDStudent nvarchar(256) foreign key references SINHVIEN(IDStudent),
 	DiemSo int,
-	DiemChu varchar(256),
-	GhiChu varchar(256),
+	DiemChu nvarchar(256),
+	GhiChu nvarchar(256),
 	constraint PK_BAITHI primary key (IDTestResult, IDStudent)
 )
 
@@ -94,7 +94,7 @@ create table BAOCAONAM
 
 create table CHITIETBAOCAO
 (
-	IDSubject varchar(20) foreign key references MONHOC(IDSubject),
+	IDSubject nvarchar(20) foreign key references MONHOC(IDSubject),
 	Nam int foreign key references BAOCAONAM(Nam),
 	SoLuongDeThi int,
 	SoLuongBaiCham int,

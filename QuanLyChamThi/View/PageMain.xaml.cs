@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace QuanLyChamThi
+namespace QuanLyChamThi.View
 {
     /// <summary>
-    /// Interaction logic for PageReport.xaml
+    /// Interaction logic for PageMain.xaml
     /// </summary>
-    public partial class PageReport : Page
+    public partial class PageMain : Page
     {
-        public PageReport()
+        public PageMain()
         {
             InitializeComponent();
             for (int i = 0; i < 31; i++)
