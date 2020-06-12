@@ -74,6 +74,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\PageMain.xaml.cs" />
+    <Compile Include="ViewModel\PageReport.xaml.cs" />
+    <Compile Include="ViewModel\PageTestResult.xaml.cs" />
+    <Compile Include="ViewModel\PageTestResultDetailed.xaml.cs" />
+    <Page Include="MainWindow.xaml">
     <Compile Include="Model\BAITHI.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -148,6 +153,22 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\PageMain.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PageReport.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PageTestResult.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="View\PageTestResultDetailed.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\NhapKQChamThi.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

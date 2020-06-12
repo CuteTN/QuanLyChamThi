@@ -1,0 +1,61 @@
+﻿<Page x:Class="QuanLyChamThi.PageReport"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:QuanLyChamThi"
+      mc:Ignorable="d" 
+      d:DesignHeight="640" d:DesignWidth="1200"
+      Title="LẬP BÁO CÁO NĂM">
+
+    <Grid Background="LightGray" x:Name="mainGrid">
+
+        <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="14" Grid.RowSpan="2" Content="BÁO CÁO NĂM" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+
+        <StackPanel Grid.Column="16" Grid.Row="1" Grid.ColumnSpan="14" Grid.RowSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label HorizontalAlignment="Left" 
+                    Content="Chọn năm"/>
+            <ComboBox x:Name="cbYear" 
+                        HorizontalAlignment="Center"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center">
+                <TextBlock Text="2020"/>
+            </ComboBox>
+            <Button HorizontalAlignment="Right" 
+                    Content="Tạo BC"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="14" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label Content="Tổng số đề thi" HorizontalContentAlignment="Right"/>
+            <TextBlock  x:Name="tbTotalExam" Text="123" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="16" Grid.Row="3" Grid.ColumnSpan="14" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label Content="Tổng số bài chấm" HorizontalContentAlignment="Right"/>
+            <TextBlock x:Name="tbTotalAssignment" Text="123" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <ScrollViewer x:Name="svGrid" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="29" Grid.RowSpan="10" VerticalScrollBarVisibility="Auto">
+            <DataGrid x:Name="dgReport" AutoGenerateColumns="False" Width="{Binding ElementName=svGrid, Path=ActualWidth}" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="colSTT" Header="STT" Width="1*"/>
+                    <DataGridTextColumn x:Name="colName" Header="Tên môn" Width="5*"/>
+                    <DataGridTextColumn x:Name="colAmountOfExam" Header="Số lượng đề thi" Width="5*"/>
+                    <DataGridTextColumn x:Name="colAmountOfAssignment" Header="Số lượng bài chấm" Width="5*"/>
+                    <DataGridTextColumn x:Name="colRatioOfExam" Header="Tỉ lệ đề thi" Width="5*"/>
+                    <DataGridTextColumn x:Name="colRatioOfAssignment" Header="Tỉ lệ bài chấm" Width="5*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+
+
+        <DockPanel Grid.Column="10" Grid.Row="15" Grid.ColumnSpan="5" LastChildFill="True">
+            <Button HorizontalAlignment="Left" VerticalAlignment="Center" Content="Lưu file"/>
+        </DockPanel>
+        
+        <DockPanel Grid.Column="16" Grid.Row="15" Grid.ColumnSpan="5" LastChildFill="True">
+            <Button HorizontalAlignment="Right" VerticalAlignment="Center" Content="In Báo cáo"/>
+        </DockPanel>
+
+    </Grid>
+</Page>

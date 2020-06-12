@@ -7,11 +7,73 @@
         xmlns:local="clr-namespace:QuanLyChamThi.ViewModel"
         xmlns:page="clr-namespace:QuanLyChamThi.View"
         mc:Ignorable="d"
-        Title="MainWindow" Width="1366" Height="768">
-    <Grid>
-        <Frame x:Name="Main" Margin="159,104,0,10">
-            
-        </Frame>
+        Title="MainWindow" Height="720" Width="1280" MinHeight="360" MinWidth="640" KeyDown="Window_KeyDown" WindowStartupLocation="CenterOwner">
+    <Grid x:Name="mainGrid">
+
+        <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="31" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding ElementName=mainScreen, Path=Content.Title}"/>
+
+        <Canvas x:Name="canvasExtendedSideBar" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="18" Background="AliceBlue" Panel.ZIndex="1" Visibility="Hidden" MouseLeave="canvasExtendedSideBar_MouseLeave"/>
+        <DockPanel x:Name="pnlSideBar" Grid.Column="0" Grid.Row="0" Grid.RowSpan="18" Background="AliceBlue" Panel.ZIndex="2" LastChildFill="True" MouseEnter="canvasExtendedSideBar_MouseEnter" >
+            <Button DockPanel.Dock="Top">
+                <WrapPanel>
+                    <Image Source="G:/Visual Studio/Project_SampleScreen/SampleScreen/Resources/Icon/giao vien.ico"/>
+                    <Canvas VerticalAlignment="Center" Visibility="{Binding ElementName=canvasExtendedSideBar, Path=Visibility, Mode=OneWay}">
+                        <Label Content="Thông tin"/>
+                    </Canvas>
+                </WrapPanel>
+            </Button>
+            <Button DockPanel.Dock="Top">
+                <WrapPanel>
+                    <Image Source="G:/Visual Studio/Project_SampleScreen/SampleScreen/Resources/Icon/cau hoi.ico"/>
+                    <Canvas VerticalAlignment="Center" Visibility="{Binding ElementName=canvasExtendedSideBar, Path=Visibility, Mode=OneWay}">
+                        <Label Content="Câu hỏi"/>
+                    </Canvas>
+                </WrapPanel>
+            </Button>
+            <Button DockPanel.Dock="Top">
+                <WrapPanel>
+                    <Image Source="G:/Visual Studio/Project_SampleScreen/SampleScreen/Resources/Icon/de thi.ico"/>
+                    <Canvas VerticalAlignment="Center" Visibility="{Binding ElementName=canvasExtendedSideBar, Path=Visibility, Mode=OneWay}">
+                        <Label Content="Đề thi"/>
+                    </Canvas>
+                </WrapPanel>
+            </Button>
+            <Button DockPanel.Dock="Top">
+                <WrapPanel>
+                    <Image Source="G:/Visual Studio/Project_SampleScreen/SampleScreen/Resources/Icon/tai lieu.ico"/>
+                    <Canvas VerticalAlignment="Center" Visibility="{Binding ElementName=canvasExtendedSideBar, Path=Visibility, Mode=OneWay}">
+                        <Label Content="Bài chấm"/>
+                    </Canvas>
+                </WrapPanel>
+            </Button>
+            <Button DockPanel.Dock="Top">
+                <WrapPanel>
+                    <Image Source="G:/Visual Studio/Project_SampleScreen/SampleScreen/Resources/Icon/bao cao.ico"/>
+                    <Canvas VerticalAlignment="Center" Visibility="{Binding ElementName=canvasExtendedSideBar, Path=Visibility, Mode=OneWay}">
+                        <Label Content="Báo cáo"/>
+                    </Canvas>
+                </WrapPanel>
+            </Button>
+            <Button DockPanel.Dock="Bottom">
+                <WrapPanel>
+                    <Image Source="G:/Visual Studio/Project_SampleScreen/SampleScreen/Resources/Icon/cancel.ico"/>
+                    <Canvas VerticalAlignment="Center" Visibility="{Binding ElementName=canvasExtendedSideBar, Path=Visibility, Mode=OneWay}">
+                        <Label Content="Đăng xuất"/>
+                    </Canvas>
+                </WrapPanel>
+            </Button>
+            <Button DockPanel.Dock="Bottom">
+                <WrapPanel>
+                    <Image Source="G:/Visual Studio/Project_SampleScreen/SampleScreen/Resources/Icon/cai dat.ico"/>
+                    <Canvas VerticalAlignment="Center" Visibility="{Binding ElementName=canvasExtendedSideBar, Path=Visibility, Mode=OneWay}">
+                        <Label Content="Cài đặt"/>
+                    </Canvas>
+                </WrapPanel>
+            </Button>
+            <Separator Background="Transparent"/>
+        </DockPanel>
+
+        <Frame Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="31" Grid.RowSpan="17" x:Name="mainScreen" NavigationUIVisibility="Hidden" />
     </Grid>
 
 </Window>
