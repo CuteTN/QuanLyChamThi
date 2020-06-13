@@ -16,7 +16,7 @@
         <DockPanel x:Name="pnlSideBar" Grid.Column="0" Grid.Row="0" Grid.RowSpan="18" Background="AliceBlue" Panel.ZIndex="2" LastChildFill="True" MouseEnter="canvasExtendedSideBar_MouseEnter" >
             <Button DockPanel.Dock="Top">
                 <WrapPanel>
-                    <Image/>
+                    <Image Source="G:/Visual Studio/Project_SampleScreen/SampleScreen/Resources/Icon/giao vien.ico"/>
                     <Canvas VerticalAlignment="Center" Visibility="{Binding ElementName=canvasExtendedSideBar, Path=Visibility, Mode=OneWay}">
                         <Label Content="Thông tin"/>
                     </Canvas>
