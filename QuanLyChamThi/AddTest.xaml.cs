@@ -16,14 +16,13 @@ using System.Windows.Shapes;
 namespace QuanLyChamThi
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for AddTest.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AddTest : Page
     {
-        public MainWindow()
+        public AddTest()
         {
             InitializeComponent();
-            Main.Content = new AddTest();
         }
     }
 }
