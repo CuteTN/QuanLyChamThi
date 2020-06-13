@@ -75,19 +75,16 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="View\PageMain.xaml.cs">
-      <DependentUpon>PageMain.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\PageQuestion.xaml.cs">
-      <DependentUpon>PageQuestion.xaml</DependentUpon>
+	<DependentUpon>PageMain.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PageReport.xaml.cs">
-      <DependentUpon>PageReport.xaml</DependentUpon>
+	<DependentUpon>PageReport.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PageTestResult.xaml.cs">
-      <DependentUpon>PageTestResult.xaml</DependentUpon>
+	<DependentUpon>PageTestResult.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PageTestResultDetailed.xaml.cs">
-      <DependentUpon>PageTestResultDetailed.xaml</DependentUpon>
+	<DependentUpon>PageTestResultDetailed.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\BAITHI.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -151,9 +148,6 @@
     <Compile Include="View\NhapKQChamThi.xaml.cs">
       <DependentUpon>NhapKQChamThi.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\UserControlQuestionList.xaml.cs">
-      <DependentUpon>UserControlQuestionList.xaml</DependentUpon>
-    </Compile>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -170,10 +164,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\PageQuestion.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\PageReport.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -187,10 +177,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\NhapKQChamThi.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\UserControlQuestionList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
