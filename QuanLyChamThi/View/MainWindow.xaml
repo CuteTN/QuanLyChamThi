@@ -16,7 +16,7 @@
         <DockPanel x:Name="pnlSideBar" Grid.Column="0" Grid.Row="0" Grid.RowSpan="18" Background="AliceBlue" Panel.ZIndex="2" LastChildFill="True" MouseEnter="canvasExtendedSideBar_MouseEnter" >
             <Button DockPanel.Dock="Top">
                 <WrapPanel>
-                    <Image Source="G:/Visual Studio/Project_SampleScreen/SampleScreen/Resources/Icon/giao vien.ico"/>
+                    <Image Source="Icon/teacher.ico"/>
                     <Canvas VerticalAlignment="Center" Visibility="{Binding ElementName=canvasExtendedSideBar, Path=Visibility, Mode=OneWay}">
                         <Label Content="Thông tin"/>
                     </Canvas>
@@ -24,7 +24,7 @@
             </Button>
             <Button DockPanel.Dock="Top">
                 <WrapPanel>
-                    <Image Source="G:/Visual Studio/Project_SampleScreen/SampleScreen/Resources/Icon/cau hoi.ico"/>
+                    <Image Source="Icon/question.ico"/>
                     <Canvas VerticalAlignment="Center" Visibility="{Binding ElementName=canvasExtendedSideBar, Path=Visibility, Mode=OneWay}">
                         <Label Content="Câu hỏi"/>
                     </Canvas>
@@ -32,7 +32,7 @@
             </Button>
             <Button DockPanel.Dock="Top">
                 <WrapPanel>
-                    <Image Source="G:/Visual Studio/Project_SampleScreen/SampleScreen/Resources/Icon/de thi.ico"/>
+                    <Image Source="Icon/test.ico"/>
                     <Canvas VerticalAlignment="Center" Visibility="{Binding ElementName=canvasExtendedSideBar, Path=Visibility, Mode=OneWay}">
                         <Label Content="Đề thi"/>
                     </Canvas>
@@ -40,7 +40,7 @@
             </Button>
             <Button DockPanel.Dock="Top">
                 <WrapPanel>
-                    <Image Source="G:/Visual Studio/Project_SampleScreen/SampleScreen/Resources/Icon/tai lieu.ico"/>
+                    <Image Source="Icon/document.ico"/>
                     <Canvas VerticalAlignment="Center" Visibility="{Binding ElementName=canvasExtendedSideBar, Path=Visibility, Mode=OneWay}">
                         <Label Content="Bài chấm"/>
                     </Canvas>
@@ -48,7 +48,7 @@
             </Button>
             <Button DockPanel.Dock="Top">
                 <WrapPanel>
-                    <Image Source="G:/Visual Studio/Project_SampleScreen/SampleScreen/Resources/Icon/bao cao.ico"/>
+                    <Image Source="Icon/report.ico"/>
                     <Canvas VerticalAlignment="Center" Visibility="{Binding ElementName=canvasExtendedSideBar, Path=Visibility, Mode=OneWay}">
                         <Label Content="Báo cáo"/>
                     </Canvas>
@@ -56,7 +56,7 @@
             </Button>
             <Button DockPanel.Dock="Bottom">
                 <WrapPanel>
-                    <Image Source="G:/Visual Studio/Project_SampleScreen/SampleScreen/Resources/Icon/cancel.ico"/>
+                    <Image Source="Icon/cancel.ico"/>
                     <Canvas VerticalAlignment="Center" Visibility="{Binding ElementName=canvasExtendedSideBar, Path=Visibility, Mode=OneWay}">
                         <Label Content="Đăng xuất"/>
                     </Canvas>
@@ -64,7 +64,7 @@
             </Button>
             <Button DockPanel.Dock="Bottom">
                 <WrapPanel>
-                    <Image Source="G:/Visual Studio/Project_SampleScreen/SampleScreen/Resources/Icon/cai dat.ico"/>
+                    <Image Source="Icon/setting.ico"/>
                     <Canvas VerticalAlignment="Center" Visibility="{Binding ElementName=canvasExtendedSideBar, Path=Visibility, Mode=OneWay}">
                         <Label Content="Cài đặt"/>
                     </Canvas>
