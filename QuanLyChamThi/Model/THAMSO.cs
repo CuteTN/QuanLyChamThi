@@ -15,10 +15,10 @@ namespace QuanLyChamThi.Model
     public partial class THAMSO
     {
         public int id { get; set; }
-        public Nullable<int> SoCauToiDa { get; set; }
-        public Nullable<int> ThoiLuongToiDa { get; set; }
-        public Nullable<int> ThoiLuongToiThieu { get; set; }
-        public Nullable<int> DiemSoToiDa { get; set; }
-        public Nullable<int> DiemSoToiThieu { get; set; }
+        public Nullable<int> MaxNumberOfQuestion { get; set; }
+        public Nullable<int> MaxTimeForTest { get; set; }
+        public Nullable<int> MinTimeForTest { get; set; }
+        public Nullable<int> MaxScore { get; set; }
+        public Nullable<int> MinScore { get; set; }
     }
 }

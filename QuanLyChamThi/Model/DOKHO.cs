@@ -17,13 +17,13 @@ namespace QuanLyChamThi.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DOKHO()
         {
-            this.CAUHOI = new HashSet<CAUHOI>();
+            this.QUESTION = new HashSet<CAUHOI>();
         }
     
         public int IDDifficulty { get; set; }
-        public string TenDoKho { get; set; }
+        public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CAUHOI> CAUHOI { get; set; }
+        public virtual ICollection<CAUHOI> QUESTION { get; set; }
     }
 }

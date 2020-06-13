@@ -17,13 +17,13 @@ namespace QuanLyChamThi.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SINHVIEN()
         {
-            this.BAITHI = new HashSet<BAITHI>();
+            this.TESTRESULT = new HashSet<BAITHI>();
         }
     
         public string IDStudent { get; set; }
-        public string HoTen { get; set; }
+        public string FullName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BAITHI> BAITHI { get; set; }
+        public virtual ICollection<BAITHI> TESTRESULT { get; set; }
     }
 }

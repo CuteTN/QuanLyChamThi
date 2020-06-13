@@ -17,14 +17,14 @@ namespace QuanLyChamThi.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public BAOCAONAM()
         {
-            this.CHITIETBAOCAO = new HashSet<CHITIETBAOCAO>();
+            this.REPORTDETAIL = new HashSet<CHITIETBAOCAO>();
         }
     
-        public int Nam { get; set; }
-        public Nullable<int> TongSoDeThi { get; set; }
-        public Nullable<int> TongSoBaiCham { get; set; }
+        public int Year { get; set; }
+        public Nullable<int> NumberOfTest { get; set; }
+        public Nullable<int> NumberOfTestResult { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CHITIETBAOCAO> CHITIETBAOCAO { get; set; }
+        public virtual ICollection<CHITIETBAOCAO> REPORTDETAIL { get; set; }
     }
 }

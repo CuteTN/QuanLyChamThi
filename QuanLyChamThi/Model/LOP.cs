@@ -17,18 +17,18 @@ namespace QuanLyChamThi.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public LOP()
         {
-            this.CHAMTHI = new HashSet<CHAMTHI>();
+            this.TESTRESULTDETAIL = new HashSet<CHAMTHI>();
         }
     
         public string IDClass { get; set; }
         public string IDSubject { get; set; }
         public string Username { get; set; }
-        public Nullable<int> HocKi { get; set; }
-        public Nullable<int> Nam { get; set; }
+        public Nullable<int> Semester { get; set; }
+        public Nullable<int> Year { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CHAMTHI> CHAMTHI { get; set; }
-        public virtual MONHOC MONHOC { get; set; }
-        public virtual NGUOISUDUNG NGUOISUDUNG { get; set; }
+        public virtual ICollection<CHAMTHI> TESTRESULTDETAIL { get; set; }
+        public virtual MONHOC SUBJECT { get; set; }
+        public virtual NGUOISUDUNG USER { get; set; }
     }
 }

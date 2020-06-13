@@ -15,11 +15,11 @@ namespace QuanLyChamThi.Model
     public partial class CHITIETBAOCAO
     {
         public string IDSubject { get; set; }
-        public int Nam { get; set; }
-        public Nullable<int> SoLuongDeThi { get; set; }
-        public Nullable<int> SoLuongBaiCham { get; set; }
+        public int Year { get; set; }
+        public Nullable<int> NumberOfTest { get; set; }
+        public Nullable<int> NumberOfTestResult { get; set; }
     
-        public virtual BAOCAONAM BAOCAONAM { get; set; }
-        public virtual MONHOC MONHOC { get; set; }
+        public virtual BAOCAONAM REPORT { get; set; }
+        public virtual MONHOC SUBJECT { get; set; }
     }
 }

@@ -17,21 +17,21 @@ namespace QuanLyChamThi.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DETHI()
         {
-            this.CHAMTHI = new HashSet<CHAMTHI>();
-            this.CHITIETDETHI = new HashSet<CHITIETDETHI>();
+            this.TESTRESULTDETAIL = new HashSet<CHAMTHI>();
+            this.TESTDETAIL = new HashSet<CHITIETDETHI>();
         }
     
         public string IDTest { get; set; }
         public string IDSubject { get; set; }
-        public Nullable<int> NamHoc { get; set; }
-        public Nullable<int> HocKi { get; set; }
-        public Nullable<int> ThoiLuong { get; set; }
-        public Nullable<System.DateTime> NgayThi { get; set; }
+        public Nullable<int> Year { get; set; }
+        public Nullable<int> Semester { get; set; }
+        public Nullable<int> TimeForTest { get; set; }
+        public Nullable<System.DateTime> DateOfTest { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CHAMTHI> CHAMTHI { get; set; }
+        public virtual ICollection<CHAMTHI> TESTRESULTDETAIL { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CHITIETDETHI> CHITIETDETHI { get; set; }
-        public virtual MONHOC MONHOC { get; set; }
+        public virtual ICollection<CHITIETDETHI> TESTDETAIL { get; set; }
+        public virtual MONHOC SUBJECT { get; set; }
     }
 }

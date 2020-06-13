@@ -4,20 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="539ed1cb032b4418a59fe752a57962dd" Name="Diagram1" ZoomLevel="64">
+      <Diagram DiagramId="539ed1cb032b4418a59fe752a57962dd" Name="Diagram1" ZoomLevel="58">
         <EntityTypeShape EntityType="QuanLyDeThiModel.BAITHI" Width="1.5" PointX="10.5" PointY="12.375" />
         <EntityTypeShape EntityType="QuanLyDeThiModel.BAOCAONAM" Width="1.5" PointX="0.75" PointY="11" />
         <EntityTypeShape EntityType="QuanLyDeThiModel.CAUHOI" Width="1.5" PointX="3" PointY="4.625" />
         <EntityTypeShape EntityType="QuanLyDeThiModel.CHAMTHI" Width="1.5" PointX="8.25" PointY="12.125" />
         <EntityTypeShape EntityType="QuanLyDeThiModel.CHITIETBAOCAO" Width="1.5" PointX="3" PointY="7.75" />
         <EntityTypeShape EntityType="QuanLyDeThiModel.CHITIETDETHI" Width="1.5" PointX="5.25" PointY="11.125" />
-        <EntityTypeShape EntityType="QuanLyDeThiModel.DETHI" Width="1.5" PointX="3" PointY="16.75" />
+        <EntityTypeShape EntityType="QuanLyDeThiModel.DETHI" Width="1.5" PointX="3" PointY="15.25" />
         <EntityTypeShape EntityType="QuanLyDeThiModel.DOKHO" Width="1.5" PointX="0.75" PointY="5" />
         <EntityTypeShape EntityType="QuanLyDeThiModel.LOP" Width="1.5" PointX="6" PointY="7.5" />
         <EntityTypeShape EntityType="QuanLyDeThiModel.MONHOC" Width="1.5" PointX="0.75" PointY="7.75" />
         <EntityTypeShape EntityType="QuanLyDeThiModel.NGUOISUDUNG" Width="1.5" PointX="3.75" PointY="0.75" />
         <EntityTypeShape EntityType="QuanLyDeThiModel.SINHVIEN" Width="1.5" PointX="8.25" PointY="9.75" />
-        <EntityTypeShape EntityType="QuanLyDeThiModel.THAMSO" Width="1.5" PointX="5.75" PointY="2.125" />
+        <EntityTypeShape EntityType="QuanLyDeThiModel.THAMSO" Width="1.5" PointX="5.75" PointY="2.125" IsExpanded="true" />
         <AssociationConnector Association="QuanLyDeThiModel.FK__BAITHI__IDStuden__403A8C7D" />
         <AssociationConnector Association="QuanLyDeThiModel.FK__BAITHI__IDTestRe__3F466844" />
         <AssociationConnector Association="QuanLyDeThiModel.FK__CHITIETBAOC__Nam__45F365D3" />

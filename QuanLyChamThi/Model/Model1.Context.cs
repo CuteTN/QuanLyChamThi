@@ -25,18 +25,18 @@ namespace QuanLyChamThi.Model
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<BAITHI> BAITHI { get; set; }
-        public virtual DbSet<BAOCAONAM> BAOCAONAM { get; set; }
-        public virtual DbSet<CAUHOI> CAUHOI { get; set; }
-        public virtual DbSet<CHAMTHI> CHAMTHI { get; set; }
-        public virtual DbSet<CHITIETBAOCAO> CHITIETBAOCAO { get; set; }
-        public virtual DbSet<CHITIETDETHI> CHITIETDETHI { get; set; }
-        public virtual DbSet<DETHI> DETHI { get; set; }
-        public virtual DbSet<DOKHO> DOKHO { get; set; }
-        public virtual DbSet<LOP> LOP { get; set; }
-        public virtual DbSet<MONHOC> MONHOC { get; set; }
-        public virtual DbSet<NGUOISUDUNG> NGUOISUDUNG { get; set; }
-        public virtual DbSet<SINHVIEN> SINHVIEN { get; set; }
-        public virtual DbSet<THAMSO> THAMSO { get; set; }
+        public virtual DbSet<BAITHI> TESTRESULT { get; set; }
+        public virtual DbSet<BAOCAONAM> REPORT { get; set; }
+        public virtual DbSet<CAUHOI> QUESTION { get; set; }
+        public virtual DbSet<CHAMTHI> TESTRESULTDETAIL { get; set; }
+        public virtual DbSet<CHITIETBAOCAO> REPORTDETAIL { get; set; }
+        public virtual DbSet<CHITIETDETHI> TESTDETAIL { get; set; }
+        public virtual DbSet<DETHI> TEST { get; set; }
+        public virtual DbSet<DOKHO> DIFFICULTY { get; set; }
+        public virtual DbSet<LOP> CLASS { get; set; }
+        public virtual DbSet<MONHOC> SUBJECT { get; set; }
+        public virtual DbSet<NGUOISUDUNG> USER { get; set; }
+        public virtual DbSet<SINHVIEN> STUDENT { get; set; }
+        public virtual DbSet<THAMSO> PRINCIPLE { get; set; }
     }
 }

@@ -15,10 +15,10 @@ namespace QuanLyChamThi.Model
     public partial class CHITIETDETHI
     {
         public string IDTest { get; set; }
-        public int Stt { get; set; }
+        public int No { get; set; }
         public Nullable<int> IDQuestion { get; set; }
     
-        public virtual CAUHOI CAUHOI { get; set; }
-        public virtual DETHI DETHI { get; set; }
+        public virtual CAUHOI QUESTION { get; set; }
+        public virtual DETHI TEST { get; set; }
     }
 }
