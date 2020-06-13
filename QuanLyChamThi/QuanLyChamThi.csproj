@@ -75,16 +75,16 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="View\PageMain.xaml.cs">
-	<DependentUpon>PageMain.xaml</DependentUpon>
+      <DependentUpon>PageMain.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PageReport.xaml.cs">
-	<DependentUpon>PageReport.xaml</DependentUpon>
+      <DependentUpon>PageReport.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PageTestResult.xaml.cs">
-	<DependentUpon>PageTestResult.xaml</DependentUpon>
+      <DependentUpon>PageTestResult.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PageTestResultDetailed.xaml.cs">
-	<DependentUpon>PageTestResultDetailed.xaml</DependentUpon>
+      <DependentUpon>PageTestResultDetailed.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\BAITHI.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -145,9 +145,6 @@
     <Compile Include="Command\RelayCommand.cs" />
     <Compile Include="ViewModel\NhapKQChamThiViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
-    <Compile Include="View\NhapKQChamThi.xaml.cs">
-      <DependentUpon>NhapKQChamThi.xaml</DependentUpon>
-    </Compile>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -173,10 +170,6 @@
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="View\PageTestResultDetailed.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\NhapKQChamThi.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -220,6 +213,47 @@
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.3.0.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="View\teacher.ico" />
+    <Resource Include="Icon\add.ico" />
+    <Resource Include="Icon\admin.ico" />
+    <Resource Include="Icon\apply.ico" />
+    <Resource Include="Icon\bai cham.ico" />
+    <Resource Include="Icon\ban giam hieu.ico" />
+    <Resource Include="Icon\cancel.ico" />
+    <Resource Include="Icon\close.ico" />
+    <Resource Include="Icon\delete.ico" />
+    <Resource Include="Icon\document.ico" />
+    <Resource Include="Icon\download.ico" />
+    <Resource Include="Icon\edit.ico" />
+    <Resource Include="Icon\erase.ico" />
+    <Resource Include="Icon\error.ico" />
+    <Resource Include="Icon\filter.ico" />
+    <Resource Include="Icon\folder.ico" />
+    <Resource Include="Icon\go_back.ico" />
+    <Resource Include="Icon\go_forward.ico" />
+    <Resource Include="Icon\help.ico" />
+    <Resource Include="Icon\home.ico" />
+    <Resource Include="Icon\info.ico" />
+    <Resource Include="Icon\loading.ico" />
+    <Resource Include="Icon\lock.ico" />
+    <Resource Include="Icon\login.ico" />
+    <Resource Include="Icon\new.ico" />
+    <Resource Include="Icon\news.ico" />
+    <Resource Include="Icon\no.ico" />
+    <Resource Include="Icon\okay.ico" />
+    <Resource Include="Icon\question.ico" />
+    <Resource Include="Icon\redo.ico" />
+    <Resource Include="Icon\refresh.ico" />
+    <Resource Include="Icon\report.ico" />
+    <Resource Include="Icon\save.ico" />
+    <Resource Include="Icon\search.ico" />
+    <Resource Include="Icon\setting.ico" />
+    <Resource Include="Icon\table.ico" />
+    <Resource Include="Icon\teacher.ico" />
+    <Resource Include="Icon\test.ico" />
+    <Resource Include="Icon\undo.ico" />
+    <Resource Include="Icon\unlock.ico" />
+    <Resource Include="Icon\warning.ico" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>
