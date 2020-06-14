@@ -23,7 +23,7 @@ namespace QuanLyChamThi.View
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Page[] listPage = { new PageMain(), new PageReport(), new PageTestResult(), new PageTestResultDetailed() };
+        private Page[] listPage = { new PageMain(), new PageReport(), new PageTestResult(), new PageTestResultDetailed(), new PageQuestion(), new PageTestSearch()};
         public MainWindow()
         {
             InitializeComponent();
@@ -49,6 +49,10 @@ namespace QuanLyChamThi.View
                 mainScreen.Content = listPage[2];
             else if (e.Key == Key.D4)
                 mainScreen.Content = listPage[3];
+            else if (e.Key == Key.D5)
+                mainScreen.Content = listPage[4];
+            else if (e.Key == Key.D6)
+                mainScreen.Content = listPage[5];
 
             if (e.Key == Key.Escape)
                 this.Close();

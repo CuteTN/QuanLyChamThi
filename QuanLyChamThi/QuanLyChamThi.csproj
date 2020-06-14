@@ -77,6 +77,9 @@
     <Compile Include="View\PageMain.xaml.cs">
       <DependentUpon>PageMain.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\PageQuestion.xaml.cs">
+      <DependentUpon>PageQuestion.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PageReport.xaml.cs">
       <DependentUpon>PageReport.xaml</DependentUpon>
     </Compile>
@@ -145,6 +148,12 @@
     <Compile Include="Command\RelayCommand.cs" />
     <Compile Include="ViewModel\NhapKQChamThiViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="View\PageTestSearch.xaml.cs">
+      <DependentUpon>PageTestSearch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControlQuestionList.xaml.cs">
+      <DependentUpon>UserControlQuestionList.xaml</DependentUpon>
+    </Compile>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -161,6 +170,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\PageQuestion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\PageReport.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -170,6 +183,14 @@
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="View\PageTestResultDetailed.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PageTestSearch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserControlQuestionList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -213,7 +234,6 @@
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.3.0.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\teacher.ico" />
     <Resource Include="Icon\add.ico" />
     <Resource Include="Icon\admin.ico" />
     <Resource Include="Icon\apply.ico" />
