@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:QuanLyChamThi.View"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="LẬP BÁO CÁO NĂM">
+      Title="TẠO SỬA CÂU HỎI">
 
     <Grid Background="LightGray" x:Name="mainGrid">
 
