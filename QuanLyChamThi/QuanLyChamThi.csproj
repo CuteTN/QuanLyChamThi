@@ -83,6 +83,9 @@
     <Compile Include="View\PageReport.xaml.cs">
       <DependentUpon>PageReport.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\PageTest.xaml.cs">
+      <DependentUpon>PageTest.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PageTestResult.xaml.cs">
       <DependentUpon>PageTestResult.xaml</DependentUpon>
     </Compile>
@@ -177,6 +180,10 @@
     <Page Include="View\PageReport.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PageTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PageTestResult.xaml">
       <SubType>Designer</SubType>
