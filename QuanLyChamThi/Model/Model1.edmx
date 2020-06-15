@@ -124,7 +124,7 @@
           <Property Name="DiemSoToiDa" Type="int" />
           <Property Name="DiemSoToiThieu" Type="int" />
         </EntityType>
-        <Association Name="FK__BAITHI__IDStuden__403A8C7D">
+        <Association Name="FK__BAITHI__IDStuden__3F466844">
           <End Role="SINHVIEN" Type="Self.SINHVIEN" Multiplicity="1" />
           <End Role="BAITHI" Type="Self.BAITHI" Multiplicity="*" />
           <ReferentialConstraint>
@@ -136,7 +136,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BAITHI__IDTestRe__3F466844">
+        <Association Name="FK__BAITHI__IDTestRe__3E52440B">
           <End Role="CHAMTHI" Type="Self.CHAMTHI" Multiplicity="1" />
           <End Role="BAITHI" Type="Self.BAITHI" Multiplicity="*" />
           <ReferentialConstraint>
@@ -148,7 +148,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CAUHOI__IDDiffic__286302EC">
+        <Association Name="FK__CAUHOI__IDDiffic__276EDEB3">
           <End Role="DOKHO" Type="Self.DOKHO" Multiplicity="0..1" />
           <End Role="CAUHOI" Type="Self.CAUHOI" Multiplicity="*" />
           <ReferentialConstraint>
@@ -160,7 +160,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CAUHOI__IDSubjec__29572725">
+        <Association Name="FK__CAUHOI__IDSubjec__286302EC">
           <End Role="MONHOC" Type="Self.MONHOC" Multiplicity="0..1" />
           <End Role="CAUHOI" Type="Self.CAUHOI" Multiplicity="*" />
           <ReferentialConstraint>
@@ -172,7 +172,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CHAMTHI__IDClass__3A81B327">
+        <Association Name="FK__CHAMTHI__IDClass__398D8EEE">
           <End Role="LOP" Type="Self.LOP" Multiplicity="0..1" />
           <End Role="CHAMTHI" Type="Self.CHAMTHI" Multiplicity="*" />
           <ReferentialConstraint>
@@ -184,7 +184,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CHAMTHI__IDTest__3C69FB99">
+        <Association Name="FK__CHAMTHI__IDTest__3B75D760">
           <End Role="DETHI" Type="Self.DETHI" Multiplicity="0..1" />
           <End Role="CHAMTHI" Type="Self.CHAMTHI" Multiplicity="*" />
           <ReferentialConstraint>
@@ -196,7 +196,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CHAMTHI__Usernam__3B75D760">
+        <Association Name="FK__CHAMTHI__Usernam__3A81B327">
           <End Role="NGUOISUDUNG" Type="Self.NGUOISUDUNG" Multiplicity="0..1" />
           <End Role="CHAMTHI" Type="Self.CHAMTHI" Multiplicity="*" />
           <ReferentialConstraint>
@@ -208,7 +208,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CHITIETBA__IDSub__44FF419A">
+        <Association Name="FK__CHITIETBA__IDSub__440B1D61">
           <End Role="MONHOC" Type="Self.MONHOC" Multiplicity="1" />
           <End Role="CHITIETBAOCAO" Type="Self.CHITIETBAOCAO" Multiplicity="*" />
           <ReferentialConstraint>
@@ -220,7 +220,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CHITIETBAOC__Nam__45F365D3">
+        <Association Name="FK__CHITIETBAOC__Nam__44FF419A">
           <End Role="BAOCAONAM" Type="Self.BAOCAONAM" Multiplicity="1" />
           <End Role="CHITIETBAOCAO" Type="Self.CHITIETBAOCAO" Multiplicity="*" />
           <ReferentialConstraint>
@@ -232,7 +232,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CHITIETDE__IDQue__300424B4">
+        <Association Name="FK__CHITIETDE__IDQue__2F10007B">
           <End Role="CAUHOI" Type="Self.CAUHOI" Multiplicity="0..1" />
           <End Role="CHITIETDETHI" Type="Self.CHITIETDETHI" Multiplicity="*" />
           <ReferentialConstraint>
@@ -244,7 +244,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CHITIETDE__IDTes__2F10007B">
+        <Association Name="FK__CHITIETDE__IDTes__2E1BDC42">
           <End Role="DETHI" Type="Self.DETHI" Multiplicity="1" />
           <End Role="CHITIETDETHI" Type="Self.CHITIETDETHI" Multiplicity="*" />
           <ReferentialConstraint>
@@ -256,7 +256,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DETHI__IDSubject__2C3393D0">
+        <Association Name="FK__DETHI__IDSubject__2B3F6F97">
           <End Role="MONHOC" Type="Self.MONHOC" Multiplicity="0..1" />
           <End Role="DETHI" Type="Self.DETHI" Multiplicity="*" />
           <ReferentialConstraint>
@@ -268,7 +268,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__LOP__IDSubject__34C8D9D1">
+        <Association Name="FK__LOP__IDSubject__33D4B598">
           <End Role="MONHOC" Type="Self.MONHOC" Multiplicity="0..1" />
           <End Role="LOP" Type="Self.LOP" Multiplicity="*" />
           <ReferentialConstraint>
@@ -280,7 +280,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__LOP__Username__35BCFE0A">
+        <Association Name="FK__LOP__Username__34C8D9D1">
           <End Role="NGUOISUDUNG" Type="Self.NGUOISUDUNG" Multiplicity="0..1" />
           <End Role="LOP" Type="Self.LOP" Multiplicity="*" />
           <ReferentialConstraint>
@@ -306,59 +306,59 @@
           <EntitySet Name="NGUOISUDUNG" EntityType="Self.NGUOISUDUNG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SINHVIEN" EntityType="Self.SINHVIEN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="THAMSO" EntityType="Self.THAMSO" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__BAITHI__IDStuden__403A8C7D" Association="Self.FK__BAITHI__IDStuden__403A8C7D">
+          <AssociationSet Name="FK__BAITHI__IDStuden__3F466844" Association="Self.FK__BAITHI__IDStuden__3F466844">
             <End Role="SINHVIEN" EntitySet="SINHVIEN" />
             <End Role="BAITHI" EntitySet="BAITHI" />
           </AssociationSet>
-          <AssociationSet Name="FK__BAITHI__IDTestRe__3F466844" Association="Self.FK__BAITHI__IDTestRe__3F466844">
+          <AssociationSet Name="FK__BAITHI__IDTestRe__3E52440B" Association="Self.FK__BAITHI__IDTestRe__3E52440B">
             <End Role="CHAMTHI" EntitySet="CHAMTHI" />
             <End Role="BAITHI" EntitySet="BAITHI" />
           </AssociationSet>
-          <AssociationSet Name="FK__CAUHOI__IDDiffic__286302EC" Association="Self.FK__CAUHOI__IDDiffic__286302EC">
+          <AssociationSet Name="FK__CAUHOI__IDDiffic__276EDEB3" Association="Self.FK__CAUHOI__IDDiffic__276EDEB3">
             <End Role="DOKHO" EntitySet="DOKHO" />
             <End Role="CAUHOI" EntitySet="CAUHOI" />
           </AssociationSet>
-          <AssociationSet Name="FK__CAUHOI__IDSubjec__29572725" Association="Self.FK__CAUHOI__IDSubjec__29572725">
+          <AssociationSet Name="FK__CAUHOI__IDSubjec__286302EC" Association="Self.FK__CAUHOI__IDSubjec__286302EC">
             <End Role="MONHOC" EntitySet="MONHOC" />
             <End Role="CAUHOI" EntitySet="CAUHOI" />
           </AssociationSet>
-          <AssociationSet Name="FK__CHAMTHI__IDClass__3A81B327" Association="Self.FK__CHAMTHI__IDClass__3A81B327">
+          <AssociationSet Name="FK__CHAMTHI__IDClass__398D8EEE" Association="Self.FK__CHAMTHI__IDClass__398D8EEE">
             <End Role="LOP" EntitySet="LOP" />
             <End Role="CHAMTHI" EntitySet="CHAMTHI" />
           </AssociationSet>
-          <AssociationSet Name="FK__CHAMTHI__IDTest__3C69FB99" Association="Self.FK__CHAMTHI__IDTest__3C69FB99">
+          <AssociationSet Name="FK__CHAMTHI__IDTest__3B75D760" Association="Self.FK__CHAMTHI__IDTest__3B75D760">
             <End Role="DETHI" EntitySet="DETHI" />
             <End Role="CHAMTHI" EntitySet="CHAMTHI" />
           </AssociationSet>
-          <AssociationSet Name="FK__CHAMTHI__Usernam__3B75D760" Association="Self.FK__CHAMTHI__Usernam__3B75D760">
+          <AssociationSet Name="FK__CHAMTHI__Usernam__3A81B327" Association="Self.FK__CHAMTHI__Usernam__3A81B327">
             <End Role="NGUOISUDUNG" EntitySet="NGUOISUDUNG" />
             <End Role="CHAMTHI" EntitySet="CHAMTHI" />
           </AssociationSet>
-          <AssociationSet Name="FK__CHITIETBA__IDSub__44FF419A" Association="Self.FK__CHITIETBA__IDSub__44FF419A">
+          <AssociationSet Name="FK__CHITIETBA__IDSub__440B1D61" Association="Self.FK__CHITIETBA__IDSub__440B1D61">
             <End Role="MONHOC" EntitySet="MONHOC" />
             <End Role="CHITIETBAOCAO" EntitySet="CHITIETBAOCAO" />
           </AssociationSet>
-          <AssociationSet Name="FK__CHITIETBAOC__Nam__45F365D3" Association="Self.FK__CHITIETBAOC__Nam__45F365D3">
+          <AssociationSet Name="FK__CHITIETBAOC__Nam__44FF419A" Association="Self.FK__CHITIETBAOC__Nam__44FF419A">
             <End Role="BAOCAONAM" EntitySet="BAOCAONAM" />
             <End Role="CHITIETBAOCAO" EntitySet="CHITIETBAOCAO" />
           </AssociationSet>
-          <AssociationSet Name="FK__CHITIETDE__IDQue__300424B4" Association="Self.FK__CHITIETDE__IDQue__300424B4">
+          <AssociationSet Name="FK__CHITIETDE__IDQue__2F10007B" Association="Self.FK__CHITIETDE__IDQue__2F10007B">
             <End Role="CAUHOI" EntitySet="CAUHOI" />
             <End Role="CHITIETDETHI" EntitySet="CHITIETDETHI" />
           </AssociationSet>
-          <AssociationSet Name="FK__CHITIETDE__IDTes__2F10007B" Association="Self.FK__CHITIETDE__IDTes__2F10007B">
+          <AssociationSet Name="FK__CHITIETDE__IDTes__2E1BDC42" Association="Self.FK__CHITIETDE__IDTes__2E1BDC42">
             <End Role="DETHI" EntitySet="DETHI" />
             <End Role="CHITIETDETHI" EntitySet="CHITIETDETHI" />
           </AssociationSet>
-          <AssociationSet Name="FK__DETHI__IDSubject__2C3393D0" Association="Self.FK__DETHI__IDSubject__2C3393D0">
+          <AssociationSet Name="FK__DETHI__IDSubject__2B3F6F97" Association="Self.FK__DETHI__IDSubject__2B3F6F97">
             <End Role="MONHOC" EntitySet="MONHOC" />
             <End Role="DETHI" EntitySet="DETHI" />
           </AssociationSet>
-          <AssociationSet Name="FK__LOP__IDSubject__34C8D9D1" Association="Self.FK__LOP__IDSubject__34C8D9D1">
+          <AssociationSet Name="FK__LOP__IDSubject__33D4B598" Association="Self.FK__LOP__IDSubject__33D4B598">
             <End Role="MONHOC" EntitySet="MONHOC" />
             <End Role="LOP" EntitySet="LOP" />
           </AssociationSet>
-          <AssociationSet Name="FK__LOP__Username__35BCFE0A" Association="Self.FK__LOP__Username__35BCFE0A">
+          <AssociationSet Name="FK__LOP__Username__34C8D9D1" Association="Self.FK__LOP__Username__34C8D9D1">
             <End Role="NGUOISUDUNG" EntitySet="NGUOISUDUNG" />
             <End Role="LOP" EntitySet="LOP" />
           </AssociationSet>

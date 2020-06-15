@@ -1,8 +1,3 @@
-create database QuanLyDeThi
-go
-
-use QuanLyDeThi
-go
 
 create table DOKHO
 (
