@@ -12,27 +12,27 @@ namespace QuanLyChamThi.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class MONHOC
+    public partial class SUBJECT
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public MONHOC()
+        public SUBJECT()
         {
-            this.QUESTION = new HashSet<CAUHOI>();
-            this.REPORTDETAIL = new HashSet<CHITIETBAOCAO>();
-            this.TEST = new HashSet<DETHI>();
-            this.CLASS = new HashSet<LOP>();
+            this.QUESTION = new HashSet<QUESTION>();
+            this.REPORTDETAIL = new HashSet<REPORTDETAIL>();
+            this.TEST = new HashSet<TEST>();
+            this.CLASS = new HashSet<CLASS>();
         }
     
         public string IDSubject { get; set; }
         public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CAUHOI> QUESTION { get; set; }
+        public virtual ICollection<QUESTION> QUESTION { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CHITIETBAOCAO> REPORTDETAIL { get; set; }
+        public virtual ICollection<REPORTDETAIL> REPORTDETAIL { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DETHI> TEST { get; set; }
+        public virtual ICollection<TEST> TEST { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LOP> CLASS { get; set; }
+        public virtual ICollection<CLASS> CLASS { get; set; }
     }
 }

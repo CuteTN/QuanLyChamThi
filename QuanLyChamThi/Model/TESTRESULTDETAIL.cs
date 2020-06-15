@@ -12,26 +12,24 @@ namespace QuanLyChamThi.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class DETHI
+    public partial class TESTRESULTDETAIL
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DETHI()
+        public TESTRESULTDETAIL()
         {
-            this.TESTRESULTDETAIL = new HashSet<CHAMTHI>();
-            this.TESTDETAIL = new HashSet<CHITIETDETHI>();
+            this.TESTRESULT = new HashSet<TESTRESULT>();
         }
     
+        public string IDTestResult { get; set; }
+        public string IDClass { get; set; }
+        public string Username { get; set; }
         public string IDTest { get; set; }
-        public string IDSubject { get; set; }
-        public Nullable<int> Year { get; set; }
-        public Nullable<int> Semester { get; set; }
-        public Nullable<int> TimeForTest { get; set; }
-        public Nullable<System.DateTime> DateOfTest { get; set; }
+        public string Note { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CHAMTHI> TESTRESULTDETAIL { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CHITIETDETHI> TESTDETAIL { get; set; }
-        public virtual MONHOC SUBJECT { get; set; }
+        public virtual ICollection<TESTRESULT> TESTRESULT { get; set; }
+        public virtual CLASS CLASS { get; set; }
+        public virtual TEST TEST { get; set; }
+        public virtual USER USER { get; set; }
     }
 }

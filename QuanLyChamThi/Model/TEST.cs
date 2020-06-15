@@ -12,23 +12,26 @@ namespace QuanLyChamThi.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class LOP
+    public partial class TEST
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public LOP()
+        public TEST()
         {
-            this.TESTRESULTDETAIL = new HashSet<CHAMTHI>();
+            this.TESTRESULTDETAIL = new HashSet<TESTRESULTDETAIL>();
+            this.TESTDETAIL = new HashSet<TESTDETAIL>();
         }
     
-        public string IDClass { get; set; }
+        public string IDTest { get; set; }
         public string IDSubject { get; set; }
-        public string Username { get; set; }
-        public Nullable<int> Semester { get; set; }
         public Nullable<int> Year { get; set; }
+        public Nullable<int> Semester { get; set; }
+        public Nullable<int> TimeForTest { get; set; }
+        public Nullable<System.DateTime> DateOfTest { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CHAMTHI> TESTRESULTDETAIL { get; set; }
-        public virtual MONHOC SUBJECT { get; set; }
-        public virtual NGUOISUDUNG USER { get; set; }
+        public virtual ICollection<TESTRESULTDETAIL> TESTRESULTDETAIL { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TESTDETAIL> TESTDETAIL { get; set; }
+        public virtual SUBJECT SUBJECT { get; set; }
     }
 }

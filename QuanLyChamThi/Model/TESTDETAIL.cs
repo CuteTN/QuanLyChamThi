@@ -12,13 +12,13 @@ namespace QuanLyChamThi.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class THAMSO
+    public partial class TESTDETAIL
     {
-        public int id { get; set; }
-        public Nullable<int> MaxNumberOfQuestion { get; set; }
-        public Nullable<int> MaxTimeForTest { get; set; }
-        public Nullable<int> MinTimeForTest { get; set; }
-        public Nullable<int> MaxScore { get; set; }
-        public Nullable<int> MinScore { get; set; }
+        public string IDTest { get; set; }
+        public int No { get; set; }
+        public Nullable<int> IDQuestion { get; set; }
+    
+        public virtual QUESTION QUESTION { get; set; }
+        public virtual TEST TEST { get; set; }
     }
 }

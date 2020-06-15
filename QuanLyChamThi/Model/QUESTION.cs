@@ -12,12 +12,12 @@ namespace QuanLyChamThi.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class CAUHOI
+    public partial class QUESTION
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CAUHOI()
+        public QUESTION()
         {
-            this.TESTDETAIL = new HashSet<CHITIETDETHI>();
+            this.TESTDETAIL = new HashSet<TESTDETAIL>();
         }
     
         public int IDQuestion { get; set; }
@@ -25,9 +25,9 @@ namespace QuanLyChamThi.Model
         public Nullable<int> IDDifficulty { get; set; }
         public string IDSubject { get; set; }
     
-        public virtual DOKHO Difficulty { get; set; }
-        public virtual MONHOC SUBJECT { get; set; }
+        public virtual DIFFICULTY Difficulty { get; set; }
+        public virtual SUBJECT SUBJECT { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CHITIETDETHI> TESTDETAIL { get; set; }
+        public virtual ICollection<TESTDETAIL> TESTDETAIL { get; set; }
     }
 }

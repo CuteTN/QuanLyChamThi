@@ -12,18 +12,23 @@ namespace QuanLyChamThi.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class SINHVIEN
+    public partial class CLASS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public SINHVIEN()
+        public CLASS()
         {
-            this.TESTRESULT = new HashSet<BAITHI>();
+            this.TESTRESULTDETAIL = new HashSet<TESTRESULTDETAIL>();
         }
     
-        public string IDStudent { get; set; }
-        public string FullName { get; set; }
+        public string IDClass { get; set; }
+        public string IDSubject { get; set; }
+        public string Username { get; set; }
+        public Nullable<int> Semester { get; set; }
+        public Nullable<int> Year { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BAITHI> TESTRESULT { get; set; }
+        public virtual ICollection<TESTRESULTDETAIL> TESTRESULTDETAIL { get; set; }
+        public virtual SUBJECT SUBJECT { get; set; }
+        public virtual USER USER { get; set; }
     }
 }

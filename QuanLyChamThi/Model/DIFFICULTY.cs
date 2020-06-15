@@ -12,19 +12,18 @@ namespace QuanLyChamThi.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class BAOCAONAM
+    public partial class DIFFICULTY
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public BAOCAONAM()
+        public DIFFICULTY()
         {
-            this.REPORTDETAIL = new HashSet<CHITIETBAOCAO>();
+            this.QUESTION = new HashSet<QUESTION>();
         }
     
-        public int Year { get; set; }
-        public Nullable<int> NumberOfTest { get; set; }
-        public Nullable<int> NumberOfTestResult { get; set; }
+        public int IDDifficulty { get; set; }
+        public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CHITIETBAOCAO> REPORTDETAIL { get; set; }
+        public virtual ICollection<QUESTION> QUESTION { get; set; }
     }
 }

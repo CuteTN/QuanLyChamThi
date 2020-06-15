@@ -12,13 +12,13 @@ namespace QuanLyChamThi.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class CHITIETDETHI
+    public partial class PRINCIPLE
     {
-        public string IDTest { get; set; }
-        public int No { get; set; }
-        public Nullable<int> IDQuestion { get; set; }
-    
-        public virtual CAUHOI QUESTION { get; set; }
-        public virtual DETHI TEST { get; set; }
+        public int id { get; set; }
+        public Nullable<int> MaxNumberOfQuestion { get; set; }
+        public Nullable<int> MaxTimeForTest { get; set; }
+        public Nullable<int> MinTimeForTest { get; set; }
+        public Nullable<int> MaxScore { get; set; }
+        public Nullable<int> MinScore { get; set; }
     }
 }

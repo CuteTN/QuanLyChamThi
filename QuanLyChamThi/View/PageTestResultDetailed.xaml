@@ -14,34 +14,59 @@
         <Label Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="4" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Lớp: "/>
 
         <TextBlock x:Name="tbLecturerName" Grid.Column="7" Grid.Row="1" Grid.ColumnSpan="8" HorizontalAlignment="Left" VerticalAlignment="Center" Text="John Wick"/>
-        <ComboBox x:Name="cbSubject" Grid.Column="7" Grid.Row="2" Grid.ColumnSpan="8" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <ComboBox x:Name="cbClass" Grid.Column="7" Grid.Row="3" Grid.ColumnSpan="8" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <ComboBox x:Name="cbSubject" ItemsSource="{Binding ListSubject}" SelectedItem="{Binding SelectedSubject}" Grid.Column="7" Grid.Row="2" Grid.ColumnSpan="8" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Name}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <ComboBox x:Name="cbClass" ItemsSource="{Binding ListClass}" SelectedItem="{Binding SelectedClass}" Grid.Column="7" Grid.Row="3" Grid.ColumnSpan="8" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding IDClass}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
 
         <Label Grid.Column="17" Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Mã đề thi"/>
-        <ComboBox x:Name="cbTestID" Grid.Column="20" Grid.Row="1" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <ComboBox x:Name="cbTestID" ItemsSource="{Binding ListTestID}" SelectedItem="{Binding SelectedTestID}" Grid.Column="20" Grid.Row="1" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Center">
+
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding IDTest}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
         <Button x:Name="btnChooseTest" Grid.Column="20" Grid.Row="2" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Chọn đề thi"/>
 
-        <Button x:Name="btnAdd" Grid.Column="26" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Thêm"/>
+        <Button x:Name="btnAdd" Command="{Binding AddNewTestResultCommand}" Grid.Column="26" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Thêm"/>
         <Button x:Name="btnDelete" Grid.Column="28" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Xoá"/>
 
         <ScrollViewer x:Name="svGrid" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="29" Grid.RowSpan="11" VerticalScrollBarVisibility="Auto">
-            <DataGrid x:Name="dgListTestResult" AutoGenerateColumns="False" Width="{Binding ElementName=svGrid, Path=ActualWidth}" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False">
+            <DataGrid x:Name="dgListTestResult" ItemsSource="{Binding ListTestResult, Mode=TwoWay}" AutoGenerateColumns="False" Width="{Binding ElementName=svGrid, Path=ActualWidth}" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False" CanUserAddRows="False">
                 <DataGrid.Columns>
                     <DataGridCheckBoxColumn x:Name="colSelectAll" Width="1*">
                         <DataGridCheckBoxColumn.Header>
                             <CheckBox x:Name="cbSelectAll"/>
                         </DataGridCheckBoxColumn.Header>
                     </DataGridCheckBoxColumn>
-                    <DataGridTextColumn x:Name="colStudentName" Header="Tên" Width="8*"/>
-                    <DataGridTextColumn x:Name="colStudentID" Header="MSSV" Width="3*"/>
-                    <DataGridTextColumn x:Name="colScoreNumber" Header="Điểm số" Width="3*"/>
-                    <DataGridTextColumn x:Name="colScoreString" Header="Điểm chữ" Width="6*"/>
-                    <DataGridTextColumn x:Name="colNote" Header="Ghi chú" Width="10*"/>
+                    <DataGridTextColumn x:Name="colStudentName" Binding="{Binding StudentName, Mode=TwoWay}" Header="Tên" Width="8*"/>
+                    <DataGridTextColumn x:Name="colStudentID" Binding="{Binding StudentID, Mode=TwoWay}" Header="MSSV" Width="3*"/>
+                    <DataGridTextColumn x:Name="colScoreNumber" Binding="{Binding ScoreNumber, Mode=TwoWay}" Header="Điểm số" Width="3*"/>
+                    <DataGridTextColumn x:Name="colScoreString" Binding="{Binding ScoreString, Mode=TwoWay}" Header="Điểm chữ" Width="6*"/>
+                    <DataGridTextColumn x:Name="colNote" Binding="{Binding Note, Mode=TwoWay}" Header="Ghi chú" Width="10*"/>
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>
 
-        <Button x:Name="btnSave" Grid.Column="9" Grid.Row="15" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Lưu"/>
+        <Button x:Name="btnSave" Command="{Binding SaveCommand}" Grid.Column="9" Grid.Row="15" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Lưu"/>
         <Button x:Name="btnCancel" Grid.Column="17" Grid.Row="15" Grid.ColumnSpan="4" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Huỷ"/>
     </Grid>
 </Page>

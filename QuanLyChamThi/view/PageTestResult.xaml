@@ -18,12 +18,12 @@
         </Button>
 
         <ScrollViewer x:Name="svGrid" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="29" Grid.RowSpan="12" VerticalScrollBarVisibility="Auto">
-            <DataGrid x:Name="dgListTestResult" AutoGenerateColumns="False" Width="{Binding ElementName=svGrid, Path=ActualWidth}" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False">
+            <DataGrid x:Name="dgListTestResult" ItemsSource="{Binding ListTestResultDetail}" AutoGenerateColumns="False" Width="{Binding ElementName=svGrid, Path=ActualWidth}" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn x:Name="colSubjectName" Header="Tên môn thi" Width="1*"/>
-                    <DataGridTextColumn x:Name="colClassID" Header="Mã lớp" Width="1*"/>
-                    <DataGridTextColumn x:Name="colLecturerName" Header="Tên giảng viên" Width="1*"/>
-                    <DataGridTextColumn x:Name="colTestID" Header="Mã đề thi" Width="1*"/>
+                    <DataGridTextColumn x:Name="colSubjectName" Binding="{Binding SubjectName}" Header="Tên môn thi" Width="1*"/>
+                    <DataGridTextColumn x:Name="colClassID" Binding="{Binding IDClass}" Header="Mã lớp" Width="1*"/>
+                    <DataGridTextColumn x:Name="colLecturerName" Binding="{Binding UserFullName}" Header="Tên giảng viên" Width="1*"/>
+                    <DataGridTextColumn x:Name="colTestID" Binding="{Binding IDTest}" Header="Mã đề thi" Width="1*"/>
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>

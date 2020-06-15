@@ -12,14 +12,19 @@ namespace QuanLyChamThi.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class CHITIETBAOCAO
+    public partial class REPORT
     {
-        public string IDSubject { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public REPORT()
+        {
+            this.REPORTDETAIL = new HashSet<REPORTDETAIL>();
+        }
+    
         public int Year { get; set; }
         public Nullable<int> NumberOfTest { get; set; }
         public Nullable<int> NumberOfTestResult { get; set; }
     
-        public virtual BAOCAONAM REPORT { get; set; }
-        public virtual MONHOC SUBJECT { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<REPORTDETAIL> REPORTDETAIL { get; set; }
     }
 }

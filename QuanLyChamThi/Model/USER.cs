@@ -12,18 +12,23 @@ namespace QuanLyChamThi.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class DOKHO
+    public partial class USER
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DOKHO()
+        public USER()
         {
-            this.QUESTION = new HashSet<CAUHOI>();
+            this.TESTRESULTDETAIL = new HashSet<TESTRESULTDETAIL>();
+            this.CLASS = new HashSet<CLASS>();
         }
     
-        public int IDDifficulty { get; set; }
-        public string Name { get; set; }
+        public string Username { get; set; }
+        public Nullable<int> UserType { get; set; }
+        public string Password { get; set; }
+        public string FullName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CAUHOI> QUESTION { get; set; }
+        public virtual ICollection<TESTRESULTDETAIL> TESTRESULTDETAIL { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CLASS> CLASS { get; set; }
     }
 }

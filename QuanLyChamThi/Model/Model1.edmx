@@ -368,19 +368,19 @@
     <edmx:ConceptualModels>
       <Schema Namespace="QuanLyDeThiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="QuanLyDeThiEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="TESTRESULT" EntityType="QuanLyDeThiModel.BAITHI" />
-          <EntitySet Name="REPORT" EntityType="QuanLyDeThiModel.BAOCAONAM" />
-          <EntitySet Name="QUESTION" EntityType="QuanLyDeThiModel.CAUHOI" />
-          <EntitySet Name="TESTRESULTDETAIL" EntityType="QuanLyDeThiModel.CHAMTHI" />
-          <EntitySet Name="REPORTDETAIL" EntityType="QuanLyDeThiModel.CHITIETBAOCAO" />
-          <EntitySet Name="TESTDETAIL" EntityType="QuanLyDeThiModel.CHITIETDETHI" />
-          <EntitySet Name="TEST" EntityType="QuanLyDeThiModel.DETHI" />
-          <EntitySet Name="DIFFICULTY" EntityType="QuanLyDeThiModel.DOKHO" />
-          <EntitySet Name="CLASS" EntityType="QuanLyDeThiModel.LOP" />
-          <EntitySet Name="SUBJECT" EntityType="QuanLyDeThiModel.MONHOC" />
-          <EntitySet Name="USER" EntityType="QuanLyDeThiModel.NGUOISUDUNG" />
-          <EntitySet Name="STUDENT" EntityType="QuanLyDeThiModel.SINHVIEN" />
-          <EntitySet Name="PRINCIPLE" EntityType="QuanLyDeThiModel.THAMSO" />
+          <EntitySet Name="TESTRESULT" EntityType="QuanLyDeThiModel.TESTRESULT" />
+          <EntitySet Name="REPORT" EntityType="QuanLyDeThiModel.REPORT" />
+          <EntitySet Name="QUESTION" EntityType="QuanLyDeThiModel.QUESTION" />
+          <EntitySet Name="TESTRESULTDETAIL" EntityType="QuanLyDeThiModel.TESTRESULTDETAIL" />
+          <EntitySet Name="REPORTDETAIL" EntityType="QuanLyDeThiModel.REPORTDETAIL" />
+          <EntitySet Name="TESTDETAIL" EntityType="QuanLyDeThiModel.TESTDETAIL" />
+          <EntitySet Name="TEST" EntityType="QuanLyDeThiModel.TEST" />
+          <EntitySet Name="DIFFICULTY" EntityType="QuanLyDeThiModel.DIFFICULTY" />
+          <EntitySet Name="CLASS" EntityType="QuanLyDeThiModel.CLASS" />
+          <EntitySet Name="SUBJECT" EntityType="QuanLyDeThiModel.SUBJECT" />
+          <EntitySet Name="USER" EntityType="QuanLyDeThiModel.USER" />
+          <EntitySet Name="STUDENT" EntityType="QuanLyDeThiModel.STUDENT" />
+          <EntitySet Name="PRINCIPLE" EntityType="QuanLyDeThiModel.PRINCIPLE" />
           <AssociationSet Name="FK__BAITHI__IDStuden__403A8C7D" Association="QuanLyDeThiModel.FK__BAITHI__IDStuden__403A8C7D">
             <End Role="SINHVIEN" EntitySet="STUDENT" />
             <End Role="BAITHI" EntitySet="TESTRESULT" />
@@ -438,7 +438,7 @@
             <End Role="LOP" EntitySet="CLASS" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="BAITHI">
+        <EntityType Name="TESTRESULT">
           <Key>
             <PropertyRef Name="IDTestResult" />
             <PropertyRef Name="IDStudent" />
@@ -451,7 +451,7 @@
           <NavigationProperty Name="STUDENT" Relationship="QuanLyDeThiModel.FK__BAITHI__IDStuden__403A8C7D" FromRole="BAITHI" ToRole="SINHVIEN" />
           <NavigationProperty Name="TESTRESULTDETAIL" Relationship="QuanLyDeThiModel.FK__BAITHI__IDTestRe__3F466844" FromRole="BAITHI" ToRole="CHAMTHI" />
         </EntityType>
-        <EntityType Name="BAOCAONAM">
+        <EntityType Name="REPORT">
           <Key>
             <PropertyRef Name="Year" />
           </Key>
@@ -460,7 +460,7 @@
           <Property Name="NumberOfTestResult" Type="Int32" />
           <NavigationProperty Name="REPORTDETAIL" Relationship="QuanLyDeThiModel.FK__CHITIETBAOC__Nam__45F365D3" FromRole="BAOCAONAM" ToRole="CHITIETBAOCAO" />
         </EntityType>
-        <EntityType Name="CAUHOI">
+        <EntityType Name="QUESTION">
           <Key>
             <PropertyRef Name="IDQuestion" />
           </Key>
@@ -472,7 +472,7 @@
           <NavigationProperty Name="SUBJECT" Relationship="QuanLyDeThiModel.FK__CAUHOI__IDSubjec__29572725" FromRole="CAUHOI" ToRole="MONHOC" />
           <NavigationProperty Name="TESTDETAIL" Relationship="QuanLyDeThiModel.FK__CHITIETDE__IDQue__300424B4" FromRole="CAUHOI" ToRole="CHITIETDETHI" />
         </EntityType>
-        <EntityType Name="CHAMTHI">
+        <EntityType Name="TESTRESULTDETAIL">
           <Key>
             <PropertyRef Name="IDTestResult" />
           </Key>
@@ -486,7 +486,7 @@
           <NavigationProperty Name="TEST" Relationship="QuanLyDeThiModel.FK__CHAMTHI__IDTest__3C69FB99" FromRole="CHAMTHI" ToRole="DETHI" />
           <NavigationProperty Name="USER" Relationship="QuanLyDeThiModel.FK__CHAMTHI__Usernam__3B75D760" FromRole="CHAMTHI" ToRole="NGUOISUDUNG" />
         </EntityType>
-        <EntityType Name="CHITIETBAOCAO">
+        <EntityType Name="REPORTDETAIL">
           <Key>
             <PropertyRef Name="IDSubject" />
             <PropertyRef Name="Year" />
@@ -498,7 +498,7 @@
           <NavigationProperty Name="REPORT" Relationship="QuanLyDeThiModel.FK__CHITIETBAOC__Nam__45F365D3" FromRole="CHITIETBAOCAO" ToRole="BAOCAONAM" />
           <NavigationProperty Name="SUBJECT" Relationship="QuanLyDeThiModel.FK__CHITIETBA__IDSub__44FF419A" FromRole="CHITIETBAOCAO" ToRole="MONHOC" />
         </EntityType>
-        <EntityType Name="CHITIETDETHI">
+        <EntityType Name="TESTDETAIL">
           <Key>
             <PropertyRef Name="IDTest" />
             <PropertyRef Name="No" />
@@ -509,7 +509,7 @@
           <NavigationProperty Name="QUESTION" Relationship="QuanLyDeThiModel.FK__CHITIETDE__IDQue__300424B4" FromRole="CHITIETDETHI" ToRole="CAUHOI" />
           <NavigationProperty Name="TEST" Relationship="QuanLyDeThiModel.FK__CHITIETDE__IDTes__2F10007B" FromRole="CHITIETDETHI" ToRole="DETHI" />
         </EntityType>
-        <EntityType Name="DETHI">
+        <EntityType Name="TEST">
           <Key>
             <PropertyRef Name="IDTest" />
           </Key>
@@ -523,7 +523,7 @@
           <NavigationProperty Name="TESTDETAIL" Relationship="QuanLyDeThiModel.FK__CHITIETDE__IDTes__2F10007B" FromRole="DETHI" ToRole="CHITIETDETHI" />
           <NavigationProperty Name="SUBJECT" Relationship="QuanLyDeThiModel.FK__DETHI__IDSubject__2C3393D0" FromRole="DETHI" ToRole="MONHOC" />
         </EntityType>
-        <EntityType Name="DOKHO">
+        <EntityType Name="DIFFICULTY">
           <Key>
             <PropertyRef Name="IDDifficulty" />
           </Key>
@@ -531,7 +531,7 @@
           <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="QUESTION" Relationship="QuanLyDeThiModel.FK__CAUHOI__IDDiffic__286302EC" FromRole="DOKHO" ToRole="CAUHOI" />
         </EntityType>
-        <EntityType Name="LOP">
+        <EntityType Name="CLASS">
           <Key>
             <PropertyRef Name="IDClass" />
           </Key>
@@ -544,7 +544,7 @@
           <NavigationProperty Name="SUBJECT" Relationship="QuanLyDeThiModel.FK__LOP__IDSubject__34C8D9D1" FromRole="LOP" ToRole="MONHOC" />
           <NavigationProperty Name="USER" Relationship="QuanLyDeThiModel.FK__LOP__Username__35BCFE0A" FromRole="LOP" ToRole="NGUOISUDUNG" />
         </EntityType>
-        <EntityType Name="MONHOC">
+        <EntityType Name="SUBJECT">
           <Key>
             <PropertyRef Name="IDSubject" />
           </Key>
@@ -555,7 +555,7 @@
           <NavigationProperty Name="TEST" Relationship="QuanLyDeThiModel.FK__DETHI__IDSubject__2C3393D0" FromRole="MONHOC" ToRole="DETHI" />
           <NavigationProperty Name="CLASS" Relationship="QuanLyDeThiModel.FK__LOP__IDSubject__34C8D9D1" FromRole="MONHOC" ToRole="LOP" />
         </EntityType>
-        <EntityType Name="NGUOISUDUNG">
+        <EntityType Name="USER">
           <Key>
             <PropertyRef Name="Username" />
           </Key>
@@ -566,7 +566,7 @@
           <NavigationProperty Name="TESTRESULTDETAIL" Relationship="QuanLyDeThiModel.FK__CHAMTHI__Usernam__3B75D760" FromRole="NGUOISUDUNG" ToRole="CHAMTHI" />
           <NavigationProperty Name="CLASS" Relationship="QuanLyDeThiModel.FK__LOP__Username__35BCFE0A" FromRole="NGUOISUDUNG" ToRole="LOP" />
         </EntityType>
-        <EntityType Name="SINHVIEN">
+        <EntityType Name="STUDENT">
           <Key>
             <PropertyRef Name="IDStudent" />
           </Key>
@@ -574,7 +574,7 @@
           <Property Name="FullName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="TESTRESULT" Relationship="QuanLyDeThiModel.FK__BAITHI__IDStuden__403A8C7D" FromRole="SINHVIEN" ToRole="BAITHI" />
         </EntityType>
-        <EntityType Name="THAMSO">
+        <EntityType Name="PRINCIPLE">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -586,8 +586,8 @@
           <Property Name="MinScore" Type="Int32" />
         </EntityType>
         <Association Name="FK__BAITHI__IDStuden__403A8C7D">
-          <End Type="QuanLyDeThiModel.SINHVIEN" Role="SINHVIEN" Multiplicity="1" />
-          <End Type="QuanLyDeThiModel.BAITHI" Role="BAITHI" Multiplicity="*" />
+          <End Type="QuanLyDeThiModel.STUDENT" Role="SINHVIEN" Multiplicity="1" />
+          <End Type="QuanLyDeThiModel.TESTRESULT" Role="BAITHI" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SINHVIEN">
               <PropertyRef Name="IDStudent" />
@@ -598,8 +598,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__BAITHI__IDTestRe__3F466844">
-          <End Type="QuanLyDeThiModel.CHAMTHI" Role="CHAMTHI" Multiplicity="1" />
-          <End Type="QuanLyDeThiModel.BAITHI" Role="BAITHI" Multiplicity="*" />
+          <End Type="QuanLyDeThiModel.TESTRESULTDETAIL" Role="CHAMTHI" Multiplicity="1" />
+          <End Type="QuanLyDeThiModel.TESTRESULT" Role="BAITHI" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CHAMTHI">
               <PropertyRef Name="IDTestResult" />
@@ -610,8 +610,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__CHITIETBAOC__Nam__45F365D3">
-          <End Type="QuanLyDeThiModel.BAOCAONAM" Role="BAOCAONAM" Multiplicity="1" />
-          <End Type="QuanLyDeThiModel.CHITIETBAOCAO" Role="CHITIETBAOCAO" Multiplicity="*" />
+          <End Type="QuanLyDeThiModel.REPORT" Role="BAOCAONAM" Multiplicity="1" />
+          <End Type="QuanLyDeThiModel.REPORTDETAIL" Role="CHITIETBAOCAO" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BAOCAONAM">
               <PropertyRef Name="Year" />
@@ -622,8 +622,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__CAUHOI__IDDiffic__286302EC">
-          <End Type="QuanLyDeThiModel.DOKHO" Role="DOKHO" Multiplicity="0..1" />
-          <End Type="QuanLyDeThiModel.CAUHOI" Role="CAUHOI" Multiplicity="*" />
+          <End Type="QuanLyDeThiModel.DIFFICULTY" Role="DOKHO" Multiplicity="0..1" />
+          <End Type="QuanLyDeThiModel.QUESTION" Role="CAUHOI" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DOKHO">
               <PropertyRef Name="IDDifficulty" />
@@ -634,8 +634,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__CAUHOI__IDSubjec__29572725">
-          <End Type="QuanLyDeThiModel.MONHOC" Role="MONHOC" Multiplicity="0..1" />
-          <End Type="QuanLyDeThiModel.CAUHOI" Role="CAUHOI" Multiplicity="*" />
+          <End Type="QuanLyDeThiModel.SUBJECT" Role="MONHOC" Multiplicity="0..1" />
+          <End Type="QuanLyDeThiModel.QUESTION" Role="CAUHOI" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MONHOC">
               <PropertyRef Name="IDSubject" />
@@ -646,8 +646,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__CHITIETDE__IDQue__300424B4">
-          <End Type="QuanLyDeThiModel.CAUHOI" Role="CAUHOI" Multiplicity="0..1" />
-          <End Type="QuanLyDeThiModel.CHITIETDETHI" Role="CHITIETDETHI" Multiplicity="*" />
+          <End Type="QuanLyDeThiModel.QUESTION" Role="CAUHOI" Multiplicity="0..1" />
+          <End Type="QuanLyDeThiModel.TESTDETAIL" Role="CHITIETDETHI" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CAUHOI">
               <PropertyRef Name="IDQuestion" />
@@ -658,8 +658,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__CHAMTHI__IDClass__3A81B327">
-          <End Type="QuanLyDeThiModel.LOP" Role="LOP" Multiplicity="0..1" />
-          <End Type="QuanLyDeThiModel.CHAMTHI" Role="CHAMTHI" Multiplicity="*" />
+          <End Type="QuanLyDeThiModel.CLASS" Role="LOP" Multiplicity="0..1" />
+          <End Type="QuanLyDeThiModel.TESTRESULTDETAIL" Role="CHAMTHI" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="LOP">
               <PropertyRef Name="IDClass" />
@@ -670,8 +670,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__CHAMTHI__IDTest__3C69FB99">
-          <End Type="QuanLyDeThiModel.DETHI" Role="DETHI" Multiplicity="0..1" />
-          <End Type="QuanLyDeThiModel.CHAMTHI" Role="CHAMTHI" Multiplicity="*" />
+          <End Type="QuanLyDeThiModel.TEST" Role="DETHI" Multiplicity="0..1" />
+          <End Type="QuanLyDeThiModel.TESTRESULTDETAIL" Role="CHAMTHI" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DETHI">
               <PropertyRef Name="IDTest" />
@@ -682,8 +682,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__CHAMTHI__Usernam__3B75D760">
-          <End Type="QuanLyDeThiModel.NGUOISUDUNG" Role="NGUOISUDUNG" Multiplicity="0..1" />
-          <End Type="QuanLyDeThiModel.CHAMTHI" Role="CHAMTHI" Multiplicity="*" />
+          <End Type="QuanLyDeThiModel.USER" Role="NGUOISUDUNG" Multiplicity="0..1" />
+          <End Type="QuanLyDeThiModel.TESTRESULTDETAIL" Role="CHAMTHI" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NGUOISUDUNG">
               <PropertyRef Name="Username" />
@@ -694,8 +694,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__CHITIETBA__IDSub__44FF419A">
-          <End Type="QuanLyDeThiModel.MONHOC" Role="MONHOC" Multiplicity="1" />
-          <End Type="QuanLyDeThiModel.CHITIETBAOCAO" Role="CHITIETBAOCAO" Multiplicity="*" />
+          <End Type="QuanLyDeThiModel.SUBJECT" Role="MONHOC" Multiplicity="1" />
+          <End Type="QuanLyDeThiModel.REPORTDETAIL" Role="CHITIETBAOCAO" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MONHOC">
               <PropertyRef Name="IDSubject" />
@@ -706,8 +706,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__CHITIETDE__IDTes__2F10007B">
-          <End Type="QuanLyDeThiModel.DETHI" Role="DETHI" Multiplicity="1" />
-          <End Type="QuanLyDeThiModel.CHITIETDETHI" Role="CHITIETDETHI" Multiplicity="*" />
+          <End Type="QuanLyDeThiModel.TEST" Role="DETHI" Multiplicity="1" />
+          <End Type="QuanLyDeThiModel.TESTDETAIL" Role="CHITIETDETHI" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DETHI">
               <PropertyRef Name="IDTest" />
@@ -718,8 +718,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__DETHI__IDSubject__2C3393D0">
-          <End Type="QuanLyDeThiModel.MONHOC" Role="MONHOC" Multiplicity="0..1" />
-          <End Type="QuanLyDeThiModel.DETHI" Role="DETHI" Multiplicity="*" />
+          <End Type="QuanLyDeThiModel.SUBJECT" Role="MONHOC" Multiplicity="0..1" />
+          <End Type="QuanLyDeThiModel.TEST" Role="DETHI" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MONHOC">
               <PropertyRef Name="IDSubject" />
@@ -730,8 +730,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__LOP__IDSubject__34C8D9D1">
-          <End Type="QuanLyDeThiModel.MONHOC" Role="MONHOC" Multiplicity="0..1" />
-          <End Type="QuanLyDeThiModel.LOP" Role="LOP" Multiplicity="*" />
+          <End Type="QuanLyDeThiModel.SUBJECT" Role="MONHOC" Multiplicity="0..1" />
+          <End Type="QuanLyDeThiModel.CLASS" Role="LOP" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MONHOC">
               <PropertyRef Name="IDSubject" />
@@ -742,8 +742,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__LOP__Username__35BCFE0A">
-          <End Type="QuanLyDeThiModel.NGUOISUDUNG" Role="NGUOISUDUNG" Multiplicity="0..1" />
-          <End Type="QuanLyDeThiModel.LOP" Role="LOP" Multiplicity="*" />
+          <End Type="QuanLyDeThiModel.USER" Role="NGUOISUDUNG" Multiplicity="0..1" />
+          <End Type="QuanLyDeThiModel.CLASS" Role="LOP" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NGUOISUDUNG">
               <PropertyRef Name="Username" />
@@ -760,7 +760,7 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="QuanLyDeThiModelStoreContainer" CdmEntityContainer="QuanLyDeThiEntities">
           <EntitySetMapping Name="TESTRESULT">
-            <EntityTypeMapping TypeName="QuanLyDeThiModel.BAITHI">
+            <EntityTypeMapping TypeName="QuanLyDeThiModel.TESTRESULT">
               <MappingFragment StoreEntitySet="BAITHI">
                 <ScalarProperty Name="Note" ColumnName="GhiChu" />
                 <ScalarProperty Name="ScoreString" ColumnName="DiemChu" />
@@ -771,7 +771,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="REPORT">
-            <EntityTypeMapping TypeName="QuanLyDeThiModel.BAOCAONAM">
+            <EntityTypeMapping TypeName="QuanLyDeThiModel.REPORT">
               <MappingFragment StoreEntitySet="BAOCAONAM">
                 <ScalarProperty Name="NumberOfTestResult" ColumnName="TongSoBaiCham" />
                 <ScalarProperty Name="NumberOfTest" ColumnName="TongSoDeThi" />
@@ -780,7 +780,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QUESTION">
-            <EntityTypeMapping TypeName="QuanLyDeThiModel.CAUHOI">
+            <EntityTypeMapping TypeName="QuanLyDeThiModel.QUESTION">
               <MappingFragment StoreEntitySet="CAUHOI">
                 <ScalarProperty Name="IDSubject" ColumnName="IDSubject" />
                 <ScalarProperty Name="IDDifficulty" ColumnName="IDDifficulty" />
@@ -790,7 +790,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TESTRESULTDETAIL">
-            <EntityTypeMapping TypeName="QuanLyDeThiModel.CHAMTHI">
+            <EntityTypeMapping TypeName="QuanLyDeThiModel.TESTRESULTDETAIL">
               <MappingFragment StoreEntitySet="CHAMTHI">
                 <ScalarProperty Name="Note" ColumnName="GhiChu" />
                 <ScalarProperty Name="IDTest" ColumnName="IDTest" />
@@ -801,7 +801,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="REPORTDETAIL">
-            <EntityTypeMapping TypeName="QuanLyDeThiModel.CHITIETBAOCAO">
+            <EntityTypeMapping TypeName="QuanLyDeThiModel.REPORTDETAIL">
               <MappingFragment StoreEntitySet="CHITIETBAOCAO">
                 <ScalarProperty Name="NumberOfTestResult" ColumnName="SoLuongBaiCham" />
                 <ScalarProperty Name="NumberOfTest" ColumnName="SoLuongDeThi" />
@@ -811,7 +811,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TESTDETAIL">
-            <EntityTypeMapping TypeName="QuanLyDeThiModel.CHITIETDETHI">
+            <EntityTypeMapping TypeName="QuanLyDeThiModel.TESTDETAIL">
               <MappingFragment StoreEntitySet="CHITIETDETHI">
                 <ScalarProperty Name="IDQuestion" ColumnName="IDQuestion" />
                 <ScalarProperty Name="No" ColumnName="Stt" />
@@ -820,7 +820,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TEST">
-            <EntityTypeMapping TypeName="QuanLyDeThiModel.DETHI">
+            <EntityTypeMapping TypeName="QuanLyDeThiModel.TEST">
               <MappingFragment StoreEntitySet="DETHI">
                 <ScalarProperty Name="DateOfTest" ColumnName="NgayThi" />
                 <ScalarProperty Name="TimeForTest" ColumnName="ThoiLuong" />
@@ -832,7 +832,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DIFFICULTY">
-            <EntityTypeMapping TypeName="QuanLyDeThiModel.DOKHO">
+            <EntityTypeMapping TypeName="QuanLyDeThiModel.DIFFICULTY">
               <MappingFragment StoreEntitySet="DOKHO">
                 <ScalarProperty Name="Name" ColumnName="TenDoKho" />
                 <ScalarProperty Name="IDDifficulty" ColumnName="IDDifficulty" />
@@ -840,7 +840,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CLASS">
-            <EntityTypeMapping TypeName="QuanLyDeThiModel.LOP">
+            <EntityTypeMapping TypeName="QuanLyDeThiModel.CLASS">
               <MappingFragment StoreEntitySet="LOP">
                 <ScalarProperty Name="Year" ColumnName="Nam" />
                 <ScalarProperty Name="Semester" ColumnName="HocKi" />
@@ -851,7 +851,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SUBJECT">
-            <EntityTypeMapping TypeName="QuanLyDeThiModel.MONHOC">
+            <EntityTypeMapping TypeName="QuanLyDeThiModel.SUBJECT">
               <MappingFragment StoreEntitySet="MONHOC">
                 <ScalarProperty Name="Name" ColumnName="TenMonHoc" />
                 <ScalarProperty Name="IDSubject" ColumnName="IDSubject" />
@@ -859,7 +859,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="USER">
-            <EntityTypeMapping TypeName="QuanLyDeThiModel.NGUOISUDUNG">
+            <EntityTypeMapping TypeName="QuanLyDeThiModel.USER">
               <MappingFragment StoreEntitySet="NGUOISUDUNG">
                 <ScalarProperty Name="FullName" ColumnName="HoTen" />
                 <ScalarProperty Name="Password" ColumnName="MatKhau" />
@@ -869,7 +869,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="STUDENT">
-            <EntityTypeMapping TypeName="QuanLyDeThiModel.SINHVIEN">
+            <EntityTypeMapping TypeName="QuanLyDeThiModel.STUDENT">
               <MappingFragment StoreEntitySet="SINHVIEN">
                 <ScalarProperty Name="FullName" ColumnName="HoTen" />
                 <ScalarProperty Name="IDStudent" ColumnName="IDStudent" />
@@ -877,7 +877,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PRINCIPLE">
-            <EntityTypeMapping TypeName="QuanLyDeThiModel.THAMSO">
+            <EntityTypeMapping TypeName="QuanLyDeThiModel.PRINCIPLE">
               <MappingFragment StoreEntitySet="THAMSO">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="MinScore" ColumnName="DiemSoToiThieu" />

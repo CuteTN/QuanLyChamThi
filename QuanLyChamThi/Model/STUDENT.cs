@@ -12,15 +12,18 @@ namespace QuanLyChamThi.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class BAITHI
+    public partial class STUDENT
     {
-        public string IDTestResult { get; set; }
-        public string IDStudent { get; set; }
-        public Nullable<int> ScoreNumber { get; set; }
-        public string ScoreString { get; set; }
-        public string Note { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public STUDENT()
+        {
+            this.TESTRESULT = new HashSet<TESTRESULT>();
+        }
     
-        public virtual SINHVIEN STUDENT { get; set; }
-        public virtual CHAMTHI TESTRESULTDETAIL { get; set; }
+        public string IDStudent { get; set; }
+        public string FullName { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TESTRESULT> TESTRESULT { get; set; }
     }
 }
