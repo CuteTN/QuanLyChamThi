@@ -13,37 +13,30 @@
         <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="14" Grid.RowSpan="2" Content="BÁO CÁO NĂM" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
 
         <StackPanel Grid.Column="16" Grid.Row="1" Grid.ColumnSpan="14" Grid.RowSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Label HorizontalAlignment="Left" 
-                    Content="Chọn năm"/>
-            <ComboBox x:Name="cbYear" 
-                        HorizontalAlignment="Center"
-                        HorizontalContentAlignment="Center"
-                        VerticalContentAlignment="Center">
+            <Label HorizontalAlignment="Left" Content="Chọn năm"/>
+            <ComboBox x:Name="cbYear" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <TextBlock Text="2020"/>
             </ComboBox>
             <Button HorizontalAlignment="Right" 
                     Content="Tạo BC"/>
         </StackPanel>
 
-        <StackPanel Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="14" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Label Content="Tổng số đề thi" HorizontalContentAlignment="Right"/>
-            <TextBlock  x:Name="tbTotalExam" Text="123" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        </StackPanel>
+        <Label Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="8" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Tổng số đề thi"/>
+        <TextBlock x:Name="tbTotalTest" Grid.Column="8" Grid.Row="3" Grid.ColumnSpan="8" HorizontalAlignment="Right" VerticalAlignment="Center"/>
 
-        <StackPanel Grid.Column="16" Grid.Row="3" Grid.ColumnSpan="14" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Label Content="Tổng số bài chấm" HorizontalContentAlignment="Right"/>
-            <TextBlock x:Name="tbTotalAssignment" Text="123" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        </StackPanel>
+        <Label Grid.Column="15" Grid.Row="3" Grid.ColumnSpan="8" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Tổng số bài chấm"/>
+        <TextBlock x:Name="tbTotalTestResult" Grid.Column="23" Grid.Row="3" Grid.ColumnSpan="8" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+
 
         <ScrollViewer x:Name="svGrid" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="29" Grid.RowSpan="10" VerticalScrollBarVisibility="Auto">
             <DataGrid x:Name="dgReport" AutoGenerateColumns="False" Width="{Binding ElementName=svGrid, Path=ActualWidth}" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn x:Name="colSTT" Header="STT" Width="1*"/>
                     <DataGridTextColumn x:Name="colName" Header="Tên môn" Width="5*"/>
-                    <DataGridTextColumn x:Name="colAmountOfExam" Header="Số lượng đề thi" Width="5*"/>
-                    <DataGridTextColumn x:Name="colAmountOfAssignment" Header="Số lượng bài chấm" Width="5*"/>
-                    <DataGridTextColumn x:Name="colRatioOfExam" Header="Tỉ lệ đề thi" Width="5*"/>
-                    <DataGridTextColumn x:Name="colRatioOfAssignment" Header="Tỉ lệ bài chấm" Width="5*"/>
+                    <DataGridTextColumn x:Name="colTestNumber" Header="Số lượng đề thi" Width="5*"/>
+                    <DataGridTextColumn x:Name="colTestResultNumber" Header="Số lượng bài chấm" Width="5*"/>
+                    <DataGridTextColumn x:Name="colTestRatio" Header="Tỉ lệ đề thi" Width="5*"/>
+                    <DataGridTextColumn x:Name="colTestResultRatio" Header="Tỉ lệ bài chấm" Width="5*"/>
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>

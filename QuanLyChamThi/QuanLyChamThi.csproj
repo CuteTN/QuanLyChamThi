@@ -89,17 +89,31 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="View\PageMain.xaml.cs">
+      <DependentUpon>PageMain.xaml</DependentUpon>
     <Compile Include="Model\CLASS.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\DIFFICULTY.cs">
       <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="View\PageQuestion.xaml.cs">
+      <DependentUpon>PageQuestion.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\PageReport.xaml.cs">
+      <DependentUpon>PageReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PageTest.xaml.cs">
+      <DependentUpon>PageTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PageTestResult.xaml.cs">
+      <DependentUpon>PageTestResult.xaml</DependentUpon>
     <Compile Include="Model\PRINCIPLE.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\QUESTION.cs">
       <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="View\PageTestResultDetailed.xaml.cs">
+      <DependentUpon>PageTestResultDetailed.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\REPORT.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -164,8 +178,11 @@
     <Compile Include="Command\RelayCommand.cs" />
     <Compile Include="ViewModel\NhapKQChamThiViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
-    <Compile Include="View\NhapKQChamThi.xaml.cs">
-      <DependentUpon>NhapKQChamThi.xaml</DependentUpon>
+    <Compile Include="View\PageTestSearch.xaml.cs">
+      <DependentUpon>PageTestSearch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControlQuestionList.xaml.cs">
+      <DependentUpon>UserControlQuestionList.xaml</DependentUpon>
     </Compile>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -183,9 +200,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\PageQuestion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\PageReport.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PageTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PageTestResult.xaml">
       <SubType>Designer</SubType>
@@ -195,7 +220,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\NhapKQChamThi.xaml">
+    <Page Include="View\PageTestSearch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserControlQuestionList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -239,6 +268,46 @@
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.3.0.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Icon\add.ico" />
+    <Resource Include="Icon\admin.ico" />
+    <Resource Include="Icon\apply.ico" />
+    <Resource Include="Icon\bai cham.ico" />
+    <Resource Include="Icon\ban giam hieu.ico" />
+    <Resource Include="Icon\cancel.ico" />
+    <Resource Include="Icon\close.ico" />
+    <Resource Include="Icon\delete.ico" />
+    <Resource Include="Icon\document.ico" />
+    <Resource Include="Icon\download.ico" />
+    <Resource Include="Icon\edit.ico" />
+    <Resource Include="Icon\erase.ico" />
+    <Resource Include="Icon\error.ico" />
+    <Resource Include="Icon\filter.ico" />
+    <Resource Include="Icon\folder.ico" />
+    <Resource Include="Icon\go_back.ico" />
+    <Resource Include="Icon\go_forward.ico" />
+    <Resource Include="Icon\help.ico" />
+    <Resource Include="Icon\home.ico" />
+    <Resource Include="Icon\info.ico" />
+    <Resource Include="Icon\loading.ico" />
+    <Resource Include="Icon\lock.ico" />
+    <Resource Include="Icon\login.ico" />
+    <Resource Include="Icon\new.ico" />
+    <Resource Include="Icon\news.ico" />
+    <Resource Include="Icon\no.ico" />
+    <Resource Include="Icon\okay.ico" />
+    <Resource Include="Icon\question.ico" />
+    <Resource Include="Icon\redo.ico" />
+    <Resource Include="Icon\refresh.ico" />
+    <Resource Include="Icon\report.ico" />
+    <Resource Include="Icon\save.ico" />
+    <Resource Include="Icon\search.ico" />
+    <Resource Include="Icon\setting.ico" />
+    <Resource Include="Icon\table.ico" />
+    <Resource Include="Icon\teacher.ico" />
+    <Resource Include="Icon\test.ico" />
+    <Resource Include="Icon\undo.ico" />
+    <Resource Include="Icon\unlock.ico" />
+    <Resource Include="Icon\warning.ico" />
     <Content Include="DB.mdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

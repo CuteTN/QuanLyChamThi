@@ -1,0 +1,42 @@
+﻿<Page x:Class="QuanLyChamThi.View.PageQuestion"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:QuanLyChamThi.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="TẠO SỬA CÂU HỎI">
+
+    <Grid Background="LightGray" x:Name="mainGrid">
+
+        <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Môn học"/>
+        <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="5" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Độ khó"/>
+        <Label Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="5" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Nội dung"/>
+        
+        <ComboBox x:Name="cbSubject" Grid.Column="6" Grid.Row="1" Grid.ColumnSpan="10" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <ComboBox x:Name="cbDifficulty" Grid.Column="6" Grid.Row="2" Grid.ColumnSpan="10" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+        <ScrollViewer x:Name="svGrid" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="15" Grid.RowSpan="12" VerticalScrollBarVisibility="Auto">
+            <RichTextBox x:Name="tbContent" Width="{Binding ElementName=svGrid, Path=ActualWidth}" Height="{Binding ElementName=svGrid, Path=ActualHeight}"/>
+        </ScrollViewer>
+
+        <Button x:Name="btnHideShow" Grid.Column="30" Grid.Row="3" Grid.RowSpan="12" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Ẩn danh sách câu hỏi" RenderTransformOrigin="0.5,0.5" Click="btnHideShow_Click">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+
+        <DockPanel x:Name="ucQuestionList" Grid.Column="17" Grid.Row="2" Grid.ColumnSpan="13" Grid.RowSpan="13" LastChildFill="True">
+            <local:UserControlQuestionList/>
+        </DockPanel>
+
+        <Button x:Name="btnCancel" Grid.Column="22" Grid.Row="15" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Huỷ"/>
+        <Button x:Name="btnOK" Grid.Column="26" Grid.Row="15" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Thêm"/>
+    </Grid>
+</Page>
