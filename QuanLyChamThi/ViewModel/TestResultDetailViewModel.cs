@@ -219,6 +219,17 @@ namespace QuanLyChamThi.ViewModel
             {
                 var x = e.ToString();
             }
+
+            string UserFullName = DataProvider.Ins.DB.USER.Where((USER user) => user.Username == "01").ToList()[0].FullName;
+
+            ListTestResultDetailModel.Ins.Data.Add(new TestResultDetailModel
+            {
+                IDTestResult = IDTestResult,
+                IDClass = _selectedClass.IDClass,
+                IDTest = _selectedTestID.IDTest,
+                UserFullName = UserFullName,
+                SubjectName = SelectedSubject.Name
+            });
         }
 
         bool CanSave()
