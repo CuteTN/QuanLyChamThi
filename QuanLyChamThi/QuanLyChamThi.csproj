@@ -91,11 +91,13 @@
     </ApplicationDefinition>
     <Compile Include="View\PageMain.xaml.cs">
       <DependentUpon>PageMain.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\CLASS.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\DIFFICULTY.cs">
       <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="View\PageQuestion.xaml.cs">
       <DependentUpon>PageQuestion.xaml</DependentUpon>
     </Compile>
@@ -107,11 +109,13 @@
     </Compile>
     <Compile Include="View\PageTestResult.xaml.cs">
       <DependentUpon>PageTestResult.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\PRINCIPLE.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\QUESTION.cs">
       <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="View\PageTestResultDetailed.xaml.cs">
       <DependentUpon>PageTestResultDetailed.xaml</DependentUpon>
     </Compile>
@@ -146,18 +150,6 @@
     </Compile>
     <Compile Include="ViewModel\TestResultDetailViewModel.cs" />
     <Compile Include="ViewModel\TestResultViewModel.cs" />
-    <Compile Include="View\PageMain.xaml.cs">
-      <DependentUpon>PageMain.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\PageReport.xaml.cs">
-      <DependentUpon>PageReport.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\PageTestResult.xaml.cs">
-      <DependentUpon>PageTestResult.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\PageTestResultDetailed.xaml.cs">
-      <DependentUpon>PageTestResultDetailed.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Model\DataProvider.cs" />
     <Compile Include="Model\Model1.Context.cs">
       <AutoGen>True</AutoGen>
