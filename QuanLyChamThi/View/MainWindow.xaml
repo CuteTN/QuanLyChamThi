@@ -73,9 +73,7 @@
             <Separator Background="Transparent"/>
         </DockPanel>
 
-        <Button x:Name="btnBack" Grid.Column="1" Grid.Row="1" Content="Quay xe"/>
-        <TextBlock x:Name="tbHistory" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="30" HorizontalAlignment="Left" VerticalAlignment="Center" Text="https://facebook.com"/>
-        <Frame Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="31" Grid.RowSpan="17" x:Name="mainScreen" NavigationUIVisibility="Hidden" />
+        <Frame Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="31" Grid.RowSpan="17" x:Name="mainScreen" NavigationUIVisibility="Hidden" />
     </Grid>
 
 </Window>
