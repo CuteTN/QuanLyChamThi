@@ -6,27 +6,42 @@
       xmlns:local="clr-namespace:QuanLyChamThi.View"
       mc:Ignorable="d" 
       d:DesignHeight="640" d:DesignWidth="1200"
-      Title="DANH SÁCH BÀI CHẤM">
+      Title="CHI TIẾT BÀI CHẤM">
 
     <Grid Background="LightGray" x:Name="mainGrid">
-        <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="17" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="DANH SÁCH BÀI CHẤM"/>
+        <Label Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="4" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Giảng viên chấm: "/>
+        <Label Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="4" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Môn: "/>
+        <Label Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="4" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Lớp: "/>
 
-        <Button x:Name="btnNew" Grid.Column="19" Grid.Row="1" Grid.ColumnSpan="6" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Tạo mới"/>
+        <TextBlock x:Name="tbLecturerName" Grid.Column="7" Grid.Row="1" Grid.ColumnSpan="8" HorizontalAlignment="Left" VerticalAlignment="Center" Text="John Wick"/>
+        <ComboBox x:Name="cbSubject" Grid.Column="7" Grid.Row="2" Grid.ColumnSpan="8" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <ComboBox x:Name="cbClass" Grid.Column="7" Grid.Row="3" Grid.ColumnSpan="8" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
-        <Button Grid.Column="26" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Image Source="/QuanLyChamThi;component/Icon/filter.ico"/>
-        </Button>
+        <Label Grid.Column="17" Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Mã đề thi"/>
+        <ComboBox x:Name="cbTestID" Grid.Column="20" Grid.Row="1" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Button x:Name="btnChooseTest" Grid.Column="20" Grid.Row="2" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Chọn đề thi"/>
 
-        <ScrollViewer x:Name="svGrid" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="29" Grid.RowSpan="12" VerticalScrollBarVisibility="Auto">
+        <Button x:Name="btnAdd" Grid.Column="26" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Thêm"/>
+        <Button x:Name="btnDelete" Grid.Column="28" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Xoá"/>
+
+        <ScrollViewer x:Name="svGrid" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="29" Grid.RowSpan="11" VerticalScrollBarVisibility="Auto">
             <DataGrid x:Name="dgListTestResult" AutoGenerateColumns="False" Width="{Binding ElementName=svGrid, Path=ActualWidth}" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn x:Name="colSubjectName" Header="Tên môn thi" Width="1*"/>
-                    <DataGridTextColumn x:Name="colClassID" Header="Mã lớp" Width="1*"/>
-                    <DataGridTextColumn x:Name="colLecturerName" Header="Tên giảng viên" Width="1*"/>
-                    <DataGridTextColumn x:Name="colTestID" Header="Mã đề thi" Width="1*"/>
+                    <DataGridCheckBoxColumn x:Name="colSelectAll" Width="1*">
+                        <DataGridCheckBoxColumn.Header>
+                            <CheckBox x:Name="cbSelectAll"/>
+                        </DataGridCheckBoxColumn.Header>
+                    </DataGridCheckBoxColumn>
+                    <DataGridTextColumn x:Name="colStudentName" Header="Tên" Width="8*"/>
+                    <DataGridTextColumn x:Name="colStudentID" Header="MSSV" Width="3*"/>
+                    <DataGridTextColumn x:Name="colScoreNumber" Header="Điểm số" Width="3*"/>
+                    <DataGridTextColumn x:Name="colScoreString" Header="Điểm chữ" Width="6*"/>
+                    <DataGridTextColumn x:Name="colNote" Header="Ghi chú" Width="10*"/>
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>
-        
+
+        <Button x:Name="btnSave" Grid.Column="9" Grid.Row="15" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Lưu"/>
+        <Button x:Name="btnCancel" Grid.Column="17" Grid.Row="15" Grid.ColumnSpan="4" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Huỷ"/>
     </Grid>
 </Page>
