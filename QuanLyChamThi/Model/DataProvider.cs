@@ -4,6 +4,7 @@ using System.Linq;
 using System.Data.Entity;
 using System.Text;
 using System.Threading.Tasks;
+using QuanLyChamThi.ViewModel;
 
 namespace QuanLyChamThi.Model
 {
@@ -47,9 +48,43 @@ namespace QuanLyChamThi.Model
 
         // Trả về danh sách tất cả các phần tử thuộc kiểu dữ liệu này
         // Tự phát hiện kiểu dữ liệu thuộc 1 trong các kiểu dữ liệu database
-        public List<T> DanhSach<T>(T model) where T : class
+        public List<T> Get<T>() where T : class, new()
         {
-            return GetCorrespondingDbSet((dynamic)model).ToList();
+            return GetCorrespondingDbSet((dynamic) new T()).ToList();
+        }
+
+        // Trả về truy cập database thuộc kiểu dữ liệu này
+        // Tự phát hiện kiểu dữ liệu thuộc 1 trong các kiểu dữ liệu database
+        public void Recieve(List<DatabaseCommand> commands)
+        {
+            foreach (DatabaseCommand item in commands)
+            {
+                if (item.delete != null)
+                    DeleteItem((dynamic)item.delete);
+                if (item.add != null)
+                    AddItem((dynamic)item.add);
+            }
+            DB.SaveChanges();
+            
+            // TODO: Broadcast
+        }
+
+        // Xóa 1 phần tử trong database
+        // Trả về thành công hay không
+        // Tự phát hiện kiểu dữ liệu thuộc 1 trong các dữ liệu database
+        public bool DeleteItem<T>(T item) where T : class
+        {
+            DbSet<T> dbs = GetCorrespondingDbSet((dynamic)item);
+            return dbs.Remove(item) != null;
+        }
+
+        // Thêm item vào bảng tương ứng của database
+        // Trả về thành công hay không
+        // Tự phát hiện kiểu dữ liệu thuộc 1 trong các dữ liệu database
+        public bool AddItem<T>(T item) where T : class
+        {
+            DbSet<T> dbs = GetCorrespondingDbSet((dynamic)item);
+            return dbs.Add(item) != null;
         }
 
         // Kiểm tra phần tử này có nằm trong database không
