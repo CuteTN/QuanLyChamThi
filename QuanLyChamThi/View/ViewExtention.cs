@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace QuanLyChamThi.View
 {
-    static class Animation
+    static class ViewExtension
     {
         public static bool Message(Window sender, string message, string detail, float stayTime)
         {

@@ -24,10 +24,10 @@ namespace QuanLyChamThi.Model
             set { _ins = value; }
         }
 
-        public QuanLyDeThiEntities DB;
+        //public QuanLyDeThiEntities DB;
         private DataProvider()
         {
-            DB = new QuanLyDeThiEntities();
+            //DB = new QuanLyDeThiEntities();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,7 +20,6 @@ namespace QuanLyChamThi.View
     /// </summary>
     public partial class WindowLogin : Window
     {
-
         public WindowLogin()
         {
             InitializeComponent();
@@ -32,7 +32,7 @@ namespace QuanLyChamThi.View
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            if (Animation.Message(this, "Đăng nhập thành công", "Chào mừng abcxyz", 1) == false)
+            if (ViewExtension.Message(this, "Đăng nhập thành công", "Chào mừng abcxyz", 1) == false)
                 this.Close();
         }
     }
