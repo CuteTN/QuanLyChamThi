@@ -11,14 +11,14 @@
     <Grid Background="LightGray" x:Name="mainGrid">
         <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="17" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="DANH SÁCH BÀI CHẤM"/>
 
-        <Button x:Name="btnNew" Grid.Column="19" Grid.Row="1" Grid.ColumnSpan="6" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Tạo mới"/>
+        <Button x:Name="btnNew" Command="{Binding Test}" Grid.Column="19" Grid.Row="1" Grid.ColumnSpan="6" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Tạo mới"/>
 
         <Button Grid.Column="26" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Image Source="/QuanLyChamThi;component/Icon/filter.ico"/>
         </Button>
 
         <ScrollViewer x:Name="svGrid" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="29" Grid.RowSpan="12" VerticalScrollBarVisibility="Auto">
-            <DataGrid x:Name="dgListTestResult" ItemsSource="{Binding ListTestResultDetail}" AutoGenerateColumns="False" Width="{Binding ElementName=svGrid, Path=ActualWidth}" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False">
+            <DataGrid x:Name="dgListTestResult" ItemsSource="{Binding ListTestResultDetailView}" AutoGenerateColumns="False" Width="{Binding ElementName=svGrid, Path=ActualWidth}" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn x:Name="colSubjectName" Binding="{Binding SubjectName}" Header="Tên môn thi" Width="1*"/>
                     <DataGridTextColumn x:Name="colClassID" Binding="{Binding IDClass}" Header="Mã lớp" Width="1*"/>

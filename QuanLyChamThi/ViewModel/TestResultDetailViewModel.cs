@@ -13,7 +13,7 @@ using System.Data.Entity.Infrastructure;
 
 namespace QuanLyChamThi.ViewModel
 {
-    class TestResultDetailViewModel: ViewModelBase
+    class TestResultDetailViewModel: ViewModelBase, UserModelBase
     {
 
         #region Combobox Subject
@@ -147,6 +147,23 @@ namespace QuanLyChamThi.ViewModel
                 _listTestResult = value;
             }
         }
+
+        private ObservableCollection<TestResultModel> _listTestResultOld;
+        public ObservableCollection<TestResultModel> ListTestResultOld
+        {
+            get
+            {
+                if (_listTestResultOld == null)
+                {
+                    _listTestResultOld = new ObservableCollection<TestResultModel>();
+                }
+                return _listTestResultOld;
+            }
+            set
+            {
+                _listTestResultOld = value;
+            }
+        }
         #endregion
 
         #region Button Add
@@ -239,6 +256,11 @@ namespace QuanLyChamThi.ViewModel
 
         #endregion
         public TestResultDetailViewModel()
+        {
+            
+        }
+        
+        public void Receive(object sender, object args)
         {
             
         }

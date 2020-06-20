@@ -1,7 +1,9 @@
-﻿using System;
+﻿using QuanLyChamThi.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -42,9 +44,10 @@ namespace QuanLyChamThi.Model
             get { return _idTest; }
             set { _idTest = value; }
         }
+
     }
 
-    class ListTestResultDetailModel
+    class ListTestResultDetailModel: UserModelBase
     {
         #region Data
         ObservableCollection<TestResultDetailModel> _data;
@@ -67,6 +70,7 @@ namespace QuanLyChamThi.Model
                                                                              }).ToList());
 
                 return _data;
+                
             }
         }
         #endregion
@@ -80,6 +84,7 @@ namespace QuanLyChamThi.Model
                 if (_ins == null)
                 {
                     _ins = new ListTestResultDetailModel();
+                    ViewModelMediator.Ins.AddUserModel(_ins);
                 }
                 return _ins;
             }
@@ -87,6 +92,11 @@ namespace QuanLyChamThi.Model
         }
 
         private ListTestResultDetailModel() { }
+
+        public void Receive(object sender, object args)
+        {
+            
+        }
         #endregion
     }
 }

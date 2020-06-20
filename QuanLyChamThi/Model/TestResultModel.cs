@@ -1,5 +1,8 @@
-﻿using System;
+﻿using QuanLyChamThi.ViewModel;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +11,13 @@ namespace QuanLyChamThi.Model
 {
     class TestResultModel
     {
+        private bool _selected;
+        public bool Selected
+        {
+            get { return _selected; }
+            set { _selected = value; }
+        }
+
         private string _idTestResult;
         public string IDTestResult
         {
@@ -50,4 +60,5 @@ namespace QuanLyChamThi.Model
             set { _note = value; }
         }
     }
+
 }
