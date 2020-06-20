@@ -53,16 +53,29 @@ namespace QuanLyChamThi.Model
             return GetCorrespondingDbSet((dynamic) new T()).ToList();
         }
 
-        // Trả về truy cập database thuộc kiểu dữ liệu này
+        // Nhận lệnh database.
         // Tự phát hiện kiểu dữ liệu thuộc 1 trong các kiểu dữ liệu database
+        // bên trong các command.
         public void Recieve(List<DatabaseCommand> commands)
         {
             foreach (DatabaseCommand item in commands)
             {
+                //* Remove or add a slash to toggle which code to run
                 if (item.delete != null)
                     DeleteItem((dynamic)item.delete);
                 if (item.add != null)
                     AddItem((dynamic)item.add);
+                /*/
+                if (item.add == null)
+                    DeleteItem((dynamic)item.delete);
+                else if (item.delete == null)
+                    AddItem((dynamic)item.add);
+                else
+                {
+                    dynamic temp = GetItem((dynamic) item.delete);
+                    temp = (dynamic)item.add;
+                }
+                //*/
             }
             DB.SaveChanges();
             
@@ -85,6 +98,14 @@ namespace QuanLyChamThi.Model
         {
             DbSet<T> dbs = GetCorrespondingDbSet((dynamic)item);
             return dbs.Add(item) != null;
+        }
+
+        // Trả về item nếu có item trong database. Cho phép sửa.
+        // Tự phát hiện kiểu dữ liệu thuộc 1 trong các dữ liệu database
+        public T GetItem<T>(T item) where T : class
+        {
+            DbSet<T> dbs = GetCorrespondingDbSet((dynamic)item);
+            return dbs.Where((T it) => it == item).Single();
         }
 
         // Kiểm tra phần tử này có nằm trong database không
