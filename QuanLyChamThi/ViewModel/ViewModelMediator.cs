@@ -18,11 +18,11 @@ namespace QuanLyChamThi.ViewModel
             UserModels.Add(umb);
         }
 
-        public void Receive(Object sender, Object args)
+        public void Receive(Object sender, List<DatabaseCommand> commands)
         {
+            DataProvider.Receive(commands);
             foreach (var u in UserModels)
-                u.Receive(sender, args);
-            // DataProvider.Receive(sender, args);
+                u.Receive(sender, commands);
         }
 
         // singleton pattern

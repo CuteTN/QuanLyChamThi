@@ -148,22 +148,6 @@ namespace QuanLyChamThi.ViewModel
             }
         }
 
-        private ObservableCollection<TestResultModel> _listTestResultOld;
-        public ObservableCollection<TestResultModel> ListTestResultOld
-        {
-            get
-            {
-                if (_listTestResultOld == null)
-                {
-                    _listTestResultOld = new ObservableCollection<TestResultModel>();
-                }
-                return _listTestResultOld;
-            }
-            set
-            {
-                _listTestResultOld = value;
-            }
-        }
         #endregion
 
         #region Button Add
@@ -207,14 +191,22 @@ namespace QuanLyChamThi.ViewModel
         {
             string IDTestResult = SelectedClass.IDClass + "_" + SelectedTestID.IDTest;
 
-            DataProvider.Ins.DB.TESTRESULTDETAIL.Add(new TESTRESULTDETAIL
+            List<DatabaseCommand> commands = new List<DatabaseCommand>();
+            commands.Add(new DatabaseCommand
             {
-                IDTestResult = IDTestResult,
-                IDClass      = _selectedClass.IDClass,
-                IDTest       = _selectedTestID.IDTest,
-                Username     = "01",
-                Note         = ""
+                add = new TESTRESULTDETAIL
+                {
+                    IDTestResult = IDTestResult,
+                    IDClass = _selectedClass.IDClass,
+                    IDTest = _selectedTestID.IDTest,
+                    Username = "01",
+                    Note = ""
+                },
+                delete = null
             });
+
+            // send command for save new TESTRESULT to database via ViewModelMediator
+            ViewModelMediator.Ins.Receive(this, commands);
 
             foreach(var testResult in _listTestResult)
             {
@@ -227,42 +219,26 @@ namespace QuanLyChamThi.ViewModel
                     Note = testResult.Note
                 });
             }
-
-            try
-            {
-                DataProvider.Ins.DB.SaveChanges();
-            }
-            catch (DbUpdateException e)
-            {
-                var x = e.ToString();
-            }
-
-            string UserFullName = DataProvider.Ins.DB.USER.Where((USER user) => user.Username == "01").ToList()[0].FullName;
-
-            ListTestResultDetailModel.Ins.Data.Add(new TestResultDetailModel
-            {
-                IDTestResult = IDTestResult,
-                IDClass = _selectedClass.IDClass,
-                IDTest = _selectedTestID.IDTest,
-                UserFullName = UserFullName,
-                SubjectName = SelectedSubject.Name
-            });
         }
 
         bool CanSave()
         {
             return true;
         }
+        public void Receive(object sender, List<DatabaseCommand> commands)
+        {
+            // We handle command that received from ViewModelMediator here
+            _listSubject = new BindingList<SUBJECT>((from u in DataProvider.Ins.DB.SUBJECT select u).ToList());
+            OnPropertyChange("ListSubject");
+            OnPropertyChange("ListClass");
+            OnPropertyChange("ListIDTest");
 
+        }
         #endregion
         public TestResultDetailViewModel()
         {
-            
+            ViewModelMediator.Ins.AddUserModel(this);
         }
         
-        public void Receive(object sender, object args)
-        {
-            
-        }
     }
 }

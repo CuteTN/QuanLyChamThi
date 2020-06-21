@@ -11,6 +11,7 @@ using System.ComponentModel;
 using System.Data.Entity.Core.Objects;
 using System.Windows.Input;
 using System.Collections.Specialized;
+using System.Windows;
 
 namespace QuanLyChamThi.ViewModel
 {
@@ -32,6 +33,12 @@ namespace QuanLyChamThi.ViewModel
         //    set { _listTestResultDetail = value;}
         //}
 
+
+        /// <summary>
+        /// This is a list that binding with the view, it has a filter of its own
+        /// Its source is ListTestResultDetailModel singleton, every change in ListTestResultDetailModel 
+        /// will call this list to update
+        /// </summary>
         ObservableCollection<TestResultDetailModel> _listTestResultDetailView;
         public ObservableCollection<TestResultDetailModel> ListTestResultDetailView
         {
@@ -93,11 +100,12 @@ namespace QuanLyChamThi.ViewModel
         void test2(object sender, NotifyCollectionChangedEventArgs e)
         {
             OnPropertyChange("ListTestResultDetailView");
+            MessageBox.Show("");
         }
 
         public TestResultViewModel()
         {
-            ListTestResultDetailModel.Ins.Data.CollectionChanged += test2;
+            ListTestResultDetailModel.Ins.AddCollectionChangedNotified(test2);
         }
     }
 }

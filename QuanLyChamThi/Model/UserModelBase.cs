@@ -9,7 +9,6 @@ namespace QuanLyChamThi.ViewModel
     // Author: CuteTN
     interface UserModelBase
     {
-        // wait for Tuong's args class :)
-        void Receive(object sender, object args);
+        void Receive(object sender, List<DatabaseCommand> commands);
     }
 }

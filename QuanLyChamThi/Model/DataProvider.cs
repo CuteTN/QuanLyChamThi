@@ -32,18 +32,19 @@ namespace QuanLyChamThi.Model
             DB = new QuanLyDeThiEntities();
         }
 
-        public List<DETHI> DanhSachDeThi()
+        public List<TEST> DanhSachDeThi()
         {
-            return DB.DETHI.Where((DETHI) =>
+            return DB.TEST.Where((DETHI) =>
             // TODO: add filter
             true).ToList();
         }
 
-        public int SoDeThi(MONHOC filterSubject)
+        public int SoDeThi(SUBJECT filterSubject)
         {
-            return DB.DETHI.Where(
-                (DETHI it) => it.IDSubject == filterSubject.IDSubject)
-                .Count();
+            //return DB.SUBJECT.Where(
+            //    (TEST it) => it.IDSubject == filterSubject.IDSubject)
+            //    .Count();
+            return 1;
         }
 
         // Trả về danh sách tất cả các phần tử thuộc kiểu dữ liệu này
@@ -56,7 +57,7 @@ namespace QuanLyChamThi.Model
         // Nhận lệnh database.
         // Tự phát hiện kiểu dữ liệu thuộc 1 trong các kiểu dữ liệu database
         // bên trong các command.
-        public void Recieve(List<DatabaseCommand> commands)
+        public void Receive(List<DatabaseCommand> commands)
         {
             foreach (DatabaseCommand item in commands)
             {
@@ -126,18 +127,18 @@ namespace QuanLyChamThi.Model
             return dbs.Any(condition);
         }
 
-        private DbSet<BAITHI> GetCorrespondingDbSet(BAITHI item) { return DB.BAITHI; }
-        private DbSet<BAOCAONAM> GetCorrespondingDbSet(BAOCAONAM item) { return DB.BAOCAONAM; }
-        private DbSet<CAUHOI> GetCorrespondingDbSet(CAUHOI item) { return DB.CAUHOI; }
-        private DbSet<CHAMTHI> GetCorrespondingDbSet(CHAMTHI item) { return DB.CHAMTHI; }
-        private DbSet<CHITIETBAOCAO> GetCorrespondingDbSet(CHITIETBAOCAO item) { return DB.CHITIETBAOCAO; }
-        private DbSet<CHITIETDETHI> GetCorrespondingDbSet(CHITIETDETHI item) { return DB.CHITIETDETHI; }
-        private DbSet<DOKHO> GetCorrespondingDbSet(DOKHO item) { return DB.DOKHO; }
-        private DbSet<LOP> GetCorrespondingDbSet(LOP item) { return DB.LOP; }
-        private DbSet<MONHOC> GetCorrespondingDbSet(MONHOC item) { return DB.MONHOC; }
-        private DbSet<NGUOISUDUNG> GetCorrespondingDbSet(NGUOISUDUNG item){return DB.NGUOISUDUNG; }
-        private DbSet<SINHVIEN> GetCorrespondingDbSet(SINHVIEN item) { return DB.SINHVIEN; }
-        private DbSet<THAMSO> GetCorrespondingDbSet(THAMSO item) { return DB.THAMSO; }
-        private DbSet<DETHI> GetCorrespondingDbSet(DETHI item) { return DB.DETHI; }
+        private DbSet<TEST> GetCorrespondingDbSet(TEST item) { return DB.TEST; }
+        private DbSet<CLASS> GetCorrespondingDbSet(CLASS item) { return DB.CLASS; }
+        private DbSet<DIFFICULTY> GetCorrespondingDbSet(DIFFICULTY item) { return DB.DIFFICULTY; }
+        private DbSet<PRINCIPLE> GetCorrespondingDbSet(PRINCIPLE item) { return DB.PRINCIPLE; }
+        private DbSet<QUESTION> GetCorrespondingDbSet(QUESTION item) { return DB.QUESTION; }
+        private DbSet<REPORT> GetCorrespondingDbSet(REPORT item) { return DB.REPORT; }
+        private DbSet<REPORTDETAIL> GetCorrespondingDbSet(REPORTDETAIL item) { return DB.REPORTDETAIL; }
+        private DbSet<STUDENT> GetCorrespondingDbSet(STUDENT item) { return DB.STUDENT; }
+        private DbSet<SUBJECT> GetCorrespondingDbSet(SUBJECT item) { return DB.SUBJECT; }
+        private DbSet<TESTDETAIL> GetCorrespondingDbSet(TESTDETAIL item) { return DB.TESTDETAIL; }
+        private DbSet<TESTRESULT> GetCorrespondingDbSet(TESTRESULT item) { return DB.TESTRESULT; }
+        private DbSet<TESTRESULTDETAIL> GetCorrespondingDbSet(TESTRESULTDETAIL item) { return DB.TESTRESULTDETAIL; }
+        private DbSet<USER> GetCorrespondingDbSet(USER item) { return DB.USER; }
     }
 }
