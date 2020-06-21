@@ -13,7 +13,7 @@
 
         <Button x:Name="btnNew" Grid.Column="19" Grid.Row="1" Grid.ColumnSpan="6" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Tạo mới"/>
 
-        <Button Grid.Column="26" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Button Grid.Column="26" Command="{Binding Command}" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Image Source="/QuanLyChamThi;component/Icon/filter.ico"/>
         </Button>
 

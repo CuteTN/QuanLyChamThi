@@ -16,7 +16,7 @@ namespace QuanLyChamThi.Model
     {
         public string IDTestResult { get; set; }
         public string IDStudent { get; set; }
-        public Nullable<int> ScoreNumber { get; set; }
+        public Nullable<double> ScoreNumber { get; set; }
         public string ScoreString { get; set; }
         public string Note { get; set; }
     

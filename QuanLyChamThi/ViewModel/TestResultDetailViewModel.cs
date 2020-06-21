@@ -10,11 +10,19 @@ using QuanLyChamThi.Command;
 using System.Windows.Input;
 using System.Data.Entity.Validation;
 using System.Data.Entity.Infrastructure;
+using System.Windows;
 
 namespace QuanLyChamThi.ViewModel
 {
-    class TestResultDetailViewModel: ViewModelBase
+    public class TestResultDetailViewModel: ViewModelBase
     {
+
+        bool _allSelected;
+        public bool AllSelected
+        {
+            get { return _allSelected; }
+            set { _allSelected = value; }
+        }
 
         #region Combobox Subject
         private BindingList<SUBJECT> _listSubject;
@@ -47,6 +55,7 @@ namespace QuanLyChamThi.ViewModel
                 _selectedSubject = value;
                 OnPropertyChange("ListClass");
                 OnPropertyChange("ListTestID");
+                (SaveCommand as RelayCommand).RaiseCanExecuteChanged();
             }
         }
         #endregion
@@ -78,6 +87,10 @@ namespace QuanLyChamThi.ViewModel
         {
             get
             {
+                if(_selectedTestID != null)
+                {
+                    _selectedClass = DataProvider.Ins.DB.CLASS.Where((CLASS param) => param.IDSubject == _selectedTestID.IDSubject).ToList()[0];
+                }
                 return _selectedClass;
             }
             set
@@ -85,6 +98,7 @@ namespace QuanLyChamThi.ViewModel
                 _selectedClass = value;
                 OnPropertyChange("SelectedSubject");
                 OnPropertyChange("ListTestID");
+                (SaveCommand as RelayCommand).RaiseCanExecuteChanged();
             }
         }
 
@@ -125,6 +139,9 @@ namespace QuanLyChamThi.ViewModel
             set
             {
                 _selectedTestID = value;
+                OnPropertyChange("SelectedClass");
+                OnPropertyChange("SelectedSubject");
+                (SaveCommand as RelayCommand).RaiseCanExecuteChanged();
             }
         }
 
@@ -147,6 +164,73 @@ namespace QuanLyChamThi.ViewModel
                 _listTestResult = value;
             }
         }
+
+        ICommand _selectAllCommand;
+        public ICommand SelectAllCommand
+        {
+            get
+            {
+                if (_selectAllCommand == null)
+                    _selectAllCommand = new RelayCommand(param => SelectAll());
+                return _selectAllCommand;
+            }
+            set { _selectAllCommand = value; }
+        }
+        public void SelectAll()
+        {
+            foreach(var testResult in ListTestResult)
+            {
+                testResult.Selected = AllSelected;
+                OnPropertyChange("testResult.Selected");
+            }
+        }
+
+        ICommand _deleteSelectedResultsCommand;
+        public ICommand DeleteSelectedResultsCommand
+        {
+            get
+            {
+                if(_deleteSelectedResultsCommand == null)
+                {
+                    _deleteSelectedResultsCommand = new RelayCommand(param => DeleteSelectedResults());
+                }
+                return _deleteSelectedResultsCommand;
+            }
+            set { _deleteSelectedResultsCommand = value; }
+        }
+        public void DeleteSelectedResults()
+        {
+            for(int i=0; i<ListTestResult.Count;)
+            {
+                if (ListTestResult[i].Selected)
+                    ListTestResult.RemoveAt(i);
+                else
+                    i++;
+            }
+        }
+
+        ICommand _updateAllCheckCommand;
+        public ICommand UpdateAllCheckCommand
+        {
+            get
+            {
+                if (_updateAllCheckCommand == null)
+                    _updateAllCheckCommand = new RelayCommand(param => UpdateAllCheck());
+                return _updateAllCheckCommand;
+            }
+            set { _updateAllCheckCommand = value; }
+        }
+
+        void UpdateAllCheck()
+        {
+            AllSelected = true;
+            foreach(var testResult in ListTestResult)
+            {
+                AllSelected = AllSelected & testResult.Selected;
+            }
+            OnPropertyChange("AllSelected");
+        }
+
         #endregion
 
         #region Button Add
@@ -188,6 +272,12 @@ namespace QuanLyChamThi.ViewModel
 
         void Save()
         {
+            foreach (var testResult in _listTestResult)
+            {
+                if (!ValidTestResult(testResult))
+                    return;
+            }
+
             string IDTestResult = SelectedClass.IDClass + "_" + SelectedTestID.IDTest;
 
             DataProvider.Ins.DB.TESTRESULTDETAIL.Add(new TESTRESULTDETAIL
@@ -234,6 +324,37 @@ namespace QuanLyChamThi.ViewModel
 
         bool CanSave()
         {
+            if (_selectedClass == null || _selectedSubject == null || _selectedTestID == null)
+                return false;
+
+            return true;
+        }
+
+        bool ValidTestResult(TestResultModel testResult)
+        {
+            STUDENT student = DataProvider.Ins.DB.STUDENT.Find(testResult.StudentID);
+            if (student == null)
+            {
+                // Notify user that student with given id dont exist //
+                MessageBox.Show("student with " + testResult.StudentID.ToString() + " ID dont exist");
+                ///////////////////////////////////////////////////////
+                return false;
+            }
+            if (student.FullName != testResult.StudentName)
+            {
+                // Warn user that student with given id have wrong name //
+                MessageBox.Show("student with " + testResult.StudentID.ToString() + " ID have wrong name");
+                //////////////////////////////////////////////////////////
+                return false;
+            }
+            if(testResult.ScoreNumber < DataProvider.Ins.DB.PRINCIPLE.ToList()[0].MinScore ||
+               testResult.ScoreNumber > DataProvider.Ins.DB.PRINCIPLE.ToList()[0].MaxScore)
+            {
+                // Notify user that the score is not in principle //
+                MessageBox.Show("student with " + testResult.StudentID.ToString() + " ID have score not in principle");
+                ////////////////////////////////////////////////////
+                return false;
+            }
             return true;
         }
 

@@ -12,7 +12,7 @@
           </Key>
           <Property Name="IDTestResult" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="IDStudent" Type="nvarchar" MaxLength="256" Nullable="false" />
-          <Property Name="DiemSo" Type="int" />
+          <Property Name="DiemSo" Type="float" />
           <Property Name="DiemChu" Type="nvarchar" MaxLength="256" />
           <Property Name="GhiChu" Type="nvarchar" MaxLength="256" />
         </EntityType>
@@ -445,7 +445,7 @@
           </Key>
           <Property Name="IDTestResult" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="IDStudent" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="ScoreNumber" Type="Int32" />
+          <Property Name="ScoreNumber" Type="Double" />
           <Property Name="ScoreString" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="Note" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="STUDENT" Relationship="QuanLyDeThiModel.FK__BAITHI__IDStuden__403A8C7D" FromRole="BAITHI" ToRole="SINHVIEN" />

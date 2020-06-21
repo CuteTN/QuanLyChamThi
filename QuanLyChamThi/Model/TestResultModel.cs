@@ -1,13 +1,23 @@
-﻿using System;
+﻿using QuanLyChamThi.Command;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace QuanLyChamThi.Model
 {
-    class TestResultModel
+    public class TestResultModel: INotifyPropertyChanged
     {
+        private bool _selected;
+        public bool Selected
+        {
+            get { return _selected; }
+            set { _selected = value; OnPropertyChange("Selected"); }
+        }
+
         private string _idTestResult;
         public string IDTestResult
         {
@@ -29,8 +39,8 @@ namespace QuanLyChamThi.Model
             set { _studentID = value; }
         }
 
-        private int? _scoreNumber;
-        public int? ScoreNumber
+        private float? _scoreNumber;
+        public float? ScoreNumber
         {
             get { return _scoreNumber; }
             set { _scoreNumber = value; }
@@ -44,6 +54,17 @@ namespace QuanLyChamThi.Model
         }
 
         private string _note;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChange(string propertyName)
+        {
+            PropertyChangedEventHandler handler = this.PropertyChanged;
+            if (handler != null)
+            {
+                var e = new PropertyChangedEventArgs(propertyName);
+                handler(this, e);
+            }
+        }
         public string Note
         {
             get { return _note; }

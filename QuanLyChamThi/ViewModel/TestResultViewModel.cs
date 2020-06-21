@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Data;
 using System.ComponentModel;
 using System.Data.Entity.Core.Objects;
+using System.Windows.Input;
 
 namespace QuanLyChamThi.ViewModel
 {
@@ -35,9 +36,26 @@ namespace QuanLyChamThi.ViewModel
             TestResultDetailModel test = item as TestResultDetailModel;
 
             ///////// PUT FILER HERE ///////////////
-            return test.SubjectName == "OOP";
+            return test.SubjectName == "Nhập môn lập trình";
         }
 
+        ICommand _command;
+        public ICommand Command
+        {
+            get
+            {
+                if (_command == null)
+                    _command = new RelayCommand(param => CMD());
+                return _command;
+            }
+
+            set { _command = value; }
+        }
+
+        void CMD()
+        {
+            var x = ListTestResultDetailModel.Ins.Data;
+        }
 
         public TestResultViewModel()
         {
