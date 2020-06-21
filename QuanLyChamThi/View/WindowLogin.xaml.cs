@@ -20,9 +20,12 @@ namespace QuanLyChamThi.View
     /// </summary>
     public partial class WindowLogin : Window
     {
+        private string access;
+
         public WindowLogin()
         {
             InitializeComponent();
+            access = "denied";
             /** CREATE GRID COLUMNS AND ROWS **/
             for (int i = 0; i < 8; i++)
                 mainGrid.ColumnDefinitions.Add(new ColumnDefinition());
@@ -32,8 +35,14 @@ namespace QuanLyChamThi.View
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
+            access = "accepted";
             if (ViewExtension.Message(this, "Đăng nhập thành công", "Chào mừng abcxyz", 1) == false)
                 this.Close();
+        }
+
+        public string getAccessState()
+        {
+            return access;
         }
     }
 }

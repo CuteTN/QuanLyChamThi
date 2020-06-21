@@ -24,6 +24,9 @@ namespace QuanLyChamThi
 
             if (dialog.ShowDialog() == false)
             {
+                if (dialog.getAccessState() == "denied")
+                    System.Environment.Exit(1);
+
                 //var mainWindow = new MainWindow(dialog.Data);
                 var mainWindow = new MainWindow();
                 //Re-enable normal shutdown mode.

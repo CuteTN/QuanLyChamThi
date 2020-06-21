@@ -8,7 +8,7 @@
         Title="Đăng nhập" Height="400" Width="400" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow" ResizeMode="NoResize">
     <Grid x:Name="mainGrid">
         <Canvas x:Name="canvasLogo" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="6" Grid.RowSpan="2">
-            <Image Source="https://www.35express.org/wp-content/uploads/2020/01/word-image-41.png" Width="{Binding ElementName=canvasLogo, Path=ActualWidth}" Height="{Binding ElementName=canvasLogo, Path=ActualHeight}" Stretch="Uniform"/>
+            <Image Source="https://i.pinimg.com/236x/98/a3/c5/98a3c583ff9bc2efee03061f74d538ca--himoto-umaru-chan-umaru-chan-wallpaper.jpg" Width="{Binding ElementName=canvasLogo, Path=ActualWidth}" Height="{Binding ElementName=canvasLogo, Path=ActualHeight}" Stretch="Uniform"/>
         </Canvas>
 
         <Label Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Tên tài khoản"/>
