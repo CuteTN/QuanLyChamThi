@@ -93,6 +93,7 @@
     <Compile Include="ViewModel\ViewModelMediator.cs" />
     <Compile Include="ViewModel\DatabaseCommand.cs" />
     <Compile Include="Pair.cs" />
+    <Compile Include="View\ViewExtention.cs" />
     <Compile Include="View\PageMain.xaml.cs">
       <DependentUpon>PageMain.xaml</DependentUpon>
     </Compile>
@@ -180,6 +181,12 @@
     <Compile Include="View\UserControlQuestionList.xaml.cs">
       <DependentUpon>UserControlQuestionList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\WindowLogin.xaml.cs">
+      <DependentUpon>WindowLogin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WindowNotification.xaml.cs">
+      <DependentUpon>WindowNotification.xaml</DependentUpon>
+    </Compile>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -221,6 +228,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\UserControlQuestionList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WindowLogin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WindowNotification.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
