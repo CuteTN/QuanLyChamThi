@@ -12,34 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using QuanLyChamThi.Model;
 using QuanLyChamThi.ViewModel;
 
 namespace QuanLyChamThi.View
 {
     /// <summary>
-    /// Interaction logic for PageTestResultDetailed.xaml
+    /// Interaction logic for PageTestResult.xaml
     /// </summary>
-    ///
-
-    public class BindingProxy: Freezable
-    {
-        protected override Freezable CreateInstanceCore()
-        {
-            return new BindingProxy();
-        }
-
-        public object Data
-        {
-            get { return (object)GetValue(DataProperty); }
-            set { SetValue(DataProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for Data.
-        // This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty DataProperty =
-            DependencyProperty.Register("Data", typeof(object),
-            typeof(BindingProxy), new UIPropertyMetadata(null));
-    }
     public partial class PageTestResultDetailed : Page
     {
         public PageTestResultDetailed()
@@ -50,7 +30,7 @@ namespace QuanLyChamThi.View
             for (int i = 0; i < 17; i++)
                 mainGrid.RowDefinitions.Add(new RowDefinition());
 
-            DataContext = new TestResultDetailViewModel();
+            DataContext = new TestResultDetailedViewModel();
         }
     }
 }

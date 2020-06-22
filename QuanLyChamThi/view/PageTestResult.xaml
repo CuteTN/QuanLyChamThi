@@ -2,31 +2,97 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
       xmlns:local="clr-namespace:QuanLyChamThi.View"
       mc:Ignorable="d" 
       d:DesignHeight="640" d:DesignWidth="1200"
-      Title="DANH SÁCH BÀI CHẤM">
+      Title="CHI TIẾT BÀI CHẤM">
+    <Page.Resources>
+        <local:BindingProxy x:Key="proxy" Data="{Binding}"/>
+    </Page.Resources>
 
-    <Grid Background="LightGray" x:Name="mainGrid">
-        <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="17" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="DANH SÁCH BÀI CHẤM"/>
+        <Grid Background="LightGray" x:Name="mainGrid">
+        <Label Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="4" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Giảng viên chấm: "/>
+        <Label Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="4" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Môn: "/>
+        <Label Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="4" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Lớp: "/>
 
-        <Button x:Name="btnNew" Command="{Binding Test}" Grid.Column="19" Grid.Row="1" Grid.ColumnSpan="6" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Tạo mới"/>
+        <TextBlock x:Name="tbLecturerName" Grid.Column="7" Grid.Row="1" Grid.ColumnSpan="8" HorizontalAlignment="Left" VerticalAlignment="Center" Text="John Wick"/>
+        <ComboBox x:Name="cbSubject" ItemsSource="{Binding ListSubject}" SelectedItem="{Binding SelectedSubject}" Grid.Column="7" Grid.Row="2" Grid.ColumnSpan="8" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Name}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <ComboBox x:Name="cbClass" ItemsSource="{Binding ListClass}" SelectedItem="{Binding SelectedClass}" Grid.Column="7" Grid.Row="3" Grid.ColumnSpan="8" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding IDClass}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
 
-        <Button Grid.Column="26" Command="{Binding Command}" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Image Source="/QuanLyChamThi;component/Icon/filter.ico"/>
-        </Button>
+        <Label Grid.Column="17" Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Mã đề thi"/>
+        <ComboBox x:Name="cbTestID" ItemsSource="{Binding ListTestID}" SelectedItem="{Binding SelectedTestID}" Grid.Column="20" Grid.Row="1" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding IDTest}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Button x:Name="btnChooseTest" Grid.Column="20" Grid.Row="2" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Chọn đề thi"/>
 
-        <ScrollViewer x:Name="svGrid" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="29" Grid.RowSpan="12" VerticalScrollBarVisibility="Auto">
-            <DataGrid x:Name="dgListTestResult" ItemsSource="{Binding ListTestResultDetailView}" AutoGenerateColumns="False" Width="{Binding ElementName=svGrid, Path=ActualWidth}" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False">
-                <DataGrid.Columns>
-                    <DataGridTextColumn x:Name="colSubjectName" Binding="{Binding SubjectName}" Header="Tên môn thi" Width="1*"/>
-                    <DataGridTextColumn x:Name="colClassID" Binding="{Binding IDClass}" Header="Mã lớp" Width="1*"/>
-                    <DataGridTextColumn x:Name="colLecturerName" Binding="{Binding UserFullName}" Header="Tên giảng viên" Width="1*"/>
-                    <DataGridTextColumn x:Name="colTestID" Binding="{Binding IDTest}" Header="Mã đề thi" Width="1*"/>
-                </DataGrid.Columns>
-            </DataGrid>
-        </ScrollViewer>
-        
+        <Button x:Name="btnAdd" Command="{Binding AddNewTestResultCommand}" Grid.Column="26" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Thêm"/>
+        <Button x:Name="btnDelete" Command="{Binding DeleteSelectedResultsCommand}" Grid.Column="28" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Xoá"/>
+
+        <DataGrid x:Name="dgListTestResult" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="29" Grid.RowSpan="11" ItemsSource="{Binding ListTestResult, Mode=TwoWay}" AutoGenerateColumns="False" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False" CanUserAddRows="False">
+            <DataGrid.Resources>
+                <DataTemplate x:Key="test">
+                    <CheckBox>
+                        <Binding Path="Selected"/>
+                    </CheckBox>
+                </DataTemplate>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTemplateColumn x:Name="colSelectAll" Width="1*" >
+                    <DataGridTemplateColumn.Header>
+                        <CheckBox x:Name="cbSelectAll" IsChecked="{Binding Path=Data.AllSelected, Mode=TwoWay, Source={StaticResource proxy}}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <i:InvokeCommandAction Command="{Binding Path=Data.SelectAllCommand, Source={StaticResource proxy}}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </CheckBox>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox x:Name="cbSelectView" IsChecked="{Binding Selected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <i:InvokeCommandAction Command="{Binding Path=Data.UpdateAllCheckCommand, Source={StaticResource proxy}}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </CheckBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    
+                </DataGridTemplateColumn>
+                <DataGridTextColumn x:Name="colStudentName" Binding="{Binding StudentName, Mode=TwoWay}" Header="Tên" Width="8*"/>
+                <DataGridTextColumn x:Name="colStudentID" Binding="{Binding StudentID, Mode=TwoWay}" Header="MSSV" Width="3*"/>
+                <DataGridTextColumn x:Name="colScoreNumber" Binding="{Binding ScoreNumber, Mode=TwoWay}" Header="Điểm số" Width="3*"/>
+                <DataGridTextColumn x:Name="colScoreString" Binding="{Binding ScoreString, Mode=TwoWay}" Header="Điểm chữ" Width="6*"/>
+                <DataGridTextColumn x:Name="colNote" Binding="{Binding Note, Mode=TwoWay}" Header="Ghi chú" Width="10*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+            
+        <Button x:Name="btnSave" Command="{Binding SaveCommand}" Grid.Column="9" Grid.Row="15" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Lưu"/>
+        <Button x:Name="btnCancel" Grid.Column="17" Grid.Row="15" Grid.ColumnSpan="4" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Huỷ"/>
     </Grid>
 </Page>
