@@ -36,7 +36,7 @@ namespace QuanLyChamThi.View
             mainGrid.ColumnDefinitions[0].MinWidth = 40;
             mainGrid.RowDefinitions[0].MinHeight = 40;
 
-            mainScreen.Content = new PageMain();
+            DataContext = new MainWindowViewModel();
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)

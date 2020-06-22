@@ -26,10 +26,10 @@ namespace QuanLyChamThi.Model
             set { _ins = value; }
         }
 
-        //public QuanLyDeThiEntities DB;
+        public QuanLyDeThiEntities DB;
         private DataProvider()
         {
-            //DB = new QuanLyDeThiEntities();
+            DB = new QuanLyDeThiEntities();
         }
 
         public List<TEST> DanhSachDeThi()
@@ -88,16 +88,17 @@ namespace QuanLyChamThi.Model
         // Tự phát hiện kiểu dữ liệu thuộc 1 trong các dữ liệu database
         public bool DeleteItem<T>(T item) where T : class
         {
-            DbSet<T> dbs = GetCorrespondingDbSet((dynamic)item);
+            DbSet dbs = DB.Set(item.GetType());
             return dbs.Remove(item) != null;
         }
+
 
         // Thêm item vào bảng tương ứng của database
         // Trả về thành công hay không
         // Tự phát hiện kiểu dữ liệu thuộc 1 trong các dữ liệu database
         public bool AddItem<T>(T item) where T : class
         {
-            DbSet<T> dbs = GetCorrespondingDbSet((dynamic)item);
+            DbSet dbs = DB.Set(item.GetType());
             return dbs.Add(item) != null;
         }
 

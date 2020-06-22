@@ -28,27 +28,12 @@ namespace QuanLyChamThi.ViewModel
             get
             {
                 // _listTestResultDetailView = new ObservableCollection<TestResultDetailModel>(ListTestResultDetail.Cast<TestResultDetailModel>().ToList());
-                _listTestResultDetailView = new ObservableCollection<TestResultDetailModel>(ListTestResultDetailModel.Ins.Data.Where((TestResultDetailModel param) => param.SubjectName == "Nhập môn lập trình"));
+                _listTestResultDetailView = new ObservableCollection<TestResultDetailModel>(ListTestResultDetailModel.Ins.Data.Where((TestResultDetailModel param) => Filter(param)));
                 return _listTestResultDetailView;
             }
             set
             {
                 _listTestResultDetailView = value;
-            }
-        }
-
-        ICommand _test;
-        public ICommand Test
-        {
-            get
-            {
-                if (_test == null)
-                    _test = new RelayCommand(p => TestFunc());
-                return _test;
-            }
-            set
-            {
-                _test = value;
             }
         }
 
@@ -65,11 +50,33 @@ namespace QuanLyChamThi.ViewModel
             }
         }
 
-        void TestFunc()
+        ICommand _deleteSelectedResultDetailCommand;
+        public ICommand DeleteSelectedResultDetailCommand
         {
-            ListTestResultDetailModel.Ins.Data.Remove(SelectedResultDetail);
-            DataProvider.Ins.DB.TESTRESULTDETAIL.Remove(DataProvider.Ins.DB.TESTRESULTDETAIL.Where((TESTRESULTDETAIL param) => param.IDTestResult == _selectedResultDetail.IDTestResult).Single());
-            DataProvider.Ins.DB.SaveChanges();
+            get
+            {
+                if (_deleteSelectedResultDetailCommand == null)
+                    _deleteSelectedResultDetailCommand = new RelayCommand(p => DeleteSelectedResultDetail());
+                return _deleteSelectedResultDetailCommand;
+            }
+            set
+            {
+                _deleteSelectedResultDetailCommand = value;
+            }
+        }
+        void DeleteSelectedResultDetail()
+        {
+            if (_selectedResultDetail == null)
+                return;
+            List<DatabaseCommand> commands = new List<DatabaseCommand>();
+            var x = DataProvider.Ins.DB.TESTRESULTDETAIL.Find(_selectedResultDetail.IDTestResult);
+            var entityType = ObjectContext.GetObjectType(x.GetType());
+            commands.Add(new DatabaseCommand
+            {
+                add = null,
+                delete = x
+            });
+            ViewModelMediator.Ins.Receive(this, commands);
         }
 
         private bool Filter(object item)
@@ -80,7 +87,7 @@ namespace QuanLyChamThi.ViewModel
             return test.SubjectName == "Nhập môn lập trình";
         }
 
-        void test2(object sender, NotifyCollectionChangedEventArgs e)
+        void refresh(object sender, NotifyCollectionChangedEventArgs e)
         {
             OnPropertyChange("ListTestResultDetailView");
             MessageBox.Show("");
@@ -88,7 +95,7 @@ namespace QuanLyChamThi.ViewModel
 
         public TestResultDetailedViewModel()
         {
-            ListTestResultDetailModel.Ins.AddCollectionChangedNotified(test2);
+            ListTestResultDetailModel.Ins.AddCollectionChangedNotified(refresh);
         }
     }
 }

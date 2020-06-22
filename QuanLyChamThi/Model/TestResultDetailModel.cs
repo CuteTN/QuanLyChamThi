@@ -140,7 +140,7 @@ namespace QuanLyChamThi.Model
         {
             // We need to seperate it because the observable collection 
             // won't call CollectionChanged when we set it
-            // So we have to set it manually
+            // So we have to call changed manually
             collectionChanged += n;
             Data.CollectionChanged += new NotifyCollectionChangedEventHandler(n);
         }

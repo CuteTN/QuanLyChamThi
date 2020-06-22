@@ -6,6 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuanLyChamThi.ViewModel"
         xmlns:page="clr-namespace:QuanLyChamThi.View"
+        xmlns:s="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="MainWindow" Height="720" Width="1280" MinHeight="360" MinWidth="640" KeyDown="Window_KeyDown" WindowStartupLocation="CenterScreen">
     <Grid x:Name="mainGrid">
@@ -14,45 +15,60 @@
 
         <Canvas x:Name="canvasExtendedSideBar" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="18" Background="AliceBlue" Panel.ZIndex="1" Visibility="Hidden" MouseLeave="canvasExtendedSideBar_MouseLeave"/>
         <DockPanel x:Name="pnlSideBar" Grid.Column="0" Grid.Row="0" Grid.RowSpan="18" Background="AliceBlue" Panel.ZIndex="2" LastChildFill="True" MouseEnter="canvasExtendedSideBar_MouseEnter" >
-            <Button DockPanel.Dock="Top">
+            <Button DockPanel.Dock="Top" Command="{Binding SwitchViewCommand}">
                 <WrapPanel>
                     <Image Source="/QuanLyChamThi;component/Icon/teacher.ico"/>
                     <Canvas VerticalAlignment="Center" Visibility="{Binding ElementName=canvasExtendedSideBar, Path=Visibility, Mode=OneWay}">
                         <Label Content="Thông tin"/>
                     </Canvas>
                 </WrapPanel>
+                <Button.CommandParameter>
+                    <s:Int32>0</s:Int32>
+                </Button.CommandParameter>
             </Button>
-            <Button DockPanel.Dock="Top">
+            <Button DockPanel.Dock="Top" Command="{Binding SwitchViewCommand}">
                 <WrapPanel>
                     <Image Source="/QuanLyChamThi;component/Icon/question.ico"/>
                     <Canvas VerticalAlignment="Center" Visibility="{Binding ElementName=canvasExtendedSideBar, Path=Visibility, Mode=OneWay}">
                         <Label Content="Câu hỏi"/>
                     </Canvas>
                 </WrapPanel>
+                <Button.CommandParameter>
+                    <s:Int32>1</s:Int32>
+                </Button.CommandParameter>
             </Button>
-            <Button DockPanel.Dock="Top">
+            <Button DockPanel.Dock="Top" Command="{Binding SwitchViewCommand}">
                 <WrapPanel>
                     <Image Source="/QuanLyChamThi;component/Icon/test.ico"/>
                     <Canvas VerticalAlignment="Center" Visibility="{Binding ElementName=canvasExtendedSideBar, Path=Visibility, Mode=OneWay}">
                         <Label Content="Đề thi"/>
                     </Canvas>
                 </WrapPanel>
+                <Button.CommandParameter>
+                    <s:Int32>2</s:Int32>
+                </Button.CommandParameter>
             </Button>
-            <Button DockPanel.Dock="Top">
+            <Button DockPanel.Dock="Top" Command="{Binding SwitchViewCommand}">
                 <WrapPanel>
                     <Image Source="/QuanLyChamThi;component/Icon/document.ico"/>
                     <Canvas VerticalAlignment="Center" Visibility="{Binding ElementName=canvasExtendedSideBar, Path=Visibility, Mode=OneWay}">
                         <Label Content="Bài chấm"/>
                     </Canvas>
                 </WrapPanel>
+                <Button.CommandParameter>
+                    <s:Int32>3</s:Int32>
+                </Button.CommandParameter>
             </Button>
-            <Button DockPanel.Dock="Top">
+            <Button DockPanel.Dock="Top" Command="{Binding SwitchViewCommand}">
                 <WrapPanel>
                     <Image Source="/QuanLyChamThi;component/Icon/report.ico"/>
                     <Canvas VerticalAlignment="Center" Visibility="{Binding ElementName=canvasExtendedSideBar, Path=Visibility, Mode=OneWay}">
                         <Label Content="Báo cáo"/>
                     </Canvas>
                 </WrapPanel>
+                <Button.CommandParameter>
+                    <s:Int32>4</s:Int32>
+                </Button.CommandParameter>
             </Button>
             <Button DockPanel.Dock="Bottom">
                 <WrapPanel>
@@ -75,7 +91,7 @@
         
         <Button x:Name="btnBack" Grid.Column="1" Grid.Row="1" Content="Quay xe"/>
         <TextBlock x:Name="tbHistory" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="30" HorizontalAlignment="Left" VerticalAlignment="Center" Text="https://facebook.com"/>
-        <Frame Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="31" Grid.RowSpan="17" x:Name="mainScreen" NavigationUIVisibility="Hidden" />
+        <Frame Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="31" Grid.RowSpan="17" x:Name="mainScreen" NavigationUIVisibility="Hidden" Content="{Binding SelectedPage}"/>
     </Grid>
 
 </Window>

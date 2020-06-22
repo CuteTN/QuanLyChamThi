@@ -278,7 +278,7 @@ namespace QuanLyChamThi.ViewModel
                     return;
             }
 
-            string IDTestResult = SelectedClass.IDClass + "_" + SelectedTestID.IDTest;
+            string IDTestResult = DateTime.Now.ToString();
 
             List<DatabaseCommand> commands = new List<DatabaseCommand>();
             commands.Add(new DatabaseCommand
@@ -345,6 +345,8 @@ namespace QuanLyChamThi.ViewModel
             }
             return true;
         }
+        #endregion
+
         public void Receive(object sender, List<DatabaseCommand> commands)
         {
             // We handle command that received from ViewModelMediator here
@@ -354,7 +356,26 @@ namespace QuanLyChamThi.ViewModel
             OnPropertyChange("ListIDTest");
 
         }
-        #endregion
+
+        public void StartEditing(object arg)
+        {
+            TESTRESULTDETAIL testResultDetail = arg as TESTRESULTDETAIL;
+            if (arg == null)
+            {
+                _selectedClass = null;
+                _selectedSubject = null;
+                _selectedTestID = null;
+                _listTestResult = new ObservableCollection<TestResultModel>();
+            }
+            else
+            {
+                _selectedClass = DataProvider.Ins.DB.CLASS.Find(testResultDetail.IDClass);
+                _selectedSubject = DataProvider.Ins.DB.SUBJECT.Find(_selectedClass.IDSubject);
+                _selectedTestID = DataProvider.Ins.DB.TEST.Find(testResultDetail.IDTest);
+                _listTestResult = new ObservableCollection<TestResultModel>()
+            }
+        }
+
         public TestResultViewModel()
         {
             ViewModelMediator.Ins.AddUserModel(this);
