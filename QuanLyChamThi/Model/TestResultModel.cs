@@ -1,6 +1,8 @@
-﻿using QuanLyChamThi.Command;
+﻿using QuanLyChamThi.ViewModel;
+using QuanLyChamThi.Command;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -71,4 +73,5 @@ namespace QuanLyChamThi.Model
             set { _note = value; }
         }
     }
+
 }

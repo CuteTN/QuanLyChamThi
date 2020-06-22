@@ -1,9 +1,13 @@
-﻿using System;
+﻿using QuanLyChamThi.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 
 namespace QuanLyChamThi.Model
 {
@@ -42,9 +46,10 @@ namespace QuanLyChamThi.Model
             get { return _idTest; }
             set { _idTest = value; }
         }
+
     }
 
-    class ListTestResultDetailModel
+    class ListTestResultDetailModel: ViewModelBase ,UserModelBase
     {
         #region Data
         ObservableCollection<TestResultDetailModel> _data;
@@ -67,6 +72,12 @@ namespace QuanLyChamThi.Model
                                                                              }).ToList());
 
                 return _data;
+                
+            }
+            set
+            {
+                _data = value;
+                OnPropertyChange("Data");
             }
         }
         #endregion
@@ -80,13 +91,62 @@ namespace QuanLyChamThi.Model
                 if (_ins == null)
                 {
                     _ins = new ListTestResultDetailModel();
+                    // subcribe to ViewModelMediator to receive DatabaseCommands
+                    ViewModelMediator.Ins.AddUserModel(_ins);
                 }
                 return _ins;
             }
             set { _ins = value; }
         }
 
-        private ListTestResultDetailModel() { }
         #endregion
+
+        /// <summary>
+        /// This function used to received command for change that made to database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        public void Receive(object sender, List<DatabaseCommand> commands)
+        {
+            Data = new ObservableCollection<TestResultDetailModel>((from u in DataProvider.Ins.DB.TESTRESULTDETAIL
+                                                                    join v in DataProvider.Ins.DB.USER on u.Username equals v.Username
+                                                                    join x in DataProvider.Ins.DB.CLASS on u.IDClass equals x.IDClass
+                                                                    join y in DataProvider.Ins.DB.SUBJECT on x.IDSubject equals y.IDSubject
+                                                                    select new TestResultDetailModel
+                                                                    {
+                                                                        IDTestResult = u.IDTestResult,
+                                                                        SubjectName = y.Name,
+                                                                        IDClass = x.IDClass,
+                                                                        UserFullName = v.FullName,
+                                                                        IDTest = u.IDTest
+                                                                    }).ToList());
+
+            // After update base on database, it notify all viewmodel subcribed to it
+            if(collectionChanged != null)
+            {
+                collectionChanged(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+            }
+        }
+
+        /// <summary>
+        /// This is delagate used for notify to all other viewmodel subcribed to it when it changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public delegate void Notify(object sender, NotifyCollectionChangedEventArgs e);
+        private event Notify collectionChanged;
+
+        public void AddCollectionChangedNotified(Notify n)
+        {
+            // We need to seperate it because the observable collection 
+            // won't call CollectionChanged when we set it
+            // So we have to set it manually
+            collectionChanged += n;
+            Data.CollectionChanged += new NotifyCollectionChangedEventHandler(n);
+        }
+        public ListTestResultDetailModel()
+        {
+            
+        }
     }
 }

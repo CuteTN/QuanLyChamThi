@@ -89,6 +89,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\UserModelBase.cs" />
+    <Compile Include="ViewModel\ViewModelMediator.cs" />
+    <Compile Include="ViewModel\DatabaseCommand.cs" />
     <Compile Include="Pair.cs" />
     <Compile Include="View\PageMain.xaml.cs">
       <DependentUpon>PageMain.xaml</DependentUpon>
@@ -302,11 +305,11 @@
     <Resource Include="Icon\unlock.ico" />
     <Resource Include="Icon\warning.ico" />
     <Content Include="DB.mdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="DB_log.ldf">
       <DependentUpon>DB.mdf</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

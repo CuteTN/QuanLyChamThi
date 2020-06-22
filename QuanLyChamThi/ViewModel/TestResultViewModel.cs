@@ -10,25 +10,83 @@ using System.Windows.Data;
 using System.ComponentModel;
 using System.Data.Entity.Core.Objects;
 using System.Windows.Input;
+using System.Collections.Specialized;
+using System.Windows;
 
 namespace QuanLyChamThi.ViewModel
 {
-    class TestResultViewModel
+    class TestResultViewModel: ViewModelBase
     {
-        ICollectionView _listTestResultDetail;
-        public ICollectionView ListTestResultDetail
+        //ICollectionView _listTestResultDetail;
+        //public ICollectionView ListTestResultDetail
+        //{
+        //    get
+        //    {
+        //        if (_listTestResultDetail == null)
+        //        {
+        //            _listTestResultDetail = CollectionViewSource.GetDefaultView(ListTestResultDetailModel.Ins.Data);
+        //            _listTestResultDetail.Filter = Filter;
+        //            _listTestResultDetail.Refresh();
+        //        }
+        //        return _listTestResultDetail;
+        //    }
+        //    set { _listTestResultDetail = value;}
+        //}
+
+
+        /// <summary>
+        /// This is a list that binding with the view, it has a filter of its own
+        /// Its source is ListTestResultDetailModel singleton, every change in ListTestResultDetailModel 
+        /// will call this list to update
+        /// </summary>
+        ObservableCollection<TestResultDetailModel> _listTestResultDetailView;
+        public ObservableCollection<TestResultDetailModel> ListTestResultDetailView
         {
             get
             {
-                if (_listTestResultDetail == null)
-                {
-                    _listTestResultDetail = CollectionViewSource.GetDefaultView(ListTestResultDetailModel.Ins.Data);
-                    _listTestResultDetail.Filter = Filter;
-                    _listTestResultDetail.Refresh();
-                }
-                return _listTestResultDetail;
+                // _listTestResultDetailView = new ObservableCollection<TestResultDetailModel>(ListTestResultDetail.Cast<TestResultDetailModel>().ToList());
+                _listTestResultDetailView = new ObservableCollection<TestResultDetailModel>(ListTestResultDetailModel.Ins.Data.Where((TestResultDetailModel param) => param.SubjectName == "Nhập môn lập trình"));
+                return _listTestResultDetailView;
             }
-            set { _listTestResultDetail = value; }
+            set
+            {
+                _listTestResultDetailView = value;
+            }
+        }
+
+        ICommand _test;
+        public ICommand Test
+        {
+            get
+            {
+                if (_test == null)
+                    _test = new RelayCommand(p => TestFunc());
+                return _test;
+            }
+            set
+            {
+                _test = value;
+            }
+        }
+
+        TestResultDetailModel _selectedResultDetail;
+        public TestResultDetailModel SelectedResultDetail
+        {
+            get
+            {
+                return _selectedResultDetail;
+            }
+            set
+            {
+                _selectedResultDetail = value;
+            }
+        }
+
+        void TestFunc()
+        {
+            ListTestResultDetailModel.Ins.Data.Remove(SelectedResultDetail);
+            DataProvider.Ins.DB.TESTRESULTDETAIL.Remove(DataProvider.Ins.DB.TESTRESULTDETAIL.Where((TESTRESULTDETAIL param) => param.IDTestResult == _selectedResultDetail.IDTestResult).Single());
+            DataProvider.Ins.DB.SaveChanges();
         }
 
         private bool Filter(object item)
@@ -39,26 +97,15 @@ namespace QuanLyChamThi.ViewModel
             return test.SubjectName == "Nhập môn lập trình";
         }
 
-        ICommand _command;
-        public ICommand Command
+        void test2(object sender, NotifyCollectionChangedEventArgs e)
         {
-            get
-            {
-                if (_command == null)
-                    _command = new RelayCommand(param => CMD());
-                return _command;
-            }
-
-            set { _command = value; }
-        }
-
-        void CMD()
-        {
-            var x = ListTestResultDetailModel.Ins.Data;
+            OnPropertyChange("ListTestResultDetailView");
+            MessageBox.Show("");
         }
 
         public TestResultViewModel()
         {
+            ListTestResultDetailModel.Ins.AddCollectionChangedNotified(test2);
         }
     }
 }
