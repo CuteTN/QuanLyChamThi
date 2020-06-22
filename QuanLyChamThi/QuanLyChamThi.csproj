@@ -89,7 +89,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\ListQuestionModel.cs" />
+    <Compile Include="Model\QuestionModel.cs" />
     <Compile Include="Model\UserModelBase.cs" />
+    <Compile Include="ViewModel\QuestionViewModel.cs" />
     <Compile Include="ViewModel\ViewModelMediator.cs" />
     <Compile Include="ViewModel\DatabaseCommand.cs" />
     <Compile Include="View\PageMain.xaml.cs">
