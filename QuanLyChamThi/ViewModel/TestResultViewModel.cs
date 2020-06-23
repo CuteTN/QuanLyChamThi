@@ -16,6 +16,7 @@ namespace QuanLyChamThi.ViewModel
 {
     class TestResultViewModel: ViewModelBase, UserModelBase
     {
+        TESTRESULTDETAIL oldTestResultDetail;
 
         bool _allSelected;
         public bool AllSelected
@@ -34,7 +35,7 @@ namespace QuanLyChamThi.ViewModel
                     _listSubject = new BindingList<SUBJECT>((from u in DataProvider.Ins.DB.SUBJECT select u).ToList());
                 return _listSubject; 
             }
-            set { _listSubject = value; }
+            set { _listSubject = value; OnPropertyChange("ListSubject"); }
         }
 
         private SUBJECT _selectedSubject;
@@ -53,6 +54,7 @@ namespace QuanLyChamThi.ViewModel
             set
             {
                 _selectedSubject = value;
+                OnPropertyChange("SelectedSubject");
                 OnPropertyChange("ListClass");
                 OnPropertyChange("ListTestID");
                 (SaveCommand as RelayCommand).RaiseCanExecuteChanged();
@@ -96,6 +98,7 @@ namespace QuanLyChamThi.ViewModel
             set
             {
                 _selectedClass = value;
+                OnPropertyChange("SelectedClass");
                 OnPropertyChange("SelectedSubject");
                 OnPropertyChange("ListTestID");
                 (SaveCommand as RelayCommand).RaiseCanExecuteChanged();
@@ -139,6 +142,7 @@ namespace QuanLyChamThi.ViewModel
             set
             {
                 _selectedTestID = value;
+                OnPropertyChange("SelectedTestID");
                 OnPropertyChange("SelectedClass");
                 OnPropertyChange("SelectedSubject");
                 (SaveCommand as RelayCommand).RaiseCanExecuteChanged();
@@ -162,6 +166,7 @@ namespace QuanLyChamThi.ViewModel
             set
             {
                 _listTestResult = value;
+                OnPropertyChange("ListTestResult");
             }
         }
 
@@ -272,13 +277,43 @@ namespace QuanLyChamThi.ViewModel
 
         void Save()
         {
+            
             foreach (var testResult in _listTestResult)
             {
                 if (!ValidTestResult(testResult))
                     return;
             }
 
-            string IDTestResult = DateTime.Now.ToString();
+            // send command for save new TESTRESULT to database via ViewModelMediator
+            try
+            {
+                ViewModelMediator.Ins.Receive(this, GenerateChangeCommands());
+            }
+            catch(Exception e)
+            {
+
+            }
+
+            MainWindowViewModel.Ins.SwitchView(8);
+        }
+
+        string GenerateIDTestResultForAllResults()
+        {
+            string IDTestResult;
+            if (oldTestResultDetail == null)
+                IDTestResult = DateTime.Now.ToString();
+            else
+                IDTestResult = oldTestResultDetail.IDTestResult;
+            foreach (var testResult in _listTestResult)
+            {
+                testResult.IDTestResult = IDTestResult;
+            }
+            return IDTestResult;
+        }
+
+        List<DatabaseCommand> GenerateChangeCommands()
+        {
+            string IDTestResult = GenerateIDTestResultForAllResults();
 
             List<DatabaseCommand> commands = new List<DatabaseCommand>();
             commands.Add(new DatabaseCommand
@@ -291,23 +326,79 @@ namespace QuanLyChamThi.ViewModel
                     Username = "01",
                     Note = ""
                 },
-                delete = null
+                delete = oldTestResultDetail
             });
 
-            // send command for save new TESTRESULT to database via ViewModelMediator
-            ViewModelMediator.Ins.Receive(this, commands);
-
-            foreach(var testResult in _listTestResult)
+            if(oldTestResultDetail == null)
             {
-                DataProvider.Ins.DB.TESTRESULT.Add(new TESTRESULT
+                foreach (var testResult in _listTestResult)
                 {
-                    IDTestResult = IDTestResult,
+                    var add = new TESTRESULT
+                    {
+                        IDTestResult = testResult.IDTestResult,
+                        IDStudent = testResult.StudentID,
+                        ScoreNumber = testResult.ScoreNumber,
+                        ScoreString = testResult.ScoreString,
+                        Note = testResult.Note
+                    };
+                    commands.Add(new DatabaseCommand
+                    {
+                        add = add,
+                        delete = null
+                    });
+                }
+                return commands;
+            }
+
+            List<TESTRESULT> dbTestResults = DataProvider.Ins.DB.TESTRESULTDETAIL.Find(IDTestResult).TESTRESULT.ToList();
+            foreach (var testResult in _listTestResult)
+            {
+                var add = new TESTRESULT
+                {
+                    IDTestResult = testResult.IDTestResult,
                     IDStudent = testResult.StudentID,
                     ScoreNumber = testResult.ScoreNumber,
                     ScoreString = testResult.ScoreString,
                     Note = testResult.Note
-                });
+                };
+                var existingTestResult = dbTestResults.Find(param => param.IDTestResult == add.IDTestResult &&
+                                                            param.IDStudent == add.IDStudent);
+                // if new this testResult doesnot appear in the current db, add it
+                if (existingTestResult == null)
+                {
+                    commands.Add(new DatabaseCommand
+                    {
+                        add = add,
+                        delete = null
+                    });
+                }
+                // if it exist in db, check if it modified
+                else if (add.ScoreNumber != existingTestResult.ScoreNumber ||
+                         add.ScoreString != existingTestResult.ScoreString ||
+                         add.Note        != existingTestResult.Note)
+                {
+                    commands.Add(new DatabaseCommand
+                    {
+                        add = add,
+                        delete = existingTestResult
+                    });
+                }
             }
+
+            foreach(var testResult in dbTestResults)
+            {
+                // if there is any testResult in db but not appear in current _listTestResult, that mean it has been deleted
+                if(_listTestResult.Where(param => (param.IDTestResult == testResult.IDTestResult &&
+                                                  param.StudentID == testResult.IDStudent)).ToList().Count == 0)
+                {
+                    commands.Add(new DatabaseCommand
+                    {
+                        add = null,
+                        delete = testResult
+                    });
+                }
+            }
+            return commands;
         }
 
         bool CanSave()
@@ -347,6 +438,23 @@ namespace QuanLyChamThi.ViewModel
         }
         #endregion
 
+        #region Button Cancel
+        ICommand _cancelCommand;
+        public ICommand CancelCommand
+        {
+            get
+            {
+                if (_cancelCommand == null)
+                    _cancelCommand = new RelayCommand(param => Cancel());
+                return _cancelCommand;
+            }
+            set { _cancelCommand = value; }
+        }
+        void Cancel()
+        {
+            MainWindowViewModel.Ins.SwitchView(8);
+        }
+        #endregion
         public void Receive(object sender, List<DatabaseCommand> commands)
         {
             // We handle command that received from ViewModelMediator here
@@ -359,20 +467,32 @@ namespace QuanLyChamThi.ViewModel
 
         public void StartEditing(object arg)
         {
-            TESTRESULTDETAIL testResultDetail = arg as TESTRESULTDETAIL;
+            oldTestResultDetail = arg as TESTRESULTDETAIL;
             if (arg == null)
             {
-                _selectedClass = null;
-                _selectedSubject = null;
-                _selectedTestID = null;
-                _listTestResult = new ObservableCollection<TestResultModel>();
+                SelectedClass = null;
+                SelectedSubject = null;
+                SelectedTestID = null;
+                ListTestResult = new ObservableCollection<TestResultModel>();
             }
             else
             {
-                _selectedClass = DataProvider.Ins.DB.CLASS.Find(testResultDetail.IDClass);
-                _selectedSubject = DataProvider.Ins.DB.SUBJECT.Find(_selectedClass.IDSubject);
-                _selectedTestID = DataProvider.Ins.DB.TEST.Find(testResultDetail.IDTest);
-                _listTestResult = new ObservableCollection<TestResultModel>()
+                SelectedClass = DataProvider.Ins.DB.CLASS.Find(oldTestResultDetail.IDClass);
+                SelectedSubject = DataProvider.Ins.DB.SUBJECT.Find(_selectedClass.IDSubject);
+                SelectedTestID = DataProvider.Ins.DB.TEST.Find(oldTestResultDetail.IDTest);
+                ListTestResult = new ObservableCollection<TestResultModel>(from t in DataProvider.Ins.DB.TESTRESULT
+                                                                            join s in DataProvider.Ins.DB.STUDENT on t.IDStudent equals s.IDStudent
+                                                                            where t.IDTestResult == oldTestResultDetail.IDTestResult
+                                                                            select new TestResultModel
+                                                                            {
+                                                                                Selected = false,
+                                                                                IDTestResult = t.IDTestResult,
+                                                                                StudentID = s.IDStudent,
+                                                                                StudentName = s.FullName,
+                                                                                ScoreNumber = (float)t.ScoreNumber,
+                                                                                ScoreString = t.ScoreString,
+                                                                                Note = t.Note
+                                                                            });
             }
         }
 

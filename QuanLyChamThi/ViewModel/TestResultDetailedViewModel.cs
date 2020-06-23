@@ -69,14 +69,37 @@ namespace QuanLyChamThi.ViewModel
             if (_selectedResultDetail == null)
                 return;
             List<DatabaseCommand> commands = new List<DatabaseCommand>();
-            var x = DataProvider.Ins.DB.TESTRESULTDETAIL.Find(_selectedResultDetail.IDTestResult);
-            var entityType = ObjectContext.GetObjectType(x.GetType());
+            var deletedResultDetail = DataProvider.Ins.DB.TESTRESULTDETAIL.Find(_selectedResultDetail.IDTestResult);
             commands.Add(new DatabaseCommand
             {
                 add = null,
-                delete = x
+                delete = deletedResultDetail
             });
             ViewModelMediator.Ins.Receive(this, commands);
+        }
+
+        ICommand _editSelectedTestResultDetailCommand;
+        public ICommand EditSelectedTestResultDetailCommand
+        {
+            get
+            {
+                if (_editSelectedTestResultDetailCommand == null)
+                    _editSelectedTestResultDetailCommand = new RelayCommand(param => EditSelectedTestResultDetail());
+                return _editSelectedTestResultDetailCommand;
+            }
+            set
+            {
+                _editSelectedTestResultDetailCommand = value;
+            }
+        }
+        void EditSelectedTestResultDetail()
+        {
+            if (_selectedResultDetail == null)
+                MainWindowViewModel.Ins.StartEditingTestResult(null);
+            else
+                MainWindowViewModel.Ins.StartEditingTestResult((from u in DataProvider.Ins.DB.TESTRESULTDETAIL
+                                                                where u.IDTestResult == _selectedResultDetail.IDTestResult
+                                                                select u).Single());
         }
 
         private bool Filter(object item)
@@ -90,7 +113,6 @@ namespace QuanLyChamThi.ViewModel
         void refresh(object sender, NotifyCollectionChangedEventArgs e)
         {
             OnPropertyChange("ListTestResultDetailView");
-            MessageBox.Show("");
         }
 
         public TestResultDetailedViewModel()
