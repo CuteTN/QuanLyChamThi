@@ -3,54 +3,194 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:QuanLyChamThi.View"
       mc:Ignorable="d" 
       d:DesignHeight="640" d:DesignWidth="1200"
       Title="TRANG CHÍNH">
 
-    <Grid x:Name="mainGrid" Background="LightGray">
-        <Canvas x:Name="canvasUserImage"  Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="6" Grid.RowSpan="6">
-            <Image x:Name="imgUser" Source="https://i.pinimg.com/236x/cb/3b/41/cb3b416f7eece5bc1277b7899cbda58c--singer-eyes.jpg" Width="{Binding Path=ActualWidth, ElementName=canvasUserImage}" Height="{Binding Path=ActualHeight, ElementName=canvasUserImage}" Stretch="Uniform"/>
-        </Canvas>
+    <Grid x:Name="mainGrid" Background="#FFEFEFEF">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            
+        </Grid.RowDefinitions>
+        <md:Card Grid.Row="1" Grid.Column="1" Grid.RowSpan="15" Grid.ColumnSpan="12">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="2*" />
+                </Grid.RowDefinitions>
+                <Image Source="../Resources/hau.jpg" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" IsEnabled="True"/>
+                <Button
+                    Grid.Row="0"
+                    Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Margin="0 0 32 -20">
+                    <md:PackIcon Kind="StarFace" Foreground="White" />
+                </Button>
+                <StackPanel Grid.Row="1" Orientation="Vertical">
+                    <TextBlock Text="Ngô Công Hậu" Style="{StaticResource MaterialDesignSubtitle1TextBlock}" Margin="25,25,0,0"/>
+                    <TextBlock Text="Admin" Style="{StaticResource MaterialDesignSubtitle2TextBlock}" Foreground="#FFFFAB00" Margin="25,0,0,0"/>
+                    <Separator Style="{StaticResource MaterialDesignDarkSeparator}" Margin="20,10"/>
+                    <Grid Margin="15,0,15,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="2.5*"/>
+                        </Grid.ColumnDefinitions>
+                        <ListView Grid.Column="0" FontWeight="Bold">
+                            <ListViewItem>
+                                Chức vụ:
+                            </ListViewItem>
+                            <ListViewItem>
+                                Khoa:
+                            </ListViewItem>
+                            <ListViewItem>
+                                MSCB:
+                            </ListViewItem>
+                            <ListViewItem>
+                                Email:
+                            </ListViewItem>
+                            <ListViewItem>
+                                SDT:
+                            </ListViewItem>
+                        </ListView>
+                        <ListView Grid.Column="1">
+                            <ListViewItem>
+                                Giảng viên
+                            </ListViewItem>
+                            <ListViewItem>
+                                CNPM
+                            </ListViewItem>
+                            <ListViewItem>
+                                30041975
+                            </ListViewItem>
+                            <ListViewItem>
+                                hau_vjp_proz_zai_tich@yahoo.com
+                            </ListViewItem>
+                            <ListViewItem>
+                                0367442573
+                            </ListViewItem>
+                        </ListView>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </md:Card>
+        <md:Card Grid.Row="1" Grid.Column="14" Grid.RowSpan="6" Grid.ColumnSpan="8"   Background="#512DA8"
+  Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="Các môn đang dạy" Style="{StaticResource MaterialDesignHeadline6TextBlock}" Margin="22,15,15,0"/>
 
-        <Border Grid.Column="8" Grid.Row="1" Grid.ColumnSpan="12" Grid.RowSpan="6" BorderThickness="3" BorderBrush="AntiqueWhite">
-            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Vertical">
-                <TextBlock x:Name="tbUserName" Text="ThS John Wick"/>
-                <TextBlock x:Name="tbUserJob" Text="Chức vụ: Giảng viên"/>
-                <TextBlock x:Name="tbUserFaculty" Text="Khoa: Công nghệ Tổ lái"/>
-                <TextBlock x:Name="tbUserID" Text="MSCB: 8129381290389012"/>
-            </StackPanel>
-        </Border>
-
-        <Border Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="9" Grid.RowSpan="8" BorderThickness="3" BorderBrush="AntiqueWhite">
-            <DockPanel HorizontalAlignment="Center" VerticalAlignment="Top">
-                <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Center" VerticalAlignment="Top" Text="Các môn đang dạy"/>
-                <ListView x:Name="listUserSubject">
-                    <ListViewItem Content="Giải tích"/>
-                    <ListViewItem Content="Đại số tuyến tính"/>
-                    <ListViewItem Content="Xác suất thống kê"/>
-                    <ListViewItem Content="Toán rời rạc"/>
+                <ListView Grid.Row="1" Foreground="White" Margin="15,0,15,15">
+                    <ListViewItem>
+                        MA.001.K11
+                    </ListViewItem>
+                    <ListViewItem>
+                        MA.002.K12
+                    </ListViewItem>
+                    <ListViewItem>
+                        MA.003.K13
+                    </ListViewItem>
+                    <ListViewItem>
+                        MA.004.K14
+                    </ListViewItem>
                 </ListView>
-            </DockPanel>
-        </Border>
+            </Grid>            
+        </md:Card>
 
-        <Border Grid.Column="11" Grid.Row="8" Grid.ColumnSpan="9" Grid.RowSpan="8" BorderThickness="3" BorderBrush="AntiqueWhite">
-            <DockPanel HorizontalAlignment="Center" VerticalAlignment="Top">
-                <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Center" VerticalAlignment="Top" Text="Các lớp đang dạy"/>
-                <ListView x:Name="listUserClass">
-                    <ListViewItem Content="MA005.K12"/>
-                    <ListViewItem Content="MA002.K12"/>
-                    <ListViewItem Content="MA003.K32"/>
-                    <ListViewItem Content="MA004.KCC"/>
+        <md:Card Grid.Row="8" Grid.Column="14" Grid.RowSpan="8" Grid.ColumnSpan="8" Background="#00796B"
+  Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="Các lớp đang dạy" Style="{StaticResource MaterialDesignHeadline6TextBlock}" Margin="22,15,15,0"/>
+
+                <ListView Grid.Row="1" Foreground="White" Margin="15,0,15,15">
+                    <ListViewItem>
+                        Lớp 1
+                    </ListViewItem>
+                    <ListViewItem>
+                        Lớp 2
+                    </ListViewItem>
+                    <ListViewItem>
+                        Lớp 3
+                    </ListViewItem>
+                    <ListViewItem>
+                        Lớp 4
+                    </ListViewItem>
+                    <ListViewItem>
+                        Lớp 5
+                    </ListViewItem>
                 </ListView>
-            </DockPanel>
-        </Border>
+            </Grid>
+        </md:Card>
 
-        <Border Grid.Column="21" Grid.Row="1" Grid.ColumnSpan="9" Grid.RowSpan="15" BorderThickness="3" BorderBrush="AntiqueWhite">
-            <WrapPanel x:Name="pnlNews">
-                <Label Width="{Binding ElementName=pnlNews, Path=ActualWidth}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="TIN MỚI"/>
-                <Image Width="{Binding Path=ActualWidth, ElementName=pnlNews}" Height="{Binding Path=ActualHeight, ElementName=pnlNews}" Stretch="Fill"/>
-            </WrapPanel>
-        </Border>
+        <md:Card Grid.Row="1" Grid.Column="23" Grid.RowSpan="15" Grid.ColumnSpan="7" Background="#D32F2F"
+  Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="Tin tức" Style="{StaticResource MaterialDesignHeadline6TextBlock}" Margin="22,15,15,0"/>
+            </Grid>
+        </md:Card>
+
+       
     </Grid>
 </Page>

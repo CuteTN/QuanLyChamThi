@@ -28,17 +28,10 @@ namespace QuanLyChamThi.View
         {
             InitializeComponent();
             /** CREATE GRID COLUMNS AND ROWS **/
-            for (int i = 0; i < 32; i++)
-                mainGrid.ColumnDefinitions.Add(new ColumnDefinition());
-            for (int i = 0; i < 18; i++)
-                mainGrid.RowDefinitions.Add(new RowDefinition());
-
-            mainGrid.ColumnDefinitions[0].MinWidth = 40;
-            mainGrid.RowDefinitions[0].MinHeight = 40;
 
             mainScreen.Content = new PageMain();
         }
-
+        
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.D1)
@@ -59,20 +52,20 @@ namespace QuanLyChamThi.View
             if (e.Key == Key.Escape)
                 this.Close();
         }
-
+        
         private void canvasExtendedSideBar_MouseEnter(object sender, MouseEventArgs e)
         {
-            canvasExtendedSideBar.Visibility = Visibility.Visible;
+            //canvasExtendedSideBar.Visibility = Visibility.Visible;
         }
 
         private void canvasExtendedSideBar_MouseLeave(object sender, MouseEventArgs e)
         {
-            canvasExtendedSideBar.Visibility = Visibility.Hidden;
-        }
+            //canvasExtendedSideBar.Visibility = Visibility.Hidden;
+        } 
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             ViewExtension.Message(this, "Bấm cái lon", "Chưa code xong mà bấm cái gì", 0.5f);
+        } 
         }
     }
-}

@@ -4,14 +4,70 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:hm="clr-namespace:HamburgerMenu;assembly=HamburgerMenu"
         xmlns:local="clr-namespace:QuanLyChamThi.ViewModel"
         xmlns:page="clr-namespace:QuanLyChamThi.View"
         mc:Ignorable="d"
-        Title="MainWindow" Height="720" Width="1280" MinHeight="360" MinWidth="640" KeyDown="Window_KeyDown" WindowStartupLocation="CenterOwner" MouseDown="Window_MouseDown">
+        Title="MainWindow" Height="720" Width="1280" MinHeight="360" MinWidth="640" KeyDown="Window_KeyDown" WindowStartupLocation="CenterOwner" MouseDown="Window_MouseDown" Background="#FFEFEFEF">
+
     <Grid x:Name="mainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="31" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding ElementName=mainScreen, Path=Content.Title}"/>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!--
         <Canvas x:Name="canvasExtendedSideBar" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="18" Background="AliceBlue" Panel.ZIndex="1" Visibility="Hidden" MouseLeave="canvasExtendedSideBar_MouseLeave"/>
         <DockPanel x:Name="pnlSideBar" Grid.Column="0" Grid.Row="0" Grid.RowSpan="18" Background="AliceBlue" Panel.ZIndex="2" LastChildFill="True" MouseEnter="canvasExtendedSideBar_MouseEnter" >
             <Button DockPanel.Dock="Top">
@@ -73,9 +129,25 @@
             <Separator Background="Transparent"/>
         </DockPanel>
         
-        <Button x:Name="btnBack" Grid.Column="1" Grid.Row="1" Content="Quay xe"/>
+       
         <TextBlock x:Name="tbHistory" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="30" HorizontalAlignment="Left" VerticalAlignment="Center" Text="https://facebook.com"/>
-        <Frame Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="31" Grid.RowSpan="17" x:Name="mainScreen" NavigationUIVisibility="Hidden" />
+ -->
+        <Frame Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="31" Grid.RowSpan="17" x:Name="mainScreen" NavigationUIVisibility="Hidden" />
+       
+
+        <md:Card
+    md:ShadowAssist.ShadowDepth="Depth2"
+    Grid.ColumnSpan="33" Grid.RowSpan="1" Background="#303F9F">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Button x:Name="btnBack" Content="Quay xe"/>
+                <TextBlock Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{DynamicResource MaterialDesignHeadline6TextBlock}" FontSize="16" Text="{Binding ElementName=mainScreen, Path=Content.Title}"/>
+            </StackPanel>
+        </md:Card>
+
+        <hm:HamburgerMenu Background="#3F51B5" MenuIconColor="White" SelectionIndicatorColor="White" MenuItemForeground="White" HorizontalAlignment="Left" Grid.ColumnSpan="6" Grid.RowSpan="16">
+        
+        </hm:HamburgerMenu>
+
     </Grid>
 
 </Window>

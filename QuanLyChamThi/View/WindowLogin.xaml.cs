@@ -27,17 +27,15 @@ namespace QuanLyChamThi.View
             InitializeComponent();
             access = "denied";
             /** CREATE GRID COLUMNS AND ROWS **/
-            for (int i = 0; i < 8; i++)
-                mainGrid.ColumnDefinitions.Add(new ColumnDefinition());
-            for (int i = 0; i < 8; i++)
-                mainGrid.RowDefinitions.Add(new RowDefinition());
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
+            
             access = "accepted";
-            if (ViewExtension.Message(this, "Đăng nhập thành công", "Chào mừng abcxyz", 1) == false)
-                this.Close();
+            this.Close();
+           // if (ViewExtension.Message(this, "Đăng nhập thành công", "Chào mừng abcxyz", 1) == false)
+                
         }
 
         public string getAccessState()
