@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using QuanLyChamThi.ViewModel;
 
 namespace QuanLyChamThi.View
 {
@@ -27,6 +28,8 @@ namespace QuanLyChamThi.View
                 mainGrid.ColumnDefinitions.Add(new ColumnDefinition());
             for (int i = 0; i < 17; i++)
                 mainGrid.RowDefinitions.Add(new RowDefinition());
+
+            DataContext = new TestSearchViewModel();
         }
     }
 }

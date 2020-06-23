@@ -25,7 +25,7 @@ namespace QuanLyChamThi.Model
         public string IDSubject { get; set; }
         public Nullable<int> Year { get; set; }
         public Nullable<int> Semester { get; set; }
-        public Nullable<int> TimeForTest { get; set; }
+        public int TimeForTest { get; set; }
         public Nullable<System.DateTime> DateOfTest { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

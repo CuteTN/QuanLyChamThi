@@ -90,7 +90,7 @@ namespace QuanLyChamThi.ViewModel
         void refresh(object sender, NotifyCollectionChangedEventArgs e)
         {
             OnPropertyChange("ListTestResultDetailView");
-            MessageBox.Show("");
+            //MessageBox.Show("");
         }
 
         public TestResultDetailedViewModel()

@@ -13,7 +13,11 @@ namespace QuanLyChamThi.ViewModel
 {
     class MainWindowViewModel: ViewModelBase
     {
-        private Page[] listPage = { new PageMain(), new PageReport(), new PageTestResult(), new PageTestResultDetailed(), new PageQuestion(), new PageTestSearch(), new PageTest() };
+        public MainWindowViewModel(Page[] pages)
+        {
+            listPage = pages;
+        }
+        private Page[] listPage;
 
         #region CloseWindow Command
         private ICommand _closeCommand;
@@ -78,7 +82,7 @@ namespace QuanLyChamThi.ViewModel
         {
             if (listPage[2].DataContext is TestResultViewModel)
             {
-                (listPage[2].DataContext as TestResultViewModel).
+                //(listPage[2].DataContext as TestResultViewModel).
             }
         }
 
