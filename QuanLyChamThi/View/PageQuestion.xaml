@@ -13,12 +13,29 @@
         <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Môn học"/>
         <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="5" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Độ khó"/>
         <Label Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="5" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Nội dung"/>
-        
-        <ComboBox x:Name="cbSubject" Grid.Column="6" Grid.Row="1" Grid.ColumnSpan="10" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <ComboBox x:Name="cbDifficulty" Grid.Column="6" Grid.Row="2" Grid.ColumnSpan="10" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
+        <ComboBox x:Name="cbSubject" ItemsSource="{Binding ListSubject}" SelectedItem="{Binding SelectedSubject}" Grid.Column="6" Grid.Row="1" Grid.ColumnSpan="10" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Name}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <ComboBox x:Name="cbDifficulty" ItemsSource="{Binding ListDifficulty}" SelectedItem="{Binding SelectedDifficulty}" Grid.Column="6" Grid.Row="2" Grid.ColumnSpan="10" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Name}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        
         <ScrollViewer x:Name="svGrid" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="15" Grid.RowSpan="12" VerticalScrollBarVisibility="Auto">
-            <RichTextBox x:Name="tbContent" Width="{Binding ElementName=svGrid, Path=ActualWidth}" Height="{Binding ElementName=svGrid, Path=ActualHeight}"/>
+            <TextBox x:Name="tbContent" Text="{Binding Content}" Width="{Binding ElementName=svGrid, Path=ActualWidth}" Height="{Binding ElementName=svGrid, Path=ActualHeight}"/>
+
         </ScrollViewer>
 
         <Button x:Name="btnHideShow" Grid.Column="30" Grid.Row="3" Grid.RowSpan="12" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Ẩn danh sách câu hỏi" RenderTransformOrigin="0.5,0.5" Click="btnHideShow_Click">
@@ -37,6 +54,6 @@
         </DockPanel>
 
         <Button x:Name="btnCancel" Grid.Column="22" Grid.Row="15" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Huỷ"/>
-        <Button x:Name="btnOK" Grid.Column="26" Grid.Row="15" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Thêm"/>
+        <Button x:Name="btnOK" Command="{Binding AddQuestionCommand}" Grid.Column="26" Grid.Row="15" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Thêm"/>
     </Grid>
 </Page>
