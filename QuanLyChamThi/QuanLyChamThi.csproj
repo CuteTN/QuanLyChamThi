@@ -91,6 +91,7 @@
     </ApplicationDefinition>
     <Compile Include="Model\ListQuestionModel.cs" />
     <Compile Include="Model\QuestionModel.cs" />
+    <Compile Include="ViewModel\UCQuestionListViewModel.cs" />
     <Compile Include="Model\UserModelBase.cs" />
     <Compile Include="ViewModel\QuestionViewModel.cs" />
     <Compile Include="ViewModel\ViewModelMediator.cs" />

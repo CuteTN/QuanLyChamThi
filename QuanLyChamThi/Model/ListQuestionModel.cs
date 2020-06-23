@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Data.Entity.Migrations.Model;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -48,14 +49,19 @@ namespace QuanLyChamThi.Model
                 _data = value;
             }
         }
+
+        public void UpdateFromDB()
+        {
+            _data = selectData();
+        }
         #endregion
 
         #region Singleton implementation
         // NOTE: private constructor to make this a singleton
         private ListQuestionModel() { }
 
-        private ListQuestionModel _ins = null;
-        public ListQuestionModel Ins
+        static private ListQuestionModel _ins = null;
+        static public ListQuestionModel Ins
         {
             get
             {

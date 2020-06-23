@@ -2,6 +2,7 @@
 using QuanLyChamThi.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -32,7 +33,7 @@ namespace QuanLyChamThi.ViewModel
                     _listSubject = new BindingList<SUBJECT>(selectSubject());
                 return _listSubject;
             }
-            set { _listSubject = value; }
+            set { _listSubject = value; OnPropertyChange("ListSubject"); }
         }
 
         private SUBJECT _selectedSubject = null;
@@ -45,7 +46,7 @@ namespace QuanLyChamThi.ViewModel
                         _selectedSubject = ListSubject[0];
                 return _selectedSubject;
             }
-            set { _selectedSubject = value; }
+            set { _selectedSubject = value; OnPropertyChange("SelectedSubject"); }
         }
         #endregion
 
@@ -65,7 +66,7 @@ namespace QuanLyChamThi.ViewModel
                     _listDifficulty = new BindingList<DIFFICULTY>(selectDifficulty());
                 return _listDifficulty;
             }
-            set { _listDifficulty = value; }
+            set { _listDifficulty = value; OnPropertyChange("ListDifficulty"); }
         }
 
         private DIFFICULTY _selectedDifficulty = null;
@@ -78,7 +79,7 @@ namespace QuanLyChamThi.ViewModel
                         _selectedDifficulty = ListDifficulty[0];
                 return _selectedDifficulty;
             }
-            set { _selectedDifficulty = value; }
+            set { _selectedDifficulty = value; OnPropertyChange("SelectedDifficulty"); }
         }
         #endregion
 
@@ -92,15 +93,45 @@ namespace QuanLyChamThi.ViewModel
                     _content = "";
                 return _content;
             }
-            set { _content = value; }
+            set { _content = value; OnPropertyChange("Content"); }
         }
         #endregion
 
         #region Add Button
+        List<DatabaseCommand> CreateAddCommands()
+        {
+            List<DatabaseCommand> result = new List<DatabaseCommand>();
+
+            // always only add 1 question
+            QuestionModel questionModel = createQuestion();
+            if (questionModel.Validate() != QuestionModel.ValidationMessage.Valid)
+            {
+                HandleInvalidInput(questionModel.Validate());
+                return result;
+            }
+            QUESTION question = questionModel.AdaptDBModel();
+
+            DatabaseCommand cmd = new DatabaseCommand
+            {
+                add = question,
+                delete = editingQuestion,
+            };
+
+            result.Add(cmd);
+            return result;
+        }
+
         void AddQuestionFunction()
         {
+            // MORECODE: pop up notification
+
             var commands = CreateAddCommands();
-            NotifyToMediator(commands);
+
+            if(commands.Count > 0)
+            { 
+                NotifyToMediator(commands);
+                resetInputContent();
+            }
         }
 
         private ICommand _addQuestionCommand = null;
@@ -131,29 +162,6 @@ namespace QuanLyChamThi.ViewModel
             return result;
         }
 
-        List<DatabaseCommand> CreateAddCommands()
-        {
-            List<DatabaseCommand> result = new List<DatabaseCommand>();
-
-            // always only add 1 question
-            QuestionModel questionModel = createQuestion();
-            if(questionModel.Validate() != QuestionModel.ValidationMessage.Valid)
-            { 
-                HandleInvalidInput(questionModel.Validate());
-                return result;
-            }
-            QUESTION question = questionModel.AdaptDBModel();
-
-            DatabaseCommand cmd = new DatabaseCommand
-            {
-                add = question, 
-                delete = editingQuestion,
-            };
-
-            result.Add(cmd);
-            return result;
-        }
-
         private void HandleInvalidInput(QuestionModel.ValidationMessage msg)
         {
             MessageBox.Show(msg.ToString()); 
@@ -165,6 +173,12 @@ namespace QuanLyChamThi.ViewModel
         }
         #endregion
 
+        #region Utilities
+        private void resetInputContent()
+        {
+            Content = "";
+        }
+        #endregion
 
         public void Receive(object sender, List<DatabaseCommand> commands)
         {

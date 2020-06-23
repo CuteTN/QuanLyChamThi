@@ -36,6 +36,7 @@ namespace QuanLyChamThi.Model
         public string Difficulty
         {
             get { return _difficulty; }
+            set { /* Can't set this */ }
         }
 
         private string _idSubject;
@@ -49,6 +50,7 @@ namespace QuanLyChamThi.Model
         public string Subject
         {
             get { return _subject; }
+            set { /* Can't set this */ }
         }
 
         private string loadDifficulty()
