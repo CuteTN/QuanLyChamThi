@@ -414,14 +414,14 @@ namespace QuanLyChamThi.ViewModel
             STUDENT student = DataProvider.Ins.DB.STUDENT.Find(testResult.StudentID);
             if (student == null)
             {
-                // Notify user that student with given id dont exist //
+                // Notify user that student with given id dont exist // TODO
                 MessageBox.Show("student with " + testResult.StudentID.ToString() + " ID dont exist");
                 ///////////////////////////////////////////////////////
                 return false;
             }
             if (student.FullName != testResult.StudentName)
             {
-                // Warn user that student with given id have wrong name //
+                // Warn user that student with given id have wrong name // TODO
                 MessageBox.Show("student with " + testResult.StudentID.ToString() + " ID have wrong name");
                 //////////////////////////////////////////////////////////
                 return false;
@@ -429,7 +429,7 @@ namespace QuanLyChamThi.ViewModel
             if(testResult.ScoreNumber < DataProvider.Ins.DB.PRINCIPLE.ToList()[0].MinScore ||
                testResult.ScoreNumber > DataProvider.Ins.DB.PRINCIPLE.ToList()[0].MaxScore)
             {
-                // Notify user that the score is not in principle //
+                // Notify user that the score is not in principle // TODO
                 MessageBox.Show("student with " + testResult.StudentID.ToString() + " ID have score not in principle");
                 ////////////////////////////////////////////////////
                 return false;

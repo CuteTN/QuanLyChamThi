@@ -517,7 +517,7 @@
           <Property Name="IDSubject" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Year" Type="Int32" />
           <Property Name="Semester" Type="Int32" />
-          <Property Name="TimeForTest" Type="Int32" />
+          <Property Name="TimeForTest" Type="Int32" Nullable="false" />
           <Property Name="DateOfTest" Type="DateTime" Precision="0" />
           <NavigationProperty Name="TESTRESULTDETAIL" Relationship="QuanLyDeThiModel.FK__CHAMTHI__IDTest__3C69FB99" FromRole="DETHI" ToRole="CHAMTHI" />
           <NavigationProperty Name="TESTDETAIL" Relationship="QuanLyDeThiModel.FK__CHITIETDE__IDTes__2F10007B" FromRole="DETHI" ToRole="CHITIETDETHI" />
