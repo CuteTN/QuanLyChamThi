@@ -182,6 +182,7 @@ namespace QuanLyChamThi.ViewModel
             if (cmdList.Any())
                 ViewModelMediator.Ins.Receive(this, cmdList);
         }
+        #endregion
 
         public void Receive(object sender, List<DatabaseCommand> commands)
         {
@@ -191,6 +192,5 @@ namespace QuanLyChamThi.ViewModel
                 Search(Filter);
             }
         }
-        #endregion
     }
 }

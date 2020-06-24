@@ -89,9 +89,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\TestModel.cs" />
     <Compile Include="Model\TestSearchModel.cs" />
     <Compile Include="Model\UserModelBase.cs" />
     <Compile Include="ViewModel\TestSearchViewModel.cs" />
+    <Compile Include="ViewModel\TestViewModel.cs" />
     <Compile Include="ViewModel\ViewModelMediator.cs" />
     <Compile Include="ViewModel\DatabaseCommand.cs" />
     <Compile Include="Pair.cs" />
