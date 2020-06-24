@@ -10,13 +10,13 @@
 
     <Grid Background="LightGray" x:Name="mainGrid">
 
-        <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Mã số đề thi"/>
-        <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Thời lượng"/>
-        <Label Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Ngày thi"/>
+        <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4"  VerticalAlignment="Center" Content="Mã số đề thi"/>
+        <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4"  VerticalAlignment="Center" Content="Thời lượng"/>
+        <Label Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="4"  VerticalAlignment="Center" Content="Ngày thi"/>
 
-        <TextBox x:Name="tbTestID" Grid.Column="5" Grid.Row="1" Grid.ColumnSpan="8" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <TextBox x:Name="tbDuration" Grid.Column="5" Grid.Row="2" Grid.ColumnSpan="8" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <DatePicker x:Name="datepickerTestDate" Grid.Column="5" Grid.Row="3" Grid.ColumnSpan="8" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <TextBox x:Name="tbTestID" Grid.Column="5" Grid.Row="1" Grid.ColumnSpan="8"  VerticalAlignment="Center"/>
+        <TextBox x:Name="tbDuration" Grid.Column="5" Grid.Row="2" Grid.ColumnSpan="8"  VerticalAlignment="Center"/>
+        <DatePicker x:Name="datepickerTestDate" Grid.Column="5" Grid.Row="3" Grid.ColumnSpan="8"  VerticalAlignment="Center"/>
 
         <Button x:Name="btnFind" Grid.Column="13" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Tìm kiếm"/>
         <Button x:Name="btnNew" Grid.Column="23" Grid.Row="1" Grid.ColumnSpan="7" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Tạo đề thi mới"/>

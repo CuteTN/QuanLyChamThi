@@ -13,16 +13,16 @@
         <Label Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="4" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Môn: "/>
         <Label Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="4" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Lớp: "/>
 
-        <TextBlock x:Name="tbLecturerName" Grid.Column="7" Grid.Row="1" Grid.ColumnSpan="8" HorizontalAlignment="Left" VerticalAlignment="Center" Text="John Wick"/>
-        <ComboBox x:Name="cbSubject" Grid.Column="7" Grid.Row="2" Grid.ColumnSpan="8" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <ComboBox x:Name="cbClass" Grid.Column="7" Grid.Row="3" Grid.ColumnSpan="8" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <TextBlock x:Name="tbLecturerName" Grid.Column="7" Grid.Row="1" Grid.ColumnSpan="8"  VerticalAlignment="Center" Text="John Wick"/>
+        <ComboBox x:Name="cbSubject" Grid.Column="7" Grid.Row="2" Grid.ColumnSpan="8"  VerticalAlignment="Center"/>
+        <ComboBox x:Name="cbClass" Grid.Column="7" Grid.Row="3" Grid.ColumnSpan="8"  VerticalAlignment="Center"/>
 
         <Label Grid.Column="17" Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Mã đề thi"/>
-        <ComboBox x:Name="cbTestID" Grid.Column="20" Grid.Row="1" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <Button x:Name="btnChooseTest" Grid.Column="20" Grid.Row="2" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Chọn đề thi"/>
+        <ComboBox x:Name="cbTestID" Grid.Column="20" Grid.Row="1" Grid.ColumnSpan="4"  VerticalAlignment="Center"/>
+        <Button x:Name="btnChooseTest" Grid.Column="20" Grid.Row="2" Grid.ColumnSpan="4"  VerticalAlignment="Center" Content="Chọn đề thi"/>
 
-        <Button x:Name="btnAdd" Grid.Column="26" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Thêm"/>
-        <Button x:Name="btnDelete" Grid.Column="28" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Xoá"/>
+        <Button x:Name="btnAdd" Grid.Column="26" Grid.Row="3" Grid.ColumnSpan="2"  VerticalAlignment="Center" Content="Thêm"/>
+        <Button x:Name="btnDelete" Grid.Column="28" Grid.Row="3" Grid.ColumnSpan="2"  VerticalAlignment="Center" Content="Xoá"/>
 
         <ScrollViewer x:Name="svGrid" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="29" Grid.RowSpan="11" VerticalScrollBarVisibility="Auto">
             <DataGrid x:Name="dgListTestResult" AutoGenerateColumns="False" Width="{Binding ElementName=svGrid, Path=ActualWidth}" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False">
@@ -41,7 +41,7 @@
             </DataGrid>
         </ScrollViewer>
 
-        <Button x:Name="btnSave" Grid.Column="9" Grid.Row="15" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Lưu"/>
+        <Button x:Name="btnSave" Grid.Column="9" Grid.Row="15" Grid.ColumnSpan="4"  VerticalAlignment="Center" Content="Lưu"/>
         <Button x:Name="btnCancel" Grid.Column="17" Grid.Row="15" Grid.ColumnSpan="4" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Huỷ"/>
     </Grid>
 </Page>

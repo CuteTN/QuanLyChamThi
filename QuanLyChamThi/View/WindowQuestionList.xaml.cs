@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace QuanLyChamThi.View
 {
     /// <summary>
-    /// Interaction logic for UserControlQuestionList.xaml
+    /// Interaction logic for WindowQuestionList.xaml
     /// </summary>
-    public partial class UserControlQuestionList : UserControl
+    public partial class WindowQuestionList : Window
     {
-        public UserControlQuestionList()
+        public WindowQuestionList()
         {
             InitializeComponent();
         }

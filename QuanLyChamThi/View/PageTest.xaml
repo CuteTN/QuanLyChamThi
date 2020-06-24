@@ -10,21 +10,21 @@
 
     <Grid Background="LightGray" x:Name="mainGrid">
 
-        <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Mã số đề thi"/>
-        <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Môn học"/>
-        <Label Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Chọn câu hỏi"/>
-        <Label Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Danh sách câu hỏi"/>
+        <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4" VerticalAlignment="Center" Content="Mã số đề thi"/>
+        <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4" VerticalAlignment="Center" Content="Môn học"/>
+        <Label Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="4" VerticalAlignment="Center" Content="Chọn câu hỏi"/>
+        <Label Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="4" VerticalAlignment="Center" Content="Danh sách câu hỏi"/>
 
-        <ComboBox x:Name="cbTestID" Grid.Column="5" Grid.Row="1" Grid.ColumnSpan="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <ComboBox x:Name="cbSubjectName" Grid.Column="5" Grid.Row="2" Grid.ColumnSpan="10" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <ComboBox x:Name="cbTestID" Grid.Column="5" Grid.Row="1" Grid.ColumnSpan="5" VerticalAlignment="Center"/>
+        <ComboBox x:Name="cbSubjectName" Grid.Column="5" Grid.Row="2" Grid.ColumnSpan="10" VerticalAlignment="Center"/>
 
-        <Button x:Name="btnChooseQuestion" Grid.Column="5" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Content="..."/>
+        <Button x:Name="btnChooseQuestion" Grid.Column="5" Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Center" Content="..." Click="btnChooseQuestion_Click"/>
 
-        <Label Grid.Column="16" Grid.Row="1" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Học kỳ"/>
-        <Label Grid.Column="16" Grid.Row="2" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Năm học"/>
+        <Label Grid.Column="16" Grid.Row="1" Grid.ColumnSpan="4"  VerticalAlignment="Center" Content="Học kỳ"/>
+        <Label Grid.Column="16" Grid.Row="2" Grid.ColumnSpan="4"  VerticalAlignment="Center" Content="Năm học"/>
         
-        <ComboBox x:Name="cbSemester" Grid.Column="20" Grid.Row="1" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <ComboBox x:Name="cbSchoolYear" Grid.Column="20" Grid.Row="2" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <ComboBox x:Name="cbSemester" Grid.Column="20" Grid.Row="1" Grid.ColumnSpan="4" VerticalAlignment="Center"/>
+        <ComboBox x:Name="cbSchoolYear" Grid.Column="20" Grid.Row="2" Grid.ColumnSpan="4" VerticalAlignment="Center"/>
 
         <Button x:Name="btnGoUp" Grid.Column="25" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Path Fill="Black" Data="M 0 6 L 12 6 L 6 0 Z"/>

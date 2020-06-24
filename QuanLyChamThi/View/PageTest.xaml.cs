@@ -28,5 +28,11 @@ namespace QuanLyChamThi.View
             for (int i = 0; i < 17; i++)
                 mainGrid.RowDefinitions.Add(new RowDefinition());
         }
+
+        private void btnChooseQuestion_Click(object sender, RoutedEventArgs e)
+        {
+            var windowQuestionList = new WindowQuestionList();
+            windowQuestionList.Show();
+        }
     }
 }

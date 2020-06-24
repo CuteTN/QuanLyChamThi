@@ -33,9 +33,8 @@ namespace QuanLyChamThi.View
         {
             
             access = "accepted";
+            //bool nothing = (ViewExtension.Message(this, "Đăng nhập thành công", "Chào mừng abcxyz", 1) == false) ;
             this.Close();
-           // if (ViewExtension.Message(this, "Đăng nhập thành công", "Chào mừng abcxyz", 1) == false)
-                
         }
 
         public string getAccessState()

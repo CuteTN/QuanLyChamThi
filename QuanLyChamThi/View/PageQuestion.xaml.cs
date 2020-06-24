@@ -23,10 +23,6 @@ namespace QuanLyChamThi.View
         public PageQuestion()
         {
             InitializeComponent();
-            for (int i = 0; i < 31; i++)
-                mainGrid.ColumnDefinitions.Add(new ColumnDefinition());
-            for (int i = 0; i < 17; i++)
-                mainGrid.RowDefinitions.Add(new RowDefinition());
         }
 
         private void btnHideShow_Click(object sender, RoutedEventArgs e)
@@ -37,12 +33,14 @@ namespace QuanLyChamThi.View
                 ucQuestionList.Visibility = Visibility.Hidden;
                 Grid.SetColumnSpan(svGrid, 29);
                 btnHideShow.Content = "Hiện danh sách câu hỏi";
+                borderGraphicSupport.Visibility = Visibility.Visible;
             }
             else /** UC is HIDDEN **/
             {
                 ucQuestionList.Visibility = Visibility.Visible;
                 Grid.SetColumnSpan(svGrid, 15);
                 btnHideShow.Content = "Ẩn danh sách câu hỏi";
+                borderGraphicSupport.Visibility = Visibility.Hidden;
             }
         }
     }

@@ -9,17 +9,20 @@
     <Grid>
         <DockPanel LastChildFill="True">
             <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-                <Label Content="Danh sách câu hỏi: " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Label Content="Danh sách câu hỏi:      " VerticalAlignment="Center"/>
                 <Button x:Name="btnFilter" Content="Tuỳ chọn" HorizontalAlignment="Right" VerticalAlignment="Center"/>
             </StackPanel>
 
             <ScrollViewer x:Name="svGrid" VerticalScrollBarVisibility="Auto">
-                <DataGrid x:Name="dgQuestionList" AutoGenerateColumns="False" Width="{Binding ElementName=svGrid, Path=ActualWidth}" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False">
+                <DataGrid x:Name="dgQuestionList" AutoGenerateColumns="False" Width="{Binding ElementName=svGrid, Path=ActualWidth}" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False" SelectionUnit="FullRow">
                     <DataGrid.Columns>
                         <DataGridTextColumn x:Name="colQuestionID" Header="Mã câu hỏi" Width="2*"/>
                         <DataGridTextColumn x:Name="colSubjectName" Header="Môn thi" Width="3*"/>
                         <DataGridTextColumn x:Name="colQuestionContent" Header="Nội dung" Width="5*"/>
                     </DataGrid.Columns>
+                    <DataGrid.Items>
+                        <TextBlock/>
+                    </DataGrid.Items>
                 </DataGrid>
             </ScrollViewer>
         </DockPanel>

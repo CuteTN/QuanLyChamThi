@@ -13,7 +13,7 @@
         <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="14" Grid.RowSpan="2" Content="BÁO CÁO NĂM" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
 
         <StackPanel Grid.Column="16" Grid.Row="1" Grid.ColumnSpan="14" Grid.RowSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Label HorizontalAlignment="Left" Content="Chọn năm"/>
+            <Label Content="Chọn năm"/>
             <ComboBox x:Name="cbYear" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <TextBlock Text="2020"/>
             </ComboBox>
@@ -43,7 +43,7 @@
 
 
         <DockPanel Grid.Column="10" Grid.Row="15" Grid.ColumnSpan="5" LastChildFill="True">
-            <Button HorizontalAlignment="Left" VerticalAlignment="Center" Content="Lưu file"/>
+            <Button VerticalAlignment="Center" Content="Lưu file"/>
         </DockPanel>
         
         <DockPanel Grid.Column="16" Grid.Row="15" Grid.ColumnSpan="5" LastChildFill="True">

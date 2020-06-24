@@ -47,8 +47,8 @@
                 md:TextFieldAssist.UnderlineBrush="Green"
                 Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
                 Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="6" VerticalAlignment="Center" Margin="36,0,12,0"/>
-        <md:PackIcon Grid.Row="3" Kind="Account" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3.08,28.28,0,8.712" Grid.Column="1" Grid.RowSpan="2" />
-        <md:PackIcon Grid.Row="5" Kind="KeyVariant" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="3.08,0,0,4.952" Grid.Column="1"  />
+        <md:PackIcon Grid.Row="3" Kind="Account"  VerticalAlignment="Center" Margin="3.08,28.28,0,8.712" Grid.Column="1" Grid.RowSpan="2" />
+        <md:PackIcon Grid.Row="5" Kind="KeyVariant"  VerticalAlignment="Bottom" Margin="3.08,0,0,4.952" Grid.Column="1"  />
         <Button Style="{StaticResource MaterialDesignRaisedButton}"
                 Grid.Column="4" Grid.Row="7" Grid.ColumnSpan="3" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Đăng nhập" Click="btnLogin_Click" Margin="0"
                           />

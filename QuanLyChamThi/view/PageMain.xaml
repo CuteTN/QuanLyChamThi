@@ -125,7 +125,7 @@
                 </StackPanel>
             </Grid>
         </md:Card>
-        <md:Card Grid.Row="1" Grid.Column="14" Grid.RowSpan="6" Grid.ColumnSpan="8"   Background="#512DA8"
+        <md:Card Grid.Row="1" Grid.Column="14" Grid.RowSpan="6" Grid.ColumnSpan="8" Background="#512DA8"
   Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}">
             <Grid>
                 <Grid.RowDefinitions>
