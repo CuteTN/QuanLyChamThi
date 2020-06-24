@@ -9,6 +9,60 @@
       Title="CHI TIẾT BÀI CHẤM">
 
     <Grid Background="LightGray" x:Name="mainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
+        
         <Label Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="4" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Giảng viên chấm: "/>
         <Label Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="4" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Môn: "/>
         <Label Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="4" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Lớp: "/>
@@ -21,7 +75,7 @@
         <ComboBox x:Name="cbTestID" Grid.Column="20" Grid.Row="1" Grid.ColumnSpan="4"  VerticalAlignment="Center"/>
         <Button x:Name="btnChooseTest" Grid.Column="20" Grid.Row="2" Grid.ColumnSpan="4"  VerticalAlignment="Center" Content="Chọn đề thi"/>
 
-        <Button x:Name="btnAdd" Grid.Column="26" Grid.Row="3" Grid.ColumnSpan="2"  VerticalAlignment="Center" Content="Thêm"/>
+        <Button x:Name="btnAdd" Grid.Column="25" Grid.Row="3" Grid.ColumnSpan="2"  VerticalAlignment="Center" Content="Thêm"/>
         <Button x:Name="btnDelete" Grid.Column="28" Grid.Row="3" Grid.ColumnSpan="2"  VerticalAlignment="Center" Content="Xoá"/>
 
         <ScrollViewer x:Name="svGrid" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="29" Grid.RowSpan="11" VerticalScrollBarVisibility="Auto">

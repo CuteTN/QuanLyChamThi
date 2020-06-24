@@ -32,15 +32,13 @@ namespace QuanLyChamThi.View
             {
                 ucQuestionList.Visibility = Visibility.Hidden;
                 Grid.SetColumnSpan(svGrid, 29);
-                btnHideShow.Content = "Hiện danh sách câu hỏi";
-                borderGraphicSupport.Visibility = Visibility.Visible;
+                btnHideShow.Content = "<";
             }
             else /** UC is HIDDEN **/
             {
                 ucQuestionList.Visibility = Visibility.Visible;
                 Grid.SetColumnSpan(svGrid, 15);
-                btnHideShow.Content = "Ẩn danh sách câu hỏi";
-                borderGraphicSupport.Visibility = Visibility.Hidden;
+                btnHideShow.Content = ">";
             }
         }
     }

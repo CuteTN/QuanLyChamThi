@@ -70,27 +70,16 @@
         <ComboBox x:Name="cbSubject" Grid.Column="6" Grid.Row="1" Grid.ColumnSpan="10" VerticalAlignment="Center"/>
         <ComboBox x:Name="cbDifficulty" Grid.Column="6" Grid.Row="2" Grid.ColumnSpan="10" VerticalAlignment="Center"/>
 
-        <ScrollViewer x:Name="svGrid" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="15" Grid.RowSpan="12" VerticalScrollBarVisibility="Auto" Background="White">
+        <ScrollViewer x:Name="svGrid" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="15" Grid.RowSpan="11" VerticalScrollBarVisibility="Auto" Background="White">
             <TextBox x:Name="tbContent" Width="{Binding ElementName=svGrid, Path=ActualWidth}" Height="{Binding ElementName=svGrid, Path=ActualHeight}"/>
         </ScrollViewer>
 
-        <Button x:Name="btnHideShow" Grid.Column="30" Grid.Row="3" Grid.RowSpan="12" HorizontalAlignment="Right" Content="Ẩn danh sách câu hỏi" RenderTransformOrigin="0.5,0.5" Click="btnHideShow_Click">
-            <Button.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="-90"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Button.RenderTransform>
-        </Button>
+        <Button x:Name="btnHideShow" Grid.Column="31" Grid.Row="4" Grid.RowSpan="10" Height="Auto" Content=">" Click="btnHideShow_Click" Style="{StaticResource MaterialDesignFlatButton}"/>
 
         <DockPanel x:Name="ucQuestionList" Grid.Column="17" Grid.Row="2" Grid.ColumnSpan="13" Grid.RowSpan="13" LastChildFill="True">
             <local:UserControlQuestionList/>
         </DockPanel>
 
-        <Border x:Name="borderGraphicSupport" Grid.Column="22" Grid.Row="14" Grid.ColumnSpan="9" Grid.RowSpan="3" Background="{Binding ElementName=mainGrid, Path=Background}" Panel.ZIndex="2" Visibility="Hidden"/>
-        
         <Button x:Name="btnCancel" Grid.Column="23" Grid.Row="15" Grid.ColumnSpan="3" VerticalAlignment="Center" Content="Huỷ" Panel.ZIndex="3"/>
         <Button x:Name="btnOK" Grid.Column="27" Grid.Row="15" Grid.ColumnSpan="3" VerticalAlignment="Center" Content="Thêm" Panel.ZIndex="3"/>
     </Grid>

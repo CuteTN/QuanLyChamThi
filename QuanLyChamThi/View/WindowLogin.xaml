@@ -33,6 +33,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+        
         <Canvas x:Name="canvasLogo" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="6" Grid.RowSpan="2">
             <Image Source="https://i.pinimg.com/236x/98/a3/c5/98a3c583ff9bc2efee03061f74d538ca--himoto-umaru-chan-umaru-chan-wallpaper.jpg" Width="{Binding ElementName=canvasLogo, Path=ActualWidth}" Height="{Binding ElementName=canvasLogo, Path=ActualHeight}" Stretch="Uniform"/>
         </Canvas>

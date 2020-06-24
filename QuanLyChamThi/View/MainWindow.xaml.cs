@@ -55,12 +55,12 @@ namespace QuanLyChamThi.View
         
         private void canvasExtendedSideBar_MouseEnter(object sender, MouseEventArgs e)
         {
-            //canvasExtendedSideBar.Visibility = Visibility.Visible;
+            canvasExtendedSideBar.Visibility = Visibility.Visible;
         }
 
         private void canvasExtendedSideBar_MouseLeave(object sender, MouseEventArgs e)
         {
-            //canvasExtendedSideBar.Visibility = Visibility.Hidden;
+            canvasExtendedSideBar.Visibility = Visibility.Hidden;
         } 
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
