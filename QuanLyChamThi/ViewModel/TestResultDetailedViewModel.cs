@@ -17,6 +17,7 @@ namespace QuanLyChamThi.ViewModel
 {
     class TestResultDetailedViewModel: ViewModelBase
     {
+        #region Datagrid ListTestResultDetail
         /// <summary>
         /// This is a list that binding with the view, it has a filter of its own
         /// Its source is ListTestResultDetailModel singleton, every change in ListTestResultDetailModel 
@@ -47,8 +48,26 @@ namespace QuanLyChamThi.ViewModel
             set
             {
                 _selectedResultDetail = value;
+                OnPropertyChange("SelectedResultDetail");
             }
         }
+        private ICommand _deselecteResultDetailCommand;
+        public ICommand DeselecteResultDetailCommand
+        {
+            get
+            {
+                if (_deselecteResultDetailCommand == null)
+                    _deselecteResultDetailCommand = new RelayCommand(param => DeselecteResultDetail());
+                return _deselecteResultDetailCommand;
+            }
+            set { _deselecteResultDetailCommand = value; }
+        }
+
+        private void DeselecteResultDetail()
+        {
+            SelectedResultDetail = null;
+        }
+        #endregion
 
         ICommand _deleteSelectedResultDetailCommand;
         public ICommand DeleteSelectedResultDetailCommand
@@ -77,6 +96,7 @@ namespace QuanLyChamThi.ViewModel
             });
             ViewModelMediator.Ins.Receive(this, commands);
         }
+        
 
         ICommand _editSelectedTestResultDetailCommand;
         public ICommand EditSelectedTestResultDetailCommand
