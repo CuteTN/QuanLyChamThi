@@ -145,9 +145,7 @@ namespace QuanLyChamThi.ViewModel
             get
             {
                 if (_newTestCommand == null)
-                    ;
-                    // TODO
-                    //_newTestCommand = new RelayCommand(param => MainWindowViewModel.SwitchView(7));
+                    _newTestCommand = new RelayCommand(param => MainWindowViewModel.Ins.SwitchView(9, ""));
                 return _newTestCommand;
             }
             set { _newTestCommand = value; }

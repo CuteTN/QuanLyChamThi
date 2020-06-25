@@ -168,6 +168,7 @@ namespace QuanLyChamThi.ViewModel
                     break;
             }
             ViewModelMediator.Ins.Receive(this, cmdList);
+            MainWindowViewModel.Ins.SwitchView(10);
         }
         #endregion
 
@@ -189,6 +190,7 @@ namespace QuanLyChamThi.ViewModel
         void CancelButton()
         {
             SyncToView();
+            MainWindowViewModel.Ins.SwitchView(10);
         }
         #endregion
 
@@ -202,7 +204,6 @@ namespace QuanLyChamThi.ViewModel
         public TestViewModel()
         {
             ViewModelMediator.Ins.AddUserModel(this);
-            ViewMode("01");
         }
 
         public void Receive(object sender, List<DatabaseCommand> commands)
