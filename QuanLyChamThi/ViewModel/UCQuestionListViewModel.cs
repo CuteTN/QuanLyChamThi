@@ -1,4 +1,5 @@
-﻿using QuanLyChamThi.ViewModel;
+﻿using QuanLyChamThi.Model;
+using QuanLyChamThi.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace QuanLyChamThi.Model
+namespace QuanLyChamThi.ViewModel
 {
     class UCQuestionListViewModel : ViewModelBase, UserModelBase
     {

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace QuanLyChamThi.ViewModel
 {
     class QuestionViewModel : ViewModelBase, UserModelBase
     {
+        public UCQuestionListViewModel QuestionListViewModel;
 
         #region Combobox Subject
         private List<SUBJECT> selectSubject()
@@ -177,6 +179,39 @@ namespace QuanLyChamThi.ViewModel
         private void resetInputContent()
         {
             Content = "";
+        }
+        #endregion
+
+        #region Button delete selected questions
+        ICommand _deleteSelectedQuestionsCommand;
+        public ICommand DeleteSelectedQuestionsCommand
+        {
+            get
+            {
+                if (_deleteSelectedQuestionsCommand == null)
+                    _deleteSelectedQuestionsCommand = new RelayCommand(param => DeleteSelectedQuestions());
+                return _deleteSelectedQuestionsCommand;
+            }
+            set
+            {
+                _deleteSelectedQuestionsCommand = value;
+            }
+        }
+
+        void DeleteSelectedQuestions()
+        {
+            List<DatabaseCommand> commands = new List<DatabaseCommand>();
+            foreach (var question in QuestionListViewModel.SelectedQuestions)
+            {
+                commands.Add(new DatabaseCommand
+                {
+                    delete = (from u in DataProvider.Ins.DB.QUESTION
+                           where u.IDQuestion == question.IDQuestion
+                           select u).Single(),
+                    add = null
+                });
+            }
+            ViewModelMediator.Ins.Receive(this, commands);
         }
         #endregion
 
