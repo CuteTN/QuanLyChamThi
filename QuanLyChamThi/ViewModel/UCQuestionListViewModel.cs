@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +33,18 @@ namespace QuanLyChamThi.Model
             set { _listQuestion = value; OnPropertyChange("ListQuestion"); }
         }
         #endregion
+
+        private IList<QuestionModel> _selectedQuestions;
+        public IList<QuestionModel> SelectedQuestions
+        {
+            get 
+            {
+                if (_selectedQuestions == null)
+                    _selectedQuestions = new BindingList<QuestionModel>();
+                return _selectedQuestions;
+            }
+            set { _selectedQuestions = value; OnPropertyChange("SelectedQuestions"); }
+        }
 
         public void Receive(object sender, List<DatabaseCommand> commands)
         {

@@ -19,7 +19,7 @@
         </Button>
 
         <ScrollViewer x:Name="svGrid" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="29" Grid.RowSpan="12" VerticalScrollBarVisibility="Auto">
-            <DataGrid x:Name="dgListTestResult" ItemsSource="{Binding ListTestResultDetailView}" SelectedItem="{Binding SelectedResultDetail, Mode=TwoWay}" AutoGenerateColumns="False" Width="{Binding ElementName=svGrid, Path=ActualWidth}" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False" CanUserAddRows="False" IsReadOnly="True">
+            <DataGrid x:Name="dgListTestResult" ItemsSource="{Binding ListTestResultDetail}" SelectedItem="{Binding SelectedResultDetail, Mode=TwoWay}" AutoGenerateColumns="False" Width="{Binding ElementName=svGrid, Path=ActualWidth}" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False" CanUserAddRows="False" IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn x:Name="colSubjectName" Binding="{Binding SubjectName}" Header="Tên môn thi" Width="1*"/>
                     <DataGridTextColumn x:Name="colClassID" Binding="{Binding IDClass}" Header="Mã lớp" Width="1*"/>

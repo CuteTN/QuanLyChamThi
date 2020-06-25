@@ -99,6 +99,7 @@
     <Compile Include="ViewModel\ViewModelMediator.cs" />
     <Compile Include="ViewModel\DatabaseCommand.cs" />
     <Compile Include="Pair.cs" />
+    <Compile Include="View\CustomDataGrid.cs" />
     <Compile Include="View\ViewExtention.cs" />
     <Compile Include="View\PageMain.xaml.cs">
       <DependentUpon>PageMain.xaml</DependentUpon>

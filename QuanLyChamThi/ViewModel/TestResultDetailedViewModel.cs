@@ -23,18 +23,17 @@ namespace QuanLyChamThi.ViewModel
         /// Its source is ListTestResultDetailModel singleton, every change in ListTestResultDetailModel 
         /// will call this list to update
         /// </summary>
-        ObservableCollection<TestResultDetailModel> _listTestResultDetailView;
-        public ObservableCollection<TestResultDetailModel> ListTestResultDetailView
+        ObservableCollection<TestResultDetailModel> _listTestResultDetail;
+        public ObservableCollection<TestResultDetailModel> ListTestResultDetail
         {
             get
             {
-                // _listTestResultDetailView = new ObservableCollection<TestResultDetailModel>(ListTestResultDetail.Cast<TestResultDetailModel>().ToList());
-                _listTestResultDetailView = new ObservableCollection<TestResultDetailModel>(ListTestResultDetailModel.Ins.Data.Where((TestResultDetailModel param) => Filter(param)));
-                return _listTestResultDetailView;
+                _listTestResultDetail = new ObservableCollection<TestResultDetailModel>(ListTestResultDetailModel.Ins.Data.Where(param => Filter(param)));
+                return _listTestResultDetail;
             }
             set
             {
-                _listTestResultDetailView = value;
+                _listTestResultDetail = value;
             }
         }
 
@@ -132,7 +131,7 @@ namespace QuanLyChamThi.ViewModel
 
         void refresh(object sender, NotifyCollectionChangedEventArgs e)
         {
-            OnPropertyChange("ListTestResultDetailView");
+            OnPropertyChange("ListTestResultDetail");
         }
 
         public TestResultDetailedViewModel()
