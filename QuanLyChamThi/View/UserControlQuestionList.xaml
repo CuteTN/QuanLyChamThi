@@ -20,9 +20,19 @@
                         <DataGridTextColumn x:Name="colSubjectName" Header="Môn thi" Width="3*"/>
                         <DataGridTextColumn x:Name="colQuestionContent" Header="Nội dung" Width="5*"/>
                     </DataGrid.Columns>
-                    <DataGrid.Items>
-                        <TextBlock/>
-                    </DataGrid.Items>
+
+                    <!-- 
+                    <DataGrid.Resources>
+                        <Style x:Key="alternatingWithTrigger" TargetType="{x:Type DataGridRow}">
+                            <Style.Triggers>
+                                <Trigger Property="DataGridRow.AlternationIndex"  Value="2">
+                                    <Setter Property="RowBackground" Value="Red"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style> 
+                    </DataGrid.Resources> 
+                    -->
+                    
                 </DataGrid>
             </ScrollViewer>
         </DockPanel>

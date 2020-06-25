@@ -9,7 +9,7 @@
         xmlns:local="clr-namespace:QuanLyChamThi.ViewModel"
         xmlns:page="clr-namespace:QuanLyChamThi.View"
         mc:Ignorable="d"
-        Title="MainWindow" Height="720" Width="1280" MinHeight="360" MinWidth="640" KeyDown="Window_KeyDown" WindowStartupLocation="CenterOwner" MouseDown="Window_MouseDown" Background="#FFEFEFEF">
+        Title="MainWindow" Height="720" Width="1280" MinHeight="720" MinWidth="1280" KeyDown="Window_KeyDown" WindowStartupLocation="CenterOwner" MouseDown="Window_MouseDown" Background="#FFEFEFEF">
 
     <Grid x:Name="mainGrid">
         <Grid.ColumnDefinitions>
@@ -66,8 +66,8 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Canvas x:Name="canvasExtendedSideBar" Grid.Column="0" Grid.Row="0" Grid.RowSpan="18" Width="150" Background="AliceBlue" Panel.ZIndex="1" Visibility="Hidden" MouseLeave="canvasExtendedSideBar_MouseLeave"/>
-        <DockPanel x:Name="pnlSideBar" Grid.Column="0" Grid.Row="0" Grid.RowSpan="18" Background="AliceBlue" Panel.ZIndex="2" LastChildFill="True" MouseEnter="canvasExtendedSideBar_MouseEnter" >
+        <Canvas x:Name="canvasExtendedSideBar" Grid.Column="0" Grid.Row="0" Grid.RowSpan="18" Width="150" Background="AliceBlue" Panel.ZIndex="1" Visibility="Hidden" MouseLeave="canvasExtendedSideBar_MouseLeave" Opacity="0.75"/>
+        <DockPanel x:Name="pnlSideBar" Grid.Column="0" Grid.Row="0" Grid.RowSpan="18" Background="AliceBlue" Panel.ZIndex="2" LastChildFill="True" MouseEnter="canvasExtendedSideBar_MouseEnter">
 
             <WrapPanel DockPanel.Dock="Top">
                 <Button Height="{Binding ElementName=pnlSideBar, Path=ActualWidth}">
