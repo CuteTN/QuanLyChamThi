@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace QuanLyChamThi.ViewModel
@@ -23,6 +24,7 @@ namespace QuanLyChamThi.ViewModel
         {
             public string TestID;
             public string TestDuration;
+            public DateTime? date;
 
             public bool FilterFunction(TEST item)
             {
@@ -34,6 +36,8 @@ namespace QuanLyChamThi.ViewModel
                         return false;
                 }
                 catch (Exception) { }
+                if (date != null && item.DateOfTest?.Date != date?.Date)
+                    return false;
                 return true;
             }
         }
@@ -70,6 +74,12 @@ namespace QuanLyChamThi.ViewModel
                 return _filterTestDuration;
             }
             set { _filterTestDuration = value; }
+        }
+        private DateTime? _filterTestDate;
+        public DateTime? FilterTestDate
+        {
+            get{ return _filterTestDate; }
+            set { _filterTestDate = value; }
         }
         #endregion
 
@@ -116,6 +126,7 @@ namespace QuanLyChamThi.ViewModel
         {
             Filter.TestDuration = FilterTestDuration;
             Filter.TestID = FilterTestID;
+            Filter.date = FilterTestDate;
 
             Search(Filter);
         }
@@ -151,6 +162,7 @@ namespace QuanLyChamThi.ViewModel
             set { _newTestCommand = value; }
         }
         #endregion
+
 
         #region Delete Button
         private ICommand _deleteCommand;

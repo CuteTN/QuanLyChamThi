@@ -26,7 +26,10 @@ namespace QuanLyChamThi.Model
                     newitem.TimeForTest = Duration;
                     newitem.Year = Year;
                     newitem.Semester = Semester;
-                    newitem.IDTest = SubjectID + "." + newitem.GetHashCode().ToString();
+                    if (_testID is null)
+                        newitem.IDTest = SubjectID + "." + newitem.GetHashCode().ToString();
+                    else
+                        newitem.IDTest = _testID;
                     return newitem;
                 }
                 else
@@ -40,7 +43,10 @@ namespace QuanLyChamThi.Model
         private string _testID;
         public string TestID
         {
-            get { return _testID; }
+            get { if (_testID != null)
+                    return _testID;
+                else return "Bài thi mới";
+            }
             set {
                 _testID = value;
                 _pSource = null;

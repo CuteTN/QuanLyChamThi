@@ -1,9 +1,13 @@
-﻿using System;
+﻿using QuanLyChamThi.Command;
+using QuanLyChamThi.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
 
 namespace QuanLyChamThi.Model
 {
@@ -58,5 +62,17 @@ namespace QuanLyChamThi.Model
             }
         }
         #endregion
+
+        private ICommand _viewTestCommand;
+        public ICommand ViewTestCommand
+        {
+            get
+            {
+                if (_viewTestCommand == null)
+                    _viewTestCommand = new RelayCommand(param => MainWindowViewModel.Ins.SwitchView(9, TestID));
+                return _viewTestCommand;
+            }
+            set { _viewTestCommand = value; }
+        }
     }
 }

@@ -158,6 +158,8 @@ namespace QuanLyChamThi.ViewModel
             {
                 IDSubject = SelectedSubject.IDSubject,
                 IDDifficulty = SelectedDifficulty.IDDifficulty,
+                // TODO
+                // FLAG: Difficulty may not be selected => null pointer exception
                 Content = this.Content,
             };
 

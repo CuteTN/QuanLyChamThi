@@ -31,5 +31,10 @@ namespace QuanLyChamThi.View
 
             DataContext = new TestSearchViewModel();
         }
+
+        private void Label_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("hello");
+        }
     }
 }

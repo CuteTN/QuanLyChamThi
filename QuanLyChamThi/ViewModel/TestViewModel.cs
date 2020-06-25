@@ -35,31 +35,36 @@ namespace QuanLyChamThi.ViewModel
                 if (_tempTest == null)
                 {
                     _tempTest = new TestModel();
-                    _tempTest.TestID = "Bài thi mới";
                 }
                 return _tempTest;
             }
-            set { _tempTest = value; OnPropertyChange("TempTest"); }
+            set { _tempTest = value;
+                OnPropertyChange("TempTest");
+                OnPropertyChange("TempYear");
+                OnPropertyChange("TempSemester");
+                OnPropertyChange("TempTestID");
+                OnPropertyChange("TempSubjectID");
+            }
         }
         public string TempSubjectID
         {
             get { return TempTest.SubjectID; }
-            set { TempTest.SubjectID = value; OnPropertyChange("TempSubjectID"); ; }
+            set { TempTest.SubjectID = value; OnPropertyChange("TempSubjectID"); }
         }
         public string TempTestID
         {
             get { return TempTest.TestID; }
-            set { TempTest.TestID = value; OnPropertyChange("TempTestID"); ; }
+            set { TempTest.TestID = value; OnPropertyChange("TempTestID"); }
         }
         public int? TempSemester
         {
             get { return TempTest.Semester; }
-            set { TempTest.Semester = value; OnPropertyChange("TempSemester"); ; }
+            set { TempTest.Semester = value; OnPropertyChange("TempSemester"); }
         }
         public int? TempYear
         {
             get { return TempTest.Year; }
-            set { TempTest.Year = value; OnPropertyChange("TempYear"); ; }
+            set { TempTest.Year = value; OnPropertyChange("TempYear"); }
         }
         #endregion
 
@@ -150,6 +155,8 @@ namespace QuanLyChamThi.ViewModel
             
             for (int i=0; true; i++)
             {
+                if (i >= TempTestDetail.Count && i >= TestDetail.Count)
+                    break;
                 cmd = new DatabaseCommand();
                 if (i < TempTestDetail.Count)
                     cmd.add = new TESTDETAIL{
@@ -164,8 +171,6 @@ namespace QuanLyChamThi.ViewModel
                 else
                     cmd.delete = null;
                 cmdList.Add(cmd);
-                if (i >= TempTestDetail.Count && i >= TestDetail.Count)
-                    break;
             }
             ViewModelMediator.Ins.Receive(this, cmdList);
             MainWindowViewModel.Ins.SwitchView(10);
