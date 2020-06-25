@@ -121,7 +121,7 @@ namespace QuanLyChamThi.ViewModel
                         break; 
                     }
                 case 4: SelectedPage = listPage[2]; break;
-                case 5: break;
+                case 5: SelectedPage = listPage[1]; break;
                 case 6: break;
                 case 7: break;
                 case 8: FinishEditingTestResult(); break;

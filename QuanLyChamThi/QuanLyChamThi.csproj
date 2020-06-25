@@ -89,9 +89,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\SubjectYearlyReportModel.cs" />
     <Compile Include="Model\TestSearchModel.cs" />
     <Compile Include="Model\ListQuestionModel.cs" />
     <Compile Include="Model\QuestionModel.cs" />
+    <Compile Include="Model\YearlyReportModel.cs" />
     <Compile Include="ViewModel\UCQuestionListViewModel.cs" />
     <Compile Include="Model\UserModelBase.cs" />
     <Compile Include="ViewModel\TestSearchViewModel.cs" />
@@ -99,6 +101,7 @@
     <Compile Include="ViewModel\ViewModelMediator.cs" />
     <Compile Include="ViewModel\DatabaseCommand.cs" />
     <Compile Include="Pair.cs" />
+    <Compile Include="ViewModel\YearlyReportViewModel.cs" />
     <Compile Include="View\ViewExtention.cs" />
     <Compile Include="View\PageMain.xaml.cs">
       <DependentUpon>PageMain.xaml</DependentUpon>

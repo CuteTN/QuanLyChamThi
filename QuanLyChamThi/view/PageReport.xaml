@@ -14,8 +14,14 @@
 
         <StackPanel Grid.Column="16" Grid.Row="1" Grid.ColumnSpan="14" Grid.RowSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label HorizontalAlignment="Left" Content="Chọn năm"/>
-            <ComboBox x:Name="cbYear" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
-                <TextBlock Text="2020"/>
+            <ComboBox x:Name="cbYear" ItemsSource="{Binding ListYear}" SelectedItem="{Binding StrSelectedYear}" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                <!--<ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding ToString}"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>-->
             </ComboBox>
             <Button HorizontalAlignment="Right" 
                     Content="Tạo BC"/>
