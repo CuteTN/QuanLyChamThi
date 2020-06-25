@@ -86,9 +86,11 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
 
-        <ScrollViewer x:Name="svGrid" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="15" Grid.RowSpan="12" VerticalScrollBarVisibility="Auto">
-            <RichTextBox x:Name="tbContent" Text="{Binding Content}" Width="{Binding ElementName=svGrid, Path=ActualWidth}" Height="{Binding ElementName=svGrid, Path=ActualHeight}"/>
-        </ScrollViewer>
+        <Border BorderThickness="10" BorderBrush="{Binding ElementName=tbContent, Path=Background}" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="15" Grid.RowSpan="11">
+            <ScrollViewer x:Name="svGrid" VerticalScrollBarVisibility="Auto">
+                <TextBox x:Name="tbContent" Text="{Binding Content}" Width="{Binding ElementName=svGrid, Path=ActualWidth}" Height="{Binding ElementName=svGrid, Path=ActualHeight}" Background="WhiteSmoke"/>
+            </ScrollViewer>
+        </Border>
 
         <Button x:Name="btnHideShow" Grid.Column="31" Grid.Row="4" Grid.RowSpan="10" Height="Auto" Content=">" Click="btnHideShow_Click" Style="{StaticResource MaterialDesignFlatButton}"/>
 
@@ -97,6 +99,6 @@
         </DockPanel>
 
         <Button x:Name="btnCancel" Grid.Column="23" Grid.Row="15" Grid.ColumnSpan="3" VerticalAlignment="Center" Content="Huỷ" Panel.ZIndex="3"/>
-        <Button x:Name="btnOK" Command="{Binding AddQuestionCommand} Grid.Column="27" Grid.Row="15" Grid.ColumnSpan="3" VerticalAlignment="Center" Content="Thêm" Panel.ZIndex="3"/>
+        <Button x:Name="btnOK" Command="{Binding AddQuestionCommand}" Grid.Column="27" Grid.Row="15" Grid.ColumnSpan="3" VerticalAlignment="Center" Content="Thêm" Panel.ZIndex="3"/>
     </Grid>
 </Page>

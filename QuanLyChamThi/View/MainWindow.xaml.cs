@@ -64,11 +64,6 @@ namespace QuanLyChamThi.View
             canvasExtendedSideBar.Visibility = Visibility.Hidden;
         }
 
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            ViewExtension.Message(this, "Bấm cái lon", "Chưa code xong mà bấm cái gì", 0.5f);
-        }
-
         /**
           
         EFFECT
