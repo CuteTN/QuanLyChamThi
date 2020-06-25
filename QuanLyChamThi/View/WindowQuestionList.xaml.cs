@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace QuanLyChamThi.View
 {
     /// <summary>
-    /// Interaction logic for PageMain.xaml
+    /// Interaction logic for WindowQuestionList.xaml
     /// </summary>
-    public partial class PageMain : Page
+    public partial class WindowQuestionList : Window
     {
-        public PageMain()
+        public WindowQuestionList()
         {
             InitializeComponent();
         }

@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using QuanLyChamThi.ViewModel;
 using QuanLyChamThi.Command;
 using QuanLyChamThi;
+using System.Windows.Media.Animation;
 
 namespace QuanLyChamThi.View
 {
@@ -27,13 +28,7 @@ namespace QuanLyChamThi.View
         {
             InitializeComponent();
             /** CREATE GRID COLUMNS AND ROWS **/
-            for (int i = 0; i < 32; i++)
-                mainGrid.ColumnDefinitions.Add(new ColumnDefinition());
-            for (int i = 0; i < 18; i++)
-                mainGrid.RowDefinitions.Add(new RowDefinition());
 
-            mainGrid.ColumnDefinitions[0].MinWidth = 40;
-            mainGrid.RowDefinitions[0].MinHeight = 40;
 
             DataContext = MainWindowViewModel.Ins;
         }
@@ -73,5 +68,56 @@ namespace QuanLyChamThi.View
         {
             ViewExtension.Message(this, "Bấm cái lon", "Chưa code xong mà bấm cái gì", 0.5f);
         }
+
+        /**
+          
+        EFFECT
+
+        //DoubleAnimation moveIn = new DoubleAnimation { From = -150, To = 0, FillBehavior = FillBehavior.Stop, BeginTime = TimeSpan.FromSeconds(0), Duration = new Duration(TimeSpan.FromSeconds(0.5)) };
+        DoubleAnimation moveOut = new DoubleAnimation { From = 0, To = -150, FillBehavior = FillBehavior.Stop, BeginTime = TimeSpan.FromSeconds(0), Duration = new Duration(TimeSpan.FromSeconds(0.5)) };
+        
+        private void EffectMoveIn()
+        {
+            PathGeometry animationPath = new PathGeometry();
+            PathFigure path = new PathFigure();
+            path.StartPoint = new Point(-150, 0);
+            path.Segments.Add(new LineSegment(new Point(0, 0), false));
+            animationPath.Figures.Add(path);
+
+            DoubleAnimationUsingPath moveIn = new DoubleAnimationUsingPath();
+            moveIn.PathGeometry = animationPath;
+            moveIn.FillBehavior = FillBehavior.Stop;
+            moveIn.BeginTime = TimeSpan.FromSeconds(0);
+            moveIn.Duration = TimeSpan.FromSeconds(5);
+            moveIn.Source = PathAnimationSource.X;
+
+
+            Storyboard storyboard = new Storyboard();
+
+            storyboard.Children.Add(moveIn);
+            foreach (DoubleAnimationUsingPath child in storyboard.Children)
+            {
+                Storyboard.SetTarget(child, canvasExtendedSideBar);
+                Storyboard.SetTargetProperty(child, new PropertyPath(TranslateTransform.XProperty));
+            }
+
+            storyboard.Begin();
+        }
+
+        private void EffectMoveOut()
+        {
+            Storyboard storyboard = new Storyboard();
+
+            storyboard.Children.Add(moveOut);
+            foreach (DoubleAnimation child in storyboard.Children)
+            {
+                Storyboard.SetTarget(child, canvasExtendedSideBar);
+                Storyboard.SetTargetProperty(child, new PropertyPath("TranslateTransform.XProperty"));
+            }
+            storyboard.Completed += delegate { canvasExtendedSideBar.Visibility = Visibility.Hidden; };
+
+            storyboard.Begin();
+        }
+        **/
     }
 }

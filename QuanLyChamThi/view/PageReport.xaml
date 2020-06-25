@@ -12,9 +12,9 @@
 
         <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="14" Grid.RowSpan="2" Content="BÁO CÁO NĂM" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
 
-        <StackPanel Grid.Column="16" Grid.Row="1" Grid.ColumnSpan="14" Grid.RowSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Label HorizontalAlignment="Left" Content="Chọn năm"/>
-            <ComboBox x:Name="cbYear" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+        <StackPanel Grid.Column="16" Grid.Row="1" Grid.ColumnSpan="14" Grid.RowSpan="2" Orientation="Horizontal"  VerticalAlignment="Center">
+            <Label Content="Chọn năm"/>
+            <ComboBox x:Name="cbYear"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <TextBlock Text="2020"/>
             </ComboBox>
             <Button HorizontalAlignment="Right" 
@@ -31,7 +31,7 @@
         <ScrollViewer x:Name="svGrid" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="29" Grid.RowSpan="10" VerticalScrollBarVisibility="Auto">
             <DataGrid x:Name="dgReport" AutoGenerateColumns="False" Width="{Binding ElementName=svGrid, Path=ActualWidth}" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn x:Name="colSTT" Header="STT" Width="1*"/>
+                    <DataGridTextColumn x:Name="colSTT" Header="STT" Width="2*"/>
                     <DataGridTextColumn x:Name="colName" Header="Tên môn" Width="5*"/>
                     <DataGridTextColumn x:Name="colTestNumber" Header="Số lượng đề thi" Width="5*"/>
                     <DataGridTextColumn x:Name="colTestResultNumber" Header="Số lượng bài chấm" Width="5*"/>
@@ -43,7 +43,7 @@
 
 
         <DockPanel Grid.Column="10" Grid.Row="15" Grid.ColumnSpan="5" LastChildFill="True">
-            <Button HorizontalAlignment="Left" VerticalAlignment="Center" Content="Lưu file"/>
+            <Button VerticalAlignment="Center" Content="Lưu file"/>
         </DockPanel>
         
         <DockPanel Grid.Column="16" Grid.Row="15" Grid.ColumnSpan="5" LastChildFill="True">

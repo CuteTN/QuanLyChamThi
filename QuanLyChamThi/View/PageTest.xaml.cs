@@ -31,5 +31,11 @@ namespace QuanLyChamThi.View
 
             DataContext = new TestViewModel();
         }
+
+        private void btnChooseQuestion_Click(object sender, RoutedEventArgs e)
+        {
+            var windowQuestionList = new WindowQuestionList();
+            windowQuestionList.ShowDialog();
+        }
     }
 }
