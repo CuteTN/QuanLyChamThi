@@ -18,6 +18,8 @@ namespace QuanLyChamThi.Model
         public QuanLyDeThiEntities()
             : base("name=QuanLyDeThiEntities")
         {
+            Configuration.ProxyCreationEnabled = true;
+            Configuration.LazyLoadingEnabled = true;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

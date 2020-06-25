@@ -89,17 +89,47 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\TestSearchModel.cs" />
+    <Compile Include="Model\ListQuestionModel.cs" />
+    <Compile Include="Model\QuestionModel.cs" />
+    <Compile Include="ViewModel\UCQuestionListViewModel.cs" />
+    <Compile Include="Model\UserModelBase.cs" />
+    <Compile Include="ViewModel\TestSearchViewModel.cs" />
+    <Compile Include="ViewModel\QuestionViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelMediator.cs" />
+    <Compile Include="ViewModel\DatabaseCommand.cs" />
+    <Compile Include="Pair.cs" />
+    <Compile Include="View\CustomDataGrid.cs" />
+    <Compile Include="View\ViewExtention.cs" />
+    <Compile Include="View\PageMain.xaml.cs">
+      <DependentUpon>PageMain.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\CLASS.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\DIFFICULTY.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="View\PageQuestion.xaml.cs">
+      <DependentUpon>PageQuestion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PageReport.xaml.cs">
+      <DependentUpon>PageReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PageTest.xaml.cs">
+      <DependentUpon>PageTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PageTestResultDetailed.xaml.cs">
+      <DependentUpon>PageTestResultDetailed.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\PRINCIPLE.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\QUESTION.cs">
       <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View\PageTestResult.xaml.cs">
+      <DependentUpon>PageTestResult.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\REPORT.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -126,7 +156,9 @@
     <Compile Include="Model\TESTRESULTDETAIL.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\TestSearchModel.cs" />
+    <Compile Include="Model\TestResultDetailModel.cs" />
+    <Compile Include="Model\TestResultModel.cs" />
+	<Compile Include="Model\TestSearchModel.cs" />
     <Compile Include="Model\USER.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

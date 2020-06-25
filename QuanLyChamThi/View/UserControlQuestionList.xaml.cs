@@ -1,4 +1,6 @@
-﻿using System;
+﻿using QuanLyChamThi.Model;
+using QuanLyChamThi.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,13 @@ namespace QuanLyChamThi.View
         public UserControlQuestionList()
         {
             InitializeComponent();
+            InitializeDataContext();
+        }
+
+        // Question list ViewModel //////////////////////////////////////////////////////////////////////////////////////////////////// 
+        private void InitializeDataContext()
+        {
+            this.DataContext = new UCQuestionListViewModel();
         }
     }
 }

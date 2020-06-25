@@ -82,7 +82,6 @@
                             </CheckBox>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                    
                 </DataGridTemplateColumn>
                 <DataGridTextColumn x:Name="colStudentName" Binding="{Binding StudentName, Mode=TwoWay}" Header="Tên" Width="8*"/>
                 <DataGridTextColumn x:Name="colStudentID" Binding="{Binding StudentID, Mode=TwoWay}" Header="MSSV" Width="3*"/>
@@ -93,6 +92,6 @@
         </DataGrid>
             
         <Button x:Name="btnSave" Command="{Binding SaveCommand}" Grid.Column="9" Grid.Row="15" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Lưu"/>
-        <Button x:Name="btnCancel" Grid.Column="17" Grid.Row="15" Grid.ColumnSpan="4" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Huỷ"/>
+        <Button x:Name="btnCancel" Command="{Binding CancelCommand}" Grid.Column="17" Grid.Row="15" Grid.ColumnSpan="4" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Huỷ"/>
     </Grid>
 </Page>

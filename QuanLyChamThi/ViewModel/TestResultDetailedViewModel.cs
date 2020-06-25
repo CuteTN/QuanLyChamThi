@@ -17,23 +17,23 @@ namespace QuanLyChamThi.ViewModel
 {
     class TestResultDetailedViewModel: ViewModelBase
     {
+        #region Datagrid ListTestResultDetail
         /// <summary>
         /// This is a list that binding with the view, it has a filter of its own
         /// Its source is ListTestResultDetailModel singleton, every change in ListTestResultDetailModel 
         /// will call this list to update
         /// </summary>
-        ObservableCollection<TestResultDetailModel> _listTestResultDetailView;
-        public ObservableCollection<TestResultDetailModel> ListTestResultDetailView
+        ObservableCollection<TestResultDetailModel> _listTestResultDetail;
+        public ObservableCollection<TestResultDetailModel> ListTestResultDetail
         {
             get
             {
-                // _listTestResultDetailView = new ObservableCollection<TestResultDetailModel>(ListTestResultDetail.Cast<TestResultDetailModel>().ToList());
-                _listTestResultDetailView = new ObservableCollection<TestResultDetailModel>(ListTestResultDetailModel.Ins.Data.Where((TestResultDetailModel param) => Filter(param)));
-                return _listTestResultDetailView;
+                _listTestResultDetail = new ObservableCollection<TestResultDetailModel>(ListTestResultDetailModel.Ins.Data.Where(param => Filter(param)));
+                return _listTestResultDetail;
             }
             set
             {
-                _listTestResultDetailView = value;
+                _listTestResultDetail = value;
             }
         }
 
@@ -47,8 +47,26 @@ namespace QuanLyChamThi.ViewModel
             set
             {
                 _selectedResultDetail = value;
+                OnPropertyChange("SelectedResultDetail");
             }
         }
+        private ICommand _deselecteResultDetailCommand;
+        public ICommand DeselecteResultDetailCommand
+        {
+            get
+            {
+                if (_deselecteResultDetailCommand == null)
+                    _deselecteResultDetailCommand = new RelayCommand(param => DeselecteResultDetail());
+                return _deselecteResultDetailCommand;
+            }
+            set { _deselecteResultDetailCommand = value; }
+        }
+
+        private void DeselecteResultDetail()
+        {
+            SelectedResultDetail = null;
+        }
+        #endregion
 
         ICommand _deleteSelectedResultDetailCommand;
         public ICommand DeleteSelectedResultDetailCommand
@@ -69,14 +87,38 @@ namespace QuanLyChamThi.ViewModel
             if (_selectedResultDetail == null)
                 return;
             List<DatabaseCommand> commands = new List<DatabaseCommand>();
-            var x = DataProvider.Ins.DB.TESTRESULTDETAIL.Find(_selectedResultDetail.IDTestResult);
-            var entityType = ObjectContext.GetObjectType(x.GetType());
+            var deletedResultDetail = DataProvider.Ins.DB.TESTRESULTDETAIL.Find(_selectedResultDetail.IDTestResult);
             commands.Add(new DatabaseCommand
             {
                 add = null,
-                delete = x
+                delete = deletedResultDetail
             });
             ViewModelMediator.Ins.Receive(this, commands);
+        }
+        
+
+        ICommand _editSelectedTestResultDetailCommand;
+        public ICommand EditSelectedTestResultDetailCommand
+        {
+            get
+            {
+                if (_editSelectedTestResultDetailCommand == null)
+                    _editSelectedTestResultDetailCommand = new RelayCommand(param => EditSelectedTestResultDetail());
+                return _editSelectedTestResultDetailCommand;
+            }
+            set
+            {
+                _editSelectedTestResultDetailCommand = value;
+            }
+        }
+        void EditSelectedTestResultDetail()
+        {
+            if (_selectedResultDetail == null)
+                MainWindowViewModel.Ins.StartEditingTestResult(null);
+            else
+                MainWindowViewModel.Ins.StartEditingTestResult((from u in DataProvider.Ins.DB.TESTRESULTDETAIL
+                                                                where u.IDTestResult == _selectedResultDetail.IDTestResult
+                                                                select u).Single());
         }
 
         private bool Filter(object item)
@@ -89,8 +131,7 @@ namespace QuanLyChamThi.ViewModel
 
         void refresh(object sender, NotifyCollectionChangedEventArgs e)
         {
-            OnPropertyChange("ListTestResultDetailView");
-            //MessageBox.Show("");
+            OnPropertyChange("ListTestResultDetail");
         }
 
         public TestResultDetailedViewModel()

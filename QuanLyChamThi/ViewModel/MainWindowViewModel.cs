@@ -4,7 +4,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Forms;
 using System.Windows.Input;
 using QuanLyChamThi.Command;
 using QuanLyChamThi.View;
@@ -13,11 +15,21 @@ namespace QuanLyChamThi.ViewModel
 {
     class MainWindowViewModel: ViewModelBase
     {
-        public MainWindowViewModel(Page[] pages)
+        private MainWindowViewModel() { }
+
+        private static MainWindowViewModel _ins;
+        public static MainWindowViewModel Ins
         {
-            listPage = pages;
+            get 
+            {
+                if (_ins == null)
+                    _ins = new MainWindowViewModel();
+                return _ins;
+            }
+            set { _ins = value; }
         }
-        private Page[] listPage;
+
+        private Page[] listPage = { new PageMain(), new PageReport(), new PageTestResult(), new PageTestResultDetailed(), new PageQuestion(), new PageTestSearch(), new PageTest() };
 
         #region CloseWindow Command
         private ICommand _closeCommand;
@@ -82,8 +94,16 @@ namespace QuanLyChamThi.ViewModel
         {
             if (listPage[2].DataContext is TestResultViewModel)
             {
-                //(listPage[2].DataContext as TestResultViewModel).
+                (listPage[2].DataContext as TestResultViewModel).StartEditing(arg);
             }
+            SelectedPage = listPage[2];
+            EditingTestResult = true;
+        }
+
+        public void FinishEditingTestResult()
+        {
+            SelectedPage = listPage[3];
+            EditingTestResult = false;
         }
 
         public void SwitchView(int? id)
@@ -96,11 +116,15 @@ namespace QuanLyChamThi.ViewModel
                 case 3:
                     { 
                         if (EditingTestResult) 
-                            SelectedPage = listPage[3]; 
-                        else SelectedPage = listPage[2]; 
+                            SelectedPage = listPage[2]; 
+                        else SelectedPage = listPage[3]; 
                         break; 
                     }
-                case 4: SelectedPage = listPage[1]; break;
+                case 4: SelectedPage = listPage[2]; break;
+                case 5: break;
+                case 6: break;
+                case 7: break;
+                case 8: FinishEditingTestResult(); break;
                 default: return;
             }
         }
@@ -121,6 +145,7 @@ namespace QuanLyChamThi.ViewModel
                         StartEditingTestResult(message);
                         break;
                     }
+                case 8: break;
                 default: return;
             }
         }

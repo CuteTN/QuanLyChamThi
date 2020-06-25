@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLyChamThi.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,11 @@ namespace QuanLyChamThi.View
                 mainGrid.ColumnDefinitions.Add(new ColumnDefinition());
             for (int i = 0; i < 17; i++)
                 mainGrid.RowDefinitions.Add(new RowDefinition());
+            var questionViewModel = new QuestionViewModel();
+            questionViewModel.QuestionListViewModel = ucQuestionList.DataContext as UCQuestionListViewModel;
+            DataContext = questionViewModel;
+            
+            // (ucQuestionList.DataContext as UCQuestionViewModel).listQuestion = (this.DataContext as QuestionViewModel).ListQuestion;
         }
 
         private void btnHideShow_Click(object sender, RoutedEventArgs e)

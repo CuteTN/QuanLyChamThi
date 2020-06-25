@@ -14,13 +14,21 @@
             </StackPanel>
 
             <ScrollViewer x:Name="svGrid" VerticalScrollBarVisibility="Auto">
-                <DataGrid x:Name="dgQuestionList" AutoGenerateColumns="False" Width="{Binding ElementName=svGrid, Path=ActualWidth}" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False">
+                <local:CustomDataGrid x:Name="dgQuestionList" 
+                                      ItemsSource="{Binding ListQuestion, Mode=TwoWay}" 
+                                      SelectedItemsList="{Binding SelectedQuestions, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                      AutoGenerateColumns="False" Width="{Binding ElementName=svGrid, Path=ActualWidth}" 
+                                      CanUserResizeColumns="False" CanUserReorderColumns="False" 
+                                      CanUserSortColumns="False" 
+                                      IsReadOnly="True"
+                                      SelectionUnit="FullRow">
                     <DataGrid.Columns>
-                        <DataGridTextColumn x:Name="colQuestionID" Header="Mã câu hỏi" Width="2*"/>
-                        <DataGridTextColumn x:Name="colSubjectName" Header="Môn thi" Width="3*"/>
-                        <DataGridTextColumn x:Name="colQuestionContent" Header="Nội dung" Width="5*"/>
+                        <DataGridTextColumn x:Name="colQuestionID" Binding="{Binding IDQuestion, Mode=TwoWay}" Header="Mã câu hỏi" Width="2*"/>
+                        <DataGridTextColumn x:Name="colSubjectName" Binding="{Binding Subject, Mode=TwoWay}" Header="Môn thi" Width="3*"/>
+                        <DataGridTextColumn x:Name="colQuestionContent" Binding="{Binding Content, Mode=TwoWay}" Header="Nội dung" Width="5*"/>
                     </DataGrid.Columns>
-                </DataGrid>
+                    
+                </local:CustomDataGrid>
             </ScrollViewer>
         </DockPanel>
     </Grid>

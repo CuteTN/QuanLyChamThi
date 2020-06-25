@@ -23,7 +23,6 @@ namespace QuanLyChamThi.View
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Page[] listPage = { new PageMain(), new PageReport(), new PageTestResult(), new PageTestResultDetailed(), new PageQuestion(), new PageTestSearch(), new PageTest()};
         public MainWindow()
         {
             InitializeComponent();
@@ -36,25 +35,25 @@ namespace QuanLyChamThi.View
             mainGrid.ColumnDefinitions[0].MinWidth = 40;
             mainGrid.RowDefinitions[0].MinHeight = 40;
 
-            DataContext = new MainWindowViewModel(listPage);
+            DataContext = MainWindowViewModel.Ins;
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.D1)
-                mainScreen.Content = listPage[0];
-            else if (e.Key == Key.D2)
-                mainScreen.Content = listPage[1];
-            else if (e.Key == Key.D3)
-                mainScreen.Content = listPage[2];
-            else if (e.Key == Key.D4)
-                mainScreen.Content = listPage[3];
-            else if (e.Key == Key.D5)
-                mainScreen.Content = listPage[4];
-            else if (e.Key == Key.D6)
-                mainScreen.Content = listPage[5];
-            else if (e.Key == Key.D7)
-                mainScreen.Content = listPage[6];
+            //if (e.Key == Key.D1)
+            //    mainScreen.Content = listPage[0];
+            //else if (e.Key == Key.D2)
+            //    mainScreen.Content = listPage[1];
+            //else if (e.Key == Key.D3)
+            //    mainScreen.Content = listPage[2];
+            //else if (e.Key == Key.D4)
+            //    mainScreen.Content = listPage[3];
+            //else if (e.Key == Key.D5)
+            //    mainScreen.Content = listPage[4];
+            //else if (e.Key == Key.D6)
+            //    mainScreen.Content = listPage[5];
+            //else if (e.Key == Key.D7)
+            //    mainScreen.Content = listPage[6];
 
             if (e.Key == Key.Escape)
                 this.Close();

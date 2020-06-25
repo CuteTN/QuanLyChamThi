@@ -61,24 +61,23 @@ namespace QuanLyChamThi.Model
         {
             foreach (DatabaseCommand item in commands)
             {
-                //* Remove or add a slash to toggle which code to run
-                if (item.delete != null)
-                    DeleteItem((dynamic)item.delete);
-                if (item.add != null)
-                    AddItem((dynamic)item.add);
-                /*/
                 if (item.add == null)
                     DeleteItem((dynamic)item.delete);
                 else if (item.delete == null)
                     AddItem((dynamic)item.add);
                 else
                 {
-                    dynamic temp = GetItem((dynamic) item.delete);
-                    temp = (dynamic)item.add;
+                    DB.Entry(item.delete).CurrentValues.SetValues(item.add);
                 }
-                //*/
             }
-            DB.SaveChanges();
+            try
+            {
+                DB.SaveChanges();
+            }
+            catch(Exception e)
+            {
+
+            }
             
             // TODO: Broadcast
         }
