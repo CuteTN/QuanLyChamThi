@@ -12,13 +12,18 @@
 
         <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="14" Grid.RowSpan="2" Content="BÁO CÁO NĂM" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
 
-        <StackPanel Grid.Column="16" Grid.Row="1" Grid.ColumnSpan="14" Grid.RowSpan="2" Orientation="Horizontal"  VerticalAlignment="Center">
+        <StackPanel Grid.Column="16" Grid.Row="1" Grid.ColumnSpan="14" Grid.RowSpan="2" Orientation="Horizontal" VerticalAlignment="Center">
             <Label Content="Chọn năm"/>
-            <ComboBox x:Name="cbYear"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
-                <TextBlock Text="2020"/>
+            <ComboBox x:Name="cbYear" ItemsSource="{Binding ListYear}" SelectedItem="{Binding StrSelectedYear}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                <!--<ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding ToString}"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>-->
             </ComboBox>
-            <Button HorizontalAlignment="Right" 
-                    Content="Tạo BC"/>
+            <Button Content="Tạo BC"/>
         </StackPanel>
 
         <Label Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="8" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Tổng số đề thi"/>
@@ -29,10 +34,10 @@
 
 
         <ScrollViewer x:Name="svGrid" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="29" Grid.RowSpan="10" VerticalScrollBarVisibility="Auto">
-            <DataGrid x:Name="dgReport" AutoGenerateColumns="False" Width="{Binding ElementName=svGrid, Path=ActualWidth}" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False">
+            <DataGrid x:Name="dgReport" AutoGenerateColumns="False" ItemsSource="{Binding ListReport, Mode=TwoWay}" Width="{Binding ElementName=svGrid, Path=ActualWidth}" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn x:Name="colSTT" Header="STT" Width="2*"/>
-                    <DataGridTextColumn x:Name="colName" Header="Tên môn" Width="5*"/>
+                    <DataGridTextColumn x:Name="colName" Binding="{Binding Subject}" Header="Tên môn" Width="5*"/>
                     <DataGridTextColumn x:Name="colTestNumber" Header="Số lượng đề thi" Width="5*"/>
                     <DataGridTextColumn x:Name="colTestResultNumber" Header="Số lượng bài chấm" Width="5*"/>
                     <DataGridTextColumn x:Name="colTestRatio" Header="Tỉ lệ đề thi" Width="5*"/>
