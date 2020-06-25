@@ -81,7 +81,7 @@
         <ScrollViewer x:Name="svGrid" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="29" Grid.RowSpan="11" VerticalScrollBarVisibility="Auto">
             <DataGrid x:Name="dgListTestResult" AutoGenerateColumns="False" Width="{Binding ElementName=svGrid, Path=ActualWidth}" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False">
                 <DataGrid.Columns>
-                    <DataGridCheckBoxColumn x:Name="colSelectAll" Width="1*">
+                    <DataGridCheckBoxColumn x:Name="colSelectAll" Width="2*">
                         <DataGridCheckBoxColumn.Header>
                             <CheckBox x:Name="cbSelectAll"/>
                         </DataGridCheckBoxColumn.Header>

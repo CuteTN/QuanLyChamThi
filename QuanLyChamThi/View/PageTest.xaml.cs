@@ -32,7 +32,7 @@ namespace QuanLyChamThi.View
         private void btnChooseQuestion_Click(object sender, RoutedEventArgs e)
         {
             var windowQuestionList = new WindowQuestionList();
-            windowQuestionList.Show();
+            windowQuestionList.ShowDialog();
         }
     }
 }

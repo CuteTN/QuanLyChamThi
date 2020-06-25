@@ -26,5 +26,25 @@ namespace QuanLyChamThi.View
         {
             InitializeComponent();
         }
+
+        private void DataGridCell_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            MarkRowAsDone(sender, e);
+        }
+
+        private void MarkRowAsDone(object sender, MouseButtonEventArgs e)
+        {
+            
+        }
+
+        private void dgQuestionList_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (dgQuestionList.SelectedIndex < 1) return;
+            DataGridRow dgRow = dgQuestionList.ItemContainerGenerator.ContainerFromIndex(dgQuestionList.SelectedIndex) as DataGridRow;
+
+            DataGridCell cell = dgQuestionList.Columns[2].GetCellContent(dgRow).Parent as DataGridCell;
+            dgRow.Background = new SolidColorBrush(Colors.Blue);
+            dgQuestionList.UpdateLayout();
+        }
     }
 }

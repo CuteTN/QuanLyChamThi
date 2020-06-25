@@ -14,13 +14,18 @@
             </StackPanel>
 
             <ScrollViewer x:Name="svGrid" VerticalScrollBarVisibility="Auto">
-                <DataGrid x:Name="dgQuestionList" AutoGenerateColumns="False" Width="{Binding ElementName=svGrid, Path=ActualWidth}" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False" SelectionUnit="FullRow">
+                <DataGrid x:Name="dgQuestionList" AutoGenerateColumns="False" Width="{Binding ElementName=svGrid, Path=ActualWidth}" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False" SelectionUnit="FullRow" Loaded="dgQuestionList_Loaded">
                     <DataGrid.Columns>
                         <DataGridTextColumn x:Name="colQuestionID" Header="Mã câu hỏi" Width="2*"/>
                         <DataGridTextColumn x:Name="colSubjectName" Header="Môn thi" Width="3*"/>
                         <DataGridTextColumn x:Name="colQuestionContent" Header="Nội dung" Width="5*"/>
                     </DataGrid.Columns>
 
+                    <DataGrid.RowStyle>
+                        <Style>
+                            <Setter Property="ItemsControl.Background" Value="LightPink"/>
+                        </Style>
+                    </DataGrid.RowStyle>
                     <!-- 
                     <DataGrid.Resources>
                         <Style x:Key="alternatingWithTrigger" TargetType="{x:Type DataGridRow}">
@@ -32,7 +37,6 @@
                         </Style> 
                     </DataGrid.Resources> 
                     -->
-                    
                 </DataGrid>
             </ScrollViewer>
         </DockPanel>
