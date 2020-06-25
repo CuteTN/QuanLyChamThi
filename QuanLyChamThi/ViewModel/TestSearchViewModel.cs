@@ -189,6 +189,7 @@ namespace QuanLyChamThi.ViewModel
             if (sender == this || commands.Exists((DatabaseCommand it) => it.add is TEST || it.delete is TEST))
             {
                 _test = new BindingList<TEST>((from u in DataProvider.Ins.DB.TEST select u).ToList());
+                // TODO: test removing this line
                 Search(Filter);
             }
         }
