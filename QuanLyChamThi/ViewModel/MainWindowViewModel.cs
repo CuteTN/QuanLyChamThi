@@ -157,7 +157,7 @@ namespace QuanLyChamThi.ViewModel
                         else SelectedPage = listPage[3]; 
                         break; 
                     }
-                case 4: SelectedPage = listPage[2]; break;
+                case 4: SelectedPage = listPage[1]; break;
                 // Thanh - Editing Test Result
                 case 7: break;
                 case 8: FinishEditingTestResult(); break;
