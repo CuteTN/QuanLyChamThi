@@ -69,7 +69,7 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="2*" />
                 </Grid.RowDefinitions>
-                <Image Source="../Resources/hau.jpg" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" IsEnabled="True"/>
+                <Image Source="../Resources/hau.jpg" Stretch="UniformToFill"  VerticalAlignment="Center" Grid.Row="0" IsEnabled="True"/>
                 <Button
                     Grid.Row="0"
                     Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"

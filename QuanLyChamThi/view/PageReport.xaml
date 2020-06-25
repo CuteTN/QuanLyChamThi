@@ -12,9 +12,9 @@
 
         <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="14" Grid.RowSpan="2" Content="BÁO CÁO NĂM" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
 
-        <StackPanel Grid.Column="16" Grid.Row="1" Grid.ColumnSpan="14" Grid.RowSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Grid.Column="16" Grid.Row="1" Grid.ColumnSpan="14" Grid.RowSpan="2" Orientation="Horizontal"  VerticalAlignment="Center">
             <Label Content="Chọn năm"/>
-            <ComboBox x:Name="cbYear" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+            <ComboBox x:Name="cbYear"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <TextBlock Text="2020"/>
             </ComboBox>
             <Button HorizontalAlignment="Right" 

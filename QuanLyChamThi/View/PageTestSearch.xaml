@@ -18,10 +18,10 @@
         <TextBox x:Name="tbDuration" Grid.Column="5" Grid.Row="2" Grid.ColumnSpan="8"  VerticalAlignment="Center"/>
         <DatePicker x:Name="datepickerTestDate" Grid.Column="5" Grid.Row="3" Grid.ColumnSpan="8"  VerticalAlignment="Center"/>
 
-        <Button x:Name="btnFind" Grid.Column="13" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Tìm kiếm"/>
-        <Button x:Name="btnNew" Grid.Column="23" Grid.Row="1" Grid.ColumnSpan="7" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Tạo đề thi mới"/>
+        <Button x:Name="btnFind" Grid.Column="13" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="3"  VerticalAlignment="Center" Content="Tìm kiếm"/>
+        <Button x:Name="btnNew" Grid.Column="23" Grid.Row="1" Grid.ColumnSpan="7"  VerticalAlignment="Center" Content="Tạo đề thi mới"/>
 
-        <Button Grid.Column="23" Grid.Row="3" Grid.ColumnSpan="7" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Tìm kiếm nâng cao"/>
+        <Button Grid.Column="23" Grid.Row="3" Grid.ColumnSpan="7"  VerticalAlignment="Center" Content="Tìm kiếm nâng cao"/>
 
         <ScrollViewer x:Name="svGrid" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="29" Grid.RowSpan="12" VerticalScrollBarVisibility="Auto">
             <DataGrid x:Name="dgReport" AutoGenerateColumns="False" Width="{Binding ElementName=svGrid, Path=ActualWidth}" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False">

@@ -11,12 +11,12 @@
         <Border x:Name="border" BorderThickness="1" Background="#FFC107" CornerRadius="5">
             <DockPanel LastChildFill="True">
                 <StackPanel DockPanel.Dock="Left" Width="100" Height="50">
-                    <md:PackIcon Kind="CheckBold" md:Foreground="White" Width="50" Height="50" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <md:PackIcon Kind="CheckBold" md:Foreground="White" Width="50" Height="50" VerticalAlignment="Center" />
                 </StackPanel>
 
-                <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical">
-                    <TextBlock x:Name="tbNotification" HorizontalAlignment="Center" Foreground="White"/>
-                    <TextBlock x:Name="tbDetail" HorizontalAlignment="Center" Foreground="White"/>
+                <StackPanel DockPanel.Dock="Top"  VerticalAlignment="Center" Orientation="Vertical">
+                    <TextBlock x:Name="tbNotification"  Foreground="White"/>
+                    <TextBlock x:Name="tbDetail"  Foreground="White"/>
                 </StackPanel>
             </DockPanel>
         </Border>

@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using QuanLyChamThi.ViewModel;
 using QuanLyChamThi.Command;
 using QuanLyChamThi;
+using System.Windows.Media.Animation;
 
 namespace QuanLyChamThi.View
 {
@@ -23,7 +24,8 @@ namespace QuanLyChamThi.View
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Page[] listPage = { new PageMain(), new PageReport(), new PageTestResult(), new PageTestResultDetailed(), new PageQuestion(), new PageTestSearch(), new PageTest()};
+
+        private Page[] listPage = { new PageMain(), new PageReport(), new PageTestResult(), new PageTestResultDetailed(), new PageQuestion(), new PageTestSearch(), new PageTest() };
         public MainWindow()
         {
             InitializeComponent();
@@ -31,7 +33,7 @@ namespace QuanLyChamThi.View
 
             mainScreen.Content = new PageMain();
         }
-        
+
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.D1)
@@ -52,7 +54,7 @@ namespace QuanLyChamThi.View
             if (e.Key == Key.Escape)
                 this.Close();
         }
-        
+
         private void canvasExtendedSideBar_MouseEnter(object sender, MouseEventArgs e)
         {
             canvasExtendedSideBar.Visibility = Visibility.Visible;
@@ -61,11 +63,62 @@ namespace QuanLyChamThi.View
         private void canvasExtendedSideBar_MouseLeave(object sender, MouseEventArgs e)
         {
             canvasExtendedSideBar.Visibility = Visibility.Hidden;
-        } 
+        }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             ViewExtension.Message(this, "Bấm cái lon", "Chưa code xong mà bấm cái gì", 0.5f);
-        } 
         }
+
+        /**
+          
+        EFFECT
+
+        //DoubleAnimation moveIn = new DoubleAnimation { From = -150, To = 0, FillBehavior = FillBehavior.Stop, BeginTime = TimeSpan.FromSeconds(0), Duration = new Duration(TimeSpan.FromSeconds(0.5)) };
+        DoubleAnimation moveOut = new DoubleAnimation { From = 0, To = -150, FillBehavior = FillBehavior.Stop, BeginTime = TimeSpan.FromSeconds(0), Duration = new Duration(TimeSpan.FromSeconds(0.5)) };
+        
+        private void EffectMoveIn()
+        {
+            PathGeometry animationPath = new PathGeometry();
+            PathFigure path = new PathFigure();
+            path.StartPoint = new Point(-150, 0);
+            path.Segments.Add(new LineSegment(new Point(0, 0), false));
+            animationPath.Figures.Add(path);
+
+            DoubleAnimationUsingPath moveIn = new DoubleAnimationUsingPath();
+            moveIn.PathGeometry = animationPath;
+            moveIn.FillBehavior = FillBehavior.Stop;
+            moveIn.BeginTime = TimeSpan.FromSeconds(0);
+            moveIn.Duration = TimeSpan.FromSeconds(5);
+            moveIn.Source = PathAnimationSource.X;
+
+
+            Storyboard storyboard = new Storyboard();
+
+            storyboard.Children.Add(moveIn);
+            foreach (DoubleAnimationUsingPath child in storyboard.Children)
+            {
+                Storyboard.SetTarget(child, canvasExtendedSideBar);
+                Storyboard.SetTargetProperty(child, new PropertyPath(TranslateTransform.XProperty));
+            }
+
+            storyboard.Begin();
+        }
+
+        private void EffectMoveOut()
+        {
+            Storyboard storyboard = new Storyboard();
+
+            storyboard.Children.Add(moveOut);
+            foreach (DoubleAnimation child in storyboard.Children)
+            {
+                Storyboard.SetTarget(child, canvasExtendedSideBar);
+                Storyboard.SetTargetProperty(child, new PropertyPath("TranslateTransform.XProperty"));
+            }
+            storyboard.Completed += delegate { canvasExtendedSideBar.Visibility = Visibility.Hidden; };
+
+            storyboard.Begin();
+        }
+        **/
     }
+}
