@@ -25,8 +25,8 @@ namespace QuanLyChamThi.Model
             set { _content = value; }
         }
 
-        private Nullable<int> _idDifficulty;
-        public Nullable<int> IDDifficulty
+        private int _idDifficulty;
+        public int IDDifficulty
         {
             get { return _idDifficulty; }
             set { _idDifficulty = value; _difficulty = loadDifficulty(); }

@@ -158,37 +158,10 @@
     </Compile>
     <Compile Include="Model\TestResultDetailModel.cs" />
     <Compile Include="Model\TestResultModel.cs" />
-	<Compile Include="Model\TestSearchModel.cs" />
     <Compile Include="Model\USER.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\UserModelBase.cs" />
-    <Compile Include="ViewModel\TestSearchViewModel.cs" />
     <Compile Include="ViewModel\TestViewModel.cs" />
-    <Compile Include="ViewModel\ViewModelMediator.cs" />
-    <Compile Include="ViewModel\DatabaseCommand.cs" />
-    <Compile Include="Pair.cs" />
-    <Compile Include="View\ViewExtention.cs" />
-    <Compile Include="View\PageMain.xaml.cs">
-      <DependentUpon>PageMain.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\PageQuestion.xaml.cs">
-      <DependentUpon>PageQuestion.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\PageReport.xaml.cs">
-      <DependentUpon>PageReport.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\PageTest.xaml.cs">
-      <DependentUpon>PageTest.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\PageTestResultDetailed.xaml.cs">
-      <DependentUpon>PageTestResultDetailed.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\PageTestResult.xaml.cs">
-      <DependentUpon>PageTestResult.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Model\TestResultDetailModel.cs" />
-    <Compile Include="Model\TestResultModel.cs" />
     <Compile Include="ViewModel\TestResultViewModel.cs" />
     <Compile Include="ViewModel\TestResultDetailedViewModel.cs" />
     <Compile Include="Model\DataProvider.cs" />
