@@ -1,5 +1,7 @@
-﻿using System;
+﻿using QuanLyChamThi.Model;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -118,6 +120,26 @@ namespace QuanLyChamThi.ViewModel
         }
         #endregion
 
+        #region DataGrid Report
+        private ObservableCollection<SubjectYearlyReportModel> _listReport;
+        public ObservableCollection<SubjectYearlyReportModel> ListReport
+        {
+            get
+            {
+                if (_listReport == null)
+                {
+                    _listReport = model.Data;
+                }
+                return _listReport;
+            }
+            set { _listReport = value; OnPropertyChange("ListReport"); }
+        }
+        #endregion
+
+        #region Internal business logic
+        YearlyReportModel model = null;
+        #endregion
+
         public void Receive(object sender, List<DatabaseCommand> commands)
         {
             // MORECODE
@@ -126,6 +148,7 @@ namespace QuanLyChamThi.ViewModel
         public YearlyReportViewModel()
         {
             ViewModelMediator.Ins.AddUserModel(this);
+            model = new YearlyReportModel(SelectedYear);
         }
     }
 }

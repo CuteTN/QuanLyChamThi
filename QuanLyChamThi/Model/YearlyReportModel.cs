@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media.Animation;
 
 namespace QuanLyChamThi.Model
@@ -30,8 +31,7 @@ namespace QuanLyChamThi.Model
         private ObservableCollection<SubjectYearlyReportModel> selectData(int year)
         {
             // user is not yet implemented
-            var query = from t in DataProvider.Ins.DB.TEST
-                        where t.Year == year
+            var query = from t in DataProvider.Ins.DB.TEST where t.Year == year
                         join d in DataProvider.Ins.DB.TESTRESULTDETAIL on t.IDTest equals d.IDTest
                         join r in DataProvider.Ins.DB.TESTRESULT on d.IDTestResult equals r.IDTestResult
                         select new { t.IDSubject, t.IDTest, r.IDTestResult } into j
@@ -44,7 +44,6 @@ namespace QuanLyChamThi.Model
                         };
 
             ObservableCollection<SubjectYearlyReportModel> result = new ObservableCollection<SubjectYearlyReportModel>(query.ToList());
-            
             return result;
         }
 
@@ -55,7 +54,10 @@ namespace QuanLyChamThi.Model
             {
                 // lazy initialization
                 if (_data == null)
+                { 
                     _data = selectData(Year);
+                    fillTotal();
+                }
 
                 return _data;
             }
@@ -63,16 +65,27 @@ namespace QuanLyChamThi.Model
             set
             {
                 _data = value;
+                fillTotal();
             }
         }
 
         private void fillTotal()
         {
+            // BADCODE
             int totalTestCount = 0;
             int totalTestResultCount = 0;
 
-            // foreach(var )
+            foreach(var report in _data)
+            { 
+                totalTestCount += report.TestCount;
+                totalTestResultCount += report.TestResultCount;
+            }
 
+            foreach(var report in _data)
+            {
+                report.TotalTestCount = totalTestCount;
+                report.TotalTestResultCount = totalTestResultCount;
+            }
         }
         #endregion
 
