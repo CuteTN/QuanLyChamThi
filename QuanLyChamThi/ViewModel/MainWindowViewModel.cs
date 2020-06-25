@@ -54,7 +54,7 @@ namespace QuanLyChamThi.ViewModel
 
         }
         #endregion
-
+        
         private Page _selectedPage;
         public Page SelectedPage
         {
@@ -83,6 +83,7 @@ namespace QuanLyChamThi.ViewModel
             set { _switchViewCommand = value; }
         }
 
+        #region Thanh - Test Result
         bool _editingTestResult = false;
         public bool EditingTestResult
         {
@@ -105,6 +106,36 @@ namespace QuanLyChamThi.ViewModel
             SelectedPage = listPage[3];
             EditingTestResult = false;
         }
+        #endregion
+
+        #region Long - Test Search new/edit
+        Pair<bool, Page> _editingTest = new Pair<bool, Page>(false, null);
+        public Pair<bool, Page> EditingTest
+        {
+            get { return _editingTest; }
+            set { _editingTest = value; }
+        }
+
+        public void StartEditingTest(object arg)
+        {
+            if (EditingTest.First == true)
+                ;// Uh... what?
+            EditingTest.First = true;
+            EditingTest.Second = SelectedPage;
+            if (!(arg is string) || !(listPage[6].DataContext is TestViewModel))
+                // ERROR
+                return;
+            SelectedPage = listPage[6];
+            (listPage[6].DataContext as TestViewModel).ViewMode(arg as string);
+        }
+
+        public void FinishEditingTest()
+        {
+            SelectedPage = EditingTest.Second;
+            EditingTest.First = false;
+            EditingTest.Second = null;
+        }
+        #endregion
 
         public void SwitchView(int? id)
         {
@@ -112,7 +143,13 @@ namespace QuanLyChamThi.ViewModel
             {
                 case 0: SelectedPage = listPage[0]; break;
                 case 1: SelectedPage = listPage[4]; break;
-                case 2: SelectedPage = listPage[5]; break;
+                case 2:
+                    {
+                        if (EditingTest.First)
+                            SelectedPage = listPage[6];
+                        else SelectedPage = listPage[5];
+                        break;
+                    }
                 case 3:
                     { 
                         if (EditingTestResult) 
@@ -121,10 +158,12 @@ namespace QuanLyChamThi.ViewModel
                         break; 
                     }
                 case 4: SelectedPage = listPage[2]; break;
-                case 5: break;
-                case 6: break;
+                // Thanh - Editing Test Result
                 case 7: break;
                 case 8: FinishEditingTestResult(); break;
+                // Long - Editing Test
+                case 9: StartEditingTest(""); break;
+                case 10: FinishEditingTest(); break;
                 default: return;
             }
         }
@@ -140,12 +179,16 @@ namespace QuanLyChamThi.ViewModel
             {
                 case 5: break;
                 case 6: break;
+                // Thanh - Editing Test Result
                 case 7:
                     {
                         StartEditingTestResult(message);
                         break;
                     }
-                case 8: break;
+                case 8: FinishEditingTestResult(); break;
+                // Long - Editing Test
+                case 9: StartEditingTest(message); break;
+                case 10: FinishEditingTest(); break;
                 default: return;
             }
         }

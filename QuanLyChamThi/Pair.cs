@@ -8,10 +8,10 @@ namespace QuanLyChamThi
 {
     class Pair<T,U>
     {
-        T First { get; set; }
-        U Second { get; set; }
+        public T First { get; set; }
+        public U Second { get; set; }
 
-        Pair(T first, U second)
+        public Pair(T first, U second)
         {
             First = first;
             Second = second;

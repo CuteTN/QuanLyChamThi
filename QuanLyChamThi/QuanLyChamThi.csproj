@@ -149,6 +149,7 @@
     <Compile Include="Model\TESTDETAIL.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\TestModel.cs" />
     <Compile Include="Model\TESTRESULT.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -160,6 +161,7 @@
     <Compile Include="Model\USER.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\TestViewModel.cs" />
     <Compile Include="ViewModel\TestResultViewModel.cs" />
     <Compile Include="ViewModel\TestResultDetailedViewModel.cs" />
     <Compile Include="Model\DataProvider.cs" />

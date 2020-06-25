@@ -16,7 +16,7 @@ namespace QuanLyChamThi.Model
     {
         public string IDTest { get; set; }
         public int No { get; set; }
-        public Nullable<int> IDQuestion { get; set; }
+        public int IDQuestion { get; set; }
     
         public virtual QUESTION QUESTION { get; set; }
         public virtual TEST TEST { get; set; }
