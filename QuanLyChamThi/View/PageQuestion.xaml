@@ -9,51 +9,96 @@
       Title="TẠO SỬA CÂU HỎI">
 
     <Grid Background="LightGray" x:Name="mainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
 
-        <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Môn học"/>
-        <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="5" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Độ khó"/>
-        <Label Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="5" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Nội dung"/>
+        </Grid.RowDefinitions>
 
-        <ComboBox x:Name="cbSubject" ItemsSource="{Binding ListSubject}" SelectedItem="{Binding SelectedSubject}" Grid.Column="6" Grid.Row="1" Grid.ColumnSpan="10" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding Name}"></TextBlock>
-                    </StackPanel>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
-        <ComboBox x:Name="cbDifficulty" ItemsSource="{Binding ListDifficulty}" SelectedItem="{Binding SelectedDifficulty}" Grid.Column="6" Grid.Row="2" Grid.ColumnSpan="10" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding Name}"></TextBlock>
-                    </StackPanel>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
+        <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" VerticalAlignment="Center" Content="Môn học"/>
+        <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="5" VerticalAlignment="Center" Content="Độ khó"/>
+        <Label Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="5" VerticalAlignment="Center" Content="Nội dung"/>
         
-        <ScrollViewer x:Name="svGrid" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="15" Grid.RowSpan="12" VerticalScrollBarVisibility="Auto">
-            <TextBox x:Name="tbContent" Text="{Binding Content}" Width="{Binding ElementName=svGrid, Path=ActualWidth}" Height="{Binding ElementName=svGrid, Path=ActualHeight}" AcceptsReturn="True" TextWrapping="Wrap"/>
+        <ComboBox x:Name="cbSubject" ItemsSource="{Binding ListSubject}" SelectedItem="{Binding SelectedSubject}" Grid.Column="6" Grid.Row="1" Grid.ColumnSpan="10" VerticalAlignment="Center">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Name}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <ComboBox x:Name="cbDifficulty" ItemsSource="{Binding ListDifficulty}" SelectedItem="{Binding SelectedDifficulty}" Grid.Column="6" Grid.Row="2" Grid.ColumnSpan="10" VerticalAlignment="Center">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Name}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
 
-        </ScrollViewer>
+        <Border BorderThickness="10" BorderBrush="{Binding ElementName=tbContent, Path=Background}" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="15" Grid.RowSpan="11">
+            <ScrollViewer x:Name="svGrid" VerticalScrollBarVisibility="Auto">
+                <TextBox x:Name="tbContent" Text="{Binding Content}" Width="{Binding ElementName=svGrid, Path=ActualWidth}" Height="{Binding ElementName=svGrid, Path=ActualHeight}" Background="WhiteSmoke"/>
+            </ScrollViewer>
+        </Border>
 
-        <Button x:Name="btnHideShow" Grid.Column="30" Grid.Row="3" Grid.RowSpan="12" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Ẩn danh sách câu hỏi" RenderTransformOrigin="0.5,0.5" Click="btnHideShow_Click">
-            <Button.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="-90"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Button.RenderTransform>
-        </Button>
+        <Button x:Name="btnHideShow" Grid.Column="31" Grid.Row="4" Grid.RowSpan="10" Height="Auto" Content=">" Click="btnHideShow_Click" Style="{StaticResource MaterialDesignFlatButton}"/>
 
         <DockPanel Grid.Column="17" Grid.Row="2" Grid.ColumnSpan="13" Grid.RowSpan="13" LastChildFill="True">
             <local:UserControlQuestionList x:Name="ucQuestionList"/>
         </DockPanel>
 
-        <Button x:Name="btnCancel" Grid.Column="22" Grid.Row="15" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Huỷ"/>
-        <Button x:Name="btnOK" Command="{Binding AddQuestionCommand}" Grid.Column="26" Grid.Row="15" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Thêm"/>
+        <Button x:Name="btnCancel" Grid.Column="23" Grid.Row="15" Grid.ColumnSpan="3" VerticalAlignment="Center" Content="Huỷ" Panel.ZIndex="3"/>
+        <Button x:Name="btnOK" Command="{Binding AddQuestionCommand}" Grid.Column="27" Grid.Row="15" Grid.ColumnSpan="3" VerticalAlignment="Center" Content="Thêm" Panel.ZIndex="3"/>
     </Grid>
 </Page>

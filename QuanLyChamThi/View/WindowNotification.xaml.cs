@@ -62,5 +62,10 @@ namespace QuanLyChamThi.View
         {
             this.Close();
         }
+
+        private void PackIcon_ColorChanged(object sender, RoutedPropertyChangedEventArgs<Color> e)
+        {
+
+        }
     }
 }

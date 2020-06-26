@@ -12,13 +12,67 @@
         <local:BindingProxy x:Key="proxy" Data="{Binding}"/>
     </Page.Resources>
 
-        <Grid Background="LightGray" x:Name="mainGrid">
-        <Label Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="4" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Giảng viên chấm: "/>
-        <Label Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="4" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Môn: "/>
-        <Label Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="4" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Lớp: "/>
+    <Grid Background="LightGray" x:Name="mainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <Label Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="4" VerticalAlignment="Center" Content="Giảng viên chấm: "/>
+        <Label Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="4" VerticalAlignment="Center" Content="Môn: "/>
+        <Label Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="4" VerticalAlignment="Center" Content="Lớp: "/>
 
-        <TextBlock x:Name="tbLecturerName" Grid.Column="7" Grid.Row="1" Grid.ColumnSpan="8" HorizontalAlignment="Left" VerticalAlignment="Center" Text="John Wick"/>
-        <ComboBox x:Name="cbSubject" ItemsSource="{Binding ListSubject}" SelectedItem="{Binding SelectedSubject}" Grid.Column="7" Grid.Row="2" Grid.ColumnSpan="8" HorizontalAlignment="Left" VerticalAlignment="Center">
+        <TextBlock x:Name="tbLecturerName" Grid.Column="7" Grid.Row="1" Grid.ColumnSpan="8" VerticalAlignment="Center" Text="John Wick"/>
+        <ComboBox x:Name="cbSubject" ItemsSource="{Binding ListSubject}" SelectedItem="{Binding SelectedSubject}" Grid.Column="7" Grid.Row="2" Grid.ColumnSpan="8" VerticalAlignment="Center">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
@@ -27,7 +81,7 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <ComboBox x:Name="cbClass" ItemsSource="{Binding ListClass}" SelectedItem="{Binding SelectedClass}" Grid.Column="7" Grid.Row="3" Grid.ColumnSpan="8" HorizontalAlignment="Left" VerticalAlignment="Center">
+        <ComboBox x:Name="cbClass" ItemsSource="{Binding ListClass}" SelectedItem="{Binding SelectedClass}" Grid.Column="7" Grid.Row="3" Grid.ColumnSpan="8" VerticalAlignment="Center">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
@@ -37,8 +91,8 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
 
-        <Label Grid.Column="17" Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Mã đề thi"/>
-        <ComboBox x:Name="cbTestID" ItemsSource="{Binding ListTestID}" SelectedItem="{Binding SelectedTestID}" Grid.Column="20" Grid.Row="1" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Center">
+        <Label Grid.Column="17" Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Center" Content="Mã đề thi"/>
+        <ComboBox x:Name="cbTestID" ItemsSource="{Binding ListTestID}" SelectedItem="{Binding SelectedTestID}" Grid.Column="20" Grid.Row="1" Grid.ColumnSpan="4" VerticalAlignment="Center">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
@@ -47,10 +101,10 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <Button x:Name="btnChooseTest" Grid.Column="20" Grid.Row="2" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Chọn đề thi"/>
+        <Button x:Name="btnChooseTest" Grid.Column="20" Grid.Row="2" Grid.ColumnSpan="4" VerticalAlignment="Center" Content="Chọn đề thi"/>
 
-        <Button x:Name="btnAdd" Command="{Binding AddNewTestResultCommand}" Grid.Column="26" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Thêm"/>
-        <Button x:Name="btnDelete" Command="{Binding DeleteSelectedResultsCommand}" Grid.Column="28" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Xoá"/>
+        <Button x:Name="btnAdd" Command="{Binding AddNewTestResultCommand}" Grid.Column="26" Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Center" Content="Thêm"/>
+        <Button x:Name="btnDelete" Command="{Binding DeleteSelectedResultsCommand}" Grid.Column="28" Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Center" Content="Xoá"/>
 
         <DataGrid x:Name="dgListTestResult" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="29" Grid.RowSpan="11" ItemsSource="{Binding ListTestResult, Mode=TwoWay}" AutoGenerateColumns="False" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False" CanUserAddRows="False">
             <DataGrid.Resources>
@@ -61,7 +115,7 @@
                 </DataTemplate>
             </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridTemplateColumn x:Name="colSelectAll" Width="1*" >
+                <DataGridTemplateColumn x:Name="colSelectAll" Width="2*" >
                     <DataGridTemplateColumn.Header>
                         <CheckBox x:Name="cbSelectAll" IsChecked="{Binding Path=Data.AllSelected, Mode=TwoWay, Source={StaticResource proxy}}">
                             <i:Interaction.Triggers>
@@ -91,7 +145,7 @@
             </DataGrid.Columns>
         </DataGrid>
             
-        <Button x:Name="btnSave" Command="{Binding SaveCommand}" Grid.Column="9" Grid.Row="15" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Lưu"/>
-        <Button x:Name="btnCancel" Command="{Binding CancelCommand}" Grid.Column="17" Grid.Row="15" Grid.ColumnSpan="4" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Huỷ"/>
+        <Button x:Name="btnSave" Command="{Binding SaveCommand}" Grid.Column="9" Grid.Row="15" Grid.ColumnSpan="4" VerticalAlignment="Center" Content="Lưu"/>
+        <Button x:Name="btnCancel" Command="{Binding CancelCommand}" Grid.Column="17" Grid.Row="15" Grid.ColumnSpan="4" VerticalAlignment="Center" Content="Huỷ"/>
     </Grid>
 </Page>

@@ -10,11 +10,11 @@
       Title="DANH SÁCH BÀI CHẤM">
 
     <Grid Background="LightGray" x:Name="mainGrid">
-        <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="17" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="DANH SÁCH BÀI CHẤM"/>
+        <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="17" Grid.RowSpan="2" VerticalAlignment="Center" Content="DANH SÁCH BÀI CHẤM"/>
 
-        <Button x:Name="btnNew" Command="{Binding EditSelectedTestResultDetailCommand}" Grid.Column="19" Grid.Row="1" Grid.ColumnSpan="6" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Tạo mới"/>
+        <Button x:Name="btnNew" Command="{Binding EditSelectedTestResultDetailCommand}" Grid.Column="19" Grid.Row="1" Grid.ColumnSpan="6" Grid.RowSpan="2" VerticalAlignment="Center" Content="Tạo mới"/>
 
-        <Button Grid.Column="26" Command="{Binding DeleteSelectedResultDetailCommand}" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Button Grid.Column="26" Command="{Binding DeleteSelectedResultDetailCommand}" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="2" VerticalAlignment="Center">
             <Image Source="/QuanLyChamThi;component/Icon/filter.ico"/>
         </Button>
 
