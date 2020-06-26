@@ -49,6 +49,8 @@ namespace QuanLyChamThi.ViewModel
         }
         #endregion
 
+        #region Selected Question
+        // This lise is used to display to View
         private IList<Pair<int, QuestionModel>> _selectedQuestionsView;
         public IList<Pair<int, QuestionModel>> SelectedQuestionsView
         {
@@ -66,8 +68,12 @@ namespace QuanLyChamThi.ViewModel
             set { _selectedQuestionsView = value; OnPropertyChange("SelectedQuestions"); }
         }
 
+        // This list hold the selected QuestionModel
+        // This list is updated synchronize with SelectedQuestionsView
         public IList<QuestionModel> SelectedQuestions = new List<QuestionModel>();
+        #endregion
 
+        #region Highlight Question
         public void HighlightQuestions(List<QuestionModel> questionsNeedHighlight)
         {
             foreach(var question in _listQuestionsView)
@@ -78,6 +84,20 @@ namespace QuanLyChamThi.ViewModel
                 }
             }
         }
+
+        public List<QuestionModel> GetHighlightedQuestions()
+        {
+            List<QuestionModel> highlightedQuestions = new List<QuestionModel>();
+            foreach(var question in _listQuestionsView)
+            {
+                if(question.First == 1)
+                {
+                    highlightedQuestions.Add(question.Second);
+                }
+            }
+            return highlightedQuestions;
+        }
+        #endregion
 
         public void Receive(object sender, List<DatabaseCommand> commands)
         {

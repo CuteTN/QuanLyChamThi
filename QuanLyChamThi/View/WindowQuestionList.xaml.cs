@@ -24,6 +24,7 @@ namespace QuanLyChamThi.View
         public WindowQuestionList(List<QuestionModel> selectedQuestions)
         {
             InitializeComponent();
+
             DataContext = new WindowQuestionListViewModel(selectedQuestions, ucQuestionList.DataContext as UCQuestionListViewModel);
         }
     }

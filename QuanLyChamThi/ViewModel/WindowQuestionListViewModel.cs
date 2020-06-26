@@ -15,13 +15,16 @@ namespace QuanLyChamThi.ViewModel
         private List<QuestionModel> _selectedQuestions;
         private UCQuestionListViewModel _questionListViewModel;
 
+        #region Textblock xem trước câu hỏi
         private string _reviewQuestionContent;
         public string ReviewQuestionContent
         {
             get { return _reviewQuestionContent; }
             set { _reviewQuestionContent = value; OnPropertyChange("ReviewQuestionContent"); }
         }
+        #endregion
 
+        #region Double click xem nội dung câu hỏi
         private ICommand _loadSelectedQuestionContentCommand;
         public ICommand LoadSelectedQuestionContentCommand
         {
@@ -38,7 +41,9 @@ namespace QuanLyChamThi.ViewModel
             if(_questionListViewModel.SelectedQuestions.Count != 0)
                 ReviewQuestionContent = _questionListViewModel.SelectedQuestions[0].Content;
         }
+        #endregion
 
+        #region Button thêm những câu hỏi được chọn vào danh sách
         private ICommand _addSelectedQuestionCommand;
         public ICommand AddSelectedQuestionCommand
         {
@@ -54,6 +59,28 @@ namespace QuanLyChamThi.ViewModel
         {
             _questionListViewModel.HighlightQuestions(_questionListViewModel.SelectedQuestions.ToList());
         }
+        #endregion
+
+        #region Button Đồng ý
+        private ICommand _acceptCommand;
+        public ICommand AcceptCommand
+        {
+            get
+            {
+                if (_acceptCommand == null)
+                    _acceptCommand = new RelayCommand(param => Accept());
+                return _acceptCommand;
+            }
+            set { _acceptCommand = value; }
+        }
+        private void Accept()
+        {
+            foreach(var question in _questionListViewModel.GetHighlightedQuestions())
+            {
+                _selectedQuestions.Add(question);
+            }
+        }
+        #endregion
 
         public WindowQuestionListViewModel(List<QuestionModel> selectedQuestion, UCQuestionListViewModel questionListViewModel)
         {

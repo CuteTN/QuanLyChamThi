@@ -58,13 +58,13 @@ namespace QuanLyChamThi.ViewModel
             var result = (from d in DataProvider.Ins.DB.DIFFICULTY select d).ToList();
             return result;
         }
-        
+
         private BindingList<DIFFICULTY> _listDifficulty = null;
         public BindingList<DIFFICULTY> ListDifficulty
         {
             get
             {
-                if(_listDifficulty == null)
+                if (_listDifficulty == null)
                     _listDifficulty = new BindingList<DIFFICULTY>(selectDifficulty());
                 return _listDifficulty;
             }
@@ -76,8 +76,8 @@ namespace QuanLyChamThi.ViewModel
         {
             get
             {
-                if(_selectedDifficulty == null)
-                    if(ListDifficulty.Count > 0)
+                if (_selectedDifficulty == null)
+                    if (ListDifficulty.Count > 0)
                         _selectedDifficulty = ListDifficulty[0];
                 return _selectedDifficulty;
             }
@@ -91,7 +91,7 @@ namespace QuanLyChamThi.ViewModel
         {
             get
             {
-                if(_content == null)
+                if (_content == null)
                     _content = "";
                 return _content;
             }
@@ -112,11 +112,17 @@ namespace QuanLyChamThi.ViewModel
                 return result;
             }
             QUESTION question = questionModel.AdaptDBModel();
+            
+            // if we are editting a question, we must use the same IDQuestion as EditingQuestion
+            if(EditingQuestion != null)
+            {
+                question.IDQuestion = EditingQuestion.IDQuestion;
+            }
 
             DatabaseCommand cmd = new DatabaseCommand
             {
                 add = question,
-                delete = editingQuestion,
+                delete = EditingQuestion == null ? null : DataProvider.Ins.DB.QUESTION.Find(EditingQuestion.IDQuestion),
             };
 
             result.Add(cmd);
@@ -129,8 +135,8 @@ namespace QuanLyChamThi.ViewModel
 
             var commands = CreateAddCommands();
 
-            if(commands.Count > 0)
-            { 
+            if (commands.Count > 0)
+            {
                 NotifyToMediator(commands);
                 resetInputContent();
             }
@@ -141,7 +147,7 @@ namespace QuanLyChamThi.ViewModel
         {
             get
             {
-                if(_addQuestionCommand == null)
+                if (_addQuestionCommand == null)
                     _addQuestionCommand = new RelayCommand(param => AddQuestionFunction());
                 return _addQuestionCommand;
             }
@@ -150,7 +156,22 @@ namespace QuanLyChamThi.ViewModel
         #endregion
 
         #region Internal Business logics
-        private QuestionModel editingQuestion = null;
+        private QuestionModel _editingQuestion;
+        public QuestionModel EditingQuestion
+        {
+            get { return _editingQuestion; }
+            set 
+            {
+                _editingQuestion = value;
+                if (value != null)
+                {
+                    var editingQuestionDBModel = DataProvider.Ins.DB.QUESTION.Find(_editingQuestion.IDQuestion);
+                    Content = editingQuestionDBModel.Content;
+                    SelectedDifficulty = editingQuestionDBModel.Difficulty;
+                    SelectedSubject = editingQuestionDBModel.SUBJECT;
+                }
+            }
+        }
 
         private QuestionModel createQuestion()
         {
@@ -179,6 +200,7 @@ namespace QuanLyChamThi.ViewModel
         private void resetInputContent()
         {
             Content = "";
+            EditingQuestion = null;
         }
         #endregion
 
@@ -212,6 +234,39 @@ namespace QuanLyChamThi.ViewModel
                 });
             }
             ViewModelMediator.Ins.Receive(this, commands);
+        }
+        #endregion
+
+        #region Button Cancel Editing
+        ICommand _cancelEditingCommand;
+        public ICommand CancelEditingCommand
+        {
+            get
+            {
+                if (_cancelEditingCommand == null)
+                    _cancelEditingCommand = new RelayCommand(param => resetInputContent());
+                return _cancelEditingCommand;
+            }
+            set { _cancelEditingCommand = value; }
+        }
+        #endregion
+
+        #region Event double click to edit question
+        ICommand _loadSelectedQuestionCommand;
+        public ICommand LoadSelectedQuestionCommand
+        {
+            get
+            {
+                if (_loadSelectedQuestionCommand == null)
+                    _loadSelectedQuestionCommand = new RelayCommand(param => LoadSelectedQuestion());
+                return _loadSelectedQuestionCommand;
+            }
+            set { _loadSelectedQuestionCommand = value; }
+        }
+
+        void LoadSelectedQuestion()
+        {
+            EditingQuestion = QuestionListViewModel.SelectedQuestions[0];
         }
         #endregion
 

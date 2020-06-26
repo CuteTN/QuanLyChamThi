@@ -148,8 +148,10 @@ namespace QuanLyChamThi.ViewModel
             cmd.delete = _test?.pSource;
             cmdList.Add(cmd);
             
-            for (int i=0; true; i++)
+            for (int i=0; true;)
             {
+                if (TempTestDetail.Count == 0)
+                    break;
                 cmd = new DatabaseCommand();
                 if (i < TempTestDetail.Count)
                     cmd.add = new TESTDETAIL{
@@ -164,6 +166,7 @@ namespace QuanLyChamThi.ViewModel
                 else
                     cmd.delete = null;
                 cmdList.Add(cmd);
+                i++;
                 if (i >= TempTestDetail.Count && i >= TestDetail.Count)
                     break;
             }
@@ -215,7 +218,17 @@ namespace QuanLyChamThi.ViewModel
 
         public void Receive(object sender, List<DatabaseCommand> commands)
         {
-            DatabaseCommand test = commands.FirstOrDefault((DatabaseCommand item) => item.delete != null && item.delete == _test?.pSource);
+            DatabaseCommand test = null;
+            try
+            {
+                // if item.delete is not as the same type of _test.pSource, it gonna throw excpetion
+                // so please check its type before make operator
+                test = commands.FirstOrDefault((DatabaseCommand item) => item.delete != null && item.delete == _test?.pSource);
+            }
+            catch(Exception e)
+            {
+
+            }
             if (test != null)
             {
                 ViewMode((test.add as TEST)?.IDTest);

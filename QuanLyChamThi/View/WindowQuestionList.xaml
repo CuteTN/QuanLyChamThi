@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuanLyChamThi.View"
-        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="CHỌN CÂU HỎI VÀO ĐỀ THI" Height="720" Width="1280">
     <Window.Resources>
@@ -81,7 +81,22 @@
         </ScrollViewer>
         <Button x:Name="btnAddRemove" Command="{Binding AddSelectedQuestionCommand}" Grid.Column="24" Grid.Row="14" Grid.ColumnSpan="7" Content="Thêm câu hỏi vào đề thi" Style="{StaticResource MaterialDesignFlatButton}"/>
 
-        <Button Grid.Column="28" Grid.Row="16" Grid.ColumnSpan="3" VerticalAlignment="Center" Content="Xác nhận"/>
-        <Button Grid.Column="24" Grid.Row="16" Grid.ColumnSpan="3" VerticalAlignment="Center" Content="Hủy"/>
+        <Button Grid.Column="28" Grid.Row="16" Grid.ColumnSpan="3" VerticalAlignment="Center" Content="Xác nhận">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Click">
+                    <i:InvokeCommandAction Command="{Binding AcceptCommand}"/>
+                    <i:CallMethodAction MethodName="Close" 
+                                        TargetObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Button>
+        <Button Grid.Column="24" Grid.Row="16" Grid.ColumnSpan="3" VerticalAlignment="Center" Content="Hủy">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Click">
+                    <i:CallMethodAction MethodName="Close" 
+                                        TargetObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Button>
     </Grid>
 </Window>
