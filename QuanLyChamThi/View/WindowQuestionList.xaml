@@ -62,8 +62,8 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <local:UserControlQuestionList Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="15" Grid.RowSpan="16">
-            
+        <local:UserControlQuestionList x:Name="ucQuestionList" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="15" Grid.RowSpan="16">
+            <!-- btnEdit and btnRemove are hidden by code behind-->
         </local:UserControlQuestionList>
 
         <Label Grid.Column="17" Grid.Row="1" Grid.ColumnSpan="3" Content="Xem trước câu hỏi"/>

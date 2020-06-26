@@ -8,10 +8,14 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <DockPanel LastChildFill="True">
-            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-                <Label Content="Danh sách câu hỏi:      " VerticalAlignment="Center"/>
-                <Button x:Name="btnFilter" Content="Tuỳ chọn" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-            </StackPanel>
+            <DockPanel DockPanel.Dock="Top">
+                <Label DockPanel.Dock="Left" Content="Danh sách câu hỏi:      " VerticalAlignment="Center"/>
+                <Button DockPanel.Dock="Left" x:Name="btnFilter" Content="Tuỳ chọn" VerticalAlignment="Center"/>
+                <Button DockPanel.Dock="Right" x:Name="btnRemove" Content="Xóa"/>
+                <Separator DockPanel.Dock="Right" Background="Transparent" MinWidth="10"/>
+                <Button DockPanel.Dock="Right" x:Name="btnEdit" Content="Sửa"/>
+                <Separator Background="Transparent"/>
+            </DockPanel>
 
             <ScrollViewer x:Name="svGrid" VerticalScrollBarVisibility="Auto">
                 <local:CustomDataGrid x:Name="dgQuestionList" 

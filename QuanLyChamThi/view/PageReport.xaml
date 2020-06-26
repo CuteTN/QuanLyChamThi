@@ -9,12 +9,62 @@
       Title="LẬP BÁO CÁO NĂM">
 
     <Grid Background="LightGray" x:Name="mainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="14" Grid.RowSpan="2" Content="BÁO CÁO NĂM" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-        <StackPanel Grid.Column="16" Grid.Row="1" Grid.ColumnSpan="14" Grid.RowSpan="2" Orientation="Horizontal" VerticalAlignment="Center">
-            <Label Content="Chọn năm"/>
-            <ComboBox x:Name="cbYear" ItemsSource="{Binding ListYear}" SelectedItem="{Binding StrSelectedYear}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+            <Label Content="Chọn năm" Grid.Column="10" Grid.Row="1" Grid.ColumnSpan="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <ComboBox x:Name="cbYear" Grid.Column="13" Grid.Row="1" Grid.ColumnSpan="4" ItemsSource="{Binding ListYear}" SelectedItem="{Binding StrSelectedYear}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <!--<ComboBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
@@ -23,8 +73,7 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>-->
             </ComboBox>
-            <Button Content="Tạo BC"/>
-        </StackPanel>
+        <Button Grid.Column="18" Grid.Row="1" Grid.ColumnSpan="3"  Content="Tạo BC"/>
 
         <Label Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="8" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Tổng số đề thi"/>
         <TextBlock x:Name="tbTotalTest" Grid.Column="8" Grid.Row="3" Grid.ColumnSpan="8" HorizontalAlignment="Right" VerticalAlignment="Center"/>

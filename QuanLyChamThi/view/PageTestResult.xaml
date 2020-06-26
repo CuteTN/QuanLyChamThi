@@ -103,7 +103,7 @@
         </ComboBox>
         <Button x:Name="btnChooseTest" Grid.Column="20" Grid.Row="2" Grid.ColumnSpan="4" VerticalAlignment="Center" Content="Chọn đề thi"/>
 
-        <Button x:Name="btnAdd" Command="{Binding AddNewTestResultCommand}" Grid.Column="26" Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Center" Content="Thêm"/>
+        <Button x:Name="btnAdd" Command="{Binding AddNewTestResultCommand}" Grid.Column="25" Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Center" Content="Thêm"/>
         <Button x:Name="btnDelete" Command="{Binding DeleteSelectedResultsCommand}" Grid.Column="28" Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Center" Content="Xoá"/>
 
         <DataGrid x:Name="dgListTestResult" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="29" Grid.RowSpan="11" ItemsSource="{Binding ListTestResult, Mode=TwoWay}" AutoGenerateColumns="False" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False" CanUserAddRows="False">

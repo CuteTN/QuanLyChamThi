@@ -5,7 +5,6 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:QuanLyChamThi.View" 
-      xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
       mc:Ignorable="d" 
       d:DesignHeight="640" d:DesignWidth="1200"
       Title="CÀI ĐẶT">
@@ -113,11 +112,15 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
+
                     <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="7" Content="Số lượng độ khó"/>
                     <ComboBox x:Name="cbDifficultyNumber" Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="4"/>
                     <Button x:Name="btnUpdateDifficulty" Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="4" Content="Cập nhật"/>
                     <DataGrid x:Name="dgDifficultyList" Grid.Column="10" Grid.Row="1" Grid.ColumnSpan="18" Grid.RowSpan="10">
-                        
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="STT" Width="1.5*"/>
+                            <DataGridTextColumn Header="Độ khó" Width="8.5*"/>
+                        </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
             </TabItem>
@@ -168,15 +171,20 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
+
+                    <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="7" Content="Số lượng môn học"/>
                     <ComboBox x:Name="cbDSubjectNumber" Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="4"/>
                     <Button x:Name="btnUpdateSubject" Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="4" Content="Cập nhật"/>
-                    <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="7" Content="Số lượng độ khó"/>
                     <DataGrid x:Name="dgSubjectList" Grid.Column="10" Grid.Row="1" Grid.ColumnSpan="18" Grid.RowSpan="10">
-
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="STT" Width="1*"/>
+                            <DataGridTextColumn Header="Mã môn học" Width="3*"/>
+                            <DataGridTextColumn Header="Tên môn học" Width="7*"/>
+                        </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
             </TabItem>
-            
+
             <TabItem Header="Tùy chỉnh lớp học" Padding="16">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -224,11 +232,16 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
+
+                    <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="7" Content="Số lượng lớp học"/>
                     <ComboBox x:Name="cbClassNumber" Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="4"/>
                     <Button x:Name="btnUpdateClass" Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="4" Content="Cập nhật"/>
-                    <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="7" Content="Số lượng độ khó"/>
                     <DataGrid x:Name="dgClassList" Grid.Column="10" Grid.Row="1" Grid.ColumnSpan="18" Grid.RowSpan="10">
-
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="STT" Width="1*"/>
+                            <DataGridTextColumn Header="Mã lớp học" Width="3*"/>
+                            <DataGridTextColumn Header="Tên lớp học" Width="7*"/>
+                        </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
             </TabItem>

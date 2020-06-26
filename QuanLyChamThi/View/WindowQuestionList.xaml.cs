@@ -22,6 +22,8 @@ namespace QuanLyChamThi.View
         public WindowQuestionList()
         {
             InitializeComponent();
+            ucQuestionList.btnEdit.Visibility = Visibility.Hidden;
+            ucQuestionList.btnRemove.Visibility = Visibility.Hidden;
         }
     }
 }
