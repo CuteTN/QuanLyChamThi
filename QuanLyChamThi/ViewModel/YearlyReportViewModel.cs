@@ -1,4 +1,5 @@
-﻿using QuanLyChamThi.Model;
+﻿using QuanLyChamThi.Command;
+using QuanLyChamThi.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -6,7 +7,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
+using System.Windows.Input;
 
 namespace QuanLyChamThi.ViewModel
 {
@@ -132,7 +135,35 @@ namespace QuanLyChamThi.ViewModel
                 }
                 return _listReport;
             }
-            set { _listReport = value; OnPropertyChange("ListReport"); }
+            set 
+            { 
+                _listReport = value; 
+                OnPropertyChange("ListReport");
+            }
+        }
+        #endregion
+
+        #region button Make Report
+        private ICommand _makeReportCommand = null;
+        public ICommand MakeReportCommand
+        {
+            get
+            {
+                if(_makeReportCommand == null)
+                    _makeReportCommand = new RelayCommand(param => MakeReportFunction(), null);
+                return _makeReportCommand;
+            }
+            set
+            {
+                _makeReportCommand = value;
+                OnPropertyChange("MakeReportCommand");
+            }
+        }
+
+        private void MakeReportFunction()
+        {
+            model.Year = this.SelectedYear;
+            ListReport = model.Data;
         }
         #endregion
 

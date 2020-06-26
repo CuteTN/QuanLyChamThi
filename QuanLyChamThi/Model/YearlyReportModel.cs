@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Media.Animation;
 
 namespace QuanLyChamThi.Model
@@ -22,28 +24,32 @@ namespace QuanLyChamThi.Model
             get { return _year; }
             set 
             { 
+                if(_year != value)
+                    _data = null;
                 _year = value;
-                Data = selectData(_year);
             }
         }
         
         #region Data
         private ObservableCollection<SubjectYearlyReportModel> selectData(int year)
         {
-            // user is not yet implemented
-            var query = from t in DataProvider.Ins.DB.TEST where t.Year == year
-                        join d in DataProvider.Ins.DB.TESTRESULTDETAIL on t.IDTest equals d.IDTest
-                        join r in DataProvider.Ins.DB.TESTRESULT on d.IDTestResult equals r.IDTestResult
-                        select new { t.IDSubject, t.IDTest, r.IDTestResult } into j
-                        group j by new { j.IDSubject } into g
-                        select new SubjectYearlyReportModel
-                        {
-                            IDSubject = g.Key.IDSubject,
-                            TestCount = g.Select(j => j.IDTest).Distinct().Count(),
-                            TestResultCount = g.Select(j => j.IDTestResult).Distinct().Count(),
-                        };
+            // Author: Tuong
+            var subjects = DataProvider.Ins.DB.SUBJECT.ToList().Select((SUBJECT src) =>
+            {
+                var tests = DataProvider.Ins.DB.TEST.Where((test) => (test.IDSubject == src.IDSubject) && (test.Year == year) );
+                SubjectYearlyReportModel trg = new SubjectYearlyReportModel
+                {
+                    IDSubject = src.IDSubject,
+                    TestCount = tests.Count(),
+                    TestResultCount = (from u in tests 
+                                       join v in DataProvider.Ins.DB.TESTRESULTDETAIL 
+                                       on  u.IDTest equals v.IDTest
+                                       select v.IDTestResult).Count()
+                };
+                return trg;
+            });
 
-            ObservableCollection<SubjectYearlyReportModel> result = new ObservableCollection<SubjectYearlyReportModel>(query.ToList());
+            ObservableCollection<SubjectYearlyReportModel> result = new ObservableCollection<SubjectYearlyReportModel>(subjects.ToList());
             return result;
         }
 
@@ -65,7 +71,8 @@ namespace QuanLyChamThi.Model
             set
             {
                 _data = value;
-                fillTotal();
+                if(value != null)
+                    fillTotal();
             }
         }
 

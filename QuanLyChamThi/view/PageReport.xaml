@@ -15,15 +15,8 @@
         <StackPanel Grid.Column="16" Grid.Row="1" Grid.ColumnSpan="14" Grid.RowSpan="2" Orientation="Horizontal" VerticalAlignment="Center">
             <Label Content="Chọn năm"/>
             <ComboBox x:Name="cbYear" ItemsSource="{Binding ListYear}" SelectedItem="{Binding StrSelectedYear}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
-                <!--<ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <TextBlock Text="{Binding ToString}"></TextBlock>
-                        </StackPanel>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>-->
             </ComboBox>
-            <Button Content="Tạo BC"/>
+            <Button x:Name="btnMakeReport" Command="{Binding MakeReportCommand}" Content="Tạo BC"/>
         </StackPanel>
 
         <Label Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="8" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Tổng số đề thi"/>
@@ -34,14 +27,14 @@
 
 
         <ScrollViewer x:Name="svGrid" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="29" Grid.RowSpan="10" VerticalScrollBarVisibility="Auto">
-            <DataGrid x:Name="dgReport" AutoGenerateColumns="False" ItemsSource="{Binding ListReport, Mode=TwoWay}" Width="{Binding ElementName=svGrid, Path=ActualWidth}" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False">
+            <DataGrid x:Name="dgReport" AutoGenerateColumns="False" ItemsSource="{Binding ListReport, Mode=TwoWay}" Width="{Binding ElementName=svGrid, Path=ActualWidth}" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False" IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn x:Name="colSTT" Header="STT" Width="2*"/>
-                    <DataGridTextColumn x:Name="colName" Binding="{Binding Subject}" Header="Tên môn" Width="5*"/>
-                    <DataGridTextColumn x:Name="colTestNumber" Header="Số lượng đề thi" Width="5*"/>
-                    <DataGridTextColumn x:Name="colTestResultNumber" Header="Số lượng bài chấm" Width="5*"/>
-                    <DataGridTextColumn x:Name="colTestRatio" Header="Tỉ lệ đề thi" Width="5*"/>
-                    <DataGridTextColumn x:Name="colTestResultRatio" Header="Tỉ lệ bài chấm" Width="5*"/>
+                    <DataGridTextColumn x:Name="colName" Binding="{Binding Subject, Mode=TwoWay}" Header="Tên môn" Width="5*"/>
+                    <DataGridTextColumn x:Name="colTestNumber" Binding="{Binding TestCount, Mode=TwoWay}" Header="Số lượng đề thi" Width="5*"/>
+                    <DataGridTextColumn x:Name="colTestResultNumber" Binding="{Binding TestResultCount, Mode=TwoWay}" Header="Số lượng bài chấm" Width="5*"/>
+                    <DataGridTextColumn x:Name="colTestRatio" Binding="{Binding TestRatio, Mode=TwoWay}" Header="Tỉ lệ đề thi" Width="5*"/>
+                    <DataGridTextColumn x:Name="colTestResultRatio" Binding="{Binding TestResultRatio, Mode=TwoWay}" Header="Tỉ lệ bài chấm" Width="5*"/>
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>
