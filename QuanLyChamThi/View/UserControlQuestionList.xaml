@@ -12,7 +12,7 @@
     <Grid>
         <DockPanel LastChildFill="True">
             <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-                <Label Content="Danh sách câu hỏi: " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Label Content="Danh sách câu hỏi:      " VerticalAlignment="Center"/>
                 <Button x:Name="btnFilter" Content="Tuỳ chọn" HorizontalAlignment="Right" VerticalAlignment="Center"/>
             </StackPanel>
 

@@ -11,8 +11,12 @@ namespace QuanLyChamThi.View
     {
         public static bool Message(Window sender, string message, string detail, float stayTime)
         {
+            sender.Opacity = 0.5;
             WindowNotification windowNotification = new WindowNotification(message, detail, stayTime);
-            return (windowNotification.ShowDialog() == true);
+            bool result = (windowNotification.ShowDialog() == true);
+            sender.Opacity = 1;
+
+            return result;
         } 
     }
 }

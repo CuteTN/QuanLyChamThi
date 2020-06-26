@@ -145,9 +145,7 @@ namespace QuanLyChamThi.ViewModel
             get
             {
                 if (_newTestCommand == null)
-                    ;
-                    // TODO
-                    //_newTestCommand = new RelayCommand(param => MainWindowViewModel.SwitchView(7));
+                    _newTestCommand = new RelayCommand(param => MainWindowViewModel.Ins.SwitchView(9, ""));
                 return _newTestCommand;
             }
             set { _newTestCommand = value; }
@@ -182,15 +180,16 @@ namespace QuanLyChamThi.ViewModel
             if (cmdList.Any())
                 ViewModelMediator.Ins.Receive(this, cmdList);
         }
+        #endregion
 
         public void Receive(object sender, List<DatabaseCommand> commands)
         {
             if (sender == this || commands.Exists((DatabaseCommand it) => it.add is TEST || it.delete is TEST))
             {
                 _test = new BindingList<TEST>((from u in DataProvider.Ins.DB.TEST select u).ToList());
+                // TODO: test removing this line
                 Search(Filter);
             }
         }
-        #endregion
     }
 }
