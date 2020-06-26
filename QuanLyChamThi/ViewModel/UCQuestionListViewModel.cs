@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Navigation;
 
 namespace QuanLyChamThi.ViewModel
 {
@@ -20,18 +21,25 @@ namespace QuanLyChamThi.ViewModel
         }
 
         #region DataGrid List Question
-        private ObservableCollection<QuestionModel> _listQuestion;
-        public ObservableCollection<QuestionModel> ListQuestion
+        private ObservableCollection<Pair<int, QuestionModel>> _listQuestions;
+        /// <summary>
+        /// First parameter is show if that question is hightlighted or not
+        /// </summary>
+        public ObservableCollection<Pair<int, QuestionModel>> ListQuestions
         {
             get
             {
-                if (_listQuestion == null)
+                if (_listQuestions == null)
                 {
-                    _listQuestion = ListQuestionModel.Ins.Data;
+                    _listQuestions = new ObservableCollection<Pair<int, QuestionModel>>();
+                    foreach(var question in ListQuestionModel.Ins.Data)
+                    {
+                        _listQuestions.Add(new Pair<int, QuestionModel>(0, question));
+                    }
                 }
-                return _listQuestion;
+                return _listQuestions;
             }
-            set { _listQuestion = value; OnPropertyChange("ListQuestion"); }
+            set { _listQuestions = value; OnPropertyChange("ListQuestions"); }
         }
         #endregion
 
@@ -47,6 +55,17 @@ namespace QuanLyChamThi.ViewModel
             set { _selectedQuestions = value; OnPropertyChange("SelectedQuestions"); }
         }
 
+        public void HighlightQuestions(List<QuestionModel> questionsNeedHighlight)
+        {
+            foreach(var question in _listQuestions)
+            {
+                if(questionsNeedHighlight.Find((QuestionModel param) => param.IDQuestion == question.Second.IDQuestion) != null)
+                {
+                    question.First = 1;
+                }
+            }
+        }
+
         public void Receive(object sender, List<DatabaseCommand> commands)
         {
             // update data after adding a new question
@@ -60,7 +79,7 @@ namespace QuanLyChamThi.ViewModel
             ListQuestionModel.Ins.UpdateFromDB();
 
             // this is to trigger OnPropertyChange method
-            ListQuestion = ListQuestionModel.Ins.Data;
+            //ListQuestions = ListQuestionModel.Ins.Data;
         }
     }
 }

@@ -89,10 +89,6 @@ namespace QuanLyChamThi.ViewModel
         {
             get
             {
-                if(_selectedTestID != null)
-                {
-                    _selectedClass = DataProvider.Ins.DB.CLASS.Where((CLASS param) => param.IDSubject == _selectedTestID.IDSubject).ToList()[0];
-                }
                 return _selectedClass;
             }
             set
