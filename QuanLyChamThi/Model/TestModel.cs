@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLyChamThi.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -122,6 +123,17 @@ namespace QuanLyChamThi.Model
             {
                 get { return _content; }
                 set { _content = value; OnPropertyChange("Content"); }
+            }
+
+            public TestDetailModel(QuestionModel that, int stt)
+            {
+                Content = that.Content;
+                QuestionID = that.IDQuestion;
+                Stt = stt;
+            }
+
+            public TestDetailModel()
+            {
             }
 
             public event PropertyChangedEventHandler PropertyChanged;

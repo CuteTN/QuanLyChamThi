@@ -18,8 +18,8 @@
 
             <ScrollViewer x:Name="svGrid" VerticalScrollBarVisibility="Auto">
                 <local:CustomDataGrid x:Name="dgQuestionList" 
-                                      ItemsSource="{Binding ListQuestions, Mode=TwoWay}" 
-                                      SelectedItemsList="{Binding SelectedQuestions, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                      ItemsSource="{Binding ListQuestionsView, Mode=TwoWay}" 
+                                      SelectedItemsList="{Binding SelectedQuestionsView, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                       AutoGenerateColumns="False" Width="{Binding ElementName=svGrid, Path=ActualWidth}" 
                                       CanUserResizeColumns="False" CanUserReorderColumns="False" 
                                       CanUserSortColumns="False" 

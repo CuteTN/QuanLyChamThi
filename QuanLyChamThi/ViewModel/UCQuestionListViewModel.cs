@@ -21,43 +21,56 @@ namespace QuanLyChamThi.ViewModel
         }
 
         #region DataGrid List Question
-        private ObservableCollection<Pair<int, QuestionModel>> _listQuestions;
+        private ObservableCollection<Pair<int, QuestionModel>> _listQuestionsView;
         /// <summary>
         /// First parameter is show if that question is hightlighted or not
         /// </summary>
-        public ObservableCollection<Pair<int, QuestionModel>> ListQuestions
+        public ObservableCollection<Pair<int, QuestionModel>> ListQuestionsView
         {
             get
             {
-                if (_listQuestions == null)
+                if (_listQuestionsView == null)
                 {
-                    _listQuestions = new ObservableCollection<Pair<int, QuestionModel>>();
-                    foreach(var question in ListQuestionModel.Ins.Data)
-                    {
-                        _listQuestions.Add(new Pair<int, QuestionModel>(0, question));
-                    }
+                    _listQuestionsView = new ObservableCollection<Pair<int, QuestionModel>>(GetListQuestionsViewFromDB());
                 }
-                return _listQuestions;
+                return _listQuestionsView;
             }
-            set { _listQuestions = value; OnPropertyChange("ListQuestions"); }
+            set { _listQuestionsView = value; OnPropertyChange("ListQuestionsView"); }
+        }
+
+        private List<Pair<int, QuestionModel>> GetListQuestionsViewFromDB()
+        {
+            List<Pair<int, QuestionModel>> returnList = new List<Pair<int, QuestionModel>>();
+            foreach (var question in ListQuestionModel.Ins.Data)
+            {
+                returnList.Add(new Pair<int, QuestionModel>(0, question));
+            }
+            return returnList;
         }
         #endregion
 
-        private IList<QuestionModel> _selectedQuestions;
-        public IList<QuestionModel> SelectedQuestions
+        private IList<Pair<int, QuestionModel>> _selectedQuestionsView;
+        public IList<Pair<int, QuestionModel>> SelectedQuestionsView
         {
             get 
             {
-                if (_selectedQuestions == null)
-                    _selectedQuestions = new BindingList<QuestionModel>();
-                return _selectedQuestions;
+                if (_selectedQuestionsView == null)
+                    _selectedQuestionsView = new BindingList<Pair<int, QuestionModel>>();
+                SelectedQuestions.Clear();
+                foreach(var questionView in _selectedQuestionsView)
+                {
+                    SelectedQuestions.Add(questionView.Second);
+                }
+                return _selectedQuestionsView;
             }
-            set { _selectedQuestions = value; OnPropertyChange("SelectedQuestions"); }
+            set { _selectedQuestionsView = value; OnPropertyChange("SelectedQuestions"); }
         }
+
+        public IList<QuestionModel> SelectedQuestions = new List<QuestionModel>();
 
         public void HighlightQuestions(List<QuestionModel> questionsNeedHighlight)
         {
-            foreach(var question in _listQuestions)
+            foreach(var question in _listQuestionsView)
             {
                 if(questionsNeedHighlight.Find((QuestionModel param) => param.IDQuestion == question.Second.IDQuestion) != null)
                 {
@@ -79,7 +92,7 @@ namespace QuanLyChamThi.ViewModel
             ListQuestionModel.Ins.UpdateFromDB();
 
             // this is to trigger OnPropertyChange method
-            //ListQuestions = ListQuestionModel.Ins.Data;
+            ListQuestionsView = new ObservableCollection<Pair<int, QuestionModel>>(GetListQuestionsViewFromDB());
         }
     }
 }

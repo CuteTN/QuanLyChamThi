@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace QuanLyChamThi.Model
 {
     // Author: CuteTN
-    class QuestionModel
+    public class QuestionModel
     {
 
         private int _idQuestion;

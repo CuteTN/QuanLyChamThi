@@ -114,6 +114,7 @@
     <Compile Include="ViewModel\ViewModelMediator.cs" />
     <Compile Include="ViewModel\DatabaseCommand.cs" />
     <Compile Include="Pair.cs" />
+    <Compile Include="ViewModel\WindowQuestionListViewModel.cs" />
     <Compile Include="ViewModel\YearlyReportViewModel.cs" />
     <Compile Include="View\CustomDataGrid.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

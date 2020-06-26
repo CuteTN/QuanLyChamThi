@@ -206,6 +206,13 @@ namespace QuanLyChamThi.ViewModel
             ViewModelMediator.Ins.AddUserModel(this);
         }
 
+        public void AcceptData(List<QuestionModel> questions)
+        {
+            TempTestDetail.Clear();
+            TempTestDetail = new ObservableCollection<TestModel.TestDetailModel>(
+                questions.Select((QuestionModel question, int i) => new TestModel.TestDetailModel(question, i)));
+        }
+
         public void Receive(object sender, List<DatabaseCommand> commands)
         {
             DatabaseCommand test = commands.FirstOrDefault((DatabaseCommand item) => item.delete != null && item.delete == _test?.pSource);
