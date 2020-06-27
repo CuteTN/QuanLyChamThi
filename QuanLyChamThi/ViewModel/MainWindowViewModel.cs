@@ -29,7 +29,7 @@ namespace QuanLyChamThi.ViewModel
             set { _ins = value; }
         }
 
-        private Page[] listPage = { new PageMain(), new PageReport(), new PageTestResult(), new PageTestResultDetailed(), new PageQuestion(), new PageTestSearch(), new PageTest() };
+        private Page[] listPage = { new PageMain(), new PageReport(), new PageTestResult(), new PageTestResultDetailed(), new PageQuestion(), new PageTestSearch(), new PageTest(), new PageSetting()};
 
         #region CloseWindow Command
         private ICommand _closeCommand;
@@ -158,6 +158,7 @@ namespace QuanLyChamThi.ViewModel
                         break; 
                     }
                 case 4: SelectedPage = listPage[1]; break;
+                case 6: SelectedPage = listPage[7]; break;
                 // Thanh - Editing Test Result
                 case 7: break;
                 case 8: FinishEditingTestResult(); break;

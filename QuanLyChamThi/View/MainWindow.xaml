@@ -10,7 +10,7 @@
         xmlns:page="clr-namespace:QuanLyChamThi.View"
         xmlns:s="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="MainWindow" Height="720" Width="1280" MinHeight="360" MinWidth="640" WindowStartupLocation="CenterScreen">
+        Title="MainWindow" Height="720" Width="1280" MinHeight="480" MinWidth="853" WindowStartupLocation="CenterScreen">
     <Grid x:Name="mainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="60"/>

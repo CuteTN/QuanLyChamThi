@@ -10,15 +10,70 @@
       Title="DANH SÁCH BÀI CHẤM">
 
     <Grid Background="LightGray" x:Name="mainGrid">
-        <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="17" Grid.RowSpan="2" VerticalAlignment="Center" Content="DANH SÁCH BÀI CHẤM"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <Button x:Name="btnNew" Command="{Binding EditSelectedTestResultDetailCommand}" Grid.Column="19" Grid.Row="1" Grid.ColumnSpan="6" Grid.RowSpan="2" VerticalAlignment="Center" Content="Tạo mới"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-        <Button Grid.Column="26" Command="{Binding DeleteSelectedResultDetailCommand}" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="2" VerticalAlignment="Center">
+        <Button x:Name="btnNew" Command="{Binding EditSelectedTestResultDetailCommand}" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="6" Content="+ Tạo bài chấm mới"/>
+        <Button Grid.Column="28" Command="{Binding DeleteSelectedResultDetailCommand}" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center">
             <Image Source="/QuanLyChamThi;component/Icon/filter.ico"/>
         </Button>
 
-        <ScrollViewer x:Name="svGrid" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="29" Grid.RowSpan="12" VerticalScrollBarVisibility="Auto">
+        <Button x:Name="btnEdit" Grid.Column="23" Grid.Row="2" Grid.ColumnSpan="3" Content="Sửa"/>
+        <Button x:Name="btnRemove" Grid.Column="27" Grid.Row="2" Grid.ColumnSpan="3" Content="Xóa"/>
+        
+
+        <ScrollViewer x:Name="svGrid" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="29" Grid.RowSpan="13" VerticalScrollBarVisibility="Auto">
             <DataGrid x:Name="dgListTestResult" ItemsSource="{Binding ListTestResultDetail}" SelectedItem="{Binding SelectedResultDetail, Mode=TwoWay}" AutoGenerateColumns="False" Width="{Binding ElementName=svGrid, Path=ActualWidth}" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False" CanUserAddRows="False" IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn x:Name="colSubjectName" Binding="{Binding SubjectName}" Header="Tên môn thi" Width="1*"/>

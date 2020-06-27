@@ -26,6 +26,8 @@ namespace QuanLyChamThi.View
             InitializeComponent();
 
             DataContext = new WindowQuestionListViewModel(selectedQuestions, ucQuestionList.DataContext as UCQuestionListViewModel);
+            ucQuestionList.btnEdit.Visibility = Visibility.Hidden;
+            ucQuestionList.btnRemove.Visibility = Visibility.Hidden;
         }
     }
 }
