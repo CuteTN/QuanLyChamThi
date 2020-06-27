@@ -1,4 +1,5 @@
-﻿using QuanLyChamThi.Model;
+﻿using QuanLyChamThi.Command;
+using QuanLyChamThi.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -6,7 +7,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
+using System.Windows.Input;
 
 namespace QuanLyChamThi.ViewModel
 {
@@ -132,7 +135,36 @@ namespace QuanLyChamThi.ViewModel
                 }
                 return _listReport;
             }
-            set { _listReport = value; OnPropertyChange("ListReport"); }
+            set 
+            { 
+                _listReport = value; 
+                OnPropertyChange("ListReport");
+            }
+        }
+        #endregion
+
+        #region button Make Report
+        private ICommand _makeReportCommand = null;
+        public ICommand MakeReportCommand
+        {
+            get
+            {
+                if(_makeReportCommand == null)
+                    _makeReportCommand = new RelayCommand(param => MakeReportFunction(), null);
+                return _makeReportCommand;
+            }
+            set
+            {
+                _makeReportCommand = value;
+                OnPropertyChange("MakeReportCommand");
+            }
+        }
+
+        private void MakeReportFunction()
+        {
+            model.Year = this.SelectedYear;
+            model.UpdateFromDB();
+            ListReport = model.Data;
         }
         #endregion
 
@@ -140,15 +172,52 @@ namespace QuanLyChamThi.ViewModel
         YearlyReportModel model = null;
         #endregion
 
+        #region tbTotalTest and tbTotalTestResult
+        public int TotalTestCount
+        {
+            get { return model.TotalTestCount; }
+            set { /* can't set this */ }
+        }
+        public int TotalTestResultCount
+        {
+            get { return model.TotalTestResultCount; }
+            set { /* can't set this */ }
+        }
+
+        public void OnTotalTestCountChange(Object sender, EventArgs args)
+        {
+            // just to be sure...
+            if(sender != model)
+                return;
+            OnPropertyChange("TotalTestCount");
+        }
+
+        public void OnTotalTestResultCountChange(Object sender, EventArgs args)
+        {
+            // just to be sure...
+            if(sender != model)
+                return;
+            OnPropertyChange("TotalTestResultCount");
+        }
+        #endregion
+
         public void Receive(object sender, List<DatabaseCommand> commands)
         {
             // MORECODE
         }
 
+        private void InitializeModel()
+        {
+            model = new YearlyReportModel(SelectedYear);
+
+            model.TotalTestCountChange += OnTotalTestCountChange;
+            model.TotalTestResultCountChange += OnTotalTestResultCountChange;
+        }
+
         public YearlyReportViewModel()
         {
             ViewModelMediator.Ins.AddUserModel(this);
-            model = new YearlyReportModel(SelectedYear);
+            InitializeModel();
         }
     }
 }

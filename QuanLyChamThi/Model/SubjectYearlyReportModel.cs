@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,11 +9,11 @@ namespace QuanLyChamThi.Model
 {
     class SubjectYearlyReportModel
     {
-        private int _year;
-        public int Year
+        private int _index;
+        public int Index
         {
-            get { return _year; }
-            set { _year = value; }
+            get { return _index; }
+            set { _index = value; }
         }
 
         private string _idSubject;
@@ -31,7 +32,7 @@ namespace QuanLyChamThi.Model
 
         private string loadSubject()
         {
-            string result = DataProvider.Ins.DB.SUBJECT.Find(_idSubject).Name;
+            string result = DataProvider.Ins.DB.SUBJECT.Find(_idSubject)?.Name;
             return result;
         }
 
@@ -62,6 +63,8 @@ namespace QuanLyChamThi.Model
         {
             get
             {
+                if (TotalTestCount == 0)
+                    return double.NaN;
                 return (double)TestCount / TotalTestCount;
             }
             set { /* Can't set this */ }
@@ -79,6 +82,8 @@ namespace QuanLyChamThi.Model
         {
             get
             {
+                if (TotalTestCount == 0)
+                    return double.NaN;
                 return (double)TestResultCount / TotalTestResultCount;
             }
             set { /* Can't set this */ }
