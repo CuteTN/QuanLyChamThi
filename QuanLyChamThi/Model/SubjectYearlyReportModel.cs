@@ -9,11 +9,11 @@ namespace QuanLyChamThi.Model
 {
     class SubjectYearlyReportModel
     {
-        private int _year;
-        public int Year
+        private int _index;
+        public int Index
         {
-            get { return _year; }
-            set { _year = value; }
+            get { return _index; }
+            set { _index = value; }
         }
 
         private string _idSubject;

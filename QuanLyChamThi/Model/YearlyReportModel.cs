@@ -63,6 +63,7 @@ namespace QuanLyChamThi.Model
                 { 
                     _data = selectData(Year);
                     fillTotal();
+                    fillIndex();
                 }
 
                 return _data;
@@ -72,30 +73,71 @@ namespace QuanLyChamThi.Model
             {
                 _data = value;
                 if(value != null)
+                { 
                     fillTotal();
+                    fillIndex();
+                }
             }
+        }
+        #endregion
+
+        #region internal business logic
+        private int _totalTestCount = 0;
+        public int TotalTestCount
+        {
+            get { return _totalTestCount; }
+            private set { _totalTestCount = value; TotalTestCountChange?.Invoke(this, null); }
+        }
+
+        public int _totalTestResultCount = 0;
+        public int TotalTestResultCount
+        {
+            get { return _totalTestResultCount; }
+            private set { _totalTestResultCount = value; TotalTestResultCountChange?.Invoke(this, null); }
         }
 
         private void fillTotal()
         {
             // BADCODE
-            int totalTestCount = 0;
-            int totalTestResultCount = 0;
+            TotalTestCount = 0;
+            TotalTestResultCount = 0;
 
+            // recalculate the whole thing
             foreach(var report in _data)
             { 
-                totalTestCount += report.TestCount;
-                totalTestResultCount += report.TestResultCount;
+                TotalTestCount += report.TestCount;
+                TotalTestResultCount += report.TestResultCount;
             }
+
+            // update to each subject report
+            foreach(var report in _data)
+            {
+                report.TotalTestCount = TotalTestCount;
+                report.TotalTestResultCount = TotalTestResultCount;
+            }
+        }
+
+        private void fillIndex()
+        {
+            int index = 1;
 
             foreach(var report in _data)
             {
-                report.TotalTestCount = totalTestCount;
-                report.TotalTestResultCount = totalTestResultCount;
+                report.Index = index;
+                index++;
             }
+        }
+
+        public void UpdateFromDB()
+        {
+            // just set _data = null, getter of Data will auto lazily update DB
+            _data = null;
         }
         #endregion
 
-
+        #region message passing
+        public event EventHandler TotalTestCountChange;
+        public event EventHandler TotalTestResultCountChange;
+        #endregion
     }
 }

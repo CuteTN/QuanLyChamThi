@@ -20,16 +20,16 @@
         </StackPanel>
 
         <Label Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="8" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Tổng số đề thi"/>
-        <TextBlock x:Name="tbTotalTest" Grid.Column="8" Grid.Row="3" Grid.ColumnSpan="8" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <TextBlock x:Name="tbTotalTest" Text="{Binding TotalTestCount}" Grid.Column="8" Grid.Row="3" Grid.ColumnSpan="8" HorizontalAlignment="Right" VerticalAlignment="Center"/>
 
         <Label Grid.Column="15" Grid.Row="3" Grid.ColumnSpan="8" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Tổng số bài chấm"/>
-        <TextBlock x:Name="tbTotalTestResult" Grid.Column="23" Grid.Row="3" Grid.ColumnSpan="8" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <TextBlock x:Name="tbTotalTestResult" Text="{Binding TotalTestResultCount}" Grid.Column="23" Grid.Row="3" Grid.ColumnSpan="8" HorizontalAlignment="Right" VerticalAlignment="Center"/>
 
 
         <ScrollViewer x:Name="svGrid" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="29" Grid.RowSpan="10" VerticalScrollBarVisibility="Auto">
             <DataGrid x:Name="dgReport" AutoGenerateColumns="False" ItemsSource="{Binding ListReport, Mode=TwoWay}" Width="{Binding ElementName=svGrid, Path=ActualWidth}" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False" IsReadOnly="True">
                 <DataGrid.Columns>
-                    <DataGridTextColumn x:Name="colSTT" Header="STT" Width="2*"/>
+                    <DataGridTextColumn x:Name="colSTT" Binding="{Binding Index, Mode=TwoWay}" Header="STT" Width="2*" CanUserReorder="False"/>
                     <DataGridTextColumn x:Name="colName" Binding="{Binding Subject, Mode=TwoWay}" Header="Tên môn" Width="5*"/>
                     <DataGridTextColumn x:Name="colTestNumber" Binding="{Binding TestCount, Mode=TwoWay}" Header="Số lượng đề thi" Width="5*"/>
                     <DataGridTextColumn x:Name="colTestResultNumber" Binding="{Binding TestResultCount, Mode=TwoWay}" Header="Số lượng bài chấm" Width="5*"/>

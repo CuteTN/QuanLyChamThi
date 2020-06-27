@@ -163,6 +163,7 @@ namespace QuanLyChamThi.ViewModel
         private void MakeReportFunction()
         {
             model.Year = this.SelectedYear;
+            model.UpdateFromDB();
             ListReport = model.Data;
         }
         #endregion
@@ -171,15 +172,52 @@ namespace QuanLyChamThi.ViewModel
         YearlyReportModel model = null;
         #endregion
 
+        #region tbTotalTest and tbTotalTestResult
+        public int TotalTestCount
+        {
+            get { return model.TotalTestCount; }
+            set { /* can't set this */ }
+        }
+        public int TotalTestResultCount
+        {
+            get { return model.TotalTestResultCount; }
+            set { /* can't set this */ }
+        }
+
+        public void OnTotalTestCountChange(Object sender, EventArgs args)
+        {
+            // just to be sure...
+            if(sender != model)
+                return;
+            OnPropertyChange("TotalTestCount");
+        }
+
+        public void OnTotalTestResultCountChange(Object sender, EventArgs args)
+        {
+            // just to be sure...
+            if(sender != model)
+                return;
+            OnPropertyChange("TotalTestResultCount");
+        }
+        #endregion
+
         public void Receive(object sender, List<DatabaseCommand> commands)
         {
             // MORECODE
         }
 
+        private void InitializeModel()
+        {
+            model = new YearlyReportModel(SelectedYear);
+
+            model.TotalTestCountChange += OnTotalTestCountChange;
+            model.TotalTestResultCountChange += OnTotalTestResultCountChange;
+        }
+
         public YearlyReportViewModel()
         {
             ViewModelMediator.Ins.AddUserModel(this);
-            model = new YearlyReportModel(SelectedYear);
+            InitializeModel();
         }
     }
 }
