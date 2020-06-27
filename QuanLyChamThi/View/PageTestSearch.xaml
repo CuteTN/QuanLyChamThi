@@ -28,7 +28,7 @@
 
         <TextBox x:Name="tbTestID" Text="{Binding FilterTestID}" Grid.Column="5" Grid.Row="1" Grid.ColumnSpan="8" VerticalAlignment="Center"/>
         <TextBox x:Name="tbDuration" Text="{Binding FilterTestDuration}" Grid.Column="5" Grid.Row="2" Grid.ColumnSpan="8" VerticalAlignment="Center"/>
-        <DatePicker x:Name="datepickerTestDate"SelectedDate="{Binding FilterTestDate}" Grid.Column="5" Grid.Row="3" Grid.ColumnSpan="8" VerticalAlignment="Center"/>
+        <DatePicker x:Name="datepickerTestDate" SelectedDate="{Binding FilterTestDate}" Grid.Column="5" Grid.Row="3" Grid.ColumnSpan="8" VerticalAlignment="Center"/>
 
         <Button x:Name="btnFind" Command="{Binding SearchCommand}"  Grid.Column="13" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="3" VerticalAlignment="Center" Content="Tìm kiếm"/>
         <Button x:Name="btnNew" Command="{Binding NewTestCommand}" Grid.Column="23" Grid.Row="1" Grid.ColumnSpan="7" VerticalAlignment="Center" Content="Tạo đề thi mới"/>
@@ -36,14 +36,14 @@
         <Button x:Name="btnDelete" Command="{Binding DeleteCommand}" Grid.Column="23" Grid.Row="3" Grid.ColumnSpan="7" VerticalAlignment="Center" Content="Xóa"/>
 
         <ScrollViewer x:Name="svGrid" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="29" Grid.RowSpan="12" VerticalScrollBarVisibility="Auto">
-            <DataGrid x:Name="dgReport" ItemsSource="{Binding ListTest, Mode=TwoWay}" AutoGenerateColumns="False" Width="{Binding ElementName=svGrid, Path=ActualWidth}" CanUserResizeColumns="True" CanUserReorderColumns="True" CanUserSortColumns="True" CanUserAddRows="False">
+            <local:CustomDataGrid x:Name="dgReport" SelectedItemsList="{Binding SelectedTest}" ItemsSource="{Binding ListTest, Mode=TwoWay}" AutoGenerateColumns="False" Width="{Binding ElementName=svGrid, Path=ActualWidth}" CanUserResizeColumns="True" CanUserReorderColumns="True" CanUserSortColumns="True" CanUserAddRows="False">
                 <DataGrid.Columns>
                     <DataGridTemplateColumn x:Name="colTestID" Header="Mã số đề thi" Width="3*" CellTemplate="{StaticResource mycolumn}"/>
                     <DataGridTextColumn x:Name="colDuration" Header="Thời lượng" Width="2*" Binding="{Binding TestDuration, Mode=OneWay}"/>
                     <DataGridTextColumn x:Name="colTestDate" Header="Ngày thi" Width="5*" Binding="{Binding TestDate, Mode=OneWay}"/>
                     <DataGridCheckBoxColumn x:Name="colCheckbox" Header="" Width="10" Binding="{Binding Selected, Mode=TwoWay}"/>
                 </DataGrid.Columns>
-            </DataGrid>
+            </local:CustomDataGrid>
         </ScrollViewer>
     </Grid>
 </Page>

@@ -82,14 +82,19 @@ namespace QuanLyChamThi.Model
                 _pSource = null;
                 OnPropertyChange("Year"); }
         }
-        private int _duration;
+        private int _duration = 0;
         public int Duration
         {
             get { return _duration; }
-            set {
-                _duration = value;
-                _pSource = null;
-                OnPropertyChange("Duration"); }
+            set
+            {
+                if (value > 0)
+                {
+                    _duration = value;
+                    _pSource = null;
+                    OnPropertyChange("Duration");
+                }
+            }
         }
 
         private DateTime? _testdate;
@@ -105,6 +110,7 @@ namespace QuanLyChamThi.Model
         #region Test Detail Model class
         public class TestDetailModel : INotifyPropertyChanged
         {
+            #region Data
             private TESTDETAIL _pSource;
             public TESTDETAIL pSource
             {
@@ -130,6 +136,9 @@ namespace QuanLyChamThi.Model
                 set { _content = value; OnPropertyChange("Content"); }
             }
 
+            #endregion
+
+            #region fundamentals
             public event PropertyChangedEventHandler PropertyChanged;
             protected virtual void OnPropertyChange(string propertyName)
             {
@@ -153,6 +162,7 @@ namespace QuanLyChamThi.Model
                     return newModel;
                 }
             }
+            #endregion
         }
         #endregion
 
@@ -183,5 +193,10 @@ namespace QuanLyChamThi.Model
             }
         }
         #endregion
+
+        public bool Valid()
+        {
+            return (SubjectID != null && this.Duration >= 0);
+        }
     }
 }

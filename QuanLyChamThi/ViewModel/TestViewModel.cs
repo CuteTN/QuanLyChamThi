@@ -66,6 +66,12 @@ namespace QuanLyChamThi.ViewModel
             get { return TempTest.Year; }
             set { TempTest.Year = value; OnPropertyChange("TempYear"); }
         }
+        TestModel.TestDetailModel _selectedItem;
+        public TestModel.TestDetailModel SelectedItem
+        {
+            get { return _selectedItem; }
+            set { _selectedItem = value; OnPropertyChange("SelectedItem"); }
+        }
         #endregion
 
         #region Binded Data
@@ -144,14 +150,36 @@ namespace QuanLyChamThi.ViewModel
                 _acceptCommand = value;
             }
         }
+        bool Validate()
+        {
+            if (!TempTest.Valid())
+            {
+                MessageBox.Show("Đề thi không hợp lệ.");
+                return false;
+            }
+            foreach (var item in TempTestDetail)
+            {
+                if (item.QuestionID == 0)
+                {
+                    // This is not supposed to happen
+                    // Just check for BS that might be thrown this way
+                    MessageBox.Show("Không nhận được ID câu hỏi");
+                    return false;
+                }
+            }
+            return true;
+        }
         void AcceptButton()
         {
+            if (!Validate())
+                return;
             List<DatabaseCommand> cmdList = new List<DatabaseCommand>();
             DatabaseCommand cmd = new DatabaseCommand();
 
             cmd.add = TempTest.pSource;
             cmd.delete = _test?.pSource;
-            cmdList.Add(cmd);
+            if (cmd.add != cmd.delete)
+                cmdList.Add(cmd);
             
             for (int i=0; true; i++)
             {
@@ -170,9 +198,17 @@ namespace QuanLyChamThi.ViewModel
                     cmd.delete = TestDetail[i].pSource;
                 else
                     cmd.delete = null;
-                cmdList.Add(cmd);
+                // This check shouldn't be needed
+                if (cmd.add != null || cmd.delete != null)
+                    cmdList.Add(cmd);
+                //*
+                else
+                    MessageBox.Show("cmd is all null.");
+                //*/
             }
-            ViewModelMediator.Ins.Receive(this, cmdList);
+
+            if (cmdList.Any())
+                ViewModelMediator.Ins.Receive(this, cmdList);
             MainWindowViewModel.Ins.SwitchView(10);
         }
         #endregion
@@ -200,9 +236,133 @@ namespace QuanLyChamThi.ViewModel
         #endregion
 
         #region Button MoveUp
+        private ICommand _upCommand;
+        public ICommand UpCommand
+        {
+            get
+            {
+                if (_upCommand == null)
+                    _upCommand = new RelayCommand(param => UpButton());
+                return _upCommand;
+            }
+            set
+            {
+                _upCommand = value;
+            }
+        }
+        private ICommand _upAllCommand;
+        public ICommand UpAllCommand
+        {
+            get
+            {
+                if (_upAllCommand == null)
+                    _upAllCommand = new RelayCommand(param => UpAllButton());
+                return _upAllCommand;
+            }
+            set
+            {
+                _upAllCommand = value;
+            }
+        }
+        public void UpAllButton()
+        {
+            int n = (SelectedItem?.Stt??1) - 1;
+            for (int i = n; i > 0; i--)
+            //*
+            {
+                var temp = TempTestDetail[i];
+                TempTestDetail[i] = TempTestDetail[i - 1];
+                TempTestDetail[i - 1] = temp;
+
+                TempTestDetail[i].Stt = i + 1;
+                TempTestDetail[i - 1].Stt = i;
+            }
+            /*/
+                UpButton();
+            //*/
+            SelectedItem = TempTestDetail[0];
+        }
+        public void UpButton()
+        {
+            int i = (SelectedItem?.Stt??1) - 1;
+            if (i == 0)
+                return;
+
+            var temp = TempTestDetail[i];
+            TempTestDetail[i] = TempTestDetail[i - 1];
+            TempTestDetail[i - 1] = temp;
+
+            TempTestDetail[i].Stt = i + 1;
+            TempTestDetail[i - 1].Stt = i;
+
+            SelectedItem = TempTestDetail[i - 1];
+        }
         #endregion
 
         #region Button MoveDown
+
+        private ICommand _downCommand;
+        public ICommand DownCommand
+        {
+            get
+            {
+                if (_downCommand == null)
+                    _downCommand = new RelayCommand(param => DownButton());
+                return _downCommand;
+            }
+            set
+            {
+                _downCommand = value;
+            }
+        }
+        private ICommand _downAllCommand;
+        public ICommand DownAllCommand
+        {
+            get
+            {
+                if (_downAllCommand == null)
+                    _downAllCommand = new RelayCommand(param => DownAllButton());
+                return _downAllCommand;
+            }
+            set
+            {
+                _downAllCommand = value;
+            }
+        }
+        public void DownAllButton()
+        {
+            int n = (SelectedItem?.Stt ?? 1);
+            int m = TempTestDetail.Count;
+            for (int i = n; i < m; i++)
+            //*
+            {
+                var temp = TempTestDetail[i];
+                TempTestDetail[i] = TempTestDetail[i - 1];
+                TempTestDetail[i - 1] = temp;
+
+                TempTestDetail[i].Stt = i + 1;
+                TempTestDetail[i - 1].Stt = i;
+            }
+            /*/
+                DownButton();
+            //*/
+            SelectedItem = TempTestDetail[m - 1];
+        }
+        public void DownButton()
+        {
+            int i = SelectedItem?.Stt ?? -10;
+            if (i == TempTestDetail.Count || i < 0)
+                return;
+
+            var temp = TempTestDetail[i];
+            TempTestDetail[i] = TempTestDetail[i - 1];
+            TempTestDetail[i - 1] = temp;
+
+            TempTestDetail[i].Stt = i + 1;
+            TempTestDetail[i - 1].Stt = i;
+
+            SelectedItem = TempTestDetail[i];
+        }
         #endregion
 
         #region Basic View Model info
@@ -213,7 +373,7 @@ namespace QuanLyChamThi.ViewModel
 
         public void Receive(object sender, List<DatabaseCommand> commands)
         {
-            DatabaseCommand test = commands.FirstOrDefault((DatabaseCommand item) => item.delete != null && item.delete == _test?.pSource);
+            DatabaseCommand test = commands.FirstOrDefault((DatabaseCommand item) => item.delete != null && item.delete == (object)_test?.pSource);
             if (test != null)
             {
                 ViewMode((test.add as TEST)?.IDTest);
