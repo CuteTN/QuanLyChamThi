@@ -548,7 +548,7 @@
           <Key>
             <PropertyRef Name="IDSubject" />
           </Key>
-          <Property Name="IDSubject" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="IDSubject" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="QUESTION" Relationship="QuanLyDeThiModel.FK__CAUHOI__IDSubjec__29572725" FromRole="MONHOC" ToRole="CAUHOI" />
           <NavigationProperty Name="REPORTDETAIL" Relationship="QuanLyDeThiModel.FK__CHITIETBA__IDSub__44FF419A" FromRole="MONHOC" ToRole="CHITIETBAOCAO" />

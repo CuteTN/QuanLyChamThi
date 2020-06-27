@@ -107,6 +107,7 @@
     <Compile Include="Model\ListQuestionModel.cs" />
     <Compile Include="Model\QuestionModel.cs" />
     <Compile Include="Model\YearlyReportModel.cs" />
+    <Compile Include="ViewModel\SettingViewModel.cs" />
     <Compile Include="ViewModel\UCQuestionListViewModel.cs" />
     <Compile Include="Model\UserModelBase.cs" />
     <Compile Include="ViewModel\TestSearchViewModel.cs" />

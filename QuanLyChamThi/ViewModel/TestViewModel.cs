@@ -208,7 +208,7 @@ namespace QuanLyChamThi.ViewModel
 
         public void Receive(object sender, List<DatabaseCommand> commands)
         {
-            DatabaseCommand test = commands.FirstOrDefault((DatabaseCommand item) => item.delete != null && item.delete == _test?.pSource);
+            DatabaseCommand test = commands.FirstOrDefault((DatabaseCommand item) => item.delete != null && (item.delete is TEST) && item.delete == _test?.pSource);
             if (test != null)
             {
                 ViewMode((test.add as TEST)?.IDTest);

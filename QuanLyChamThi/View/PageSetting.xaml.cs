@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLyChamThi.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,12 @@ namespace QuanLyChamThi.View
         public PageSetting()
         {
             InitializeComponent();
+            InitializeDataContext();
+        }
+
+        private void InitializeDataContext()
+        {
+            DataContext = new SettingViewModel();
         }
     }
 }

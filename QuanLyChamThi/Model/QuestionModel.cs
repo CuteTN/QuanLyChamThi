@@ -61,7 +61,7 @@ namespace QuanLyChamThi.Model
 
         private string loadSubject()
         {
-            string result = DataProvider.Ins.DB.SUBJECT.Find(_idSubject).Name;
+            string result = DataProvider.Ins.DB.SUBJECT.Find(_idSubject)?.Name;
             return result;
         }
 
