@@ -114,16 +114,21 @@
                     </Grid.RowDefinitions>
 
                     <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="7" Content="Số lượng độ khó"/>
-                    <ComboBox x:Name="cbDifficultyNumber" Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="4"/>
+                    <TextBox x:Name="cbDifficultyNumber"
+                             Grid.Column="3" 
+                             Grid.Row="2" 
+                             Grid.ColumnSpan="4"
+                             VerticalAlignment="Center"
+                             Text="{Binding NumberOfDifficulty}"/>
                     <Button x:Name="btnUpdateDifficulty" Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="4" Content="Cập nhật"/>
-                    <DataGrid x:Name="dgDifficultyList" Grid.Column="10" Grid.Row="1" Grid.ColumnSpan="18" Grid.RowSpan="10">
+                    <DataGrid x:Name="dgDifficultyList" ItemsSource="{Binding ListDifficulty}" Grid.Column="10" Grid.Row="1" Grid.ColumnSpan="18" Grid.RowSpan="10" CanUserAddRows="False" AutoGenerateColumns="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="STT" Width="1.5*"/>
-                            <DataGridTextColumn Header="Độ khó" Width="8.5*"/>
+                            <DataGridTextColumn Header="Độ khó" Binding="{Binding Name}" Width="8.5*"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
             </TabItem>
+            
             <TabItem Header="Tùy chỉnh môn học" Padding="16">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -246,6 +251,8 @@
                 </Grid>
             </TabItem>
         </TabControl>
+        
+        
 
         <Button x:Name="btnOK" Grid.Column="27" Grid.Row="15" Grid.ColumnSpan="3" Content="Lưu"/>
         <Button x:Name="btnCancel" Grid.Column="23" Grid.Row="15" Grid.ColumnSpan="3" Content="Hủy"/>

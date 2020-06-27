@@ -62,7 +62,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
+
         <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4" VerticalAlignment="Center" Content="Mã số đề thi"/>
         <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4" VerticalAlignment="Center" Content="Môn học"/>
         <Label Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="4" VerticalAlignment="Center" Content="Chọn câu hỏi"/>
@@ -75,8 +75,8 @@
 
         <Label Grid.Column="16" Grid.Row="1" Grid.ColumnSpan="4"  VerticalAlignment="Center" Content="Học kỳ"/>
         <Label Grid.Column="16" Grid.Row="2" Grid.ColumnSpan="4"  VerticalAlignment="Center" Content="Năm học"/>
-        
-        <TextBox x:Name="cbSemester" Text="{Binding TempSemester, Mode=TwoWay}" Grid.Column="20" Grid.Row="1" Grid.ColumnSpan="4" VerticalAlignment="Center"/>
+
+        <TextBox x:Name="cbSemester" Text="{Binding TempSemester, Mode=TwoWay}" Grid.Column="20" Grid.Row="1" Grid.ColumnSpan="5" VerticalAlignment="Bottom" Margin="0.29,0,38.258,6"/>
         <TextBox x:Name="cbSchoolYear" Text="{Binding TempYear, Mode=TwoWay}" Grid.Column="20" Grid.Row="2" Grid.ColumnSpan="4" VerticalAlignment="Center"/>
 
         <Button x:Name="btnGoUp" Grid.Column="25" Grid.Row="4"  VerticalAlignment="Center">

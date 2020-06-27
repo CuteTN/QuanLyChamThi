@@ -29,9 +29,9 @@
             <PropertyRef Name="IDQuestion" />
           </Key>
           <Property Name="IDQuestion" Type="int" Nullable="false" />
-          <Property Name="NoiDung" Type="nvarchar(max)" />
-          <Property Name="IDDifficulty" Type="int" />
-          <Property Name="IDSubject" Type="nvarchar" MaxLength="20" />
+          <Property Name="NoiDung" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IDDifficulty" Type="int" Nullable="false" />
+          <Property Name="IDSubject" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="CHAMTHI">
           <Key>
@@ -70,7 +70,7 @@
           <Property Name="IDSubject" Type="nvarchar" MaxLength="20" />
           <Property Name="NamHoc" Type="int" />
           <Property Name="HocKi" Type="int" />
-          <Property Name="ThoiLuong" Type="int" />
+          <Property Name="ThoiLuong" Type="int" Nullable="false" />
           <Property Name="NgayThi" Type="smalldatetime" />
         </EntityType>
         <EntityType Name="DOKHO">
@@ -78,7 +78,8 @@
             <PropertyRef Name="IDDifficulty" />
           </Key>
           <Property Name="IDDifficulty" Type="int" Nullable="false" />
-          <Property Name="TenDoKho" Type="nvarchar" MaxLength="256" />
+          <Property Name="TenDoKho" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Disabled" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="LOP">
           <Key>
@@ -148,8 +149,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CAUHOI__IDDiffic__276EDEB3">
-          <End Role="DOKHO" Type="Self.DOKHO" Multiplicity="0..1" />
+        <Association Name="FK__CAUHOI__IDDiffic__01142BA1">
+          <End Role="DOKHO" Type="Self.DOKHO" Multiplicity="1" />
           <End Role="CAUHOI" Type="Self.CAUHOI" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DOKHO">
@@ -160,8 +161,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CAUHOI__IDSubjec__286302EC">
-          <End Role="MONHOC" Type="Self.MONHOC" Multiplicity="0..1" />
+        <Association Name="FK__CAUHOI__IDSubjec__02084FDA">
+          <End Role="MONHOC" Type="Self.MONHOC" Multiplicity="1" />
           <End Role="CAUHOI" Type="Self.CAUHOI" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MONHOC">
@@ -314,11 +315,11 @@
             <End Role="CHAMTHI" EntitySet="CHAMTHI" />
             <End Role="BAITHI" EntitySet="BAITHI" />
           </AssociationSet>
-          <AssociationSet Name="FK__CAUHOI__IDDiffic__276EDEB3" Association="Self.FK__CAUHOI__IDDiffic__276EDEB3">
+          <AssociationSet Name="FK__CAUHOI__IDDiffic__01142BA1" Association="Self.FK__CAUHOI__IDDiffic__01142BA1">
             <End Role="DOKHO" EntitySet="DOKHO" />
             <End Role="CAUHOI" EntitySet="CAUHOI" />
           </AssociationSet>
-          <AssociationSet Name="FK__CAUHOI__IDSubjec__286302EC" Association="Self.FK__CAUHOI__IDSubjec__286302EC">
+          <AssociationSet Name="FK__CAUHOI__IDSubjec__02084FDA" Association="Self.FK__CAUHOI__IDSubjec__02084FDA">
             <End Role="MONHOC" EntitySet="MONHOC" />
             <End Role="CAUHOI" EntitySet="CAUHOI" />
           </AssociationSet>
@@ -465,7 +466,7 @@
             <PropertyRef Name="IDQuestion" />
           </Key>
           <Property Name="IDQuestion" Type="Int32" Nullable="false" />
-          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IDDifficulty" Type="Int32" Nullable="false" />
           <Property Name="IDSubject" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Difficulty" Relationship="QuanLyDeThiModel.FK__CAUHOI__IDDiffic__286302EC" FromRole="CAUHOI" ToRole="DOKHO" />
@@ -530,6 +531,7 @@
           <Property Name="IDDifficulty" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="QUESTION" Relationship="QuanLyDeThiModel.FK__CAUHOI__IDDiffic__286302EC" FromRole="DOKHO" ToRole="CAUHOI" />
+          <Property Name="Disabled" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="CLASS">
           <Key>
@@ -549,7 +551,7 @@
             <PropertyRef Name="IDSubject" />
           </Key>
           <Property Name="IDSubject" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="QUESTION" Relationship="QuanLyDeThiModel.FK__CAUHOI__IDSubjec__29572725" FromRole="MONHOC" ToRole="CAUHOI" />
           <NavigationProperty Name="REPORTDETAIL" Relationship="QuanLyDeThiModel.FK__CHITIETBA__IDSub__44FF419A" FromRole="MONHOC" ToRole="CHITIETBAOCAO" />
           <NavigationProperty Name="TEST" Relationship="QuanLyDeThiModel.FK__DETHI__IDSubject__2C3393D0" FromRole="MONHOC" ToRole="DETHI" />
@@ -834,6 +836,7 @@
           <EntitySetMapping Name="DIFFICULTY">
             <EntityTypeMapping TypeName="QuanLyDeThiModel.DIFFICULTY">
               <MappingFragment StoreEntitySet="DOKHO">
+                <ScalarProperty Name="Disabled" ColumnName="Disabled" />
                 <ScalarProperty Name="Name" ColumnName="TenDoKho" />
                 <ScalarProperty Name="IDDifficulty" ColumnName="IDDifficulty" />
               </MappingFragment>
