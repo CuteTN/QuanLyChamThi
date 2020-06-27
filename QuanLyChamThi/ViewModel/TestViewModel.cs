@@ -180,8 +180,8 @@ namespace QuanLyChamThi.ViewModel
             cmd.delete = _test?.pSource;
             if (cmd.add != cmd.delete)
                 cmdList.Add(cmd);
-            
-            for (int i=0; true;)
+
+            for (int i = 0; true; i++)
             {
                 if (i >= TempTestDetail.Count && i >= TestDetail.Count)
                     break;

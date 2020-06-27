@@ -14,7 +14,7 @@
             <DataTemplate x:Key="mycolumn">
                 <Label Content="{Binding TestID, Mode=OneWay}">
                     <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="MouseDown">
+                        <i:EventTrigger EventName="MouseDoubleClick">
                             <i:InvokeCommandAction Command="{Binding ViewTestCommand}"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
