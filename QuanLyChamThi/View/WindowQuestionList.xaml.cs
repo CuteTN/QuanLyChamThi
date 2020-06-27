@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLyChamThi.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using QuanLyChamThi.ViewModel;
 
 namespace QuanLyChamThi.View
 {
@@ -19,9 +21,11 @@ namespace QuanLyChamThi.View
     /// </summary>
     public partial class WindowQuestionList : Window
     {
-        public WindowQuestionList()
+        public WindowQuestionList(List<QuestionModel> selectedQuestions)
         {
             InitializeComponent();
+
+            DataContext = new WindowQuestionListViewModel(selectedQuestions, ucQuestionList.DataContext as UCQuestionListViewModel);
         }
     }
 }

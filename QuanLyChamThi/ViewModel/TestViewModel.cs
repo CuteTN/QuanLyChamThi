@@ -181,7 +181,7 @@ namespace QuanLyChamThi.ViewModel
             if (cmd.add != cmd.delete)
                 cmdList.Add(cmd);
             
-            for (int i=0; true; i++)
+            for (int i=0; true;)
             {
                 if (i >= TempTestDetail.Count && i >= TestDetail.Count)
                     break;
@@ -369,6 +369,13 @@ namespace QuanLyChamThi.ViewModel
         public TestViewModel()
         {
             ViewModelMediator.Ins.AddUserModel(this);
+        }
+
+        public void AcceptData(List<QuestionModel> questions)
+        {
+            TempTestDetail.Clear();
+            TempTestDetail = new ObservableCollection<TestModel.TestDetailModel>(
+                questions.Select((QuestionModel question, int i) => new TestModel.TestDetailModel(question, i)));
         }
 
         public void Receive(object sender, List<DatabaseCommand> commands)

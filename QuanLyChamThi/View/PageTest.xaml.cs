@@ -1,4 +1,5 @@
-﻿using QuanLyChamThi.ViewModel;
+﻿using QuanLyChamThi.Model;
+using QuanLyChamThi.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,8 +35,10 @@ namespace QuanLyChamThi.View
 
         private void btnChooseQuestion_Click(object sender, RoutedEventArgs e)
         {
-            var windowQuestionList = new WindowQuestionList();
+            List<QuestionModel> selectedQuestions = new List<QuestionModel>();
+            var windowQuestionList = new WindowQuestionList(selectedQuestions);
             windowQuestionList.ShowDialog();
+            (DataContext as TestViewModel).AcceptData(selectedQuestions);
         }
     }
 }
