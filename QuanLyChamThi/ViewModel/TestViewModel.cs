@@ -54,7 +54,10 @@ namespace QuanLyChamThi.ViewModel
         public string TempTestID
         {
             get { return TempTest.TestID; }
-            set { TempTest.TestID = value; OnPropertyChange("TempTestID"); }
+            // FOR VIEW ACCESS ONLY
+            set { TempTest.TestID = value;
+                ViewMode(value);
+                OnPropertyChange("TempTestID"); }
         }
         public int? TempSemester
         {
@@ -74,7 +77,7 @@ namespace QuanLyChamThi.ViewModel
         }
         #endregion
 
-        #region Binded Data
+        #region Database data
         public ObservableCollection<TestModel.TestDetailModel> TestDetail;
         private TestModel _test;
         public TestModel Test
@@ -82,30 +85,55 @@ namespace QuanLyChamThi.ViewModel
             set
             {
                 _test = value;
-                string testID = _test?.TestID;
-                TestDetail = new ObservableCollection<TestModel.TestDetailModel>
-                        ((from u in (from u in DataProvider.Ins.DB.TESTDETAIL
-                                     where u.IDTest == testID select u)
-                          join v in DataProvider.Ins.DB.QUESTION on u.IDQuestion equals v.IDQuestion
-                          select new TestModel.TestDetailModel()
-                          {
-                                Content = v.Content,
-                                QuestionID = u.IDQuestion,
-                                Stt = u.No,
-                                pSource = u
-                          }).OrderBy((item)=>item.Stt).ToList());
+                LoadTestDetailData();
             }
         }
+        void LoadTestDetailData()
+        {
+            string testID = _test?.TestID;
+            TestDetail = new ObservableCollection<TestModel.TestDetailModel>
+                    ((from u in (from u in DataProvider.Ins.DB.TESTDETAIL
+                                 where u.IDTest == testID
+                                 select u)
+                      join v in DataProvider.Ins.DB.QUESTION on u.IDQuestion equals v.IDQuestion
+                      select new TestModel.TestDetailModel()
+                      {
+                          Content = v.Content,
+                          QuestionID = u.IDQuestion,
+                          Stt = u.No,
+                          pSource = u
+                      }).OrderBy((item) => item.Stt).ToList());
+        }
+
         private List<string> _subjectID;
         public List<string> SubjectID
         {
             get
             {
                 if (_subjectID == null)
-                    _subjectID = (from u in DataProvider.Ins.DB.SUBJECT select u.IDSubject).ToList();
+                    LoadSubjectID();
                 return _subjectID;
             }
-            set { _subjectID = value; }
+            set { _subjectID = value; OnPropertyChange("SubjectID"); }
+        }
+        void LoadSubjectID()
+        { _subjectID = (from u in DataProvider.Ins.DB.SUBJECT select u.IDSubject).ToList(); }
+
+        private List<string> _testID;
+        public List<string> TestID
+        {
+            get
+            {
+                if (_testID == null)
+                    LoadTestID();
+                return _testID;
+            }
+            set { _testID = value; OnPropertyChange("TestID"); }
+        }
+        void LoadTestID()
+        {
+            _testID = (from u in DataProvider.Ins.DB.TEST select u.IDTest).ToList();
+            _testID.Add((string)(new TestModel().TestID).Clone());
         }
         #endregion
 
@@ -375,7 +403,7 @@ namespace QuanLyChamThi.ViewModel
         {
             TempTestDetail.Clear();
             TempTestDetail = new ObservableCollection<TestModel.TestDetailModel>(
-                questions.Select((QuestionModel question, int i) => new TestModel.TestDetailModel(question, i)));
+                questions.Select((QuestionModel question, int i) => new TestModel.TestDetailModel(question, i + 1)));
         }
 
         public void Receive(object sender, List<DatabaseCommand> commands)
@@ -388,21 +416,20 @@ namespace QuanLyChamThi.ViewModel
                 return;
             }
             string testID = _test?.TestID;
-            if (commands.Any((DatabaseCommand item) => item.add is SUBJECT || item.delete is SUBJECT
-            || (item.add is TESTDETAIL && (item.add as TESTDETAIL).IDTest == testID)
-            || (item.delete is TESTDETAIL && (item.delete as TESTDETAIL).IDTest == testID)))
-                TestDetail = new ObservableCollection<TestModel.TestDetailModel>
-                        ((from u in (from u in DataProvider.Ins.DB.TESTDETAIL
-                                     where u.IDTest == testID
-                                     select u)
-                          join v in DataProvider.Ins.DB.QUESTION on u.IDQuestion equals v.IDQuestion
-                          select new TestModel.TestDetailModel()
-                          {
-                              Content = v.Content,
-                              QuestionID = u.IDQuestion,
-                              Stt = u.No,
-                              pSource = u
-                          }).OrderBy((item)=>item.Stt).ToList());
+            if (commands.Any((DatabaseCommand item) 
+                => (item.add is TESTDETAIL && (item.add as TESTDETAIL).IDTest == testID)
+                || (item.delete is TESTDETAIL && (item.delete as TESTDETAIL).IDTest == testID)))
+                    LoadTestDetailData();
+            if (commands.Any((DatabaseCommand item) => item.add is SUBJECT || item.delete is SUBJECT))
+            {
+                LoadTestDetailData();
+                LoadSubjectID();
+            }
+            if (commands.Any((DatabaseCommand item) => item.add is TEST || item.delete is TEST))
+            {
+                LoadTestID();
+            }
+
         }
         #endregion
     }

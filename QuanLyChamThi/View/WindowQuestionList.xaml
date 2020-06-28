@@ -69,7 +69,7 @@
         <Button ToolTip="Mở rộng / thu gọn nội dung câu hỏi" x:Name="btnHideShow" Grid.Column="16" Grid.Row="2"
                 Grid.RowSpan="13" Margin="5,0,5,0" Height="Auto"
                 Content="{md:PackIcon Kind=ArrowExpandRight}"
-                Style="{StaticResource MaterialDesignFlatButton}" Padding="0,0,0,0" Click="btnHideShow_Click"/>
+                Style="{StaticResource MaterialDesignFlatButton}" Padding="0,0,0,0"/>
 
         <local:UserControlQuestionList x:Name="ucQuestionList" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="15" Grid.RowSpan="16">
             <i:Interaction.Triggers>
@@ -78,8 +78,6 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </local:UserControlQuestionList>
-        <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Content="Danh sách câu hỏi:" Foreground="Black" FontWeight="Bold"/>
-
         <Label x:Name="lbXtch" Grid.Column="17" Grid.Row="1" Grid.ColumnSpan="3" Content="Xem trước câu hỏi:" Foreground="Black" FontWeight="Bold"/>
         <TextBox Grid.Column="17" Grid.Row="2" Grid.ColumnSpan="13" Grid.RowSpan="13" x:Name="tbContent" Text="{Binding Content}" Width="{Binding ElementName=svGrid, Path=ActualWidth}" Height="{Binding ElementName=svGrid, Path=ActualHeight}" TextWrapping="Wrap"   Background="White" Padding="10,5"
     VerticalAlignment="Stretch"

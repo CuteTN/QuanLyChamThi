@@ -140,7 +140,7 @@ namespace QuanLyChamThi.Model
             public TestDetailModel(QuestionModel that, int stt)
             {
                 Content = that.Content;
-                QuestionID = that.IDQuestion;
+                QuestionID = that.IDQuestion.Value;
                 Stt = stt;
             }
 

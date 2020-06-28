@@ -67,16 +67,23 @@
         <Label Grid.Column="17" Grid.Row="1" Grid.ColumnSpan="4" VerticalAlignment="Bottom" Content="Môn học:" Foreground="Black" FontWeight="Bold"/>
         <Label Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="4" VerticalAlignment="Bottom" Content="Danh sách câu hỏi:" Foreground="Black" FontWeight="Bold" Margin="0.36,0,0.312,28.472" Grid.RowSpan="2"/>
 
-        <ComboBox x:Name="cbTestID" Text="{Binding TempTestID, Mode=TwoWay}" Grid.Column="5" Grid.Row="1" Grid.ColumnSpan="9" Height="Auto" VerticalAlignment="Bottom"/>
+        <ComboBox x:Name="cbTestID" SelectedItem="{Binding TempTestID, Mode=TwoWay}" ItemsSource="{Binding TestID}" Grid.Column="5" Grid.Row="1" Grid.ColumnSpan="9" Height="Auto" VerticalAlignment="Bottom"/>
         <ComboBox x:Name="cbSubjectName" SelectedItem="{Binding TempSubjectID, Mode=TwoWay}" ItemsSource="{Binding SubjectID}" Grid.Column="21" Grid.Row="1" Grid.ColumnSpan="9" VerticalAlignment="Bottom"/>
 
-        <Button x:Name="btnChooseQuestion" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="29" Grid.RowSpan="2" VerticalAlignment="Stretch"  Foreground="White" Height="Auto" Padding="0,0,0,0" Content="Chọn câu hỏi" Click="btnChooseQuestion_Click"/>
+        <Button x:Name="btnChooseQuestion" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="29" Grid.RowSpan="1" VerticalAlignment="Stretch"  Foreground="White" Height="Auto" Padding="0,0,0,0" Content="Chọn câu hỏi" Click="btnChooseQuestion_Click"/>
 
         <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4"  VerticalAlignment="Bottom" Content="Học kỳ:" Foreground="Black" FontWeight="Bold"/>
         <Label Grid.Column="17" Grid.Row="2" Grid.ColumnSpan="4"  VerticalAlignment="Bottom" Content="Năm học:" Foreground="Black" FontWeight="Bold"/>
 
         <TextBox x:Name="cbSemester" Text="{Binding TempSemester, Mode=TwoWay}" Grid.Column="5" Grid.Row="2" Grid.ColumnSpan="9" VerticalAlignment="Bottom"/>
         <TextBox x:Name="cbSchoolYear" Text="{Binding TempYear, Mode=TwoWay}" Grid.Column="21" Grid.Row="2" Grid.ColumnSpan="9" VerticalAlignment="Bottom"/>
+        
+        <Label Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="4"  VerticalAlignment="Bottom" Content="Thời lượng:" Foreground="Black" FontWeight="Bold"/>
+        <Label Grid.Column="17" Grid.Row="3" Grid.ColumnSpan="4"  VerticalAlignment="Bottom" Content="Ngày thi:" Foreground="Black" FontWeight="Bold"/>
+
+        <TextBox x:Name="cbTimeForTest" Text="{Binding TempDuration, Mode=TwoWay}" Grid.Column="5" Grid.Row="3" Grid.ColumnSpan="9" VerticalAlignment="Bottom"/>
+        <DatePicker x:Name="cbDateOfTest" Text="{Binding TempTestDate, Mode=TwoWay}" Grid.Column="21" Grid.Row="3" Grid.ColumnSpan="9" VerticalAlignment="Bottom"/>
+
         <Grid Grid.Column="30"  Grid.Row="7" Margin="5,12,5,0" Grid.RowSpan="8">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>

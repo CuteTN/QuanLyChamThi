@@ -116,7 +116,7 @@ namespace QuanLyChamThi.ViewModel
             // if we are editting a question, we must use the same IDQuestion as EditingQuestion
             if(EditingQuestion != null)
             {
-                question.IDQuestion = EditingQuestion.IDQuestion;
+                question.IDQuestion = EditingQuestion.IDQuestion.Value;
             }
 
             DatabaseCommand cmd = new DatabaseCommand
@@ -172,15 +172,12 @@ namespace QuanLyChamThi.ViewModel
                 }
             }
         }
-
         private QuestionModel createQuestion()
         {
             var result = new QuestionModel
             {
-                IDSubject = SelectedSubject.IDSubject,
-                IDDifficulty = SelectedDifficulty.IDDifficulty,
-                // TODO
-                // FLAG: Difficulty may not be selected => null pointer exception
+                IDSubject = SelectedSubject?.IDSubject,
+                IDDifficulty = SelectedDifficulty?.IDDifficulty,
                 Content = this.Content,
             };
 
@@ -268,6 +265,8 @@ namespace QuanLyChamThi.ViewModel
 
         void LoadSelectedQuestion()
         {
+            if (QuestionListViewModel.SelectedQuestions.Count == 0)
+                return;
             EditingQuestion = QuestionListViewModel.SelectedQuestions[0];
         }
         #endregion

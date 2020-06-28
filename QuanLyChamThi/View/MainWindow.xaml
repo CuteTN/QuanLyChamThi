@@ -90,7 +90,7 @@
                             <ControlTemplate>
                                 <Ellipse Name="Ellipse">
                                     <Ellipse.Fill>
-                                        <ImageBrush ImageSource="E:\Projects\Quan Ly Cham Thi\QuanLyChamThi\Resources\hau.jpg"/>
+                                        <ImageBrush ImageSource="/QuanLyChamThi;component/Resources/hau.jpg"/>
                                     </Ellipse.Fill>
                                 </Ellipse>
                             </ControlTemplate>

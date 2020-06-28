@@ -62,9 +62,9 @@ namespace QuanLyChamThi.Model
             foreach (DatabaseCommand item in commands)
             {
                 if (item.add == null)
-                    DeleteItem((dynamic)item.delete);
+                    DeleteItem(item.delete);
                 else if (item.delete == null)
-                    AddItem((dynamic)item.add);
+                    AddItem(item.add);
                 else
                 {
                     DB.Entry(item.delete).CurrentValues.SetValues(item.add);
@@ -85,7 +85,7 @@ namespace QuanLyChamThi.Model
         // Xóa 1 phần tử trong database
         // Trả về thành công hay không
         // Tự phát hiện kiểu dữ liệu thuộc 1 trong các dữ liệu database
-        public bool DeleteItem<T>(T item) where T : class
+        public bool DeleteItem(object item)
         {
             DbSet dbs = DB.Set(item.GetType());
             return dbs.Remove(item) != null;
@@ -95,7 +95,7 @@ namespace QuanLyChamThi.Model
         // Thêm item vào bảng tương ứng của database
         // Trả về thành công hay không
         // Tự phát hiện kiểu dữ liệu thuộc 1 trong các dữ liệu database
-        public bool AddItem<T>(T item) where T : class
+        public bool AddItem(object item)
         {
             DbSet dbs = DB.Set(item.GetType());
             return dbs.Add(item) != null;
