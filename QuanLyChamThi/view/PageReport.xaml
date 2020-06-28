@@ -45,7 +45,7 @@
         </DockPanel>
         
         <DockPanel Grid.Column="16" Grid.Row="15" Grid.ColumnSpan="5" LastChildFill="True">
-            <Button HorizontalAlignment="Right" VerticalAlignment="Center" Content="In Báo cáo"/>
+            <Button x:Name="btnPrint" Command="{Binding PrintCommand}" CommandParameter="{Binding ElementName=dgReport}" HorizontalAlignment="Right" VerticalAlignment="Center" Content="In Báo cáo"/>
         </DockPanel>
 
     </Grid>

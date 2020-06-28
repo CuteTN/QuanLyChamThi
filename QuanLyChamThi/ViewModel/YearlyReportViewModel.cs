@@ -240,6 +240,31 @@ namespace QuanLyChamThi.ViewModel
 
         #endregion
 
+        #region button Print
+        private void printFunction(System.Windows.Controls.DataGrid dataGrid)
+        {
+            System.Windows.Controls.PrintDialog dlg = new System.Windows.Controls.PrintDialog();
+            dlg.PrintVisual(dataGrid, "Báo cáo năm");
+            dlg.ShowDialog();
+        }
+
+        private ICommand _printCommand;
+        public ICommand PrintCommand
+        {
+            get
+            {
+                if(_printCommand == null)
+                    _printCommand = new RelayCommand(param => printFunction(param as System.Windows.Controls.DataGrid));
+                return _printCommand;
+            }
+            set
+            {
+                _printCommand = value;
+                OnPropertyChange("PrintCommand");
+            }
+        }
+        #endregion
+
         #region Internal business logic
         YearlyReportModel model = null;
         #endregion
