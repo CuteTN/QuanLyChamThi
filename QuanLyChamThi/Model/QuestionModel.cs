@@ -11,8 +11,8 @@ namespace QuanLyChamThi.Model
     class QuestionModel
     {
 
-        private int _idQuestion;
-        public int IDQuestion
+        private Nullable<int> _idQuestion;
+        public Nullable<int> IDQuestion
         {
             get { return _idQuestion; }
             set { _idQuestion = value; }
@@ -25,8 +25,8 @@ namespace QuanLyChamThi.Model
             set { _content = value; }
         }
 
-        private int _idDifficulty;
-        public int IDDifficulty
+        private Nullable<int> _idDifficulty;
+        public Nullable<int> IDDifficulty
         {
             get { return _idDifficulty; }
             set { _idDifficulty = value; _difficulty = loadDifficulty(); }

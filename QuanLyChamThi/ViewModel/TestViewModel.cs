@@ -105,7 +105,7 @@ namespace QuanLyChamThi.ViewModel
                               where u.IDTest == TestID
                               select new TestModel()
                               {
-                                  Duration = u.TimeForTest,
+                                  Duration = u.TimeForTest.Value,
                                   Semester = u.Semester,
                                   SubjectID = u.IDSubject,
                                   TestDate = u.DateOfTest,

@@ -160,8 +160,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CAUHOI__IDSubjec__286302EC">
-          <End Role="MONHOC" Type="Self.MONHOC" Multiplicity="0..1" />
+        <Association Name="FK__CAUHOI__IDSubjec__47DBAE45">
+          <End Role="MONHOC" Type="Self.MONHOC" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="CAUHOI" Type="Self.CAUHOI" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MONHOC">
@@ -318,7 +320,7 @@
             <End Role="DOKHO" EntitySet="DOKHO" />
             <End Role="CAUHOI" EntitySet="CAUHOI" />
           </AssociationSet>
-          <AssociationSet Name="FK__CAUHOI__IDSubjec__286302EC" Association="Self.FK__CAUHOI__IDSubjec__286302EC">
+          <AssociationSet Name="FK__CAUHOI__IDSubjec__47DBAE45" Association="Self.FK__CAUHOI__IDSubjec__47DBAE45">
             <End Role="MONHOC" EntitySet="MONHOC" />
             <End Role="CAUHOI" EntitySet="CAUHOI" />
           </AssociationSet>
@@ -466,8 +468,8 @@
           </Key>
           <Property Name="IDQuestion" Type="Int32" Nullable="false" />
           <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IDDifficulty" Type="Int32" Nullable="false" />
-          <Property Name="IDSubject" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IDDifficulty" Type="Int32" />
+          <Property Name="IDSubject" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Difficulty" Relationship="QuanLyDeThiModel.FK__CAUHOI__IDDiffic__286302EC" FromRole="CAUHOI" ToRole="DOKHO" />
           <NavigationProperty Name="SUBJECT" Relationship="QuanLyDeThiModel.FK__CAUHOI__IDSubjec__29572725" FromRole="CAUHOI" ToRole="MONHOC" />
           <NavigationProperty Name="TESTDETAIL" Relationship="QuanLyDeThiModel.FK__CHITIETDE__IDQue__300424B4" FromRole="CAUHOI" ToRole="CHITIETDETHI" />
@@ -505,7 +507,7 @@
           </Key>
           <Property Name="IDTest" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="No" Type="Int32" Nullable="false" />
-          <Property Name="IDQuestion" Type="Int32" Nullable="false" />
+          <Property Name="IDQuestion" Type="Int32" />
           <NavigationProperty Name="QUESTION" Relationship="QuanLyDeThiModel.FK__CHITIETDE__IDQue__300424B4" FromRole="CHITIETDETHI" ToRole="CAUHOI" />
           <NavigationProperty Name="TEST" Relationship="QuanLyDeThiModel.FK__CHITIETDE__IDTes__2F10007B" FromRole="CHITIETDETHI" ToRole="DETHI" />
         </EntityType>
@@ -517,7 +519,7 @@
           <Property Name="IDSubject" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Year" Type="Int32" />
           <Property Name="Semester" Type="Int32" />
-          <Property Name="TimeForTest" Type="Int32" Nullable="false" />
+          <Property Name="TimeForTest" Type="Int32" />
           <Property Name="DateOfTest" Type="DateTime" Precision="0" />
           <NavigationProperty Name="TESTRESULTDETAIL" Relationship="QuanLyDeThiModel.FK__CHAMTHI__IDTest__3C69FB99" FromRole="DETHI" ToRole="CHAMTHI" />
           <NavigationProperty Name="TESTDETAIL" Relationship="QuanLyDeThiModel.FK__CHITIETDE__IDTes__2F10007B" FromRole="DETHI" ToRole="CHITIETDETHI" />
@@ -528,7 +530,7 @@
             <PropertyRef Name="IDDifficulty" />
           </Key>
           <Property Name="IDDifficulty" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="QUESTION" Relationship="QuanLyDeThiModel.FK__CAUHOI__IDDiffic__286302EC" FromRole="DOKHO" ToRole="CAUHOI" />
         </EntityType>
         <EntityType Name="CLASS">
@@ -549,7 +551,7 @@
             <PropertyRef Name="IDSubject" />
           </Key>
           <Property Name="IDSubject" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="QUESTION" Relationship="QuanLyDeThiModel.FK__CAUHOI__IDSubjec__29572725" FromRole="MONHOC" ToRole="CAUHOI" />
           <NavigationProperty Name="REPORTDETAIL" Relationship="QuanLyDeThiModel.FK__CHITIETBA__IDSub__44FF419A" FromRole="MONHOC" ToRole="CHITIETBAOCAO" />
           <NavigationProperty Name="TEST" Relationship="QuanLyDeThiModel.FK__DETHI__IDSubject__2C3393D0" FromRole="MONHOC" ToRole="DETHI" />
@@ -622,8 +624,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__CAUHOI__IDDiffic__286302EC">
-          <End Type="QuanLyDeThiModel.DIFFICULTY" Role="DOKHO" Multiplicity="1" />
-          <End Type="QuanLyDeThiModel.QUESTION" Role="CAUHOI" Multiplicity="*" />
+          <End Type="QuanLyDeThiModel.DIFFICULTY" Role="DOKHO" Multiplicity="0..1" />
+          <End Type="QuanLyDeThiModel.QUESTION" Role="CAUHOI" Multiplicity="*" >
+          </End>
           <ReferentialConstraint>
             <Principal Role="DOKHO">
               <PropertyRef Name="IDDifficulty" />
@@ -634,8 +637,11 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__CAUHOI__IDSubjec__29572725">
-          <End Type="QuanLyDeThiModel.SUBJECT" Role="MONHOC" Multiplicity="1" />
-          <End Type="QuanLyDeThiModel.QUESTION" Role="CAUHOI" Multiplicity="*" />
+          <End Type="QuanLyDeThiModel.SUBJECT" Role="MONHOC" Multiplicity="0..1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="QuanLyDeThiModel.QUESTION" Role="CAUHOI" Multiplicity="*" >
+          </End>
           <ReferentialConstraint>
             <Principal Role="MONHOC">
               <PropertyRef Name="IDSubject" />
@@ -646,8 +652,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__CHITIETDE__IDQue__300424B4">
-          <End Type="QuanLyDeThiModel.QUESTION" Role="CAUHOI" Multiplicity="1" />
-          <End Type="QuanLyDeThiModel.TESTDETAIL" Role="CHITIETDETHI" Multiplicity="*" />
+          <End Type="QuanLyDeThiModel.QUESTION" Role="CAUHOI" Multiplicity="0..1" />
+          <End Type="QuanLyDeThiModel.TESTDETAIL" Role="CHITIETDETHI" Multiplicity="*" >
+          </End>
           <ReferentialConstraint>
             <Principal Role="CAUHOI">
               <PropertyRef Name="IDQuestion" />

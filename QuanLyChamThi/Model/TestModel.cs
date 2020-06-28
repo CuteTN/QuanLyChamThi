@@ -111,8 +111,8 @@ namespace QuanLyChamThi.Model
                 get { return _stt; }
                 set { _stt = value; OnPropertyChange("Stt"); }
             }
-            private int _questionID;
-            public int QuestionID
+            private Nullable<int> _questionID;
+            public Nullable<int> QuestionID
             {
                 get { return _questionID; }
                 set { _questionID = value; OnPropertyChange("QuestionID"); }
