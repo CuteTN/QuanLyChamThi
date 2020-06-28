@@ -27,5 +27,30 @@ namespace QuanLyChamThi.View
 
             DataContext = new WindowQuestionListViewModel(selectedQuestions, ucQuestionList.DataContext as UCQuestionListViewModel);
         }
+
+
+        private void btnHideShow_Click(object sender, RoutedEventArgs e)
+        {
+            if (lbXtch.Visibility == Visibility.Visible)
+            {
+                lbXtch.Visibility = Visibility.Hidden;
+                tbContent.Visibility = Visibility.Hidden;
+                Grid.SetColumnSpan(questionList, 29);
+                Grid.SetColumnSpan(btnAddRemove, 29);
+                Grid.SetColumn(btnHideShow, 31);
+                btnHideShow.Content = new MaterialDesignThemes.Wpf.PackIcon
+                { Kind = MaterialDesignThemes.Wpf.PackIconKind.ArrowExpandLeft };
+            }
+            else /** UC is HIDDEN **/
+            {
+                lbXtch.Visibility = Visibility.Visible;
+                tbContent.Visibility = Visibility.Visible;
+                Grid.SetColumnSpan(questionList, 15);
+                Grid.SetColumnSpan(btnAddRemove, 15);
+                Grid.SetColumn(btnHideShow, 16);
+                btnHideShow.Content = new MaterialDesignThemes.Wpf.PackIcon
+                { Kind = MaterialDesignThemes.Wpf.PackIconKind.ArrowExpandRight };
+            }
+        }
     }
 }

@@ -6,9 +6,6 @@
              xmlns:local="clr-namespace:QuanLyChamThi.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.Resources>
-        <local:ValueConverter x:Key="selectedConverter"/>
-    </UserControl.Resources>
     <Grid>
         <DockPanel LastChildFill="True">
             <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
@@ -23,12 +20,12 @@
                                       AutoGenerateColumns="False" Width="{Binding ElementName=svGrid, Path=ActualWidth}" 
                                       CanUserResizeColumns="False" CanUserReorderColumns="False" 
                                       CanUserSortColumns="False" 
-                                      IsReadOnly="True"
-                                      SelectionUnit="FullRow">
+                                      IsReadOnly="True" Padding="10"
+                                      SelectionUnit="FullRow" Background="White" Style="{StaticResource MaterialDesignDataGrid}">                    
                     <DataGrid.Columns>
-                        <DataGridTextColumn x:Name="colQuestionID" Binding="{Binding Second.IDQuestion, Mode=TwoWay}" Header="Mã câu hỏi" Width="2*"/>
-                        <DataGridTextColumn x:Name="colSubjectName" Binding="{Binding Second.Subject, Mode=TwoWay}" Header="Môn thi" Width="3*"/>
-                        <DataGridTextColumn x:Name="colQuestionContent" Binding="{Binding Second.Content, Mode=TwoWay}" Header="Nội dung" Width="5*"/>
+                        <DataGridTextColumn x:Name="colQuestionID" Binding="{Binding IDQuestion, Mode=TwoWay}" Header="Mã câu hỏi" Width="2*"/>
+                        <DataGridTextColumn x:Name="colSubjectName" Binding="{Binding Subject, Mode=TwoWay}" Header="Môn thi" Width="3*"/>
+                        <DataGridTextColumn x:Name="colQuestionContent" Binding="{Binding Content, Mode=TwoWay}" Header="Nội dung" Width="5*"/>
                     </DataGrid.Columns>
                     <local:CustomDataGrid.RowStyle>
                         <Style TargetType="{x:Type DataGridRow}">
@@ -41,6 +38,5 @@
                     </local:CustomDataGrid.RowStyle>
                 </local:CustomDataGrid>
             </ScrollViewer>
-        </DockPanel>
-    </Grid>
+
 </UserControl>

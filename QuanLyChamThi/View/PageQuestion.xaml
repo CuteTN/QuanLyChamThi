@@ -5,13 +5,15 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:QuanLyChamThi.View"
       xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+      xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="TẠO SỬA CÂU HỎI">
     <Page.Resources>
         <local:BindingProxy x:Key="proxy" Data="{Binding}"/>
     </Page.Resources>
-    <Grid Background="LightGray" x:Name="mainGrid">
+
+    <Grid Background="WhiteSmoke" x:Name="mainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -63,14 +65,15 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" VerticalAlignment="Center" Content="Môn học"/>
-        <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="5" VerticalAlignment="Center" Content="Độ khó"/>
-        <Label Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="5" VerticalAlignment="Center" Content="Nội dung"/>
-        
-        <ComboBox x:Name="cbSubject" ItemsSource="{Binding ListSubject}" SelectedItem="{Binding SelectedSubject}" Grid.Column="6" Grid.Row="1" Grid.ColumnSpan="10" VerticalAlignment="Center">
+        <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" VerticalAlignment="Bottom" Content="Môn học:" Foreground="Black" FontWeight="Bold"/>
+        <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="5" VerticalAlignment="Bottom" Content="Độ khó:" Foreground="Black" FontWeight="Bold"/>
+        <Label Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="5" VerticalAlignment="Bottom" Content="Nội dung câu hỏi:" Foreground="Black" FontWeight="Bold"/>
+        <Label x:Name="lbDsch"  Grid.Column="17" Grid.Row="1" Grid.ColumnSpan="5" VerticalAlignment="Bottom" Content="Danh sách câu hỏi:" Foreground="Black" FontWeight="Bold"/>
+
+        <ComboBox x:Name="cbSubject" ItemsSource="{Binding ListSubject}" SelectedItem="{Binding SelectedSubject}" Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="12" VerticalAlignment="Bottom">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
@@ -79,7 +82,7 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <ComboBox x:Name="cbDifficulty" ItemsSource="{Binding ListDifficulty}" SelectedItem="{Binding SelectedDifficulty}" Grid.Column="6" Grid.Row="2" Grid.ColumnSpan="10" VerticalAlignment="Center">
+        <ComboBox x:Name="cbDifficulty" ItemsSource="{Binding ListDifficulty}" SelectedItem="{Binding SelectedDifficulty}" Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="12" VerticalAlignment="Bottom">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
@@ -89,14 +92,13 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
 
-        <Border BorderThickness="10" BorderBrush="{Binding ElementName=tbContent, Path=Background}" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="15" Grid.RowSpan="11">
-            <ScrollViewer x:Name="svGrid" VerticalScrollBarVisibility="Auto">
-                <TextBox x:Name="tbContent" Text="{Binding Content}" Width="{Binding ElementName=svGrid, Path=ActualWidth}" Height="{Binding ElementName=svGrid, Path=ActualHeight}" Background="WhiteSmoke"/>
-            </ScrollViewer>
-        </Border>
+        <TextBox Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="15" Grid.RowSpan="11" x:Name="tbContent" Text="{Binding Content}" Width="{Binding ElementName=svGrid, Path=ActualWidth}" Height="{Binding ElementName=svGrid, Path=ActualHeight}" TextWrapping="Wrap"   Background="White" Margin="0,12,0,0" Padding="10,5"
+    VerticalAlignment="Stretch"
+    MinWidth="280"
+    AcceptsReturn="True"
+    VerticalScrollBarVisibility="Auto"></TextBox>
 
-        <Button x:Name="btnHideShow" Grid.Column="31" Grid.Row="4" Grid.RowSpan="10" Height="Auto" Content=">" Click="btnHideShow_Click" Style="{StaticResource MaterialDesignFlatButton}"/>
-
+        <Button ToolTip="Mở rộng / thu gọn nội dung câu hỏi" x:Name="btnHideShow" Grid.Column="16" Grid.Row="4" Grid.RowSpan="11" Margin="5,12,5,0" Height="Auto" Content="{md:PackIcon Kind=ArrowExpandRight}" Click="btnHideShow_Click" Style="{StaticResource MaterialDesignFlatButton}" Padding="0,0,0,0"/>
         <DockPanel Grid.Column="17" Grid.Row="2" Grid.ColumnSpan="13" Grid.RowSpan="13" LastChildFill="True">
             <local:UserControlQuestionList x:Name="ucQuestionList">
                 <i:Interaction.Triggers>
@@ -107,7 +109,7 @@
             </local:UserControlQuestionList>
         </DockPanel>
 
-        <Button x:Name="btnCancel" Command="{Binding CancelEditingCommand}" Grid.Column="23" Grid.Row="15" Grid.ColumnSpan="3" VerticalAlignment="Center" Content="Huỷ" Panel.ZIndex="3"/>
-        <Button x:Name="btnOK" Command="{Binding AddQuestionCommand}" Grid.Column="27" Grid.Row="15" Grid.ColumnSpan="3" VerticalAlignment="Center" Content="Thêm" Panel.ZIndex="3"/>
+        <Button Style="{StaticResource MaterialDesignOutlinedButton}" x:Name="btnCancel" Grid.Column="23" Grid.Row="16" Grid.ColumnSpan="3" VerticalAlignment="Center" Content="Huỷ" Panel.ZIndex="3"/>
+        <Button x:Name="btnOK" Command="{Binding AddQuestionCommand}" Grid.Column="27" Grid.Row="16" Grid.ColumnSpan="3" VerticalAlignment="Center" Content="Thêm" Panel.ZIndex="3"/>
     </Grid>
 </Page>
