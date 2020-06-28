@@ -8,7 +8,11 @@
       mc:Ignorable="d" 
       d:DesignHeight="640" d:DesignWidth="1200"
       Title="CÀI ĐẶT">
-
+    
+    <Page.Resources>
+        <local:BindingProxy x:Key="proxy" Data="{Binding}"/>
+    </Page.Resources>
+    
     <Grid x:Name="mainGrid" Background="#FFEFEFEF">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -119,8 +123,8 @@
                              Grid.Row="2" 
                              Grid.ColumnSpan="4"
                              VerticalAlignment="Center"
-                             Text="{Binding NumberOfDifficulty}"/>
-                    <Button x:Name="btnUpdateDifficulty" Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="4" Content="Cập nhật"/>
+                             Text="{Binding NumberOfDifficulty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Button x:Name="btnUpdateDifficulty" Command="{Binding UpdateNumberDifficultyCommand}" Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="4" Content="Cập nhật"/>
                     <DataGrid x:Name="dgDifficultyList" ItemsSource="{Binding ListDifficulty}" Grid.Column="10" Grid.Row="1" Grid.ColumnSpan="18" Grid.RowSpan="10" CanUserAddRows="False" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Độ khó" Binding="{Binding Name}" Width="8.5*"/>
@@ -239,23 +243,28 @@
                     </Grid.RowDefinitions>
 
                     <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="7" Content="Số lượng lớp học"/>
-                    <ComboBox x:Name="cbClassNumber" Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="4"/>
+                    <TextBox x:Name="cbClassNumber" Text="{Binding NumberOfClass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="4"/>
                     <Button x:Name="btnUpdateClass" Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="4" Content="Cập nhật"/>
-                    <DataGrid x:Name="dgClassList" Grid.Column="10" Grid.Row="1" Grid.ColumnSpan="18" Grid.RowSpan="10">
+                    <DataGrid x:Name="dgClassList"  ItemsSource="{Binding ListClass}" AutoGenerateColumns="False" Grid.Column="10" Grid.Row="1" Grid.ColumnSpan="18" Grid.RowSpan="10" CanUserAddRows="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="STT" Width="1*"/>
-                            <DataGridTextColumn Header="Mã lớp học" Width="3*"/>
-                            <DataGridTextColumn Header="Tên lớp học" Width="7*"/>
+                            <DataGridTextColumn Header="Mã lớp học" Binding="{Binding IDClass}" Width="*"/>
+                            <DataGridTemplateColumn Header="Tên môn học" Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ComboBox ItemsSource="{Binding Path=Data.ListSubjectForClass, Source={StaticResource proxy}}" SelectedItem="{Binding Subject, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
             </TabItem>
         </TabControl>
-        
-        
 
-        <Button x:Name="btnOK" Grid.Column="27" Grid.Row="15" Grid.ColumnSpan="3" Content="Lưu"/>
-        <Button x:Name="btnCancel" Grid.Column="23" Grid.Row="15" Grid.ColumnSpan="3" Content="Hủy"/>
+
+
+        <Button x:Name="btnOK" Command="{Binding SaveChangeDifficultyCommand}" Grid.Column="27" Grid.Row="15" Grid.ColumnSpan="3" Content="Lưu"/>
+        <Button x:Name="btnCancel" Command="{Binding CancelEditingCommand}" Grid.Column="23" Grid.Row="15" Grid.ColumnSpan="3" Content="Hủy"/>
         
     </Grid>
 </Page>

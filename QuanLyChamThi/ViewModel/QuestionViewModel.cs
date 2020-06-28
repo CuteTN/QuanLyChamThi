@@ -55,7 +55,7 @@ namespace QuanLyChamThi.ViewModel
         #region Combobox Difficulty
         private List<DIFFICULTY> selectDifficulty()
         {
-            var result = (from d in DataProvider.Ins.DB.DIFFICULTY select d).ToList();
+            var result = (from d in DataProvider.Ins.DB.DIFFICULTY where d.Disabled == false select d).ToList();
             return result;
         }
 
@@ -168,6 +168,11 @@ namespace QuanLyChamThi.ViewModel
                     var editingQuestionDBModel = DataProvider.Ins.DB.QUESTION.Find(_editingQuestion.IDQuestion);
                     Content = editingQuestionDBModel.Content;
                     SelectedDifficulty = editingQuestionDBModel.Difficulty;
+                    if(!ListDifficulty.Contains(SelectedDifficulty))
+                    {
+                        ListDifficulty.Add(SelectedDifficulty);
+                        OnPropertyChange("ListDifficulty");
+                    }
                     SelectedSubject = editingQuestionDBModel.SUBJECT;
                 }
             }
@@ -201,6 +206,10 @@ namespace QuanLyChamThi.ViewModel
         {
             Content = "";
             EditingQuestion = null;
+            ListSubject = null;
+            ListDifficulty = null;
+            SelectedSubject = null;
+            SelectedDifficulty = null;
         }
         #endregion
 
@@ -266,13 +275,16 @@ namespace QuanLyChamThi.ViewModel
 
         void LoadSelectedQuestion()
         {
-            EditingQuestion = QuestionListViewModel.SelectedQuestions[0];
+            resetInputContent();
+            if (QuestionListViewModel.SelectedQuestions.Count != 0)
+                EditingQuestion = QuestionListViewModel.SelectedQuestions[0];
         }
         #endregion
 
         public void Receive(object sender, List<DatabaseCommand> commands)
         {
             // MORECODE
+            resetInputContent();
         }
 
         public QuestionViewModel()

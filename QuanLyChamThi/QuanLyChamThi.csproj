@@ -108,6 +108,7 @@
     <Compile Include="Model\CLASS.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\ClassModel.cs" />
     <Compile Include="Model\DIFFICULTY.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

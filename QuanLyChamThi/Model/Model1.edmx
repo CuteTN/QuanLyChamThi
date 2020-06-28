@@ -60,7 +60,7 @@
           </Key>
           <Property Name="IDTest" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="Stt" Type="int" Nullable="false" />
-          <Property Name="IDQuestion" Type="int" />
+          <Property Name="IDQuestion" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="DETHI">
           <Key>
@@ -233,8 +233,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CHITIETDE__IDQue__2F10007B">
-          <End Role="CAUHOI" Type="Self.CAUHOI" Multiplicity="0..1" />
+        <Association Name="FK__CHITIETDE__IDQue__3A4CA8FD">
+          <End Role="CAUHOI" Type="Self.CAUHOI" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="CHITIETDETHI" Type="Self.CHITIETDETHI" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CAUHOI">
@@ -343,7 +345,7 @@
             <End Role="BAOCAONAM" EntitySet="BAOCAONAM" />
             <End Role="CHITIETBAOCAO" EntitySet="CHITIETBAOCAO" />
           </AssociationSet>
-          <AssociationSet Name="FK__CHITIETDE__IDQue__2F10007B" Association="Self.FK__CHITIETDE__IDQue__2F10007B">
+          <AssociationSet Name="FK__CHITIETDE__IDQue__3A4CA8FD" Association="Self.FK__CHITIETDE__IDQue__3A4CA8FD">
             <End Role="CAUHOI" EntitySet="CAUHOI" />
             <End Role="CHITIETDETHI" EntitySet="CHITIETDETHI" />
           </AssociationSet>
@@ -648,8 +650,11 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__CHITIETDE__IDQue__300424B4">
-          <End Type="QuanLyDeThiModel.QUESTION" Role="CAUHOI" Multiplicity="1" />
-          <End Type="QuanLyDeThiModel.TESTDETAIL" Role="CHITIETDETHI" Multiplicity="*" />
+          <End Type="QuanLyDeThiModel.QUESTION" Role="CAUHOI" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="QuanLyDeThiModel.TESTDETAIL" Role="CHITIETDETHI" Multiplicity="*" >
+          </End>
           <ReferentialConstraint>
             <Principal Role="CAUHOI">
               <PropertyRef Name="IDQuestion" />
