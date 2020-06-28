@@ -104,11 +104,11 @@
 
 
         <DockPanel Grid.Column="27" Grid.Row="16" Grid.ColumnSpan="3" LastChildFill="True">
-            <Button VerticalAlignment="Center" Content="Lưu file"/>
+            <Button VerticalAlignment="Center" Content="Lưu file" Command="{Binding SaveAsFileCommand}"/>
         </DockPanel>
 
         <DockPanel Grid.Column="23" Grid.Row="16"  Grid.ColumnSpan="3" LastChildFill="True" >
-            <Button VerticalAlignment="Center" Content="In báo cáo" Style="{StaticResource MaterialDesignRaisedAccentButton}" Foreground="White"/>
+            <Button VerticalAlignment="Center" Content="In báo cáo" Style="{StaticResource MaterialDesignRaisedAccentButton}" Foreground="White" Command="{Binding PrintCommand}" CommandParameter="{Binding ElementName=dgReport}"/>
         </DockPanel>
 
     </Grid>
