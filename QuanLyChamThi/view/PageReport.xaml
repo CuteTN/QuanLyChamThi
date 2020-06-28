@@ -41,7 +41,7 @@
 
 
         <DockPanel Grid.Column="10" Grid.Row="15" Grid.ColumnSpan="5" LastChildFill="True">
-            <Button VerticalAlignment="Center" Content="Lưu file"/>
+            <Button x:Name="btnSaveAsFile" Command="{Binding SaveAsFileCommand}" VerticalAlignment="Center" Content="Lưu file"/>
         </DockPanel>
         
         <DockPanel Grid.Column="16" Grid.Row="15" Grid.ColumnSpan="5" LastChildFill="True">
