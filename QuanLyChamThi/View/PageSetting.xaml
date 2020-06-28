@@ -184,11 +184,11 @@
                     <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="7" Content="Số lượng môn học"/>
                     <ComboBox x:Name="cbDSubjectNumber" Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="4"/>
                     <Button x:Name="btnUpdateSubject" Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="4" Content="Cập nhật"/>
-                    <DataGrid x:Name="dgSubjectList" Grid.Column="10" Grid.Row="1" Grid.ColumnSpan="18" Grid.RowSpan="10">
+                    <DataGrid x:Name="dgSubjectList" ItemsSource="{Binding ListSubject, Mode=TwoWay}" Grid.Column="10" Grid.Row="1" Grid.ColumnSpan="18" Grid.RowSpan="10" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="STT" Width="1*"/>
-                            <DataGridTextColumn Header="Mã môn học" Width="3*"/>
-                            <DataGridTextColumn Header="Tên môn học" Width="7*"/>
+                            <DataGridTextColumn Header="Mã môn học" Binding="{Binding IDSubject, Mode=TwoWay}" Width="3*"/>
+                            <DataGridTextColumn Header="Tên môn học" Binding="{Binding Name, Mode=TwoWay}" Width="7*"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
@@ -261,10 +261,8 @@
             </TabItem>
         </TabControl>
 
-
-
-        <Button x:Name="btnOK" Command="{Binding SaveChangeDifficultyCommand}" Grid.Column="27" Grid.Row="15" Grid.ColumnSpan="3" Content="Lưu"/>
-        <Button x:Name="btnCancel" Command="{Binding CancelEditingCommand}" Grid.Column="23" Grid.Row="15" Grid.ColumnSpan="3" Content="Hủy"/>
+        <Button x:Name="btnOK" Command="{Binding OKCommand}" Grid.Column="27" Grid.Row="15" Grid.ColumnSpan="3" Content="Lưu"/>
+        <Button x:Name="btnCancel" Command="{Binding CancelCommand}" Grid.Column="23" Grid.Row="15" Grid.ColumnSpan="3" Content="Hủy"/>
         
     </Grid>
 </Page>

@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Text;
 using System.Threading.Tasks;
 using QuanLyChamThi.ViewModel;
+using System.Windows;
 
 namespace QuanLyChamThi.Model
 {
@@ -62,8 +63,7 @@ namespace QuanLyChamThi.Model
             foreach (DatabaseCommand item in commands)
             {
                 if (item.add == null && item.delete == null)
-                    return;
-
+                    continue;
                 if (item.add == null)
                     DeleteItem(item.delete);
                 else if (item.delete == null)

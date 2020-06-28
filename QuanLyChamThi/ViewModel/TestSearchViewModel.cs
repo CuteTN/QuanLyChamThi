@@ -150,7 +150,7 @@ namespace QuanLyChamThi.ViewModel
             {
                 TestSearchModel newItem = new TestSearchModel();
                 newItem.TestDate = item.DateOfTest?.ToString()??"Không có thông tin";
-                newItem.TestDuration = item.TimeForTest;
+                newItem.TestDuration = item.TimeForTest.Value;
                 newItem.TestID = item.IDTest;
                 newItem.pSource = item;
 

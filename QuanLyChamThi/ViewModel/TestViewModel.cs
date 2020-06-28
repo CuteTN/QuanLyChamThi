@@ -144,7 +144,7 @@ namespace QuanLyChamThi.ViewModel
                               where u.IDTest == TestID
                               select new TestModel()
                               {
-                                  Duration = u.TimeForTest,
+                                  Duration = u.TimeForTest.Value,
                                   Semester = u.Semester,
                                   SubjectID = u.IDSubject,
                                   TestDate = u.DateOfTest,
@@ -410,7 +410,7 @@ namespace QuanLyChamThi.ViewModel
 
         public void Receive(object sender, List<DatabaseCommand> commands)
         {
-            DatabaseCommand test = commands.FirstOrDefault((DatabaseCommand item) => item.delete != null && item.delete == (object)_test?.pSource);
+            DatabaseCommand test = commands.FirstOrDefault((DatabaseCommand item) => item.delete != null && (item.delete is TEST) && item.delete == _test?.pSource);
             if (test != null)
             {
                 ViewMode((test.add as TEST)?.IDTest);
