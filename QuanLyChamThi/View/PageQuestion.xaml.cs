@@ -37,7 +37,6 @@ namespace QuanLyChamThi.View
             if (ucQuestionList.Visibility == Visibility.Visible)
             {
                 ucQuestionList.Visibility = Visibility.Hidden;
-                lbDsch.Visibility = Visibility.Hidden;
                 Grid.SetColumnSpan(tbContent, 29);
                 Grid.SetColumnSpan(cbDifficulty, 26);
                 Grid.SetColumnSpan(cbSubject, 26);
@@ -48,7 +47,6 @@ namespace QuanLyChamThi.View
             else /** UC is HIDDEN **/
             {
                 ucQuestionList.Visibility = Visibility.Visible;
-                lbDsch.Visibility = Visibility.Visible;
                 Grid.SetColumnSpan(tbContent, 15);
                 Grid.SetColumnSpan(cbDifficulty, 12);
                 Grid.SetColumnSpan(cbSubject, 12);

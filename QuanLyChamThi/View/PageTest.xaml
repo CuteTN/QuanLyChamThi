@@ -82,7 +82,7 @@
         <Label Grid.Column="17" Grid.Row="3" Grid.ColumnSpan="4"  VerticalAlignment="Bottom" Content="Ngày thi:" Foreground="Black" FontWeight="Bold"/>
 
         <TextBox x:Name="cbTimeForTest" Text="{Binding TempDuration, Mode=TwoWay}" Grid.Column="5" Grid.Row="3" Grid.ColumnSpan="9" VerticalAlignment="Bottom"/>
-        <DatePicker x:Name="cbDateOfTest" Text="{Binding TempTestDate, Mode=TwoWay}" Grid.Column="21" Grid.Row="3" Grid.ColumnSpan="9" VerticalAlignment="Bottom"/>
+        <DatePicker x:Name="cbDateOfTest" SelectedDate="{Binding TempTestDate, Mode=TwoWay}" Grid.Column="21" Grid.Row="3" Grid.ColumnSpan="9" VerticalAlignment="Bottom"/>
 
         <Grid Grid.Column="30"  Grid.Row="7" Margin="5,12,5,0" Grid.RowSpan="8">
             <Grid.RowDefinitions>
@@ -105,8 +105,9 @@
         <ScrollViewer x:Name="svGrid" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="29" Grid.RowSpan="8" VerticalScrollBarVisibility="Auto">
             <DataGrid md:ShadowAssist.ShadowDepth="Depth5" x:Name="dgReport" Margin="0,12,0,0" ItemsSource="{Binding TempTestDetail}" AutoGenerateColumns="False"
                       Width="{Binding ElementName=svGrid, Path=ActualWidth}" CanUserResizeColumns="False" CanUserReorderColumns="False"
-                      CanUserSortColumns="False" SelectionChanged="dgReport_SelectionChanged" Background="White" Style="{StaticResource MaterialDesignDataGrid}"
-                      Padding="10">
+                      CanUserSortColumns="False" Background="White" Style="{StaticResource MaterialDesignDataGrid}"
+                      Padding="10" SelectedItem="{Binding SelectedItem}"
+                      SelectionMode="Single">
                 <DataGrid.Columns>
                     <DataGridTextColumn x:Name="colSTT" Binding="{Binding Stt, Mode=OneWay}" Header="STT" Width="2*"/>
                     <DataGridTextColumn x:Name="colQuestionID" Binding="{Binding QuestionID, Mode=OneWay}" Header="Mã câu hỏi" Width="3*"/>

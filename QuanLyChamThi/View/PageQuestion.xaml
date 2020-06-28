@@ -71,8 +71,7 @@
         <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" VerticalAlignment="Bottom" Content="Môn học:" Foreground="Black" FontWeight="Bold"/>
         <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="5" VerticalAlignment="Bottom" Content="Độ khó:" Foreground="Black" FontWeight="Bold"/>
         <Label Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="5" VerticalAlignment="Bottom" Content="Nội dung câu hỏi:" Foreground="Black" FontWeight="Bold"/>
-        <Label x:Name="lbDsch"  Grid.Column="17" Grid.Row="1" Grid.ColumnSpan="5" VerticalAlignment="Bottom" Content="Danh sách câu hỏi:" Foreground="Black" FontWeight="Bold"/>
-
+        
         <ComboBox x:Name="cbSubject" ItemsSource="{Binding ListSubject}" SelectedItem="{Binding SelectedSubject}" Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="12" VerticalAlignment="Bottom">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
@@ -99,7 +98,7 @@
     VerticalScrollBarVisibility="Auto"></TextBox>
 
         <Button ToolTip="Mở rộng / thu gọn nội dung câu hỏi" x:Name="btnHideShow" Grid.Column="16" Grid.Row="4" Grid.RowSpan="11" Margin="5,12,5,0" Height="Auto" Content="{md:PackIcon Kind=ArrowExpandRight}" Click="btnHideShow_Click" Style="{StaticResource MaterialDesignFlatButton}" Padding="0,0,0,0"/>
-        <DockPanel Grid.Column="17" Grid.Row="2" Grid.ColumnSpan="13" Grid.RowSpan="13" LastChildFill="True">
+        <DockPanel Grid.Column="17" Grid.Row="1" Grid.ColumnSpan="13" Grid.RowSpan="14" LastChildFill="True">
             <local:UserControlQuestionList x:Name="ucQuestionList">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="PreviewMouseDoubleClick">

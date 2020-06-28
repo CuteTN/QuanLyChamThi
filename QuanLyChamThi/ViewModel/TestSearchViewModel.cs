@@ -173,7 +173,35 @@ namespace QuanLyChamThi.ViewModel
             set { _newTestCommand = value; }
         }
         #endregion
-        
+
+        #region EditTestCommand
+        private TestSearchModel _selectedItem;
+        public TestSearchModel SelectedItem
+        {
+            get { return _selectedItem; }
+            set { _selectedItem = value; OnPropertyChange("SelectedItem"); }
+        }
+
+        private ICommand _editTestCommand;
+        public ICommand EditTestCommand
+        {
+            get
+            {
+                if (_editTestCommand == null)
+                    _editTestCommand = new RelayCommand(param => EditTestButton());
+                return _editTestCommand;
+            }
+            set { _editTestCommand = value; }
+        }
+
+        void EditTestButton()
+        {
+            if (SelectedItem?.TestID == null)
+                return;
+            MainWindowViewModel.Ins.SwitchView(9, SelectedItem.TestID);
+        }
+        #endregion
+
         #region Delete Button
         private ICommand _deleteCommand;
         public ICommand DeleteCommand
