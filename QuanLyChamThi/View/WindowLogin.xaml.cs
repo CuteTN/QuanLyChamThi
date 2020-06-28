@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLyChamThi.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -21,32 +22,47 @@ namespace QuanLyChamThi.View
     public partial class WindowLogin : Window
     {
         private string access;
+        LoginViewModel vm = new LoginViewModel();
 
         public WindowLogin()
         {
             InitializeComponent();
+            DataContext = vm;
             access = "denied";
             /** CREATE GRID COLUMNS AND ROWS **/
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            access = "accepted";
-            ViewExtension.Message(this, "Đăng nhập thành công", "Chào mừng abcxyz");
+            DoLogin();
+        }
 
-            /**
-            int getConfirmState = ViewExtension.Confirm(this, "Xác nhận đăng nhập");
-
-            if (getConfirmState == 0)
-                access = "denied";
-            **/
-
-            this.Close();
+        private void DoLogin()
+        {
+            bool loginResult = vm.Login(tbUsername.Text, tbPassword.Password);
+            if (loginResult == true)
+            {
+                access = "accepted";
+                ViewExtension.Message(this, "Đăng nhập thành công", "Chào mừng admin", 1);
+                this.Close();
+            }
+            else
+            {
+                ViewExtension.Message(this, "Đăng nhập thất bại", "Sai tên tài khoản hoặc mật khẩu", 0);
+            }
         }
 
         public string getAccessState()
         {
             return access;
+        }
+
+        private void mainGrid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                DoLogin();
+            }
         }
     }
 }

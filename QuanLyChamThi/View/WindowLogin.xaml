@@ -9,7 +9,7 @@
     Title="Đăng nhập" Height="400" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"  >
 
 
-    <Grid x:Name="mainGrid">
+    <Grid x:Name="mainGrid" KeyDown="mainGrid_KeyDown">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -50,9 +50,9 @@
                 Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="6" VerticalAlignment="Center" Margin="36,0,12,0"/>
         <md:PackIcon Grid.Row="3" Kind="Account"  VerticalAlignment="Center" Margin="3.08,28.28,0,8.712" Grid.Column="1" Grid.RowSpan="2" />
         <md:PackIcon Grid.Row="5" Kind="KeyVariant"  VerticalAlignment="Bottom" Margin="3.08,0,0,4.952" Grid.Column="1"  />
-        <Button Style="{StaticResource MaterialDesignRaisedButton}"
-                Grid.Column="4" Grid.Row="7" Grid.ColumnSpan="3" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Đăng nhập" Click="btnLogin_Click" Margin="0"
-                          />
+        <Button x:Name="btnLogin"
+                Style="{StaticResource MaterialDesignRaisedButton}"
+                Grid.Column="4" Grid.Row="7" Grid.ColumnSpan="3" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Đăng nhập" Click="btnLogin_Click" Margin="0" />
         <Button Style="{StaticResource MaterialDesignFlatButton}" x:Name="btnForgotPassword" Grid.Column="2" Grid.Row="9" Grid.ColumnSpan="4"  VerticalAlignment="Bottom" Content="Quên mật khẩu ?" BorderThickness="0" Background="White" Foreground="#FF3F51B5"/>
 
         <!--
