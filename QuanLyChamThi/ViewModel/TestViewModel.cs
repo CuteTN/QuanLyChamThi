@@ -295,6 +295,7 @@ namespace QuanLyChamThi.ViewModel
         public void UpAllButton()
         {
             int n = (SelectedItem?.Stt??1) - 1;
+            if (n == 0) return;
             for (int i = n; i > 0; i--)
             //*
             {
@@ -361,6 +362,7 @@ namespace QuanLyChamThi.ViewModel
         {
             int n = (SelectedItem?.Stt ?? 1);
             int m = TempTestDetail.Count;
+            if (m == 0) return;
             for (int i = n; i < m; i++)
             //*
             {
