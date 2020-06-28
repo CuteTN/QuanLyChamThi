@@ -32,5 +32,10 @@ namespace QuanLyChamThi.View
         {
             DataContext = new SettingViewModel();
         }
+
+        private void btnOK_Click(object sender, RoutedEventArgs e)
+        {
+            bool nothing = ViewExtension.MessageOK(null, "Thiết lập thành công !!!");
+        }
     }
 }

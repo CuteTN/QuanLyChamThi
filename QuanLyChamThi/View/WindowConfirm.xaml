@@ -8,12 +8,12 @@
         mc:Ignorable="d"
         Title="THÔNG BÁO" Height="125" Width="300" WindowStartupLocation="CenterScreen" AllowsTransparency="True" WindowStyle="None" Background="Transparent">
     <Grid x:Name="mainGrid" Background="Transparent">
-        <Border x:Name="border" BorderThickness="1" Background="WhiteSmoke" CornerRadius="20">
+        <Border x:Name="border" BorderThickness="2" Background="WhiteSmoke" CornerRadius="20" BorderBrush="DarkBlue">
             <DockPanel LastChildFill="True">
                 <StackPanel DockPanel.Dock="Top" VerticalAlignment="Center" Orientation="Vertical" Margin="10">
                     <TextBlock x:Name="tbContent" FontWeight="Bold" HorizontalAlignment="Center" TextAlignment="Justify"/>
                     <TextBlock FontStyle="Italic" Text="Vui lòng xác nhận" TextAlignment="Center"/>
-                    
+
                     <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Margin="10">
                         <Button x:Name="btnConfirm" Content="Xác nhận" Click="btnConfirm_Click"/>
                         <Separator Width="20" Background="Transparent"/>

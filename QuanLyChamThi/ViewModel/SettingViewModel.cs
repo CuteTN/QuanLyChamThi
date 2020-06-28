@@ -11,6 +11,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.ComponentModel;
+using QuanLyChamThi.View;
 
 namespace QuanLyChamThi.ViewModel
 {
@@ -424,6 +425,7 @@ namespace QuanLyChamThi.ViewModel
         private void OKFunction()
         {
             saveSubjectsFunction();
+            //bool nothing = ViewExtension.MessageOK()
             // NOT WORK
             DataProvider.Ins.DB.SaveChanges();
         }
@@ -449,6 +451,7 @@ namespace QuanLyChamThi.ViewModel
         {
             // MORECODE
         }
+
         public SettingViewModel()
         {
             ViewModelMediator.Ins.AddUserModel(this);

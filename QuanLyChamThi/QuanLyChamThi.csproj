@@ -240,6 +240,9 @@
     <Compile Include="View\WindowNotification.xaml.cs">
       <DependentUpon>WindowNotification.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\WindowNotiOK.xaml.cs">
+      <DependentUpon>WindowNotiOK.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\WindowQuestionList.xaml.cs">
       <DependentUpon>WindowQuestionList.xaml</DependentUpon>
     </Compile>
@@ -300,6 +303,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\WindowNotification.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WindowNotiOK.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
