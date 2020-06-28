@@ -285,7 +285,7 @@ namespace QuanLyChamThi.ViewModel
             {
                 ViewModelMediator.Ins.Receive(this, GenerateChangeCommands());
             }
-            catch(Exception e)
+            catch(Exception)
             {
 
             }

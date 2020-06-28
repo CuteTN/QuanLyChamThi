@@ -25,6 +25,7 @@ namespace QuanLyChamThi.View
         public PageReport()
         {
             InitializeComponent();
+
             DataContext = new YearlyReportViewModel();
         }
     }

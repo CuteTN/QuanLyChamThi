@@ -4,12 +4,13 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+          xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:QuanLyChamThi.View"
       mc:Ignorable="d" 
       d:DesignHeight="640" d:DesignWidth="1200"
       Title="DANH SÁCH BÀI CHẤM">
 
-    <Grid Background="LightGray" x:Name="mainGrid">
+    <Grid Background="WhiteSmoke" x:Name="mainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -43,8 +44,8 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-
         <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -64,17 +65,39 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Button x:Name="btnNew" Command="{Binding EditSelectedTestResultDetailCommand}" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="6" Content="+ Tạo bài chấm mới"/>
-        <Button Grid.Column="28" Command="{Binding DeleteSelectedResultDetailCommand}" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center">
-            <Image Source="/QuanLyChamThi;component/Icon/filter.ico"/>
-        </Button>
 
-        <Button x:Name="btnEdit" Grid.Column="23" Grid.Row="2" Grid.ColumnSpan="3" Content="Sửa"/>
-        <Button x:Name="btnRemove" Grid.Column="27" Grid.Row="2" Grid.ColumnSpan="3" Content="Xóa"/>
-        
+        <Label Grid.Column="1" Grid.Row="14" Grid.ColumnSpan="3"  VerticalAlignment="Bottom" Content="Mã số đề thi:" Foreground="Black" FontWeight="Bold"/>
+        <Label Grid.Column="1" Grid.Row="15" Grid.ColumnSpan="3"  VerticalAlignment="Bottom" Content="Mã lớp:" Foreground="Black" FontWeight="Bold"/>
+        <Label Grid.Column="1" Grid.Row="16" Grid.ColumnSpan="3"  VerticalAlignment="Bottom" Content="Tên môn thi:" Foreground="Black" FontWeight="Bold"/>
+        <Button x:Name="btnFind" ToolTip="Tìm bài chấm thoả yêu cầu" Command="{Binding SearchCommand}"  
+                Grid.Column="10" Grid.Row="14" Grid.RowSpan="3" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignOutlinedButton}"  VerticalAlignment="Stretch" Height="Auto" Content="{md:PackIcon Kind=Magnify, Size=30}" Padding="0,0,0,0" Margin="10,15,0,0" UseLayoutRounding="False"/>
+        <Button x:Name="btnNew" Command="{Binding EditSelectedTestResultDetailCommand}" Grid.Column="16" Grid.Row="14" Grid.RowSpan="3" Grid.ColumnSpan="14" 
+                VerticalAlignment="Stretch" Height="Auto" Content="Tạo bài chấm mới"  Margin="10,15,0,0"/>
 
-        <ScrollViewer x:Name="svGrid" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="29" Grid.RowSpan="13" VerticalScrollBarVisibility="Auto">
-            <DataGrid x:Name="dgListTestResult" ItemsSource="{Binding ListTestResultDetail}" SelectedItem="{Binding SelectedResultDetail, Mode=TwoWay}" AutoGenerateColumns="False" Width="{Binding ElementName=svGrid, Path=ActualWidth}" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False" CanUserAddRows="False" IsReadOnly="True">
+
+        <md:Badged x:Name="badgedelete" Badge="2" BadgeColorZoneMode="Dark" Grid.Column="14" Grid.Row="14" Grid.RowSpan="3" Grid.ColumnSpan="2" Margin="10,15,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+            <Button x:Name="btnDelete" Padding="0,0,0,0"  Command="{Binding DeleteCommand}" Content="{md:PackIcon Kind=Delete,Size=30}" Width="{Binding ActualWidth, ElementName=badgedelete, Mode=OneWay}" ToolTip="Xoá bài chấm đã chọn"  Style="{StaticResource MaterialDesignOutlinedButton}" Height="{Binding ActualHeight, ElementName=badgedelete, Mode=OneWay}" Foreground="White" Background="#F44336" BorderBrush="#F44336"/>
+
+        </md:Badged>
+        <Button x:Name="btnEdit" Padding="0,0,0,0"  Margin="10,15,0,0"
+                Content="{md:PackIcon Kind=Edit,Size=30}"
+                ToolTip="Sửa đề thi" Grid.Column="12" Grid.Row="14"
+                Grid.ColumnSpan="2" Grid.RowSpan="3"
+                Style="{StaticResource MaterialDesignOutlinedButton}" Height="{Binding ActualHeight, ElementName=badgedelete, Mode=OneWay}"
+                Foreground="White" Background="#FF9800" BorderBrush="#FF9800"/>
+
+        <TextBox x:Name="tbClassID" md:HintAssist.Hint="Tất cả" Text="{Binding FilterTestDuration}"
+                 Grid.Column="4" Grid.Row="15" Grid.ColumnSpan="6" VerticalAlignment="Bottom"/>
+
+        <TextBox x:Name="tbSubject" md:HintAssist.Hint="Tất cả" Text="{Binding FilterTestDuration}"
+                 Grid.Column="4" Grid.Row="16" Grid.ColumnSpan="6" VerticalAlignment="Bottom"/>
+       
+        <TextBox x:Name="tbTestID" md:HintAssist.Hint="Tất cả" Text="{Binding FilterTestID}"
+                 Grid.Column="4" Grid.Row="14" Grid.ColumnSpan="6" VerticalAlignment="Bottom"/>
+        <ScrollViewer x:Name="svGrid" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="29" Grid.RowSpan="13" Padding="0,0,0,12" VerticalScrollBarVisibility="Auto">
+            <DataGrid x:Name="dgListTestResult" Background="White" Style="{StaticResource MaterialDesignDataGrid}" Padding="10"
+                      ItemsSource="{Binding ListTestResultDetail}" SelectedItem="{Binding SelectedResultDetail, Mode=TwoWay}" AutoGenerateColumns="False"
+                      Width="{Binding ElementName=svGrid, Path=ActualWidth}" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False" CanUserAddRows="False" IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn x:Name="colSubjectName" Binding="{Binding SubjectName}" Header="Tên môn thi" Width="1*"/>
                     <DataGridTextColumn x:Name="colClassID" Binding="{Binding IDClass}" Header="Mã lớp" Width="1*"/>

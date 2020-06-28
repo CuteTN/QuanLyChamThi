@@ -24,12 +24,13 @@ namespace QuanLyChamThi.View
         public PageTestSearch()
         {
             InitializeComponent();
-            for (int i = 0; i < 31; i++)
-                mainGrid.ColumnDefinitions.Add(new ColumnDefinition());
-            for (int i = 0; i < 17; i++)
-                mainGrid.RowDefinitions.Add(new RowDefinition());
 
             DataContext = new TestSearchViewModel();
+        }
+
+        private void Label_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("hello");
         }
     }
 }

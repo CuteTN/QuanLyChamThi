@@ -27,7 +27,10 @@ namespace QuanLyChamThi.Model
                     newitem.TimeForTest = Duration;
                     newitem.Year = Year;
                     newitem.Semester = Semester;
-                    newitem.IDTest = SubjectID + "." + newitem.GetHashCode().ToString();
+                    if (_testID is null)
+                        newitem.IDTest = SubjectID + "." + newitem.GetHashCode().ToString();
+                    else
+                        newitem.IDTest = _testID;
                     return newitem;
                 }
                 else
@@ -41,7 +44,10 @@ namespace QuanLyChamThi.Model
         private string _testID;
         public string TestID
         {
-            get { return _testID; }
+            get { if (_testID != null)
+                    return _testID;
+                else return "Bài thi mới";
+            }
             set {
                 _testID = value;
                 _pSource = null;
@@ -77,14 +83,19 @@ namespace QuanLyChamThi.Model
                 _pSource = null;
                 OnPropertyChange("Year"); }
         }
-        private int _duration;
+        private int _duration = 0;
         public int Duration
         {
             get { return _duration; }
-            set {
-                _duration = value;
-                _pSource = null;
-                OnPropertyChange("Duration"); }
+            set
+            {
+                if (value > 0)
+                {
+                    _duration = value;
+                    _pSource = null;
+                    OnPropertyChange("Duration");
+                }
+            }
         }
 
         private DateTime? _testdate;
@@ -100,6 +111,7 @@ namespace QuanLyChamThi.Model
         #region Test Detail Model class
         public class TestDetailModel : INotifyPropertyChanged
         {
+            #region Data
             private TESTDETAIL _pSource;
             public TESTDETAIL pSource
             {
@@ -128,14 +140,16 @@ namespace QuanLyChamThi.Model
             public TestDetailModel(QuestionModel that, int stt)
             {
                 Content = that.Content;
-                QuestionID = that.IDQuestion;
+                QuestionID = that.IDQuestion.Value;
                 Stt = stt;
             }
 
             public TestDetailModel()
             {
             }
+            #endregion
 
+            #region fundamentals
             public event PropertyChangedEventHandler PropertyChanged;
             protected virtual void OnPropertyChange(string propertyName)
             {
@@ -159,6 +173,7 @@ namespace QuanLyChamThi.Model
                     return newModel;
                 }
             }
+            #endregion
         }
         #endregion
 
@@ -189,5 +204,10 @@ namespace QuanLyChamThi.Model
             }
         }
         #endregion
+
+        public bool Valid()
+        {
+            return (SubjectID != null && this.Duration >= 0);
+        }
     }
 }

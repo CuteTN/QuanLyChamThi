@@ -3,12 +3,13 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:QuanLyChamThi.View"
       mc:Ignorable="d" 
       d:DesignHeight="640" d:DesignWidth="1200"
       Title="TẠO SỬA ĐỀ THI">
 
-    <Grid Background="LightGray" x:Name="mainGrid">
+    <Grid Background="WhiteSmoke" x:Name="mainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -42,7 +43,6 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -61,45 +61,52 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4" VerticalAlignment="Bottom" Content="Mã số đề thi:" Foreground="Black" FontWeight="Bold"/>
+        <Label Grid.Column="17" Grid.Row="1" Grid.ColumnSpan="4" VerticalAlignment="Bottom" Content="Môn học:" Foreground="Black" FontWeight="Bold"/>
+        <Label Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="4" VerticalAlignment="Bottom" Content="Danh sách câu hỏi:" Foreground="Black" FontWeight="Bold" Margin="0.36,0,0.312,28.472" Grid.RowSpan="2"/>
 
-        <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4" VerticalAlignment="Center" Content="Mã số đề thi"/>
-        <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4" VerticalAlignment="Center" Content="Môn học"/>
-        <Label Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="4" VerticalAlignment="Center" Content="Chọn câu hỏi"/>
-        <Label Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="4" VerticalAlignment="Center" Content="Danh sách câu hỏi"/>
+        <ComboBox x:Name="cbTestID" SelectedItem="{Binding TempTestID, Mode=TwoWay}" ItemsSource="{Binding TestID}" Grid.Column="5" Grid.Row="1" Grid.ColumnSpan="9" Height="Auto" VerticalAlignment="Bottom"/>
+        <ComboBox x:Name="cbSubjectName" SelectedItem="{Binding TempSubjectID, Mode=TwoWay}" ItemsSource="{Binding SubjectID}" Grid.Column="21" Grid.Row="1" Grid.ColumnSpan="9" VerticalAlignment="Bottom"/>
 
-        <TextBlock x:Name="cbTestID" Text="{Binding TempTestID, Mode=TwoWay}" Grid.Column="5" Grid.Row="1" Grid.ColumnSpan="5" VerticalAlignment="Center"/>
-        <ComboBox x:Name="cbSubjectName" SelectedItem="{Binding TempSubjectID, Mode=TwoWay}" ItemsSource="{Binding SubjectID}" Grid.Column="5" Grid.Row="2" Grid.ColumnSpan="10" VerticalAlignment="Center"/>
+        <Button x:Name="btnChooseQuestion" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="29" Grid.RowSpan="1" VerticalAlignment="Stretch"  Foreground="White" Height="Auto" Padding="0,0,0,0" Content="Chọn câu hỏi" Click="btnChooseQuestion_Click"/>
 
-        <Button x:Name="btnChooseQuestion" Grid.Column="5" Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Center" Content="..." Click="btnChooseQuestion_Click"/>
+        <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4"  VerticalAlignment="Bottom" Content="Học kỳ:" Foreground="Black" FontWeight="Bold"/>
+        <Label Grid.Column="17" Grid.Row="2" Grid.ColumnSpan="4"  VerticalAlignment="Bottom" Content="Năm học:" Foreground="Black" FontWeight="Bold"/>
 
-        <Label Grid.Column="16" Grid.Row="1" Grid.ColumnSpan="4"  VerticalAlignment="Center" Content="Học kỳ"/>
-        <Label Grid.Column="16" Grid.Row="2" Grid.ColumnSpan="4"  VerticalAlignment="Center" Content="Năm học"/>
+        <TextBox x:Name="cbSemester" Text="{Binding TempSemester, Mode=TwoWay}" Grid.Column="5" Grid.Row="2" Grid.ColumnSpan="9" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="cbSchoolYear" Text="{Binding TempYear, Mode=TwoWay}" Grid.Column="21" Grid.Row="2" Grid.ColumnSpan="9" VerticalAlignment="Bottom"/>
+        
+        <Label Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="4"  VerticalAlignment="Bottom" Content="Thời lượng:" Foreground="Black" FontWeight="Bold"/>
+        <Label Grid.Column="17" Grid.Row="3" Grid.ColumnSpan="4"  VerticalAlignment="Bottom" Content="Ngày thi:" Foreground="Black" FontWeight="Bold"/>
 
-        <TextBox x:Name="cbSemester" Text="{Binding TempSemester, Mode=TwoWay}" Grid.Column="20" Grid.Row="1" Grid.ColumnSpan="5" VerticalAlignment="Bottom" Margin="0.29,0,38.258,6"/>
-        <TextBox x:Name="cbSchoolYear" Text="{Binding TempYear, Mode=TwoWay}" Grid.Column="20" Grid.Row="2" Grid.ColumnSpan="4" VerticalAlignment="Center"/>
+        <TextBox x:Name="cbTimeForTest" Text="{Binding TempDuration, Mode=TwoWay}" Grid.Column="5" Grid.Row="3" Grid.ColumnSpan="9" VerticalAlignment="Bottom"/>
+        <DatePicker x:Name="cbDateOfTest" Text="{Binding TempTestDate, Mode=TwoWay}" Grid.Column="21" Grid.Row="3" Grid.ColumnSpan="9" VerticalAlignment="Bottom"/>
 
-        <Button x:Name="btnGoUp" Grid.Column="25" Grid.Row="4"  VerticalAlignment="Center">
-            <Path Fill="White" Data="M 0 6 L 12 6 L 6 0 Z"/>
-        </Button>
-        <Button x:Name="btnGoTop" Grid.Column="26" Grid.Row="4"  VerticalAlignment="Center">
-            <StackPanel>
-                <Path Fill="White" Data="M 0 6 L 12 6 L 6 0 Z"/>
-                <Path Fill="White" Data="M 0 6 L 12 6 L 6 0 Z"/>
-            </StackPanel>
-        </Button>
-        <Button x:Name="btnGoDown" Grid.Column="28" Grid.Row="4"  VerticalAlignment="Center">
-            <Path Fill="White" Data="M 0 0 L 6 6 L 12 0 Z"/>
-        </Button>
-        <Button x:Name="btnGoBottom" Grid.Column="29" Grid.Row="4"  VerticalAlignment="Center">
-            <StackPanel>
-                <Path Fill="White" Data="M 0 0 L 6 6 L 12 0 Z"/>
-                <Path Fill="White" Data="M 0 0 L 6 6 L 12 0 Z"/>
-            </StackPanel>
-        </Button>
+        <Grid Grid.Column="30"  Grid.Row="7" Margin="5,12,5,0" Grid.RowSpan="8">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="btnGoUp" Command="{Binding UpCommand}" Grid.Row="1"  VerticalAlignment="Stretch" Style="{StaticResource MaterialDesignFlatButton}" 
+                    Height="Auto" Content="{md:PackIcon Kind=ChevronUp}" Padding="0" ToolTip="Đưa lên"/>
+            <Button x:Name="btnGoTop" Command="{Binding UpAllCommand}" Grid.Row="0"  VerticalAlignment="Stretch" Style="{StaticResource MaterialDesignFlatButton}" 
+                    Height="Auto" Content="{md:PackIcon Kind=ChevronTripleUp}" Padding="0" ToolTip="Đưa lên trên cùng"/>
+            <Button x:Name="btnGoDown" Command="{Binding DownCommand}" Grid.Row="2"  VerticalAlignment="Stretch" Style="{StaticResource MaterialDesignFlatButton}" 
+                    Height="Auto" Content="{md:PackIcon Kind=ChevronDown}" Padding="0" ToolTip="Đưa xuống"/>
+            <Button x:Name="btnGoBottom" Command="{Binding DownAllCommand}" Grid.Row="3" VerticalAlignment="Stretch" Style="{StaticResource MaterialDesignFlatButton}" 
+                    Height="Auto" Content="{md:PackIcon Kind=ChevronTripleDown}" Padding="0" ToolTip="Đưa xuống dưới cùng"/>
+        </Grid>
+        
 
-        <ScrollViewer x:Name="svGrid" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="29" Grid.RowSpan="10" VerticalScrollBarVisibility="Auto">
-            <DataGrid x:Name="dgReport" ItemsSource="{Binding TempTestDetail}" AutoGenerateColumns="False" Width="{Binding ElementName=svGrid, Path=ActualWidth}" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False">
+        <ScrollViewer x:Name="svGrid" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="29" Grid.RowSpan="8" VerticalScrollBarVisibility="Auto">
+            <DataGrid md:ShadowAssist.ShadowDepth="Depth5" x:Name="dgReport" Margin="0,12,0,0" ItemsSource="{Binding TempTestDetail}" AutoGenerateColumns="False"
+                      Width="{Binding ElementName=svGrid, Path=ActualWidth}" CanUserResizeColumns="False" CanUserReorderColumns="False"
+                      CanUserSortColumns="False" SelectionChanged="dgReport_SelectionChanged" Background="White" Style="{StaticResource MaterialDesignDataGrid}"
+                      Padding="10">
                 <DataGrid.Columns>
                     <DataGridTextColumn x:Name="colSTT" Binding="{Binding Stt, Mode=OneWay}" Header="STT" Width="2*"/>
                     <DataGridTextColumn x:Name="colQuestionID" Binding="{Binding QuestionID, Mode=OneWay}" Header="Mã câu hỏi" Width="3*"/>
@@ -108,7 +115,7 @@
             </DataGrid>
         </ScrollViewer>
 
-        <Button x:Name="btnCancel" Command="{Binding CancelCommand}" Grid.Column="21" Grid.Row="15" Grid.ColumnSpan="4" VerticalAlignment="Center" Content="Huỷ"/>
-        <Button x:Name="btnOK" Command="{Binding AcceptCommand}" Grid.Column="25" Grid.Row="15" Grid.ColumnSpan="4" VerticalAlignment="Center" Content="Xác nhận"/>
+        <Button x:Name="btnCancel" Command="{Binding CancelCommand}" Style="{StaticResource MaterialDesignOutlinedButton}" Grid.Column="23" Grid.Row="16" Grid.ColumnSpan="3" VerticalAlignment="Center" Content="Huỷ"/>
+        <Button x:Name="btnOK" Command="{Binding AcceptCommand}" Grid.Column="27" Grid.Row="16" Grid.ColumnSpan="3" Padding="0" VerticalAlignment="Center" Content="Xác nhận"/>
     </Grid>
 </Page>

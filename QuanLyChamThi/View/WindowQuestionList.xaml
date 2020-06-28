@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:QuanLyChamThi.View"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
@@ -11,9 +12,8 @@
         <local:BindingProxy x:Key="proxy" Data="{Binding}"/>
     </Window.Resources>
     
-    <Grid Background="#FFEFEFEF">
+    <Grid Background="WhiteSmoke">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -66,6 +66,10 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Button ToolTip="Mở rộng / thu gọn nội dung câu hỏi" x:Name="btnHideShow" Grid.Column="16" Grid.Row="2"
+                Grid.RowSpan="13" Margin="5,0,5,0" Height="Auto"
+                Content="{md:PackIcon Kind=ArrowExpandRight}"
+                Style="{StaticResource MaterialDesignFlatButton}" Padding="0,0,0,0"/>
 
         <local:UserControlQuestionList x:Name="ucQuestionList" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="15" Grid.RowSpan="16">
             <i:Interaction.Triggers>
@@ -74,14 +78,15 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </local:UserControlQuestionList>
-
-        <Label Grid.Column="17" Grid.Row="1" Grid.ColumnSpan="3" Content="Xem trước câu hỏi"/>
-        <ScrollViewer Grid.Column="17" Grid.Row="2" Grid.ColumnSpan="14" Grid.RowSpan="12" VerticalScrollBarVisibility="Auto">
-            <TextBlock Background="White" Text="{Binding ReviewQuestionContent}"/>
-        </ScrollViewer>
+        <Label x:Name="lbXtch" Grid.Column="17" Grid.Row="1" Grid.ColumnSpan="3" Content="Xem trước câu hỏi:" Foreground="Black" FontWeight="Bold"/>
+        <TextBox Grid.Column="17" Grid.Row="2" Grid.ColumnSpan="13" Grid.RowSpan="13" x:Name="tbContent" Text="{Binding Content}" Width="{Binding ElementName=svGrid, Path=ActualWidth}" Height="{Binding ElementName=svGrid, Path=ActualHeight}" TextWrapping="Wrap"   Background="White" Padding="10,5"
+    VerticalAlignment="Stretch"
+    MinWidth="280"
+    AcceptsReturn="True"
+    VerticalScrollBarVisibility="Auto"></TextBox>
         <Button x:Name="btnAddRemove" Command="{Binding AddSelectedQuestionCommand}" Grid.Column="24" Grid.Row="14" Grid.ColumnSpan="7" Content="Thêm câu hỏi vào đề thi" Style="{StaticResource MaterialDesignFlatButton}"/>
 
-        <Button Grid.Column="28" Grid.Row="16" Grid.ColumnSpan="3" VerticalAlignment="Center" Content="Xác nhận">
+        <Button Grid.Column="27" Grid.Row="16" Grid.ColumnSpan="3" VerticalAlignment="Center" Content="Xác nhận">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="Click">
                     <i:InvokeCommandAction Command="{Binding AcceptCommand}"/>
@@ -90,7 +95,7 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </Button>
-        <Button Grid.Column="24" Grid.Row="16" Grid.ColumnSpan="3" VerticalAlignment="Center" Content="Hủy">
+        <Button Grid.Column="23" Grid.Row="16" Grid.ColumnSpan="3" VerticalAlignment="Center" Content="Hủy">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="Click">
                     <i:CallMethodAction MethodName="Close" 

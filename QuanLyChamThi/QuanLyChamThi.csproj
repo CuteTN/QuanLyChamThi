@@ -385,7 +385,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
-    <None Include="Resources\photo_2020-03-07_07-18-03.jpg" />
+    <Resource Include="Resources\hau.jpg" />
     <Content Include="SQLQuery1.sql" />
   </ItemGroup>
   <ItemGroup>

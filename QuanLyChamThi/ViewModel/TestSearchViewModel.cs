@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace QuanLyChamThi.ViewModel
@@ -23,6 +24,7 @@ namespace QuanLyChamThi.ViewModel
         {
             public string TestID;
             public string TestDuration;
+            public DateTime? date;
 
             public bool FilterFunction(TEST item)
             {
@@ -34,6 +36,8 @@ namespace QuanLyChamThi.ViewModel
                         return false;
                 }
                 catch (Exception) { }
+                if (date != null && item.DateOfTest?.Date != date?.Date)
+                    return false;
                 return true;
             }
         }
@@ -71,6 +75,12 @@ namespace QuanLyChamThi.ViewModel
             }
             set { _filterTestDuration = value; }
         }
+        private DateTime? _filterTestDate;
+        public DateTime? FilterTestDate
+        {
+            get{ return _filterTestDate; }
+            set { _filterTestDate = value; }
+        }
         #endregion
 
         #region Data
@@ -95,7 +105,18 @@ namespace QuanLyChamThi.ViewModel
                     _listTest = new ObservableCollection<TestSearchModel>();
                 return _listTest;
             }
-            set { _listTest = value; }
+            set { _listTest = value; OnPropertyChange("ListTest"); }
+        }
+        private ObservableCollection<TestSearchModel> _selectedTest;
+        public ObservableCollection<TestSearchModel> SelectedTest
+        {
+            get
+            {
+                if (_selectedTest == null)
+                    _selectedTest = new ObservableCollection<TestSearchModel>();
+                return _selectedTest;
+            }
+            set { _selectedTest = value; OnPropertyChange("SelectedTest"); }
         }
         #endregion
 
@@ -116,6 +137,7 @@ namespace QuanLyChamThi.ViewModel
         {
             Filter.TestDuration = FilterTestDuration;
             Filter.TestID = FilterTestID;
+            Filter.date = FilterTestDate;
 
             Search(Filter);
         }
@@ -151,7 +173,7 @@ namespace QuanLyChamThi.ViewModel
             set { _newTestCommand = value; }
         }
         #endregion
-
+        
         #region Delete Button
         private ICommand _deleteCommand;
         public ICommand DeleteCommand
@@ -167,16 +189,15 @@ namespace QuanLyChamThi.ViewModel
 
         private void Delete()
         {
-            var list = ListTest;
+            var list = SelectedTest;
             List<DatabaseCommand> cmdList = new List<DatabaseCommand>();
             foreach (TestSearchModel item in list)
-                if (item.Selected)
-                {
-                    DatabaseCommand cmd = new DatabaseCommand();
-                    cmd.add = null;
-                    cmd.delete = item.pSource;
-                    cmdList.Add(cmd);
-                }
+            {
+                DatabaseCommand cmd = new DatabaseCommand();
+                cmd.add = null;
+                cmd.delete = item.pSource;
+                cmdList.Add(cmd);
+            }
             if (cmdList.Any())
                 ViewModelMediator.Ins.Receive(this, cmdList);
         }
