@@ -3,20 +3,21 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-         xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:QuanLyChamThi.View"
         mc:Ignorable="d"
         Title="THÔNG BÁO" Height="100" Width="300" WindowStartupLocation="CenterScreen" AllowsTransparency="True" WindowStyle="None" Background="Transparent">
     <Grid x:Name="mainGrid" Background="Transparent" MouseDown="mainGrid_MouseDown">
-        <Border x:Name="border" BorderThickness="1" Background="#FFC107" CornerRadius="5">
+        <Border x:Name="border" BorderThickness="1" Background="Green" CornerRadius="20">
             <DockPanel LastChildFill="True">
-                <StackPanel DockPanel.Dock="Left" Width="100" Height="50">
-                    <md:PackIcon Kind="CheckBold" md:Foreground="White" Width="50" Height="50" VerticalAlignment="Center" />
+
+                <StackPanel DockPanel.Dock="Left" Width="100" Height="50" Orientation="Horizontal">
+                    <md:PackIcon Kind="CheckBold" md:Foreground="White" Width="50" Height="50" VerticalAlignment="Center" Margin="20,0"/>
                 </StackPanel>
 
-                <StackPanel DockPanel.Dock="Top"  VerticalAlignment="Center" Orientation="Vertical">
-                    <TextBlock x:Name="tbNotification"  Foreground="White"/>
-                    <TextBlock x:Name="tbDetail"  Foreground="White"/>
+                <StackPanel DockPanel.Dock="Top" VerticalAlignment="Center" Orientation="Vertical" Margin="0,0,20,0">
+                    <TextBlock x:Name="tbNotification" Foreground="White" FontWeight="Bold"/>
+                    <TextBlock x:Name="tbDetail"  Foreground="White" FontStyle="Italic"/>
                 </StackPanel>
             </DockPanel>
         </Border>

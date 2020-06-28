@@ -31,9 +31,16 @@ namespace QuanLyChamThi.View
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            
             access = "accepted";
-            //bool nothing = (ViewExtension.Message(this, "Đăng nhập thành công", "Chào mừng abcxyz", 1) == false) ;
+            ViewExtension.Message(this, "Đăng nhập thành công", "Chào mừng abcxyz");
+
+            /**
+            int getConfirmState = ViewExtension.Confirm(this, "Xác nhận đăng nhập");
+
+            if (getConfirmState == 0)
+                access = "denied";
+            **/
+
             this.Close();
         }
 

@@ -214,6 +214,9 @@
     <Compile Include="View\UserControlQuestionList.xaml.cs">
       <DependentUpon>UserControlQuestionList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\WindowConfirm.xaml.cs">
+      <DependentUpon>WindowConfirm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\WindowLogin.xaml.cs">
       <DependentUpon>WindowLogin.xaml</DependentUpon>
     </Compile>
@@ -268,6 +271,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\UserControlQuestionList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WindowConfirm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
