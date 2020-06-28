@@ -46,7 +46,7 @@ namespace QuanLyChamThi.ViewModel
                 if(_selectedClass != null)
                 {
                     _selectedSubject = (from u in DataProvider.Ins.DB.SUBJECT
-                                        where u.IDSubject == _selectedClass.IDSubject
+                                        where u.IDSubject == _selectedClass.Subject.IDSubject
                                         select u).ToList().First();
                 }
                 return _selectedSubject;
@@ -55,8 +55,8 @@ namespace QuanLyChamThi.ViewModel
             {
                 _selectedSubject = value;
                 OnPropertyChange("SelectedSubject");
-                OnPropertyChange("ListClass");
-                OnPropertyChange("ListTestID");
+                ListClass = null;
+                ListTestID = null;
                 (SaveCommand as RelayCommand).RaiseCanExecuteChanged();
             }
         }
@@ -64,28 +64,50 @@ namespace QuanLyChamThi.ViewModel
 
         #region Combobox Class
 
-        private BindingList<CLASS> _listClass;
-        public BindingList<CLASS> ListClass
+        private BindingList<ClassModel> _listClass;
+        public BindingList<ClassModel> ListClass
         {
             get
             {
-                if (_selectedSubject != null)
+                if (_listClass == null)
                 {
-                    _listClass = new BindingList<CLASS>((from u in DataProvider.Ins.DB.CLASS
-                                                         where u.IDSubject == _selectedSubject.IDSubject
-                                                         select u).ToList());
+                    if (_selectedSubject != null)
+                    {
+                        _listClass = new BindingList<ClassModel>((from c in DataProvider.Ins.DB.CLASS
+                                                                  join s in DataProvider.Ins.DB.SUBJECT on c.IDSubject equals s.IDSubject
+                                                                  where c.IDSubject == _selectedSubject.IDSubject
+                                                                  select new ClassModel
+                                                                  {
+                                                                      IDClass = c.IDClass,
+                                                                      Subject = s,
+                                                                      ClassName = c.Name,
+                                                                      Year = c.Year,
+                                                                      Semester = c.Semester,
+                                                                      Username = c.Username
+                                                                  }).ToList());
+                    }
+                    else
+                    {
+                        _listClass = new BindingList<ClassModel>((from c in DataProvider.Ins.DB.CLASS
+                                                                  join s in DataProvider.Ins.DB.SUBJECT on c.IDSubject equals s.IDSubject
+                                                                  select new ClassModel
+                                                                  {
+                                                                      IDClass = c.IDClass,
+                                                                      Subject = s,
+                                                                      ClassName = c.Name,
+                                                                      Year = c.Year,
+                                                                      Semester = c.Semester,
+                                                                      Username = c.Username
+                                                                  }).ToList());
+                    }
                 }
-                else
-                {
-                    _listClass = new BindingList<CLASS>(DataProvider.Ins.DB.CLASS.ToList());
-                }
-
                 return _listClass;
             }
+            set { _listClass = value; OnPropertyChange("ListClass"); }
         }
 
-        private CLASS _selectedClass;
-        public CLASS SelectedClass
+        private ClassModel _selectedClass;
+        public ClassModel SelectedClass
         {
             get
             {
@@ -110,21 +132,26 @@ namespace QuanLyChamThi.ViewModel
         {
             get
             {
-                if (_selectedSubject != null)
+                if (_listTestID == null)
                 {
-                    _listTestID = new BindingList<TEST>((from u in DataProvider.Ins.DB.TEST
-                                                         where u.IDSubject == _selectedSubject.IDSubject
-                                                         select u).ToList());
-                }
-                else
-                {
-                    _listTestID = new BindingList<TEST>(DataProvider.Ins.DB.TEST.ToList());
+                    if (_selectedSubject != null)
+                    {
+                        var x = DataProvider.Ins.DB;
+                        _listTestID = new BindingList<TEST>((from u in DataProvider.Ins.DB.TEST
+                                                             where u.IDSubject == _selectedSubject.IDSubject
+                                                             select u).ToList());
+                    }
+                    else
+                    {
+                        _listTestID = new BindingList<TEST>(DataProvider.Ins.DB.TEST.ToList());
+                    }
                 }
                 return _listTestID;
             }
             set
             {
                 _listTestID = value;
+                OnPropertyChange("ListTestID");
             }
         }
 
@@ -139,8 +166,6 @@ namespace QuanLyChamThi.ViewModel
             {
                 _selectedTestID = value;
                 OnPropertyChange("SelectedTestID");
-                OnPropertyChange("SelectedClass");
-                OnPropertyChange("SelectedSubject");
                 (SaveCommand as RelayCommand).RaiseCanExecuteChanged();
             }
         }
@@ -283,7 +308,10 @@ namespace QuanLyChamThi.ViewModel
             // send command for save new TESTRESULT to database via ViewModelMediator
             try
             {
-                ViewModelMediator.Ins.Receive(this, GenerateChangeCommands());
+                var studentCommands = GenerateStudentCommands();
+                var changedCommands = GenerateChangeCommands();
+                ViewModelMediator.Ins.Receive(this, studentCommands);
+                ViewModelMediator.Ins.Receive(this, changedCommands);
             }
             catch(Exception e)
             {
@@ -307,11 +335,31 @@ namespace QuanLyChamThi.ViewModel
             return IDTestResult;
         }
 
+        // Auto generate student in db if student is new
+        List<DatabaseCommand> GenerateStudentCommands()
+        {
+            List<DatabaseCommand> commands = new List<DatabaseCommand>();
+
+            foreach (var testResult in _listTestResult)
+            {
+                if (DataProvider.Ins.DB.STUDENT.Where(param => param.IDStudent == testResult.StudentID).ToList().Count == 0)
+                {
+                    commands.Add(new DatabaseCommand
+                    {
+                        add = new STUDENT { IDStudent = testResult.StudentID, FullName = testResult.StudentName },
+                        delete = null
+                    });
+                }
+            }
+            return commands;
+        }
+
         List<DatabaseCommand> GenerateChangeCommands()
         {
             string IDTestResult = GenerateIDTestResultForAllResults();
 
             List<DatabaseCommand> commands = new List<DatabaseCommand>();
+
             commands.Add(new DatabaseCommand
             {
                 add = new TESTRESULTDETAIL
@@ -408,14 +456,7 @@ namespace QuanLyChamThi.ViewModel
         bool ValidTestResult(TestResultModel testResult)
         {
             STUDENT student = DataProvider.Ins.DB.STUDENT.Find(testResult.StudentID);
-            if (student == null)
-            {
-                // Notify user that student with given id dont exist // TODO
-                MessageBox.Show("student with " + testResult.StudentID.ToString() + " ID dont exist");
-                ///////////////////////////////////////////////////////
-                return false;
-            }
-            if (student.FullName != testResult.StudentName)
+            if (student != null && student.FullName != testResult.StudentName)
             {
                 // Warn user that student with given id have wrong name // TODO
                 MessageBox.Show("student with " + testResult.StudentID.ToString() + " ID have wrong name");
@@ -454,11 +495,19 @@ namespace QuanLyChamThi.ViewModel
         public void Receive(object sender, List<DatabaseCommand> commands)
         {
             // We handle command that received from ViewModelMediator here
-            _listSubject = new BindingList<SUBJECT>((from u in DataProvider.Ins.DB.SUBJECT select u).ToList());
-            OnPropertyChange("ListSubject");
-            OnPropertyChange("ListClass");
-            OnPropertyChange("ListIDTest");
+            resetEditing();
+        }
 
+        public void resetEditing()
+        {
+            ListSubject = null;
+            ListClass = null;
+            ListTestID = null;
+            ListTestResult = null;
+
+            SelectedClass = null;
+            SelectedSubject = null;
+            SelectedTestID = null;
         }
 
         public void StartEditing(object arg)
@@ -466,16 +515,31 @@ namespace QuanLyChamThi.ViewModel
             oldTestResultDetail = arg as TESTRESULTDETAIL;
             if (arg == null)
             {
-                SelectedClass = null;
-                SelectedSubject = null;
-                SelectedTestID = null;
-                ListTestResult = new ObservableCollection<TestResultModel>();
+                resetEditing();
             }
             else
             {
-                SelectedClass = DataProvider.Ins.DB.CLASS.Find(oldTestResultDetail.IDClass);
-                SelectedSubject = DataProvider.Ins.DB.SUBJECT.Find(_selectedClass.IDSubject);
+                resetEditing();
+
+
+                if (oldTestResultDetail.IDClass != null || oldTestResultDetail.IDTest != null)
+                {
+                    SelectedSubject = (from c in DataProvider.Ins.DB.CLASS
+                                       join t in DataProvider.Ins.DB.TEST on c.IDSubject equals t.IDSubject
+                                       where c.IDClass == oldTestResultDetail.IDClass || t.IDTest == oldTestResultDetail.IDTest
+                                       join s in DataProvider.Ins.DB.SUBJECT on c.IDSubject equals s.IDSubject
+                                       select s).ToList()[0];
+
+                    SelectedClass = ListClass.FirstOrDefault(param => param.IDClass == oldTestResultDetail.IDClass);
+                }
+
                 SelectedTestID = DataProvider.Ins.DB.TEST.Find(oldTestResultDetail.IDTest);
+                if (!ListTestID.Contains(SelectedTestID))
+                {
+                    ListTestID.Add(SelectedTestID);
+                    OnPropertyChange("SelectedTestID");
+                }
+
                 ListTestResult = new ObservableCollection<TestResultModel>(from t in DataProvider.Ins.DB.TESTRESULT
                                                                             join s in DataProvider.Ins.DB.STUDENT on t.IDStudent equals s.IDStudent
                                                                             where t.IDTestResult == oldTestResultDetail.IDTestResult

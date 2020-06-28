@@ -8,11 +8,11 @@
       mc:Ignorable="d" 
       d:DesignHeight="640" d:DesignWidth="1200"
       Title="CÀI ĐẶT">
-    
+
     <Page.Resources>
         <local:BindingProxy x:Key="proxy" Data="{Binding}"/>
     </Page.Resources>
-    
+
     <Grid x:Name="mainGrid" Background="#FFEFEFEF">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -132,7 +132,7 @@
                     </DataGrid>
                 </Grid>
             </TabItem>
-            
+
             <TabItem Header="Tùy chỉnh môn học" Padding="16">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -197,35 +197,35 @@
             <TabItem Header="Tùy chỉnh lớp học" Padding="16">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="37*"/>
+                        <ColumnDefinition Width="37*"/>
+                        <ColumnDefinition Width="37"/>
+                        <ColumnDefinition Width="37*"/>
+                        <ColumnDefinition Width="37*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
@@ -245,9 +245,16 @@
                     <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="7" Content="Số lượng lớp học"/>
                     <TextBox x:Name="cbClassNumber" Text="{Binding NumberOfClass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="4"/>
                     <Button x:Name="btnUpdateClass" Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="4" Content="Cập nhật"/>
-                    <DataGrid x:Name="dgClassList"  ItemsSource="{Binding ListClass}" AutoGenerateColumns="False" Grid.Column="10" Grid.Row="1" Grid.ColumnSpan="18" Grid.RowSpan="10" CanUserAddRows="False">
+
+                    <TextBox x:Name="tbYear" Text="Năm" VerticalAlignment="Center" Grid.Column="10" Grid.Row="1" Grid.ColumnSpan="4"/>
+                    <ComboBox x:Name="cbYear" ItemsSource="{Binding Year}" SelectedItem="{Binding SelectedYear}" Grid.Column="10" Grid.Row="2" Grid.ColumnSpan="4"/>
+
+                    <TextBox x:Name="tbSemester" Text="Học kỳ" VerticalAlignment="Center" Grid.Column="15" Grid.Row="1" Grid.ColumnSpan="4"/>
+                    <ComboBox x:Name="cbSemester" ItemsSource="{Binding Semester}" SelectedItem="{Binding SelectedSemester}" Grid.Column="15" Grid.Row="2" Grid.ColumnSpan="4"/>
+
+                    <DataGrid x:Name="dgClassList"  ItemsSource="{Binding ListClass}" AutoGenerateColumns="False" Grid.Column="10" Grid.Row="3" Grid.ColumnSpan="18" Grid.RowSpan="10" CanUserAddRows="True">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Mã lớp học" Binding="{Binding IDClass}" Width="*"/>
+                            <DataGridTextColumn Header="Tên lớp học" Binding="{Binding ClassName}" Width="*"/>
                             <DataGridTemplateColumn Header="Tên môn học" Width="*">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
@@ -255,6 +262,8 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="Học kỳ" Binding="{Binding Semester}" Width="*"/>
+                            <DataGridTextColumn Header="Năm học" Binding="{Binding Year}" Width="*"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
@@ -263,8 +272,8 @@
 
 
 
-        <Button x:Name="btnOK" Command="{Binding SaveChangeDifficultyCommand}" Grid.Column="27" Grid.Row="15" Grid.ColumnSpan="3" Content="Lưu"/>
+        <Button x:Name="btnOK" Command="{Binding SaveChangeCommand}" Grid.Column="27" Grid.Row="15" Grid.ColumnSpan="3" Content="Lưu"/>
         <Button x:Name="btnCancel" Command="{Binding CancelEditingCommand}" Grid.Column="23" Grid.Row="15" Grid.ColumnSpan="3" Content="Hủy"/>
-        
+
     </Grid>
 </Page>

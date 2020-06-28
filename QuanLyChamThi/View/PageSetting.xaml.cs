@@ -21,10 +21,12 @@ namespace QuanLyChamThi.View
     /// </summary>
     public partial class PageSetting : Page
     {
+
         public PageSetting()
         {
             InitializeComponent();
             DataContext = new SettingViewModel();
+
         }
     }
 }

@@ -23,8 +23,9 @@ namespace QuanLyChamThi.Model
         public string IDClass { get; set; }
         public string IDSubject { get; set; }
         public string Username { get; set; }
-        public Nullable<int> Semester { get; set; }
-        public Nullable<int> Year { get; set; }
+        public int Semester { get; set; }
+        public int Year { get; set; }
+        public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TESTRESULTDETAIL> TESTRESULTDETAIL { get; set; }

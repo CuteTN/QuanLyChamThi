@@ -60,13 +60,15 @@ namespace QuanLyChamThi.Model
                 if (_data == null)
                     _data = new ObservableCollection<TestResultDetailModel>((from u in DataProvider.Ins.DB.TESTRESULTDETAIL
                                                                              join v in DataProvider.Ins.DB.USER on u.Username equals v.Username
-                                                                             join x in DataProvider.Ins.DB.CLASS on u.IDClass equals x.IDClass
-                                                                             join y in DataProvider.Ins.DB.SUBJECT on x.IDSubject equals y.IDSubject
+                                                                             join t in DataProvider.Ins.DB.TEST on u.IDTest equals t.IDTest
+                                                                             join y in DataProvider.Ins.DB.SUBJECT on t.IDSubject equals y.IDSubject
+                                                                             join x in DataProvider.Ins.DB.CLASS on u.IDClass equals x.IDClass into gj
+                                                                             from g in gj.DefaultIfEmpty()
                                                                              select new TestResultDetailModel
                                                                              {
                                                                                  IDTestResult = u.IDTestResult,
                                                                                  SubjectName = y.Name,
-                                                                                 IDClass = x.IDClass,
+                                                                                 IDClass = g == null ? string.Empty : (g.IDClass ?? string.Empty),
                                                                                  UserFullName = v.FullName,
                                                                                  IDTest = u.IDTest
                                                                              }).ToList());
@@ -108,18 +110,7 @@ namespace QuanLyChamThi.Model
         /// <param name="args"></param>
         public void Receive(object sender, List<DatabaseCommand> commands)
         {
-            Data = new ObservableCollection<TestResultDetailModel>((from u in DataProvider.Ins.DB.TESTRESULTDETAIL
-                                                                    join v in DataProvider.Ins.DB.USER on u.Username equals v.Username
-                                                                    join x in DataProvider.Ins.DB.CLASS on u.IDClass equals x.IDClass
-                                                                    join y in DataProvider.Ins.DB.SUBJECT on x.IDSubject equals y.IDSubject
-                                                                    select new TestResultDetailModel
-                                                                    {
-                                                                        IDTestResult = u.IDTestResult,
-                                                                        SubjectName = y.Name,
-                                                                        IDClass = x.IDClass,
-                                                                        UserFullName = v.FullName,
-                                                                        IDTest = u.IDTest
-                                                                    }).ToList());
+            Data = null;
 
             // After update base on database, it notify all viewmodel subcribed to it
             if(collectionChanged != null)

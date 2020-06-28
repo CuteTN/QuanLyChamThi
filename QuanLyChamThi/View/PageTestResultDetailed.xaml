@@ -64,13 +64,13 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Button x:Name="btnNew" Command="{Binding EditSelectedTestResultDetailCommand}" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="6" Content="+ Tạo bài chấm mới"/>
-        <Button Grid.Column="28" Command="{Binding DeleteSelectedResultDetailCommand}" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center">
+        <Button x:Name="btnNew" Command="{Binding AddNewTestResultDetailCommand}" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="6" Content="+ Tạo bài chấm mới"/>
+        <Button Grid.Column="28" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center">
             <Image Source="/QuanLyChamThi;component/Icon/filter.ico"/>
         </Button>
 
-        <Button x:Name="btnEdit" Grid.Column="23" Grid.Row="2" Grid.ColumnSpan="3" Content="Sửa"/>
-        <Button x:Name="btnRemove" Grid.Column="27" Grid.Row="2" Grid.ColumnSpan="3" Content="Xóa"/>
+        <Button x:Name="btnEdit" Command="{Binding EditSelectedTestResultDetailCommand}" Grid.Column="23" Grid.Row="2" Grid.ColumnSpan="3" Content="Sửa"/>
+        <Button x:Name="btnRemove" Command="{Binding DeleteSelectedResultDetailCommand}" Grid.Column="27" Grid.Row="2" Grid.ColumnSpan="3" Content="Xóa"/>
         
 
         <ScrollViewer x:Name="svGrid" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="29" Grid.RowSpan="13" VerticalScrollBarVisibility="Auto">

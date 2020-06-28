@@ -95,7 +95,23 @@ namespace QuanLyChamThi.ViewModel
             });
             ViewModelMediator.Ins.Receive(this, commands);
         }
-        
+
+        ICommand _addNewTestResultDetailCommand;
+        public ICommand AddNewTestResultDetailCommand
+        {
+            get
+            {
+                if (_addNewTestResultDetailCommand == null)
+                    _addNewTestResultDetailCommand = new RelayCommand(param => AddNewTestResultDetail());
+                return _addNewTestResultDetailCommand;
+            }
+            set { _addNewTestResultDetailCommand = value; OnPropertyChange("AddNewTestResultDetailCommad"); }
+        }
+
+        void AddNewTestResultDetail()
+        {
+            MainWindowViewModel.Ins.StartEditingTestResult(null);
+        }
 
         ICommand _editSelectedTestResultDetailCommand;
         public ICommand EditSelectedTestResultDetailCommand
@@ -103,7 +119,7 @@ namespace QuanLyChamThi.ViewModel
             get
             {
                 if (_editSelectedTestResultDetailCommand == null)
-                    _editSelectedTestResultDetailCommand = new RelayCommand(param => EditSelectedTestResultDetail());
+                    _editSelectedTestResultDetailCommand = new RelayCommand(param => EditSelectedTestResultDetail(), param => CanEditSelectedTestResultDetail());
                 return _editSelectedTestResultDetailCommand;
             }
             set
@@ -114,11 +130,16 @@ namespace QuanLyChamThi.ViewModel
         void EditSelectedTestResultDetail()
         {
             if (_selectedResultDetail == null)
-                MainWindowViewModel.Ins.StartEditingTestResult(null);
+                return;
             else
                 MainWindowViewModel.Ins.StartEditingTestResult((from u in DataProvider.Ins.DB.TESTRESULTDETAIL
                                                                 where u.IDTestResult == _selectedResultDetail.IDTestResult
                                                                 select u).Single());
+        }
+
+        bool CanEditSelectedTestResultDetail()
+        {
+            return SelectedResultDetail == null ? false : true;
         }
 
         private bool Filter(object item)
@@ -126,7 +147,7 @@ namespace QuanLyChamThi.ViewModel
             TestResultDetailModel test = item as TestResultDetailModel;
 
             ///////// PUT FILER HERE ///////////////
-            return test.SubjectName == "Nhập môn lập trình";
+            return true;
         }
 
         void refresh(object sender, NotifyCollectionChangedEventArgs e)

@@ -88,8 +88,9 @@
           <Property Name="IDClass" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="IDSubject" Type="nvarchar" MaxLength="20" />
           <Property Name="Username" Type="nvarchar" MaxLength="256" />
-          <Property Name="HocKi" Type="int" />
-          <Property Name="Nam" Type="int" />
+          <Property Name="HocKi" Type="int" Nullable="false" />
+          <Property Name="Nam" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="MONHOC">
           <Key>
@@ -137,8 +138,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BAITHI__IDTestRe__3E52440B">
-          <End Role="CHAMTHI" Type="Self.CHAMTHI" Multiplicity="1" />
+        <Association Name="FK__BAITHI__IDTestRe__607251E5">
+          <End Role="CHAMTHI" Type="Self.CHAMTHI" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="BAITHI" Type="Self.BAITHI" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CHAMTHI">
@@ -173,7 +176,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CHAMTHI__IDClass__398D8EEE">
+        <Association Name="FK__CHAMTHI__IDClass__73852659">
           <End Role="LOP" Type="Self.LOP" Multiplicity="0..1" />
           <End Role="CHAMTHI" Type="Self.CHAMTHI" Multiplicity="*" />
           <ReferentialConstraint>
@@ -313,7 +316,7 @@
             <End Role="SINHVIEN" EntitySet="SINHVIEN" />
             <End Role="BAITHI" EntitySet="BAITHI" />
           </AssociationSet>
-          <AssociationSet Name="FK__BAITHI__IDTestRe__3E52440B" Association="Self.FK__BAITHI__IDTestRe__3E52440B">
+          <AssociationSet Name="FK__BAITHI__IDTestRe__607251E5" Association="Self.FK__BAITHI__IDTestRe__607251E5">
             <End Role="CHAMTHI" EntitySet="CHAMTHI" />
             <End Role="BAITHI" EntitySet="BAITHI" />
           </AssociationSet>
@@ -325,7 +328,7 @@
             <End Role="MONHOC" EntitySet="MONHOC" />
             <End Role="CAUHOI" EntitySet="CAUHOI" />
           </AssociationSet>
-          <AssociationSet Name="FK__CHAMTHI__IDClass__398D8EEE" Association="Self.FK__CHAMTHI__IDClass__398D8EEE">
+          <AssociationSet Name="FK__CHAMTHI__IDClass__73852659" Association="Self.FK__CHAMTHI__IDClass__73852659">
             <End Role="LOP" EntitySet="LOP" />
             <End Role="CHAMTHI" EntitySet="CHAMTHI" />
           </AssociationSet>
@@ -542,11 +545,12 @@
           <Property Name="IDClass" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="IDSubject" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Username" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="Semester" Type="Int32" />
-          <Property Name="Year" Type="Int32" />
+          <Property Name="Semester" Type="Int32" Nullable="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
           <NavigationProperty Name="TESTRESULTDETAIL" Relationship="QuanLyDeThiModel.FK__CHAMTHI__IDClass__3A81B327" FromRole="LOP" ToRole="CHAMTHI" />
           <NavigationProperty Name="SUBJECT" Relationship="QuanLyDeThiModel.FK__LOP__IDSubject__34C8D9D1" FromRole="LOP" ToRole="MONHOC" />
           <NavigationProperty Name="USER" Relationship="QuanLyDeThiModel.FK__LOP__Username__35BCFE0A" FromRole="LOP" ToRole="NGUOISUDUNG" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="SUBJECT">
           <Key>
@@ -602,7 +606,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__BAITHI__IDTestRe__3F466844">
-          <End Type="QuanLyDeThiModel.TESTRESULTDETAIL" Role="CHAMTHI" Multiplicity="1" />
+          <End Type="QuanLyDeThiModel.TESTRESULTDETAIL" Role="CHAMTHI" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="QuanLyDeThiModel.TESTRESULT" Role="BAITHI" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CHAMTHI">
@@ -850,6 +856,7 @@
           <EntitySetMapping Name="CLASS">
             <EntityTypeMapping TypeName="QuanLyDeThiModel.CLASS">
               <MappingFragment StoreEntitySet="LOP">
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Year" ColumnName="Nam" />
                 <ScalarProperty Name="Semester" ColumnName="HocKi" />
                 <ScalarProperty Name="Username" ColumnName="Username" />

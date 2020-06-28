@@ -59,6 +59,8 @@ namespace QuanLyChamThi.Model
         // bên trong các command.
         public void Receive(List<DatabaseCommand> commands)
         {
+            //if (commands.Count == 0)
+            //    return;
             foreach (DatabaseCommand item in commands)
             {
                 if (item.add == null && item.delete == null)
