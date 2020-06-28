@@ -19,7 +19,7 @@ namespace QuanLyChamThi.View
             return result;
         }
 
-        public static int Confirm(Window sender, string message)
+        public static int Confirm(Window sender, string message) //return 0 if user cacel, 1 if confirm
         {
             sender.Opacity = 0.5;
             WindowConfirm windowConfirm = new WindowConfirm(message);

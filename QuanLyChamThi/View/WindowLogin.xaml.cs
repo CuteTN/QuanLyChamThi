@@ -29,7 +29,6 @@ namespace QuanLyChamThi.View
             InitializeComponent();
             DataContext = vm;
             access = "denied";
-            /** CREATE GRID COLUMNS AND ROWS **/
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
