@@ -9,7 +9,7 @@
       d:DesignHeight="640" d:DesignWidth="1200"
       Title="TRANG CHÍNH">
 
-    <Grid x:Name="mainGrid" Background="#FFEFEFEF">
+    <Grid x:Name="mainGrid" Background="WhiteSmoke">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -63,13 +63,13 @@
             <RowDefinition Height="*"/>
             
         </Grid.RowDefinitions>
-        <md:Card Grid.Row="1" Grid.Column="1" Grid.RowSpan="15" Grid.ColumnSpan="12">
+        <md:Card Grid.Row="1" Grid.Column="1" Grid.RowSpan="15" Grid.ColumnSpan="12" md:ShadowAssist.ShadowDepth="Depth5">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="2*" />
                 </Grid.RowDefinitions>
-                <Image Source="../Resources/hau.jpg" Stretch="UniformToFill"  VerticalAlignment="Center" Grid.Row="0" IsEnabled="True"/>
+                <Image Source="E:\Projects\Quan Ly Cham Thi\QuanLyChamThi\Resources\hau.jpg" Stretch="UniformToFill"  VerticalAlignment="Center" Grid.Row="0" IsEnabled="True"/>
                 <Button
                     Grid.Row="0"
                     Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
@@ -125,7 +125,7 @@
                 </StackPanel>
             </Grid>
         </md:Card>
-        <md:Card Grid.Row="1" Grid.Column="14" Grid.RowSpan="6" Grid.ColumnSpan="8" Background="#512DA8"
+        <md:Card md:ShadowAssist.ShadowDepth="Depth5" Grid.Row="1" Grid.Column="14" Grid.RowSpan="6" Grid.ColumnSpan="8" Background="#512DA8"
   Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}">
             <Grid>
                 <Grid.RowDefinitions>
@@ -133,7 +133,6 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" Text="Các môn đang dạy" Style="{StaticResource MaterialDesignHeadline6TextBlock}" Margin="22,15,15,0"/>
-
                 <ListView Grid.Row="1" Foreground="White" Margin="15,0,15,15">
                     <ListViewItem>
                         MA.001.K11
@@ -151,7 +150,7 @@
             </Grid>            
         </md:Card>
 
-        <md:Card Grid.Row="8" Grid.Column="14" Grid.RowSpan="8" Grid.ColumnSpan="8" Background="#00796B"
+        <md:Card md:ShadowAssist.ShadowDepth="Depth5" Grid.Row="8" Grid.Column="14" Grid.RowSpan="8" Grid.ColumnSpan="8" Background="#00796B"
   Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}">
             <Grid>
                 <Grid.RowDefinitions>
@@ -180,7 +179,7 @@
             </Grid>
         </md:Card>
 
-        <md:Card Grid.Row="1" Grid.Column="23" Grid.RowSpan="15" Grid.ColumnSpan="7" Background="#D32F2F"
+        <md:Card md:ShadowAssist.ShadowDepth="Depth5" Grid.Row="1" Grid.Column="23" Grid.RowSpan="15" Grid.ColumnSpan="7" Background="#D32F2F"
   Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}">
             <Grid>
                 <Grid.RowDefinitions>

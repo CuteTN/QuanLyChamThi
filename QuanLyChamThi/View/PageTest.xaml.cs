@@ -24,10 +24,6 @@ namespace QuanLyChamThi.View
         public PageTest()
         {
             InitializeComponent();
-            for (int i = 0; i < 31; i++)
-                mainGrid.ColumnDefinitions.Add(new ColumnDefinition());
-            for (int i = 0; i < 17; i++)
-                mainGrid.RowDefinitions.Add(new RowDefinition());
 
             DataContext = new TestViewModel();
         }
@@ -36,6 +32,11 @@ namespace QuanLyChamThi.View
         {
             var windowQuestionList = new WindowQuestionList();
             windowQuestionList.ShowDialog();
+        }
+
+        private void dgReport_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

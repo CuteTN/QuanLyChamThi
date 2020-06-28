@@ -1,21 +1,19 @@
-﻿using System;
+﻿using QuanLyChamThi.ViewModel;
+using System.Windows;
+using System.Windows.Input;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using QuanLyChamThi.ViewModel;
-using QuanLyChamThi.Command;
-using QuanLyChamThi;
-using System.Windows.Media.Animation;
+using System.Runtime.InteropServices;
 
 namespace QuanLyChamThi.View
 {
@@ -57,12 +55,17 @@ namespace QuanLyChamThi.View
         private void canvasExtendedSideBar_MouseEnter(object sender, MouseEventArgs e)
         {
             canvasExtendedSideBar.Visibility = Visibility.Visible;
+            Grid.SetColumn(mainScreen, 6);
+            sprtPnl.Visibility = Visibility.Hidden;
         }
 
         private void canvasExtendedSideBar_MouseLeave(object sender, MouseEventArgs e)
         {
             canvasExtendedSideBar.Visibility = Visibility.Hidden;
+            Grid.SetColumn(mainScreen, 1);
+            sprtPnl.Visibility = Visibility.Visible;
         }
+
 
         /**
           

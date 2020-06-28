@@ -6,12 +6,7 @@
              xmlns:local="clr-namespace:QuanLyChamThi.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <DockPanel LastChildFill="True">
-            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-                <Label Content="Danh sách câu hỏi:      " VerticalAlignment="Center"/>
-                <Button x:Name="btnFilter" Content="Tuỳ chọn" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-            </StackPanel>
+
 
             <ScrollViewer x:Name="svGrid" VerticalScrollBarVisibility="Auto">
                 <local:CustomDataGrid x:Name="dgQuestionList" 
@@ -20,8 +15,8 @@
                                       AutoGenerateColumns="False" Width="{Binding ElementName=svGrid, Path=ActualWidth}" 
                                       CanUserResizeColumns="False" CanUserReorderColumns="False" 
                                       CanUserSortColumns="False" 
-                                      IsReadOnly="True"
-                                      SelectionUnit="FullRow">
+                                      IsReadOnly="True" Padding="10"
+                                      SelectionUnit="FullRow" Background="White" Style="{StaticResource MaterialDesignDataGrid}">                    
                     <DataGrid.Columns>
                         <DataGridTextColumn x:Name="colQuestionID" Binding="{Binding IDQuestion, Mode=TwoWay}" Header="Mã câu hỏi" Width="2*"/>
                         <DataGridTextColumn x:Name="colSubjectName" Binding="{Binding Subject, Mode=TwoWay}" Header="Môn thi" Width="3*"/>
@@ -30,6 +25,5 @@
                     
                 </local:CustomDataGrid>
             </ScrollViewer>
-        </DockPanel>
-    </Grid>
+
 </UserControl>
