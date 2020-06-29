@@ -271,6 +271,70 @@
                     </DataGrid>
                 </Grid>
             </TabItem>
+            <TabItem Header="Tùy chỉnh khác" Padding="16">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="37*"/>
+                        <ColumnDefinition Width="37*"/>
+                        <ColumnDefinition Width="37"/>
+                        <ColumnDefinition Width="37*"/>
+                        <ColumnDefinition Width="37*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="38*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" Content="Số lượng câu hỏi tối đa" HorizontalContentAlignment="Left"/>
+                    <TextBox Text="{Binding MaxQuestionAmount, Mode=TwoWay}" Grid.Column="7" Grid.Row="1" Grid.ColumnSpan="3"/>
+                    
+                    <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="5" Content="Thời lượng tối đa cho đề thi" HorizontalContentAlignment="Left"/>
+                    <TextBox Text="{Binding MaxTestDuration, Mode=TwoWay}" Grid.Column="7" Grid.Row="2" Grid.ColumnSpan="3"/>
+
+                    <Label Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="5" Content="Thời lượng tối thiểu cho đề thi" HorizontalContentAlignment="Left"/>
+                    <TextBox Text="{Binding MinTestDuration, Mode=TwoWay}" Grid.Column="7" Grid.Row="3" Grid.ColumnSpan="3"/>
+
+                    <Label Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="5" Content="Số điểm tối đa" HorizontalContentAlignment="Left"/>
+                    <TextBox Text="{Binding MaxTestScore, Mode=TwoWay}" Grid.Column="7" Grid.Row="4" Grid.ColumnSpan="3"/>
+
+                    <Label Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="5" Content="Số điểm tối thiểu" HorizontalContentAlignment="Left"/>
+                    <TextBox Text="{Binding MinTestScore, Mode=TwoWay}" Grid.Column="7" Grid.Row="5" Grid.ColumnSpan="3"/>
+                </Grid>
+            </TabItem>
         </TabControl>
 
         <Button x:Name="btnOK" Command="{Binding OKCommand}" Grid.Column="27" Grid.Row="15" Grid.ColumnSpan="3" Content="Lưu" Click="btnOK_Click"/>
