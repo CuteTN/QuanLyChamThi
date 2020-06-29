@@ -1,5 +1,6 @@
 ﻿using QuanLyChamThi.Command;
 using QuanLyChamThi.Model;
+using QuanLyChamThi.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -263,7 +264,7 @@ namespace QuanLyChamThi.ViewModel
         {
             if (!TempTest.Valid())
             {
-                MessageBox.Show("Đề thi không hợp lệ.");
+                ViewExtension.MessageOK(null, "Lỗi: đề thi không hợp lệ", ViewExtension.MessageType.Error);
                 return false;
             }
             foreach (var item in TempTestDetail)
@@ -272,18 +273,18 @@ namespace QuanLyChamThi.ViewModel
                 {
                     // This is not supposed to happen
                     // Just check for BS that might be thrown this way
-                    MessageBox.Show("Không nhận được ID câu hỏi");
+                    ViewExtension.MessageOK(null, "Lỗi: không nhận được mã câu hỏi", ViewExtension.MessageType.Error);
                     return false;
                 }
             }
             if (LowerLimitTestDuration != null && TempTest.Duration < LowerLimitTestDuration)
             {
-                MessageBox.Show("Thời lượng đề thi quá ngắn.");
+                ViewExtension.MessageOK(null, "Lỗi: thời lượng đề thi quá ngắn", ViewExtension.MessageType.Error);
                 return false;
             }
             if (UpperLimitTestDuration != null && TempTest.Duration > UpperLimitTestDuration)
             {
-                MessageBox.Show("Thời lượng đề thi quá dài.");
+                ViewExtension.MessageOK(null, "Lỗi: thời lượng đề thi quá dài", ViewExtension.MessageType.Error);
                 return false;
             }
             return true;
@@ -292,6 +293,10 @@ namespace QuanLyChamThi.ViewModel
         {
             if (!Validate())
                 return;
+
+            if (ViewExtension.Confirm(null, "Bạn có chắc muốn lưu đề thi này không?") == 0)
+                return;
+
             List<DatabaseCommand> cmdList = new List<DatabaseCommand>();
             DatabaseCommand cmd = new DatabaseCommand();
 
@@ -328,6 +333,8 @@ namespace QuanLyChamThi.ViewModel
 
             if (cmdList.Any())
                 ViewModelMediator.Ins.Receive(this, cmdList);
+
+            ViewExtension.MessageOK(null, "Thông báo: đề thi được thêm thành công!", ViewExtension.MessageType.Notification);
             MainWindowViewModel.Ins.SwitchView(10);
         }
         #endregion
@@ -349,6 +356,9 @@ namespace QuanLyChamThi.ViewModel
         }
         void CancelButton()
         {
+            if(ViewExtension.Confirm(null, "Bạn có chắc muốn huỷ thông tin này không?") == 0)
+                return;
+
             SyncToView();
             MainWindowViewModel.Ins.SwitchView(10);
         }
@@ -496,7 +506,7 @@ namespace QuanLyChamThi.ViewModel
         {
             if (TempTest.SubjectID == null)
             {
-                MessageBox.Show("Vui lòng nhập môn học trước khi nhập câu hỏi");
+                ViewExtension.MessageOK(null, "Lỗi: vui lòng nhập môn học trước khi nhập câu hỏi", ViewExtension.MessageType.Error);
                 return false;
             }
             return true;

@@ -18,6 +18,7 @@ namespace QuanLyChamThi.ViewModel
         public TestSearchViewModel()
         {
             ViewModelMediator.Ins.AddUserModel(this);
+            Search();
         }
 
         #region Filter
@@ -198,8 +199,13 @@ namespace QuanLyChamThi.ViewModel
 
         void EditTestButton()
         {
-            if (SelectedTest.Count == 1)
-                MainWindowViewModel.Ins.SwitchView(9, SelectedTest[0].TestID);
+            if (SelectedTest.Count != 1)
+            {
+                ViewExtension.MessageOK(null, "Lỗi: vui lòng chọn 1 đề thi để chỉnh sửa", ViewExtension.MessageType.Error);
+                return;
+            }
+
+            MainWindowViewModel.Ins.SwitchView(9, SelectedTest[0].TestID);
         }
         #endregion
 
