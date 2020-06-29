@@ -20,7 +20,7 @@ namespace QuanLyChamThi.ViewModel
     {
         // THANHCODE
 
-        #region Difficulty
+        #region Difficulty Setting
 
         #region Textbox Số lượng độ khó
         private int? _numberOfDifficulty;
@@ -116,20 +116,6 @@ namespace QuanLyChamThi.ViewModel
         #endregion
 
         #region Button Hủy
-        private ICommand _cancelEditingCommand;
-        public ICommand CancelEditingCommand
-        {
-            get
-            {
-                if (_cancelEditingCommand == null)
-                    _cancelEditingCommand = new RelayCommand(param => CancelEditingDifficulty());
-                return _cancelEditingCommand;
-            }
-            set
-            {
-                _cancelEditingCommand = value; OnPropertyChange("CancelEditingCommand");
-            }
-        }
 
         private void CancelEditingDifficulty()
         {
@@ -163,7 +149,7 @@ namespace QuanLyChamThi.ViewModel
 
         #endregion
 
-        #region Class
+        #region Class Setting
 
         #region Combobox Year
         BindingList<int> _year;
@@ -248,7 +234,7 @@ namespace QuanLyChamThi.ViewModel
                                                                             });
                 return _listClassSource;
             }
-            set { _listClassSource = value; OnPropertyChange("ListClassSource"); ListClass = null; }
+            set { _listClassSource = value; OnPropertyChange("ListClassSource"); _listClass = null; ListClass = null; }
         }
 
         private ObservableCollection<ClassModel> _listClass;
@@ -283,6 +269,7 @@ namespace QuanLyChamThi.ViewModel
                 NumberOfClass = null; 
             }
         }
+
         #endregion
 
         #region Save Changed Class
@@ -348,6 +335,17 @@ namespace QuanLyChamThi.ViewModel
 
             return commands;
         }
+        #endregion
+
+        #region Cancel Edingting
+
+        void CancelEditingClass()
+        {
+            SelectedYear = null;
+            SelectedSemester = null;
+            ListClassSource = null;
+        }
+
         #endregion
 
         BindingList<SUBJECT> _listSubjectForClass;
@@ -558,6 +556,8 @@ namespace QuanLyChamThi.ViewModel
         private void cancelFunction()
         {
             cancelSujectChangeFunction();
+            CancelEditingDifficulty();
+            CancelEditingClass();
         }
 
         #endregion
@@ -582,9 +582,11 @@ namespace QuanLyChamThi.ViewModel
         private void OKFunction()
         {
             saveSubjectsFunction();
+            SaveChangeDifficulty();
+            SaveChangeClass();
             //bool nothing = ViewExtension.MessageOK()
             // NOT WORK
-            DataProvider.Ins.DB.SaveChanges();
+            // DataProvider.Ins.DB.SaveChanges();
         }
 
             #endregion
@@ -612,30 +614,6 @@ namespace QuanLyChamThi.ViewModel
         public SettingViewModel()
         {
             ViewModelMediator.Ins.AddUserModel(this);
-        }
-        ICommand _saveChangeCommand;
-        public ICommand SaveChangeCommand
-        {
-            get
-            {
-                if (_saveChangeCommand == null)
-                {
-                    _saveChangeCommand = new RelayCommand(param => SaveChange());
-                }
-                return _saveChangeCommand;
-            }
-            set { _saveChangeCommand = value; OnPropertyChange("SaveChangeDifficultyCommand"); }
-        }
-
-        void SaveChange()
-        {
-            SaveChangeDifficulty();
-            SaveChangeClass();
-        }
-
-
-        public SettingViewModel()
-        {
             ListClass.CollectionChanged += View_CollectionChanged;
         }
 

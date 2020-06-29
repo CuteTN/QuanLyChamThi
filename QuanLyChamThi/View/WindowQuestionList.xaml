@@ -79,7 +79,7 @@
             </i:Interaction.Triggers>
         </local:UserControlQuestionList>
         <Label x:Name="lbXtch" Grid.Column="17" Grid.Row="1" Grid.ColumnSpan="3" Content="Xem trước câu hỏi:" Foreground="Black" FontWeight="Bold"/>
-        <TextBox Grid.Column="17" Grid.Row="2" Grid.ColumnSpan="13" Grid.RowSpan="13" x:Name="tbContent" Text="{Binding Content}" Width="{Binding ElementName=svGrid, Path=ActualWidth}" Height="{Binding ElementName=svGrid, Path=ActualHeight}" TextWrapping="Wrap"   Background="White" Padding="10,5"
+        <TextBox Grid.Column="17" Grid.Row="2" Grid.ColumnSpan="13" Grid.RowSpan="13" x:Name="tbContent" Text="{Binding ReviewQuestionContent}" Width="{Binding ElementName=svGrid, Path=ActualWidth}" Height="{Binding ElementName=svGrid, Path=ActualHeight}" TextWrapping="Wrap"   Background="White" Padding="10,5"
     VerticalAlignment="Stretch"
     MinWidth="280"
     AcceptsReturn="True"

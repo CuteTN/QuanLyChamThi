@@ -255,7 +255,7 @@
                     <Label Grid.Column="17" Grid.Row="1" Grid.ColumnSpan="3" Content="Học kỳ" HorizontalContentAlignment="Right"/>
                     <ComboBox Grid.Column="20" ItemsSource="{Binding Semester}" SelectedItem="{Binding SelectedSemester}" Grid.Row="1" Grid.ColumnSpan="3"/>
 
-                    <DataGrid x:Name="dgClassList"  ItemsSource="{Binding ListClass}" AutoGenerateColumns="False" Grid.Column="10" Grid.Row="2" Grid.ColumnSpan="18" Grid.RowSpan="19" CanUserAddRows="False">
+                    <DataGrid x:Name="dgClassList"  ItemsSource="{Binding ListClass}" AutoGenerateColumns="False" Grid.Column="10" Grid.Row="2" Grid.ColumnSpan="18" Grid.RowSpan="19" CanUserAddRows="True">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Tên lớp học" Binding="{Binding ClassName}" Width="2*"/>
                             <DataGridTemplateColumn Header="Tên môn học" Width="6*">

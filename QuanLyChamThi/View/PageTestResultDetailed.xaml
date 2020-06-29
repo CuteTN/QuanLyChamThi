@@ -71,15 +71,16 @@
         <Label Grid.Column="1" Grid.Row="16" Grid.ColumnSpan="3"  VerticalAlignment="Bottom" Content="Tên môn thi:" Foreground="Black" FontWeight="Bold"/>
         <Button x:Name="btnFind" ToolTip="Tìm bài chấm thoả yêu cầu" Command="{Binding SearchCommand}"  
                 Grid.Column="10" Grid.Row="14" Grid.RowSpan="3" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignOutlinedButton}"  VerticalAlignment="Stretch" Height="Auto" Content="{md:PackIcon Kind=Magnify, Size=30}" Padding="0,0,0,0" Margin="10,15,0,0" UseLayoutRounding="False"/>
-        <Button x:Name="btnNew" Command="{Binding EditSelectedTestResultDetailCommand}" Grid.Column="16" Grid.Row="14" Grid.RowSpan="3" Grid.ColumnSpan="14" 
+        <Button x:Name="btnNew" Command="{Binding AddNewTestResultDetailCommand}" Grid.Column="16" Grid.Row="14" Grid.RowSpan="3" Grid.ColumnSpan="14" 
                 VerticalAlignment="Stretch" Height="Auto" Content="Tạo bài chấm mới"  Margin="10,15,0,0"/>
 
 
-        <md:Badged x:Name="badgedelete" Badge="2" BadgeColorZoneMode="Dark" Grid.Column="14" Grid.Row="14" Grid.RowSpan="3" Grid.ColumnSpan="2" Margin="10,15,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-            <Button x:Name="btnDelete" Padding="0,0,0,0"  Command="{Binding DeleteCommand}" Content="{md:PackIcon Kind=Delete,Size=30}" Width="{Binding ActualWidth, ElementName=badgedelete, Mode=OneWay}" ToolTip="Xoá bài chấm đã chọn"  Style="{StaticResource MaterialDesignOutlinedButton}" Height="{Binding ActualHeight, ElementName=badgedelete, Mode=OneWay}" Foreground="White" Background="#F44336" BorderBrush="#F44336"/>
+        <md:Badged x:Name="badgedelete" Badge="{Binding NumberOfSelectedResultDetail}" BadgeColorZoneMode="Dark" Grid.Column="14" Grid.Row="14" Grid.RowSpan="3" Grid.ColumnSpan="2" Margin="10,15,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+            <Button x:Name="btnDelete" Padding="0,0,0,0"  Command="{Binding DeleteSelectedResultDetailCommand}" Content="{md:PackIcon Kind=Delete,Size=30}" Width="{Binding ActualWidth, ElementName=badgedelete, Mode=OneWay}" ToolTip="Xoá bài chấm đã chọn"  Style="{StaticResource MaterialDesignOutlinedButton}" Height="{Binding ActualHeight, ElementName=badgedelete, Mode=OneWay}" Foreground="White" Background="#F44336" BorderBrush="#F44336"/>
 
         </md:Badged>
         <Button x:Name="btnEdit" Padding="0,0,0,0"  Margin="10,15,0,0"
+                Command="{Binding EditSelectedTestResultDetailCommand}"
                 Content="{md:PackIcon Kind=Edit,Size=30}"
                 ToolTip="Sửa đề thi" Grid.Column="12" Grid.Row="14"
                 Grid.ColumnSpan="2" Grid.RowSpan="3"
@@ -95,16 +96,18 @@
         <TextBox x:Name="tbTestID" md:HintAssist.Hint="Tất cả" Text="{Binding FilterTestID}"
                  Grid.Column="4" Grid.Row="14" Grid.ColumnSpan="6" VerticalAlignment="Bottom"/>
         <ScrollViewer x:Name="svGrid" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="29" Grid.RowSpan="13" Padding="0,0,0,12" VerticalScrollBarVisibility="Auto">
-            <DataGrid x:Name="dgListTestResult" Background="White" Style="{StaticResource MaterialDesignDataGrid}" Padding="10"
-                      ItemsSource="{Binding ListTestResultDetail}" SelectedItem="{Binding SelectedResultDetail, Mode=TwoWay}" AutoGenerateColumns="False"
-                      Width="{Binding ElementName=svGrid, Path=ActualWidth}" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False" CanUserAddRows="False" IsReadOnly="True">
+            <local:CustomDataGrid x:Name="dgListTestResult" Background="White" Style="{StaticResource MaterialDesignDataGrid}" Padding="10"
+                                  ItemsSource="{Binding ListTestResultDetail}" 
+                                  SelectedItemsList="{Binding SelectedResultDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  AutoGenerateColumns="False"
+                                  Width="{Binding ElementName=svGrid, Path=ActualWidth}" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False" CanUserAddRows="False" IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn x:Name="colSubjectName" Binding="{Binding SubjectName}" Header="Tên môn thi" Width="1*"/>
                     <DataGridTextColumn x:Name="colClassID" Binding="{Binding IDClass}" Header="Mã lớp" Width="1*"/>
                     <DataGridTextColumn x:Name="colLecturerName" Binding="{Binding UserFullName}" Header="Tên giảng viên" Width="1*"/>
                     <DataGridTextColumn x:Name="colTestID" Binding="{Binding IDTest}" Header="Mã đề thi" Width="1*"/>
                 </DataGrid.Columns>
-            </DataGrid>
+            </local:CustomDataGrid>
         </ScrollViewer>
         <i:Interaction.Triggers>
             <i:EventTrigger EventName="MouseDown">

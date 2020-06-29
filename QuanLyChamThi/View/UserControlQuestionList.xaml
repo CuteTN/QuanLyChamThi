@@ -26,9 +26,9 @@
                                       IsReadOnly="True" Padding="10"
                                       SelectionUnit="FullRow" Background="White" Style="{StaticResource MaterialDesignDataGrid}">
                     <DataGrid.Columns>
-                        <DataGridTextColumn x:Name="colQuestionID" Binding="{Binding IDQuestion, Mode=TwoWay}" Header="Mã câu hỏi" Width="2*"/>
-                        <DataGridTextColumn x:Name="colSubjectName" Binding="{Binding Subject, Mode=TwoWay}" Header="Môn thi" Width="3*"/>
-                        <DataGridTextColumn x:Name="colQuestionContent" Binding="{Binding Content, Mode=TwoWay}" Header="Nội dung" Width="5*"/>
+                        <DataGridTextColumn x:Name="colQuestionID" Binding="{Binding Second.IDQuestion, Mode=TwoWay}" Header="Mã câu hỏi" Width="2*"/>
+                        <DataGridTextColumn x:Name="colSubjectName" Binding="{Binding Second.Subject, Mode=TwoWay}" Header="Môn thi" Width="3*"/>
+                        <DataGridTextColumn x:Name="colQuestionContent" Binding="{Binding Second.Content, Mode=TwoWay}" Header="Nội dung" Width="5*"/>
                     </DataGrid.Columns>
                     <local:CustomDataGrid.RowStyle>
                         <Style TargetType="{x:Type DataGridRow}">
