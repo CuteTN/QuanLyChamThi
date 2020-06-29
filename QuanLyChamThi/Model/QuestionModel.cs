@@ -66,8 +66,8 @@ namespace QuanLyChamThi.Model
         }
 
         // validation ////////////////////////////////////////////////////////////////////////////////////////////////////  
-        private int _maxLength = 1000;
-        public int MaxLength
+        static private int _maxLength = 1000;
+        static public int MaxLength
         {
             get { return _maxLength; }
             set { _maxLength = value; }

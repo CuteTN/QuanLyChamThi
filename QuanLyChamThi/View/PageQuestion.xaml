@@ -110,7 +110,7 @@
             </local:UserControlQuestionList>
         </DockPanel>
 
-        <Button Style="{StaticResource MaterialDesignOutlinedButton}" x:Name="btnCancel" Grid.Column="23" Grid.Row="16" Grid.ColumnSpan="3" VerticalAlignment="Center" Content="Huỷ" Panel.ZIndex="3"/>
+        <Button Style="{StaticResource MaterialDesignOutlinedButton}" x:Name="btnCancel" Command="{Binding CancelEditingCommand}" Grid.Column="23" Grid.Row="16" Grid.ColumnSpan="3" VerticalAlignment="Center" Content="Huỷ" Panel.ZIndex="3"/>
         <Button x:Name="btnOK" Command="{Binding AddQuestionCommand}" Grid.Column="27" Grid.Row="16" Grid.ColumnSpan="3" VerticalAlignment="Center" Content="Thêm" Panel.ZIndex="3"/>
     </Grid>
 </Page>

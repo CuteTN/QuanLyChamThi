@@ -1,5 +1,6 @@
 ﻿using QuanLyChamThi.Command;
 using QuanLyChamThi.Model;
+using QuanLyChamThi.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -131,13 +132,26 @@ namespace QuanLyChamThi.ViewModel
 
         void AddQuestionFunction()
         {
-            // MORECODE: pop up notification
-
             var commands = CreateAddCommands();
 
             if (commands.Count > 0)
             {
+                string msg = "Bạn có chắc muốn thêm câu hỏi mới không?";
+                if(EditingQuestion != null)
+                    msg = "Bạn có chắc muốn sửa câu hỏi này không?";
+                int userConfirmed = ViewExtension.Confirm(null, msg);
+
+                // user chose cancel
+                if(userConfirmed == 0)
+                    return;
+
                 NotifyToMediator(commands);
+
+                msg = "Thông báo: câu hỏi đã được thêm thành công";
+                if(EditingQuestion != null)
+                    msg = "Thông báo: câu hỏi đã được sửa thành công";
+                ViewExtension.MessageOK(null, msg, ViewExtension.MessageType.Notification);
+
                 resetInputContent();
             }
         }
@@ -191,7 +205,21 @@ namespace QuanLyChamThi.ViewModel
 
         private void HandleInvalidInput(QuestionModel.ValidationMessage msg)
         {
-            MessageBox.Show(msg.ToString()); 
+            if(msg == QuestionModel.ValidationMessage.Valid)
+                return;
+
+            string strMsg = "";
+
+            switch(msg)
+            {
+                case QuestionModel.ValidationMessage.EmptyContent: strMsg = "Lỗi: không được để trống nội dung câu hỏi"; break;
+                case QuestionModel.ValidationMessage.LongContent: strMsg = $"Lỗi: nội dung câu hỏi không được vượt quá {QuestionModel.MaxLength} ký tự"; break;
+                case QuestionModel.ValidationMessage.InvalidDifficultyID: strMsg = "Lỗi: độ khó không hợp lệ"; break;
+                case QuestionModel.ValidationMessage.InvalidSubjectID: strMsg = "Lỗi: môn học không hợp lệ"; break;
+                default: throw new Exception(); 
+            }
+
+            ViewExtension.MessageOK(null, strMsg, ViewExtension.MessageType.Error);
         }
 
         void NotifyToMediator(List<DatabaseCommand> cmds)
@@ -230,6 +258,11 @@ namespace QuanLyChamThi.ViewModel
 
         void DeleteSelectedQuestions()
         {
+            int userConfirmed = ViewExtension.Confirm(null, "Bạn có chắc muốn xoá những câu hỏi này không?");
+
+            if(userConfirmed == 0)
+                return;
+
             List<DatabaseCommand> commands = new List<DatabaseCommand>();
             foreach (var question in QuestionListViewModel.SelectedQuestions)
             {
@@ -252,11 +285,25 @@ namespace QuanLyChamThi.ViewModel
             get
             {
                 if (_cancelEditingCommand == null)
-                    _cancelEditingCommand = new RelayCommand(param => resetInputContent());
+                    _cancelEditingCommand = new RelayCommand(param => cancelEditingFunction());
                 return _cancelEditingCommand;
             }
             set { _cancelEditingCommand = value; }
         }
+
+        private void cancelEditingFunction()
+        {
+            if(Content != null && Content != "")
+            { 
+                int userConfirmed = ViewExtension.Confirm(null, "Việc huỷ sẽ xoá mọi thông tin của câu hỏi đang nhập. Tiếp tục huỷ câu hỏi?");
+
+                if(userConfirmed == 0)
+                    return;
+            }
+
+            resetInputContent();
+        }
+
         #endregion
 
         #region Event double click to edit question
@@ -274,6 +321,14 @@ namespace QuanLyChamThi.ViewModel
 
         void LoadSelectedQuestion()
         {
+            if (Content != null && Content != "" && Content != EditingQuestion.Content)
+            {
+                int userConfirmed = ViewExtension.Confirm(null, "Việc tải câu hỏi lên sẽ xoá mọi thay đổi của câu hỏi đang nhập. Tiếp tục tải câu hỏi?");
+
+                if (userConfirmed == 0)
+                    return;
+            }
+
             resetInputContent();
             if (QuestionListViewModel.SelectedQuestions.Count != 0)
                 EditingQuestion = QuestionListViewModel.SelectedQuestions[0];
@@ -283,7 +338,7 @@ namespace QuanLyChamThi.ViewModel
         public void Receive(object sender, List<DatabaseCommand> commands)
         {
             // MORECODE
-            resetInputContent();
+            // resetInputContent();
         }
 
         public QuestionViewModel()
