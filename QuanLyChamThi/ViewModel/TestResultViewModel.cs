@@ -483,7 +483,7 @@ namespace QuanLyChamThi.ViewModel
                testResult.ScoreNumber > DataProvider.Ins.DB.PRINCIPLE.ToList()[0].MaxScore)
             {
                 // Notify user that the score is not in principle // TODO
-                ViewExtension.MessageOK(null, "Lỗi: Học sinh với mssv " + student.IDStudent + " có điểm không nằm trong khoảng quy định\n Khoảng quy định: " + DataProvider.Ins.DB.PRINCIPLE.First().MinScore + "...." + DataProvider.Ins.DB.PRINCIPLE.First().MaxScore, ViewExtension.MessageType.Error);
+                ViewExtension.MessageOK(null, "Lỗi: Sinh viên có điểm không nằm trong khoảng quy định\n Khoảng quy định: " + DataProvider.Ins.DB.PRINCIPLE.First().MinScore + "...." + DataProvider.Ins.DB.PRINCIPLE.First().MaxScore, ViewExtension.MessageType.Error);
                 ////////////////////////////////////////////////////
                 return false;
             }

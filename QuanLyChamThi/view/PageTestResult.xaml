@@ -71,7 +71,7 @@
         <Label Grid.Column="17" Grid.Row="1" Grid.ColumnSpan="4" VerticalAlignment="Bottom" Content="Môn thi:" FontWeight="Bold" Foreground="Black"/>
         <Label Grid.Column="17" Grid.Row="2" Grid.ColumnSpan="4" VerticalAlignment="Bottom" Content="Mã lớp:" FontWeight="Bold" Foreground="Black"/>
 
-        <Label x:Name="tbLecturerName" Grid.Column="5" Grid.Row="1" Grid.ColumnSpan="9" VerticalAlignment="Bottom" FontWeight="Bold" Foreground="#FF9800" Content="John Wick"/>
+        <Label x:Name="tbLecturerName" Grid.Column="5" Grid.Row="1" Grid.ColumnSpan="9" VerticalAlignment="Bottom" FontWeight="Bold" Foreground="#FF9800" Content="Ngô Công Hậu"/>
         <ComboBox x:Name="cbSubject" ItemsSource="{Binding ListSubject}" SelectedItem="{Binding SelectedSubject}" Grid.Column="21"
                   Grid.Row="1"
                   Grid.ColumnSpan="9" VerticalAlignment="Bottom">
