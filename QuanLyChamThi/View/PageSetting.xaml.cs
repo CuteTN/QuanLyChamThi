@@ -13,7 +13,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using QuanLyChamThi.ViewModel;
 
 namespace QuanLyChamThi.View
 {
@@ -22,6 +21,7 @@ namespace QuanLyChamThi.View
     /// </summary>
     public partial class PageSetting : Page
     {
+
         public PageSetting()
         {
             InitializeComponent();
@@ -31,6 +31,7 @@ namespace QuanLyChamThi.View
         private void InitializeDataContext()
         {
             DataContext = new SettingViewModel();
+
         }
 
         private void btnOK_Click(object sender, RoutedEventArgs e)

@@ -17,6 +17,7 @@ namespace QuanLyChamThi.ViewModel
 {
     class TestResultDetailedViewModel: ViewModelBase
     {
+
         #region Datagrid ListTestResultDetail
         /// <summary>
         /// This is a list that binding with the view, it has a filter of its own
@@ -37,19 +38,30 @@ namespace QuanLyChamThi.ViewModel
             }
         }
 
-        TestResultDetailModel _selectedResultDetail;
-        public TestResultDetailModel SelectedResultDetail
+        IList<TestResultDetailModel> _selectedResultDetails;
+        public IList<TestResultDetailModel> SelectedResultDetails
         {
             get
             {
-                return _selectedResultDetail;
+                if (_selectedResultDetails == null)
+                    _selectedResultDetails = new List<TestResultDetailModel>();
+                return _selectedResultDetails;
             }
             set
             {
-                _selectedResultDetail = value;
+                _selectedResultDetails = value;
                 OnPropertyChange("SelectedResultDetail");
+                OnPropertyChange("NumberOfSelectedResultDetail");
             }
         }
+
+        private int _numberOfSelectedResultDetail;
+        public int NumberOfSelectedResultDetail
+        {
+            get { _numberOfSelectedResultDetail = SelectedResultDetails.Count; return _numberOfSelectedResultDetail; }
+            set { _numberOfSelectedResultDetail = value; OnPropertyChange("NumberOfSelectedResultDetail"); }
+        }
+
         private ICommand _deselecteResultDetailCommand;
         public ICommand DeselecteResultDetailCommand
         {
@@ -64,17 +76,18 @@ namespace QuanLyChamThi.ViewModel
 
         private void DeselecteResultDetail()
         {
-            SelectedResultDetail = null;
+            SelectedResultDetails = null;
         }
         #endregion
 
+        #region Button Xóa bài chấm được chọn
         ICommand _deleteSelectedResultDetailCommand;
         public ICommand DeleteSelectedResultDetailCommand
         {
             get
             {
                 if (_deleteSelectedResultDetailCommand == null)
-                    _deleteSelectedResultDetailCommand = new RelayCommand(p => DeleteSelectedResultDetail());
+                    _deleteSelectedResultDetailCommand = new RelayCommand(p => DeleteSelectedResultDetail(), p => CanDeleteSelectedResultDetail());
                 return _deleteSelectedResultDetailCommand;
             }
             set
@@ -84,26 +97,54 @@ namespace QuanLyChamThi.ViewModel
         }
         void DeleteSelectedResultDetail()
         {
-            if (_selectedResultDetail == null)
+            if (SelectedResultDetails == null)
                 return;
             List<DatabaseCommand> commands = new List<DatabaseCommand>();
-            var deletedResultDetail = DataProvider.Ins.DB.TESTRESULTDETAIL.Find(_selectedResultDetail.IDTestResult);
-            commands.Add(new DatabaseCommand
+            foreach (var _selectedResultDetail in SelectedResultDetails)
             {
-                add = null,
-                delete = deletedResultDetail
-            });
+                var deletedResultDetail = DataProvider.Ins.DB.TESTRESULTDETAIL.Find(_selectedResultDetail.IDTestResult);
+                commands.Add(new DatabaseCommand
+                {
+                    add = null,
+                    delete = deletedResultDetail
+                });
+            }
             ViewModelMediator.Ins.Receive(this, commands);
         }
-        
 
+        bool CanDeleteSelectedResultDetail()
+        {
+            return SelectedResultDetails.Count > 0;
+        }
+        #endregion
+
+        #region Button Thêm một bài chấm
+        ICommand _addNewTestResultDetailCommand;
+        public ICommand AddNewTestResultDetailCommand
+        {
+            get
+            {
+                if (_addNewTestResultDetailCommand == null)
+                    _addNewTestResultDetailCommand = new RelayCommand(param => AddNewTestResultDetail());
+                return _addNewTestResultDetailCommand;
+            }
+            set { _addNewTestResultDetailCommand = value; OnPropertyChange("AddNewTestResultDetailCommad"); }
+        }
+
+        void AddNewTestResultDetail()
+        {
+            MainWindowViewModel.Ins.StartEditingTestResult(null);
+        }
+        #endregion
+
+        #region Button Sửa bài chấm được chọn
         ICommand _editSelectedTestResultDetailCommand;
         public ICommand EditSelectedTestResultDetailCommand
         {
             get
             {
                 if (_editSelectedTestResultDetailCommand == null)
-                    _editSelectedTestResultDetailCommand = new RelayCommand(param => EditSelectedTestResultDetail());
+                    _editSelectedTestResultDetailCommand = new RelayCommand(param => EditSelectedTestResultDetail(), param => CanEditSelectedTestResultDetail());
                 return _editSelectedTestResultDetailCommand;
             }
             set
@@ -113,20 +154,29 @@ namespace QuanLyChamThi.ViewModel
         }
         void EditSelectedTestResultDetail()
         {
-            if (_selectedResultDetail == null)
-                MainWindowViewModel.Ins.StartEditingTestResult(null);
+            if (SelectedResultDetails.Count != 1)
+                return;
             else
+            {
+                var selectedResultDetail = SelectedResultDetails[0];
                 MainWindowViewModel.Ins.StartEditingTestResult((from u in DataProvider.Ins.DB.TESTRESULTDETAIL
-                                                                where u.IDTestResult == _selectedResultDetail.IDTestResult
+                                                                where u.IDTestResult == selectedResultDetail.IDTestResult
                                                                 select u).Single());
+            }
         }
+
+        bool CanEditSelectedTestResultDetail()
+        {
+            return SelectedResultDetails.Count != 1 ? false : true;
+        }
+        #endregion
 
         private bool Filter(object item)
         {
             TestResultDetailModel test = item as TestResultDetailModel;
 
             ///////// PUT FILER HERE ///////////////
-            return test.SubjectName == "Nhập môn lập trình";
+            return true;
         }
 
         void refresh(object sender, NotifyCollectionChangedEventArgs e)

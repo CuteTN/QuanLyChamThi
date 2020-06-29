@@ -88,7 +88,7 @@
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <TextBlock Text="{Binding IDClass}"></TextBlock>
+                        <TextBlock Text="{Binding FullName}"></TextBlock>
                     </StackPanel>
                 </DataTemplate>
             </ComboBox.ItemTemplate>

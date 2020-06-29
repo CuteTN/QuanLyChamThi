@@ -9,11 +9,13 @@ namespace QuanLyChamThi.Model
 {
     class ClassModel: INotifyPropertyChanged
     {
-        string _iDClass;
-        public string IDClass
+        public string IDClass;
+
+        string _className;
+        public string ClassName
         {
-            get { return _iDClass; }
-            set { _iDClass = value; OnPropertyChange("IDClass"); }
+            get { return _className; }
+            set { _className = value; OnPropertyChange("ClassName"); }
         }
 
         string _subjectName;
@@ -29,6 +31,37 @@ namespace QuanLyChamThi.Model
             get { return _subject; }
             set { _subject = value; OnPropertyChange("Subject"); }
         }
+
+        string _fullName;
+        public string FullName
+        {
+            get
+            {
+                _fullName = ClassName + "_" + Year.ToString() + "_" + Semester.ToString();
+                return _fullName;
+            }
+            set
+            {
+                _fullName = value;
+                OnPropertyChange("FullName");
+            }
+        }
+
+        private int _year;
+        public int Year
+        {
+            get { return _year; }
+            set { _year = value; OnPropertyChange("Year"); }
+        }
+
+        private int _semester;
+        public int Semester
+        {
+            get { return _semester; }
+            set { _semester = value; OnPropertyChange("Semester"); }
+        }
+
+        public string Username;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
