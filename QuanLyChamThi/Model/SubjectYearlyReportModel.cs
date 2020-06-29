@@ -64,12 +64,22 @@ namespace QuanLyChamThi.Model
             get
             {
                 if (TotalTestCount == 0)
-                    return double.NaN;
+                    return 0;
                 return (double)TestCount / TotalTestCount;
             }
             set { /* Can't set this */ }
         }
         
+        public string TestPercentage
+        {
+            get
+            {
+                string result = Math.Round(TestRatio * 100, 2).ToString() + "%";
+                return result;
+            }
+            set { /* Can't set this */ }
+        }
+
         private int _totalTestResultCount;
         public int TotalTestResultCount
         {
@@ -83,11 +93,20 @@ namespace QuanLyChamThi.Model
             get
             {
                 if (TotalTestCount == 0)
-                    return double.NaN;
+                    return 0;
                 return (double)TestResultCount / TotalTestResultCount;
             }
             set { /* Can't set this */ }
         }
 
+        public string TestResultPercentage
+        {
+            get
+            {
+                string result = Math.Round(TestResultRatio * 100, 2).ToString() + "%";
+                return result;
+            }
+            set { /* Can't set this */ }
+        }
     }
 }

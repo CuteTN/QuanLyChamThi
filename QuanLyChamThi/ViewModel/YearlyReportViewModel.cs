@@ -193,8 +193,8 @@ namespace QuanLyChamThi.ViewModel
                 result.Last().Add(report.Subject);
                 result.Last().Add(report.TestCount.ToString());
                 result.Last().Add(report.TestResultCount.ToString());
-                result.Last().Add(report.TestRatio.ToString());
-                result.Last().Add(report.TestResultRatio.ToString());
+                result.Last().Add(report.TestPercentage);
+                result.Last().Add(report.TestResultPercentage);
             }
 
             return result;

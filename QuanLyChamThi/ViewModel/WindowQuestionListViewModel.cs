@@ -11,9 +11,17 @@ using System.Windows.Input;
 
 namespace QuanLyChamThi.ViewModel
 {
-    class WindowQuestionListViewModel: ViewModelBase
+    class WindowQuestionListViewModel : ViewModelBase
     {
-        private List<QuestionModel> _selectedQuestions;
+        readonly private List<QuestionModel> _selectedQuestions;
+        public List<QuestionModel> SelectedQuestion
+        {
+            get
+            {
+                return _questionListViewModel.GetHighlightedQuestions();
+            }
+        }
+
         private UCQuestionListViewModel _questionListViewModel;
 
         #region Textblock xem trước câu hỏi
@@ -76,14 +84,7 @@ namespace QuanLyChamThi.ViewModel
         }
         private void Accept()
         {
-            if(! _questionListViewModel.GetHighlightedQuestions().Any())
-                return;
-
-            int userConfirmed = ViewExtension.Confirm(null, "Bạn có chắc muốn thay đổi những câu hỏi thuộc đề thi này không?");
-
-            if(userConfirmed == 0)
-                return;
-
+            _selectedQuestions.Clear();
             foreach(var question in _questionListViewModel.GetHighlightedQuestions())
             {
                 _selectedQuestions.Add(question);
@@ -95,6 +96,7 @@ namespace QuanLyChamThi.ViewModel
         {
             _selectedQuestions = selectedQuestion;
             _questionListViewModel = questionListViewModel;
+            _questionListViewModel.HighlightQuestions(_selectedQuestions);
         }
 
     }

@@ -182,10 +182,6 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="7" Content="Số lượng môn học"/>
-                    <TextBox x:Name="cbDSubjectNumber" Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="4" 
-                             TextAlignment="Center"/>
-                    <Button x:Name="btnUpdateSubject" Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="4" Content="Cập nhật"/>
                     <DataGrid x:Name="dgSubjectList" ItemsSource="{Binding ListSubject, Mode=TwoWay}" Grid.Column="10" Grid.Row="1" Grid.ColumnSpan="18" Grid.RowSpan="10" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="STT" Width="1*"/>
@@ -244,10 +240,6 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="7" Content="Số lượng lớp học"/>
-                    <TextBox x:Name="cbClassNumber" Text="{Binding NumberOfClass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="4" 
-                             TextAlignment="Center"/>
-                    <Button x:Name="btnUpdateClass" Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="4" Content="Cập nhật"/>
 
                     <Label Grid.Column="10" Grid.Row="1" Grid.ColumnSpan="3" Content="Năm học" HorizontalContentAlignment="Right"/>
                     <ComboBox Grid.Column="13" ItemsSource="{Binding Year}" SelectedItem="{Binding SelectedYear}" Grid.Row="1" Grid.ColumnSpan="3"/>

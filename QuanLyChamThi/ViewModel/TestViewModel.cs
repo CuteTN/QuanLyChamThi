@@ -51,8 +51,50 @@ namespace QuanLyChamThi.ViewModel
         public string TempSubjectID
         {
             get { return TempTest.SubjectID; }
-            set { TempTest.SubjectID = value; OnPropertyChange("TempSubjectID"); }
+            set 
+            { 
+                TempTest.SubjectID = value;
+                //if (TempTest.SubjectID != SelectedSubject.IDSubject)
+                //    SelectedSubject = ListSubject.FirstOrDefault(param => param.IDSubject == value);
+                OnPropertyChange("TempSubjectID"); 
+            }
         }
+
+        private BindingList<SUBJECT> _listSubject;
+        public BindingList<SUBJECT> ListSubject
+        {
+            get
+            {
+                if (_listSubject == null)
+                    _listSubject = new BindingList<SUBJECT>(DataProvider.Ins.DB.SUBJECT.ToList());
+                return _listSubject;
+            }
+            set { _listSubject = value; OnPropertyChange("ListSubject"); }
+        }
+
+        private SUBJECT _selectedSubject;
+        public SUBJECT SelectedSubject
+        {
+            get
+            {
+                if (_selectedSubject == null)
+                    _selectedSubject = ListSubject.FirstOrDefault(param => param.IDSubject == TempSubjectID);
+                return _selectedSubject;
+            }
+            set
+            {
+                _selectedSubject = value;
+                if(_selectedSubject == null)
+                    _selectedSubject = ListSubject.FirstOrDefault(param => param.IDSubject == TempSubjectID);
+                if (_selectedSubject?.IDSubject != TempSubjectID)
+                {
+                    TempSubjectID = _selectedSubject?.IDSubject;
+                }
+                OnPropertyChange("SelectedSubject");
+            }
+        }
+
+
         public string TempTestID
         {
             get { return TempTest.TestID; }
@@ -191,6 +233,8 @@ namespace QuanLyChamThi.ViewModel
                               }).FirstOrDefault();
             Test = temp;
             SyncToView();
+            ListSubject = null;
+            SelectedSubject = null;
         }
 
         public void SyncToView()
@@ -501,6 +545,9 @@ namespace QuanLyChamThi.ViewModel
             {
                 LoadConstraint();
             }
+
+            ListSubject = null;
+            SelectedSubject = null;
         }
         void Refresh()
         {

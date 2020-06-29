@@ -37,7 +37,20 @@ namespace QuanLyChamThi.View
                 return;
             }
             List<QuestionModel> selectedQuestions = new List<QuestionModel>();
+            foreach (var testDetailModel in viewModel.TempTestDetail)
+            {
+                selectedQuestions.Add((from q in DataProvider.Ins.DB.QUESTION
+                                      where q.IDQuestion == testDetailModel.QuestionID
+                                      select new QuestionModel 
+                                      {
+                                          IDQuestion = q.IDQuestion,
+                                          IDDifficulty = q.IDDifficulty,
+                                          IDSubject = q.IDSubject,
+                                          Content = q.Content
+                                      }).ToList()[0]);
+            }
             var windowQuestionList = new WindowQuestionList(selectedQuestions);
+
             windowQuestionList.ShowDialog();
             viewModel.AcceptData(selectedQuestions);
         }

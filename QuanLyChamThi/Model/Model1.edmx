@@ -721,8 +721,11 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__CHITIETDE__IDTes__2F10007B">
-          <End Type="QuanLyDeThiModel.TEST" Role="DETHI" Multiplicity="1" />
-          <End Type="QuanLyDeThiModel.TESTDETAIL" Role="CHITIETDETHI" Multiplicity="*" />
+          <End Type="QuanLyDeThiModel.TEST" Role="DETHI" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="QuanLyDeThiModel.TESTDETAIL" Role="CHITIETDETHI" Multiplicity="*" >
+          </End>
           <ReferentialConstraint>
             <Principal Role="DETHI">
               <PropertyRef Name="IDTest" />

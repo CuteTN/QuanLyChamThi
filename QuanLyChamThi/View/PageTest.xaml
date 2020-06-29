@@ -68,7 +68,13 @@
         <Label Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="4" VerticalAlignment="Bottom" Content="Danh sách câu hỏi:" Foreground="Black" FontWeight="Bold" Margin="0.36,0,0.312,28.472" Grid.RowSpan="2"/>
 
         <ComboBox x:Name="cbTestID" SelectedItem="{Binding TempTestID, Mode=TwoWay}" ItemsSource="{Binding TestID}" Grid.Column="5" Grid.Row="1" Grid.ColumnSpan="9" Height="Auto" VerticalAlignment="Bottom"/>
-        <ComboBox x:Name="cbSubjectName" SelectedItem="{Binding TempSubjectID, Mode=TwoWay}" ItemsSource="{Binding SubjectID}" Grid.Column="21" Grid.Row="1" Grid.ColumnSpan="9" VerticalAlignment="Bottom"/>
+        <ComboBox x:Name="cbSubjectName" SelectedItem="{Binding SelectedSubject, Mode=TwoWay}" ItemsSource="{Binding ListSubject}" Grid.Column="21" Grid.Row="1" Grid.ColumnSpan="9" VerticalAlignment="Bottom">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"></TextBlock>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
 
         <Button x:Name="btnChooseQuestion" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="29" Grid.RowSpan="1" VerticalAlignment="Stretch"  Foreground="White" Height="Auto" Padding="0,0,0,0" Content="Chọn câu hỏi" Click="btnChooseQuestion_Click"/>
 

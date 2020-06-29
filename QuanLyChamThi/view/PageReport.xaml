@@ -96,8 +96,8 @@
                     <DataGridTextColumn x:Name="colName" Binding="{Binding Subject, Mode=TwoWay}" Header="Tên môn" Width="5*"/>
                     <DataGridTextColumn x:Name="colTestNumber" Binding="{Binding TestCount, Mode=TwoWay}" Header="Số lượng đề thi" Width="5*"/>
                     <DataGridTextColumn x:Name="colTestResultNumber" Binding="{Binding TestResultCount, Mode=TwoWay}" Header="Số lượng bài chấm" Width="5*"/>
-                    <DataGridTextColumn x:Name="colTestRatio" Binding="{Binding TestRatio, Mode=TwoWay}" Header="Tỉ lệ đề thi" Width="5*"/>
-                    <DataGridTextColumn x:Name="colTestResultRatio" Binding="{Binding TestResultRatio, Mode=TwoWay}" Header="Tỉ lệ bài chấm" Width="5*"/>
+                    <DataGridTextColumn x:Name="colTestRatio" Binding="{Binding TestPercentage, Mode=TwoWay}" Header="Tỉ lệ đề thi" Width="5*"/>
+                    <DataGridTextColumn x:Name="colTestResultRatio" Binding="{Binding TestResultPercentage, Mode=TwoWay}" Header="Tỉ lệ bài chấm" Width="5*"/>
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>

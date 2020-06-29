@@ -51,5 +51,33 @@ namespace QuanLyChamThi.View
                 { Kind = MaterialDesignThemes.Wpf.PackIconKind.ArrowExpandRight };
             }
         }
+
+        private bool _userAccepted = false;
+        public bool UserAccepted
+        {
+            get { return _userAccepted; }
+        }
+
+
+        private void ButtonAccept_Click(object sender, RoutedEventArgs e)
+        {
+            if(ViewExtension.Confirm(null, "Bạn có chắc muốn thay đổi những câu hỏi thuộc đề thi này không?") == 0)
+                return;
+
+            var viewModel = DataContext as WindowQuestionListViewModel;
+            viewModel.AcceptCommand.Execute(null);
+            _userAccepted = true;
+            this.Close();
+        }
+
+        private void ButtonCancel_Click(object sender, RoutedEventArgs e)
+        {
+            if (ViewExtension.Confirm(null, "Bạn có chắc muốn hủy những thay đổi không?") == 0)
+                return;
+
+            var viewModel = DataContext as WindowQuestionListViewModel;
+            _userAccepted = false;
+            this.Close();
+        }
     }
 }

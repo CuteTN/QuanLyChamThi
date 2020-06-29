@@ -77,7 +77,7 @@ namespace QuanLyChamThi.ViewModel
         #region Highlight Question
         public void HighlightQuestions(List<QuestionModel> questionsNeedHighlight)
         {
-            foreach(var question in _listQuestionsView)
+            foreach(var question in ListQuestionsView)
             {
                 if(questionsNeedHighlight.Find((QuestionModel param) => param.IDQuestion == question.Second.IDQuestion) != null)
                 {
