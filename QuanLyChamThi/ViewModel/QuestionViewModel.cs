@@ -328,7 +328,7 @@ namespace QuanLyChamThi.ViewModel
 
         void LoadSelectedQuestion()
         {
-            if (Content != null && Content != "" && Content != EditingQuestion.Content)
+            if (Content != null && Content != "" && Content != EditingQuestion?.Content)
             {
                 int userConfirmed = ViewExtension.Confirm(null, "Việc tải câu hỏi khác sẽ xoá mọi thay đổi của câu hỏi đang nhập. Tiếp tục tải câu hỏi?");
 
