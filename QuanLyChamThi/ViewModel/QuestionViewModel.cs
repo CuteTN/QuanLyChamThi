@@ -116,7 +116,7 @@ namespace QuanLyChamThi.ViewModel
             // if we are editting a question, we must use the same IDQuestion as EditingQuestion
             if(EditingQuestion != null)
             {
-                question.IDQuestion = EditingQuestion.IDQuestion;
+                question.IDQuestion = EditingQuestion.IDQuestion.Value;
             }
 
             DatabaseCommand cmd = new DatabaseCommand
@@ -177,13 +177,12 @@ namespace QuanLyChamThi.ViewModel
                 }
             }
         }
-
         private QuestionModel createQuestion()
         {
             var result = new QuestionModel
             {
-                IDSubject = SelectedSubject.IDSubject,
-                IDDifficulty = SelectedDifficulty.IDDifficulty,
+                IDSubject = SelectedSubject?.IDSubject,
+                IDDifficulty = SelectedDifficulty?.IDDifficulty,
                 Content = this.Content,
             };
 

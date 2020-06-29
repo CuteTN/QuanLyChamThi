@@ -25,6 +25,7 @@ namespace QuanLyChamThi.View
         public PageTestResultDetailed()
         {
             InitializeComponent();
+
             DataContext = new TestResultDetailedViewModel();
         }
     }

@@ -11,8 +11,8 @@ namespace QuanLyChamThi.Model
     public class QuestionModel
     {
 
-        private int _idQuestion;
-        public int IDQuestion
+        private Nullable<int> _idQuestion;
+        public Nullable<int> IDQuestion
         {
             get { return _idQuestion; }
             set { _idQuestion = value; }
@@ -25,8 +25,8 @@ namespace QuanLyChamThi.Model
             set { _content = value; }
         }
 
-        private int _idDifficulty;
-        public int IDDifficulty
+        private Nullable<int> _idDifficulty;
+        public Nullable<int> IDDifficulty
         {
             get { return _idDifficulty; }
             set { _idDifficulty = value; _difficulty = loadDifficulty(); }
@@ -55,13 +55,13 @@ namespace QuanLyChamThi.Model
 
         private string loadDifficulty()
         {
-            string result = DataProvider.Ins.DB.DIFFICULTY.Find(_idDifficulty).Name;
+            string result = DataProvider.Ins.DB.DIFFICULTY.Find(_idDifficulty)?.Name;
             return result;
         }
 
         private string loadSubject()
         {
-            string result = DataProvider.Ins.DB.SUBJECT.Find(_idSubject).Name;
+            string result = DataProvider.Ins.DB.SUBJECT.Find(_idSubject)?.Name;
             return result;
         }
 
@@ -121,7 +121,7 @@ namespace QuanLyChamThi.Model
             QUESTION result = new QUESTION();
             result.IDQuestion = generateID();
             result.IDSubject = IDSubject;
-            result.IDDifficulty = IDDifficulty;
+            result.IDDifficulty = IDDifficulty.Value;
             result.Content = Content;
 
             return result;

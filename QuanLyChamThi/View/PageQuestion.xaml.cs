@@ -37,14 +37,24 @@ namespace QuanLyChamThi.View
             if (ucQuestionList.Visibility == Visibility.Visible)
             {
                 ucQuestionList.Visibility = Visibility.Hidden;
-                Grid.SetColumnSpan(svGrid, 29);
-                btnHideShow.Content = "<";
+                lbDsch.Visibility = Visibility.Hidden;
+                Grid.SetColumnSpan(tbContent, 29);
+                Grid.SetColumnSpan(cbDifficulty, 26);
+                Grid.SetColumnSpan(cbSubject, 26);
+                Grid.SetColumn(btnHideShow, 31);
+                btnHideShow.Content = new MaterialDesignThemes.Wpf.PackIcon
+                { Kind = MaterialDesignThemes.Wpf.PackIconKind.ArrowExpandLeft };
             }
             else /** UC is HIDDEN **/
             {
                 ucQuestionList.Visibility = Visibility.Visible;
-                Grid.SetColumnSpan(svGrid, 15);
-                btnHideShow.Content = ">";
+                lbDsch.Visibility = Visibility.Visible;
+                Grid.SetColumnSpan(tbContent, 15);
+                Grid.SetColumnSpan(cbDifficulty, 12);
+                Grid.SetColumnSpan(cbSubject, 12);
+                Grid.SetColumn(btnHideShow, 16);
+                btnHideShow.Content = new MaterialDesignThemes.Wpf.PackIcon
+                { Kind = MaterialDesignThemes.Wpf.PackIconKind.ArrowExpandRight };
             }
         }
     }

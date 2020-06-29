@@ -8,7 +8,7 @@ namespace QuanLyChamThi.ViewModel
 {
     class DatabaseCommand
     {
-        public dynamic delete;
-        public dynamic add;
+        public object delete;
+        public object add;
     }
 }

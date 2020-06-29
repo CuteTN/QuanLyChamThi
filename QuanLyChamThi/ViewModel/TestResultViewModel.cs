@@ -313,7 +313,7 @@ namespace QuanLyChamThi.ViewModel
                 ViewModelMediator.Ins.Receive(this, studentCommands);
                 ViewModelMediator.Ins.Receive(this, changedCommands);
             }
-            catch(Exception e)
+            catch(Exception)
             {
 
             }

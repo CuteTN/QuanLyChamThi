@@ -171,13 +171,25 @@ namespace QuanLyChamThi.ViewModel
 
         public void SwitchView(int? id, object message)
         {
-            if(id <= 4)
-            {
-                SwitchView(id);
-                return;
-            }
             switch(id)
             {
+                case 0: SelectedPage = listPage[0]; break;
+                case 1: SelectedPage = listPage[4]; break;
+                case 2:
+                    {
+                        if (EditingTest.First)
+                            SelectedPage = listPage[6];
+                        else SelectedPage = listPage[5];
+                        break;
+                    }
+                case 3:
+                    {
+                        if (EditingTestResult)
+                            SelectedPage = listPage[2];
+                        else SelectedPage = listPage[3];
+                        break;
+                    }
+                case 4: SelectedPage = listPage[1]; break;
                 case 5: break;
                 case 6: break;
                 // Thanh - Editing Test Result

@@ -36,5 +36,10 @@ namespace QuanLyChamThi.View
             windowQuestionList.ShowDialog();
             (DataContext as TestViewModel).AcceptData(selectedQuestions);
         }
+
+        private void dgReport_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

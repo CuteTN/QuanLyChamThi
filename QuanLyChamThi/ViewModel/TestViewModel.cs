@@ -35,35 +35,49 @@ namespace QuanLyChamThi.ViewModel
                 if (_tempTest == null)
                 {
                     _tempTest = new TestModel();
-                    _tempTest.TestID = "Bài thi mới";
                 }
                 return _tempTest;
             }
-            set { _tempTest = value; OnPropertyChange("TempTest"); }
+            set { _tempTest = value;
+                OnPropertyChange("TempTest");
+                OnPropertyChange("TempYear");
+                OnPropertyChange("TempSemester");
+                OnPropertyChange("TempTestID");
+                OnPropertyChange("TempSubjectID");
+            }
         }
         public string TempSubjectID
         {
             get { return TempTest.SubjectID; }
-            set { TempTest.SubjectID = value; OnPropertyChange("TempSubjectID"); ; }
+            set { TempTest.SubjectID = value; OnPropertyChange("TempSubjectID"); }
         }
         public string TempTestID
         {
             get { return TempTest.TestID; }
-            set { TempTest.TestID = value; OnPropertyChange("TempTestID"); ; }
+            // FOR VIEW ACCESS ONLY
+            set { TempTest.TestID = value;
+                ViewMode(value);
+                OnPropertyChange("TempTestID"); }
         }
         public int? TempSemester
         {
             get { return TempTest.Semester; }
-            set { TempTest.Semester = value; OnPropertyChange("TempSemester"); ; }
+            set { TempTest.Semester = value; OnPropertyChange("TempSemester"); }
         }
         public int? TempYear
         {
             get { return TempTest.Year; }
-            set { TempTest.Year = value; OnPropertyChange("TempYear"); ; }
+            set { TempTest.Year = value; OnPropertyChange("TempYear"); }
+        }
+        TestModel.TestDetailModel _selectedItem;
+        public TestModel.TestDetailModel SelectedItem
+        {
+            get { return _selectedItem; }
+            set { _selectedItem = value; OnPropertyChange("SelectedItem"); }
         }
         #endregion
 
-        #region Binded Data
+        #region Database data
         public ObservableCollection<TestModel.TestDetailModel> TestDetail;
         private TestModel _test;
         public TestModel Test
@@ -71,30 +85,55 @@ namespace QuanLyChamThi.ViewModel
             set
             {
                 _test = value;
-                string testID = _test?.TestID;
-                TestDetail = new ObservableCollection<TestModel.TestDetailModel>
-                        ((from u in (from u in DataProvider.Ins.DB.TESTDETAIL
-                                     where u.IDTest == testID select u)
-                          join v in DataProvider.Ins.DB.QUESTION on u.IDQuestion equals v.IDQuestion
-                          select new TestModel.TestDetailModel()
-                          {
-                                Content = v.Content,
-                                QuestionID = u.IDQuestion,
-                                Stt = u.No,
-                                pSource = u
-                          }).OrderBy((item)=>item.Stt).ToList());
+                LoadTestDetailData();
             }
         }
+        void LoadTestDetailData()
+        {
+            string testID = _test?.TestID;
+            TestDetail = new ObservableCollection<TestModel.TestDetailModel>
+                    ((from u in (from u in DataProvider.Ins.DB.TESTDETAIL
+                                 where u.IDTest == testID
+                                 select u)
+                      join v in DataProvider.Ins.DB.QUESTION on u.IDQuestion equals v.IDQuestion
+                      select new TestModel.TestDetailModel()
+                      {
+                          Content = v.Content,
+                          QuestionID = u.IDQuestion,
+                          Stt = u.No,
+                          pSource = u
+                      }).OrderBy((item) => item.Stt).ToList());
+        }
+
         private List<string> _subjectID;
         public List<string> SubjectID
         {
             get
             {
                 if (_subjectID == null)
-                    _subjectID = (from u in DataProvider.Ins.DB.SUBJECT select u.IDSubject).ToList();
+                    LoadSubjectID();
                 return _subjectID;
             }
-            set { _subjectID = value; }
+            set { _subjectID = value; OnPropertyChange("SubjectID"); }
+        }
+        void LoadSubjectID()
+        { _subjectID = (from u in DataProvider.Ins.DB.SUBJECT select u.IDSubject).ToList(); }
+
+        private List<string> _testID;
+        public List<string> TestID
+        {
+            get
+            {
+                if (_testID == null)
+                    LoadTestID();
+                return _testID;
+            }
+            set { _testID = value; OnPropertyChange("TestID"); }
+        }
+        void LoadTestID()
+        {
+            _testID = (from u in DataProvider.Ins.DB.TEST select u.IDTest).ToList();
+            _testID.Add((string)(new TestModel().TestID).Clone());
         }
         #endregion
 
@@ -105,7 +144,7 @@ namespace QuanLyChamThi.ViewModel
                               where u.IDTest == TestID
                               select new TestModel()
                               {
-                                  Duration = u.TimeForTest,
+                                  Duration = u.TimeForTest.Value,
                                   Semester = u.Semester,
                                   SubjectID = u.IDSubject,
                                   TestDate = u.DateOfTest,
@@ -139,18 +178,40 @@ namespace QuanLyChamThi.ViewModel
                 _acceptCommand = value;
             }
         }
+        bool Validate()
+        {
+            if (!TempTest.Valid())
+            {
+                MessageBox.Show("Đề thi không hợp lệ.");
+                return false;
+            }
+            foreach (var item in TempTestDetail)
+            {
+                if (item.QuestionID == 0)
+                {
+                    // This is not supposed to happen
+                    // Just check for BS that might be thrown this way
+                    MessageBox.Show("Không nhận được ID câu hỏi");
+                    return false;
+                }
+            }
+            return true;
+        }
         void AcceptButton()
         {
+            if (!Validate())
+                return;
             List<DatabaseCommand> cmdList = new List<DatabaseCommand>();
             DatabaseCommand cmd = new DatabaseCommand();
 
             cmd.add = TempTest.pSource;
             cmd.delete = _test?.pSource;
-            cmdList.Add(cmd);
-            
-            for (int i=0; true;)
+            if (cmd.add != cmd.delete)
+                cmdList.Add(cmd);
+
+            for (int i = 0; true; i++)
             {
-                if (TempTestDetail.Count == 0)
+                if (i >= TempTestDetail.Count && i >= TestDetail.Count)
                     break;
                 cmd = new DatabaseCommand();
                 if (i < TempTestDetail.Count)
@@ -165,12 +226,17 @@ namespace QuanLyChamThi.ViewModel
                     cmd.delete = TestDetail[i].pSource;
                 else
                     cmd.delete = null;
-                cmdList.Add(cmd);
-                i++;
-                if (i >= TempTestDetail.Count && i >= TestDetail.Count)
-                    break;
+                // This check shouldn't be needed
+                if (cmd.add != null || cmd.delete != null)
+                    cmdList.Add(cmd);
+                //*
+                else
+                    MessageBox.Show("cmd is all null.");
+                //*/
             }
-            ViewModelMediator.Ins.Receive(this, cmdList);
+
+            if (cmdList.Any())
+                ViewModelMediator.Ins.Receive(this, cmdList);
             MainWindowViewModel.Ins.SwitchView(10);
         }
         #endregion
@@ -198,9 +264,135 @@ namespace QuanLyChamThi.ViewModel
         #endregion
 
         #region Button MoveUp
+        private ICommand _upCommand;
+        public ICommand UpCommand
+        {
+            get
+            {
+                if (_upCommand == null)
+                    _upCommand = new RelayCommand(param => UpButton());
+                return _upCommand;
+            }
+            set
+            {
+                _upCommand = value;
+            }
+        }
+        private ICommand _upAllCommand;
+        public ICommand UpAllCommand
+        {
+            get
+            {
+                if (_upAllCommand == null)
+                    _upAllCommand = new RelayCommand(param => UpAllButton());
+                return _upAllCommand;
+            }
+            set
+            {
+                _upAllCommand = value;
+            }
+        }
+        public void UpAllButton()
+        {
+            int n = (SelectedItem?.Stt??1) - 1;
+            if (n == 0) return;
+            for (int i = n; i > 0; i--)
+            //*
+            {
+                var temp = TempTestDetail[i];
+                TempTestDetail[i] = TempTestDetail[i - 1];
+                TempTestDetail[i - 1] = temp;
+
+                TempTestDetail[i].Stt = i + 1;
+                TempTestDetail[i - 1].Stt = i;
+            }
+            /*/
+                UpButton();
+            //*/
+            SelectedItem = TempTestDetail[0];
+        }
+        public void UpButton()
+        {
+            int i = (SelectedItem?.Stt??1) - 1;
+            if (i == 0)
+                return;
+
+            var temp = TempTestDetail[i];
+            TempTestDetail[i] = TempTestDetail[i - 1];
+            TempTestDetail[i - 1] = temp;
+
+            TempTestDetail[i].Stt = i + 1;
+            TempTestDetail[i - 1].Stt = i;
+
+            SelectedItem = TempTestDetail[i - 1];
+        }
         #endregion
 
         #region Button MoveDown
+
+        private ICommand _downCommand;
+        public ICommand DownCommand
+        {
+            get
+            {
+                if (_downCommand == null)
+                    _downCommand = new RelayCommand(param => DownButton());
+                return _downCommand;
+            }
+            set
+            {
+                _downCommand = value;
+            }
+        }
+        private ICommand _downAllCommand;
+        public ICommand DownAllCommand
+        {
+            get
+            {
+                if (_downAllCommand == null)
+                    _downAllCommand = new RelayCommand(param => DownAllButton());
+                return _downAllCommand;
+            }
+            set
+            {
+                _downAllCommand = value;
+            }
+        }
+        public void DownAllButton()
+        {
+            int n = (SelectedItem?.Stt ?? 1);
+            int m = TempTestDetail.Count;
+            if (m == 0) return;
+            for (int i = n; i < m; i++)
+            //*
+            {
+                var temp = TempTestDetail[i];
+                TempTestDetail[i] = TempTestDetail[i - 1];
+                TempTestDetail[i - 1] = temp;
+
+                TempTestDetail[i].Stt = i + 1;
+                TempTestDetail[i - 1].Stt = i;
+            }
+            /*/
+                DownButton();
+            //*/
+            SelectedItem = TempTestDetail[m - 1];
+        }
+        public void DownButton()
+        {
+            int i = SelectedItem?.Stt ?? -10;
+            if (i == TempTestDetail.Count || i < 0)
+                return;
+
+            var temp = TempTestDetail[i];
+            TempTestDetail[i] = TempTestDetail[i - 1];
+            TempTestDetail[i - 1] = temp;
+
+            TempTestDetail[i].Stt = i + 1;
+            TempTestDetail[i - 1].Stt = i;
+
+            SelectedItem = TempTestDetail[i];
+        }
         #endregion
 
         #region Basic View Model info
@@ -213,22 +405,12 @@ namespace QuanLyChamThi.ViewModel
         {
             TempTestDetail.Clear();
             TempTestDetail = new ObservableCollection<TestModel.TestDetailModel>(
-                questions.Select((QuestionModel question, int i) => new TestModel.TestDetailModel(question, i)));
+                questions.Select((QuestionModel question, int i) => new TestModel.TestDetailModel(question, i + 1)));
         }
 
         public void Receive(object sender, List<DatabaseCommand> commands)
         {
-            DatabaseCommand test = null;
-            try
-            {
-                // if item.delete is not as the same type of _test.pSource, it gonna throw excpetion
-                // so please check its type before make operator
-                test = commands.FirstOrDefault((DatabaseCommand item) => item.delete != null && item.delete == _test?.pSource);
-            }
-            catch(Exception e)
-            {
-
-            }
+            DatabaseCommand test = commands.FirstOrDefault((DatabaseCommand item) => item.delete != null && (item.delete is TEST) && item.delete == _test?.pSource);
             if (test != null)
             {
                 ViewMode((test.add as TEST)?.IDTest);
@@ -236,21 +418,20 @@ namespace QuanLyChamThi.ViewModel
                 return;
             }
             string testID = _test?.TestID;
-            if (commands.Any((DatabaseCommand item) => item.add is SUBJECT || item.delete is SUBJECT
-            || (item.add is TESTDETAIL && (item.add as TESTDETAIL).IDTest == testID)
-            || (item.delete is TESTDETAIL && (item.delete as TESTDETAIL).IDTest == testID)))
-                TestDetail = new ObservableCollection<TestModel.TestDetailModel>
-                        ((from u in (from u in DataProvider.Ins.DB.TESTDETAIL
-                                     where u.IDTest == testID
-                                     select u)
-                          join v in DataProvider.Ins.DB.QUESTION on u.IDQuestion equals v.IDQuestion
-                          select new TestModel.TestDetailModel()
-                          {
-                              Content = v.Content,
-                              QuestionID = u.IDQuestion,
-                              Stt = u.No,
-                              pSource = u
-                          }).OrderBy((item)=>item.Stt).ToList());
+            if (commands.Any((DatabaseCommand item) 
+                => (item.add is TESTDETAIL && (item.add as TESTDETAIL).IDTest == testID)
+                || (item.delete is TESTDETAIL && (item.delete as TESTDETAIL).IDTest == testID)))
+                    LoadTestDetailData();
+            if (commands.Any((DatabaseCommand item) => item.add is SUBJECT || item.delete is SUBJECT))
+            {
+                LoadTestDetailData();
+                LoadSubjectID();
+            }
+            if (commands.Any((DatabaseCommand item) => item.add is TEST || item.delete is TEST))
+            {
+                LoadTestID();
+            }
+
         }
         #endregion
     }

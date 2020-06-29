@@ -22,7 +22,7 @@ namespace QuanLyChamThi.Model
     
         public int IDQuestion { get; set; }
         public string Content { get; set; }
-        public int IDDifficulty { get; set; }
+        public Nullable<int> IDDifficulty { get; set; }
         public string IDSubject { get; set; }
     
         public virtual DIFFICULTY Difficulty { get; set; }
