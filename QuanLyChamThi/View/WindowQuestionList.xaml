@@ -72,7 +72,7 @@
                 Style="{StaticResource MaterialDesignFlatButton}" Padding="0,0,0,0"
                 Click="btnHideShow_Click"/>
 
-        <local:UserControlQuestionList x:Name="ucQuestionList" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="15" Grid.RowSpan="16">
+        <local:UserControlQuestionList x:Name="ucQuestionList" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="15" Grid.RowSpan="14">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="PreviewMouseDoubleClick">
                     <i:InvokeCommandAction Command="{Binding Path=Data.LoadSelectedQuestionContentCommand, Source={StaticResource proxy}}"/>
@@ -85,7 +85,7 @@
     MinWidth="280"
     AcceptsReturn="True"
     VerticalScrollBarVisibility="Auto"></TextBox>
-        <Button x:Name="btnAddRemove" Command="{Binding AddSelectedQuestionCommand}" Grid.Column="24" Grid.Row="1" Grid.ColumnSpan="6" Content="Thêm câu hỏi vào đề thi" Style="{StaticResource MaterialDesignFlatButton}"/>
+        <Button x:Name="btnAddRemove" Command="{Binding AddSelectedQuestionCommand}" Grid.Column="1" Grid.Row="15" Grid.ColumnSpan="15" Content="Thêm câu hỏi vào đề thi" Style="{StaticResource MaterialDesignFlatButton}"/>
 
         <Button Grid.Column="27" Grid.Row="16" Grid.ColumnSpan="3" VerticalAlignment="Center" Content="Xác nhận">
             <i:Interaction.Triggers>
