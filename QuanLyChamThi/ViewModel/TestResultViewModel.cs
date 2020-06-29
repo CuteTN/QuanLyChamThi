@@ -329,7 +329,7 @@ namespace QuanLyChamThi.ViewModel
                 }
 
             }
-
+            ViewExtension.MessageOK(null, "Thông báo: Đã thêm bài chấm thành công", ViewExtension.MessageType.Notification);
             MainWindowViewModel.Ins.SwitchView(8);
         }
 

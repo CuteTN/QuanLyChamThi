@@ -114,6 +114,8 @@ namespace QuanLyChamThi.ViewModel
                 });
             }
             ViewModelMediator.Ins.Receive(this, commands);
+
+            ViewExtension.MessageOK(null, "Thông báo: Xóa thành công", ViewExtension.MessageType.Notification);
         }
 
         bool CanDeleteSelectedResultDetail()

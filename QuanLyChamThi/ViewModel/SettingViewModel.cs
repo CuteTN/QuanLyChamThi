@@ -279,6 +279,28 @@ namespace QuanLyChamThi.ViewModel
             ViewModelMediator.Ins.Receive(this, commands);
         }
 
+        bool CanSaveForClass()
+        {
+            List<DatabaseCommand> commands = new List<DatabaseCommand>();
+
+            List<ClassModel> FullListClasses = ListClassSource.ToList();
+            FullListClasses.AddRange(ListClass.ToList());
+
+            // For example, we cannot have 2 IT001.K11 for the same semester in the same year
+            foreach(var Class in FullListClasses)
+            {
+                if(FullListClasses.Where(param => param.FullName == Class.FullName).ToList().Count > 1)
+                {
+                    // viewextension
+                    ViewExtension.MessageOK(null,
+                        "Lớp học với tên " + Class.ClassName + " bị lặp lại cho học kỳ " + Class.Semester + " của năm " + Class.Year,
+                        ViewExtension.MessageType.Error);
+                    return false;
+                }
+            }
+            return true;
+        }
+
         private string RandomString(int size, bool lowerCase)
         {
             StringBuilder sb = new StringBuilder();
@@ -655,11 +677,10 @@ namespace QuanLyChamThi.ViewModel
         {
             saveSubjectsFunction();
             SaveChangeDifficulty();
-            SaveChangeClass();
+            if(CanSaveForClass())
+                SaveChangeClass();
             SaveChangePrinciple();
-            //bool nothing = ViewExtension.MessageOK()
-            // NOT WORK
-            // DataProvider.Ins.DB.SaveChanges();
+            
         }
 
             #endregion

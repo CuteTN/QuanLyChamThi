@@ -34,9 +34,5 @@ namespace QuanLyChamThi.View
 
         }
 
-        private void btnOK_Click(object sender, RoutedEventArgs e)
-        {
-            bool nothing = ViewExtension.MessageOK(null, "Thiết lập thành công !!!", ViewExtension.MessageType.Notification);
-        }
     }
 }

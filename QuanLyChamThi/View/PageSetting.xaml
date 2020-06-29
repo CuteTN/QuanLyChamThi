@@ -329,7 +329,7 @@
             </TabItem>
         </TabControl>
 
-        <Button x:Name="btnOK" Command="{Binding OKCommand}" Grid.Column="27" Grid.Row="15" Grid.ColumnSpan="3" Content="Lưu" Click="btnOK_Click"/>
+        <Button x:Name="btnOK" Command="{Binding OKCommand}" Grid.Column="27" Grid.Row="15" Grid.ColumnSpan="3" Content="Lưu"/>
         <Button x:Name="btnCancel" Command="{Binding CancelCommand}" Grid.Column="23" Grid.Row="15" Grid.ColumnSpan="3" Content="Hủy"/>
         
     </Grid>
