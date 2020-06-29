@@ -469,7 +469,7 @@ namespace QuanLyChamThi.ViewModel
         // but I'm gonna check validation here!
         private ObservableCollection<SUBJECT> BackupListSubject = null;
 
-        private bool canSaveForSubject()
+        private bool CanSaveForSubject()
         {
             var msg = validateSubject();
 
@@ -634,6 +634,23 @@ namespace QuanLyChamThi.ViewModel
             Principle = null;
             LoadPrinciple();
         }
+
+        bool CanSaveForPrinciple()
+        {
+            if(MinTestScore > MaxTestScore)
+            {
+                ViewExtension.MessageOK(null, "Lỗi: điểm số tối thiểu không được lớn hơn điểm số tối đa", ViewExtension.MessageType.Error);
+                return false;
+            }
+
+            if(MinTestDuration > MaxTestDuration)
+            {
+                ViewExtension.MessageOK(null, "Lỗi: thời lượng tối thiểu không được lớn hơn thời lượng tối đa", ViewExtension.MessageType.Error);
+                return false;
+            }
+
+            return true;
+        }
         #endregion
 
         #region Common
@@ -687,7 +704,7 @@ namespace QuanLyChamThi.ViewModel
             
         private void OKFunction()
         {
-            bool canSaveAll = canSaveForSubject() && CanSaveForClass(); 
+            bool canSaveAll = CanSaveForSubject() && CanSaveForClass() && CanSaveForPrinciple(); 
 
             if(!canSaveAll)
                 return;
