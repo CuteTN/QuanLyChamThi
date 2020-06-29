@@ -219,12 +219,12 @@ namespace QuanLyChamThi.ViewModel
 
             if(! saveSuccess)
             {
-                ViewExtension.MessageOK(null, "Lỗi: lưu tệp tin không thành công", 2);
+                ViewExtension.MessageOK(null, "Lỗi: lưu tệp tin không thành công", ViewExtension.MessageType.Error);
                 return;
             }
             else
             {
-                ViewExtension.Message(null, "Thông báo: tệp tin được lưu thành công!", "", 1);
+                ViewExtension.Message(null, "Thông báo: tệp tin được lưu thành công!", "", ViewExtension.MessageType.Notification);
             }
 
         }

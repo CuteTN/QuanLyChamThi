@@ -42,7 +42,7 @@ namespace QuanLyChamThi.View
             if (loginResult == true)
             {
                 access = "accepted";
-                ViewExtension.Message(this, "Đăng nhập thành công", "Chào mừng " + tbUsername.Text, 1);
+                ViewExtension.Message(this, "Đăng nhập thành công", "Chào mừng " + tbUsername.Text, ViewExtension.MessageType.Notification);
                 this.Close();
             }
             else

@@ -27,7 +27,7 @@ namespace QuanLyChamThi.View
         DoubleAnimation hold = new DoubleAnimation { From = 1, To = 1, FillBehavior = FillBehavior.Stop, BeginTime = TimeSpan.FromSeconds(0.25), Duration = new Duration(TimeSpan.FromSeconds(1)) };
         DoubleAnimation fadeOut = new DoubleAnimation { From = 1, To = 0, FillBehavior = FillBehavior.Stop, BeginTime = TimeSpan.FromSeconds(1.25), Duration = new Duration(TimeSpan.FromSeconds(0.25)) };
 
-        public WindowNotification(string notification, string detail, int messageType)
+        public WindowNotification(string notification, string detail, ViewExtension.MessageType messageType)
         {
             InitializeComponent();
 
@@ -35,7 +35,7 @@ namespace QuanLyChamThi.View
             tbNotification.Text = notification;
             tbDetail.Text = detail;
              
-            if (messageType == 0) 
+            if (messageType == ViewExtension.MessageType.Error) 
             {
                 imgIcon.Kind = MaterialDesignThemes.Wpf.PackIconKind.Cancel;
                 border.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#F44336"));

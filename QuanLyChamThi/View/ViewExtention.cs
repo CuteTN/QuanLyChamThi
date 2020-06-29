@@ -7,9 +7,16 @@ using System.Windows;
 
 namespace QuanLyChamThi.View
 {
-    static class ViewExtension
+    public static class ViewExtension
     {
-        public static bool Message(Window sender, string message, string detail, int messageType)
+        public enum MessageType
+        {
+            Error,
+            Notification,
+            Warning,
+        }
+
+        public static bool Message(Window sender, string message, string detail, MessageType messageType)
         {
             if (sender != null) sender.Opacity = 0.5;
             WindowNotification windowNotification = new WindowNotification(message, detail, messageType);
@@ -19,7 +26,7 @@ namespace QuanLyChamThi.View
             return result;
         }
 
-        public static int Confirm(Window sender, string message) //return 0 if user cacel, 1 if confirm
+        public static int Confirm(Window sender, string message)
         {
             if (sender != null) sender.Opacity = 0.5;
             WindowConfirm windowConfirm = new WindowConfirm(message);
@@ -29,7 +36,7 @@ namespace QuanLyChamThi.View
             return windowConfirm.GetConfirmState();
         }
 
-        public static bool MessageOK(Window sender, string message, int messageType) //messageType: 0: falure, 1: notification, 2: warning
+        public static bool MessageOK(Window sender, string message, MessageType messageType) 
         {
             if (sender != null) sender.Opacity = 0.5;
             WindowNotiOK windowNotiOK = new WindowNotiOK(message, messageType);
