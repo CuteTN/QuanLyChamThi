@@ -1,5 +1,6 @@
 ﻿using QuanLyChamThi.Command;
 using QuanLyChamThi.Model;
+using QuanLyChamThi.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -199,7 +200,14 @@ namespace QuanLyChamThi.ViewModel
                 cmdList.Add(cmd);
             }
             if (cmdList.Any())
+            {
+                int userConfirmed = ViewExtension.Confirm(null, "Bạn có chắc muốn xoá những đề thi này không?");
+                
+                if(userConfirmed == 0)
+                    return;
+
                 ViewModelMediator.Ins.Receive(this, cmdList);
+            }
         }
         #endregion
 
