@@ -513,9 +513,16 @@ namespace QuanLyChamThi.ViewModel
         }
         public void AcceptData(List<QuestionModel> questions)
         {
+            int addAmount = UpperLimitTestQuestion??int.MaxValue;
+            
+            if(questions.Count > addAmount)
+            { 
+                if(ViewExtension.Confirm(null, "Một số câu hỏi có thể sẽ không được thêm do vượt quá số câu hỏi tối đa của đề thi. Bạn có chắc muốn tiếp tục?") == 0)
+                    return;
+            }
+
             TempTestDetail.Clear();
 
-            int addAmount = UpperLimitTestQuestion??int.MaxValue;
             int stt = 0;
 
             foreach(var item in questions)
