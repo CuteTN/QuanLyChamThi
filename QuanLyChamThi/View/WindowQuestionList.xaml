@@ -69,7 +69,8 @@
         <Button ToolTip="Mở rộng / thu gọn nội dung câu hỏi" x:Name="btnHideShow" Grid.Column="16" Grid.Row="2"
                 Grid.RowSpan="13" Margin="5,0,5,0" Height="Auto"
                 Content="{md:PackIcon Kind=ArrowExpandRight}"
-                Style="{StaticResource MaterialDesignFlatButton}" Padding="0,0,0,0"/>
+                Style="{StaticResource MaterialDesignFlatButton}" Padding="0,0,0,0"
+                Click="btnHideShow_Click"/>
 
         <local:UserControlQuestionList x:Name="ucQuestionList" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="15" Grid.RowSpan="16">
             <i:Interaction.Triggers>
@@ -84,7 +85,7 @@
     MinWidth="280"
     AcceptsReturn="True"
     VerticalScrollBarVisibility="Auto"></TextBox>
-        <Button x:Name="btnAddRemove" Command="{Binding AddSelectedQuestionCommand}" Grid.Column="24" Grid.Row="14" Grid.ColumnSpan="7" Content="Thêm câu hỏi vào đề thi" Style="{StaticResource MaterialDesignFlatButton}"/>
+        <Button x:Name="btnAddRemove" Command="{Binding AddSelectedQuestionCommand}" Grid.Column="24" Grid.Row="1" Grid.ColumnSpan="6" Content="Thêm câu hỏi vào đề thi" Style="{StaticResource MaterialDesignFlatButton}"/>
 
         <Button Grid.Column="27" Grid.Row="16" Grid.ColumnSpan="3" VerticalAlignment="Center" Content="Xác nhận">
             <i:Interaction.Triggers>

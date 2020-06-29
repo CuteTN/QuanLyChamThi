@@ -448,20 +448,29 @@ namespace QuanLyChamThi.ViewModel
             ViewModelMediator.Ins.AddUserModel(this);
             LoadConstraint();
         }
-
+        public bool ReadyToAcceptData()
+        {
+            if (TempTest.SubjectID == null)
+            {
+                MessageBox.Show("Vui lòng nhập môn học trước khi nhập câu hỏi");
+                return false;
+            }
+            return true;
+        }
         public void AcceptData(List<QuestionModel> questions)
         {
             TempTestDetail.Clear();
 
-            int addAmount = questions.Count;
-            if (UpperLimitTestQuestion != null && 
-                addAmount > UpperLimitTestQuestion)
-                addAmount = UpperLimitTestQuestion.Value;
+            int addAmount = UpperLimitTestQuestion??int.MaxValue;
+            int stt = 0;
 
-            for (int i = 0; i < addAmount; i++)
+            foreach(var item in questions)
             {
-                QuestionModel item = questions[i];
-                TempTestDetail.Add(new TestModel.TestDetailModel(item, i + 1));
+                if (item.IDSubject == TempTest.SubjectID && stt < addAmount)
+                {
+                    TempTestDetail.Add(new TestModel.TestDetailModel(item, stt + 1));
+                    stt++;
+                }
             }
         }
 
@@ -492,6 +501,13 @@ namespace QuanLyChamThi.ViewModel
             {
                 LoadConstraint();
             }
+        }
+        void Refresh()
+        {
+            LoadConstraint();
+            LoadTestID();
+            LoadSubjectID();
+            ViewMode("");
         }
         #endregion
     }
