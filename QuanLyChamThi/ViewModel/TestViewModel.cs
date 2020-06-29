@@ -181,7 +181,7 @@ namespace QuanLyChamThi.ViewModel
                               where u.IDTest == TestID
                               select new TestModel()
                               {
-                                  Duration = u.TimeForTest.Value,
+                                  Duration = u.TimeForTest,
                                   Semester = u.Semester,
                                   SubjectID = u.IDSubject,
                                   TestDate = u.DateOfTest,
@@ -263,8 +263,8 @@ namespace QuanLyChamThi.ViewModel
                 cmd = new DatabaseCommand();
                 if (i < TempTestDetail.Count)
                     cmd.add = new TESTDETAIL{
-                        IDQuestion = TempTestDetail[i].QuestionID,
-                        IDTest = TempTest.TestID,
+                        IDQuestion = TempTestDetail[i].QuestionID.Value,
+                        IDTest = TempTest.pSource.IDTest,
                         No = TempTestDetail[i].Stt
                     };
                 else

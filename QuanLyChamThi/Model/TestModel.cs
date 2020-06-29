@@ -31,7 +31,8 @@ namespace QuanLyChamThi.Model
                         newitem.IDTest = SubjectID + "." + newitem.GetHashCode().ToString();
                     else
                         newitem.IDTest = _testID;
-                    return newitem;
+                    _pSource = newitem;
+                    return _pSource;
                 }
                 else
                     return _pSource;
