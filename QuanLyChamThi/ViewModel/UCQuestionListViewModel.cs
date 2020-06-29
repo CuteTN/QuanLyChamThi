@@ -103,9 +103,7 @@ namespace QuanLyChamThi.ViewModel
 
         public void Receive(object sender, List<DatabaseCommand> commands)
         {
-            // update data after adding a new question
-            if(sender is QuestionViewModel)
-                updateFromDB();
+            updateFromDB();
         }
 
         private void updateFromDB()

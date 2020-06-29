@@ -226,6 +226,13 @@ namespace QuanLyChamThi.ViewModel
         {
             ViewModelMediator.Ins.Receive(this, cmds);
         }
+
+        private void refresh()
+        {
+            ListSubject = null;
+            ListDifficulty = null;
+
+        }
         #endregion
 
         #region Utilities
@@ -323,7 +330,7 @@ namespace QuanLyChamThi.ViewModel
         {
             if (Content != null && Content != "" && Content != EditingQuestion.Content)
             {
-                int userConfirmed = ViewExtension.Confirm(null, "Việc tải câu hỏi lên sẽ xoá mọi thay đổi của câu hỏi đang nhập. Tiếp tục tải câu hỏi?");
+                int userConfirmed = ViewExtension.Confirm(null, "Việc tải câu hỏi khác sẽ xoá mọi thay đổi của câu hỏi đang nhập. Tiếp tục tải câu hỏi?");
 
                 if (userConfirmed == 0)
                     return;
@@ -338,7 +345,7 @@ namespace QuanLyChamThi.ViewModel
         public void Receive(object sender, List<DatabaseCommand> commands)
         {
             // MORECODE
-            // resetInputContent();
+            refresh();
         }
 
         public QuestionViewModel()
