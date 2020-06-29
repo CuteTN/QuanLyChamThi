@@ -438,7 +438,6 @@ namespace QuanLyChamThi.ViewModel
         {
             Valid,
             DuplicatedID,
-            ExceededMaxSubject,
             EmptyID,
             EmptyName,
         }
@@ -505,10 +504,6 @@ namespace QuanLyChamThi.ViewModel
 
         private SubjectValidationMessage validateSubject()
         {
-            // HARDCODE
-            if(ListSubject.Count > 4 /* DataProvider.Ins.DB.PRINCIPLE.First().MaxNumberOfSubjects */)
-                return SubjectValidationMessage.ExceededMaxSubject;
-
             // BRUTEFORCE
             foreach(var s1 in ListSubject)
                 foreach(var s2 in ListSubject)

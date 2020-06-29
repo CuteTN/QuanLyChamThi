@@ -10,7 +10,7 @@ namespace QuanLyChamThi.ViewModel
     {
         public bool Login(string userName, string password)
         {
-            //return true;
+            return true;
             return (userName == "admin" && password == "admin");
         }
     }

@@ -1,5 +1,6 @@
 ﻿using QuanLyChamThi.Command;
 using QuanLyChamThi.Model;
+using QuanLyChamThi.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -75,6 +76,14 @@ namespace QuanLyChamThi.ViewModel
         }
         private void Accept()
         {
+            if(! _questionListViewModel.GetHighlightedQuestions().Any())
+                return;
+
+            int userConfirmed = ViewExtension.Confirm(null, "Bạn có chắc muốn thay đổi những câu hỏi thuộc đề thi này không?");
+
+            if(userConfirmed == 0)
+                return;
+
             foreach(var question in _questionListViewModel.GetHighlightedQuestions())
             {
                 _selectedQuestions.Add(question);
