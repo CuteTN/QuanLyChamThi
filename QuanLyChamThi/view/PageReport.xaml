@@ -77,20 +77,20 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>-->
             </ComboBox>
-            <Button Content="Tạo báo cáo" Padding="0" Width="160" Margin="28,0,0,0" FontSize="14"/>
+            <Button Content="Tạo báo cáo" Padding="0" Width="160" Margin="28,0,0,0" FontSize="14" Command="{Binding MakeReportCommand}"/>
         </StackPanel>
 
         <Label Grid.Column="1" Grid.Row="15" Grid.ColumnSpan="3" Foreground="Black" FontWeight="Bold" VerticalAlignment="Bottom" Content="Tổng số đề thi:"/>
-        <Label x:Name="tbTotalTest" Grid.Column="4" Grid.Row="15" Foreground="Black" Content="50"  Grid.ColumnSpan="3" VerticalAlignment="Bottom"/>
+        <Label x:Name="tbTotalTest" Grid.Column="4" Grid.Row="15" Foreground="Black" Content="{Binding TotalTestCount}"  Grid.ColumnSpan="3" VerticalAlignment="Bottom"/>
 
         <Label Grid.Column="8" Grid.Row="15" Grid.ColumnSpan="4" VerticalAlignment="Bottom" Content="Tổng số bài chấm:" FontWeight="Bold" Foreground="Black"/>
-        <Label x:Name="tbTotalTestResult" Content="49" Foreground="Black" Grid.Column="12" Grid.Row="15" Grid.ColumnSpan="3" VerticalAlignment="Bottom"/>
+        <Label x:Name="tbTotalTestResult" Content="{Binding TotalTestResultCount}" Foreground="Black" Grid.Column="12" Grid.Row="15" Grid.ColumnSpan="3" VerticalAlignment="Bottom"/>
 
 
         <ScrollViewer x:Name="svGrid" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="29" Grid.RowSpan="12" Margin="0,0,0,12" VerticalScrollBarVisibility="Auto">
             <DataGrid x:Name="dgReport" AutoGenerateColumns="False" ItemsSource="{Binding ListReport, Mode=TwoWay}"
                       Width="{Binding ElementName=svGrid, Path=ActualWidth}" CanUserResizeColumns="False" CanUserReorderColumns="False"
-                      CanUserSortColumns="False" Background="White" Style="{StaticResource MaterialDesignDataGrid}" Padding="10">
+                      CanUserSortColumns="False" Background="White" Style="{StaticResource MaterialDesignDataGrid}" Padding="10" IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn x:Name="colSTT" Binding="{Binding Index, Mode=TwoWay}" Header="STT" Width="2*" CanUserReorder="False"/>
                     <DataGridTextColumn x:Name="colName" Binding="{Binding Subject, Mode=TwoWay}" Header="Tên môn" Width="5*"/>
