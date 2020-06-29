@@ -43,6 +43,9 @@ namespace QuanLyChamThi.View
                 Grid.SetColumn(btnHideShow, 31);
                 btnHideShow.Content = new MaterialDesignThemes.Wpf.PackIcon
                 { Kind = MaterialDesignThemes.Wpf.PackIconKind.ArrowExpandLeft };
+                btnDelete.Visibility = Visibility.Hidden;
+                btnLoad.Visibility = Visibility.Hidden;
+                btnOK.Visibility = Visibility.Hidden;
             }
             else /** UC is HIDDEN **/
             {
@@ -53,6 +56,9 @@ namespace QuanLyChamThi.View
                 Grid.SetColumn(btnHideShow, 16);
                 btnHideShow.Content = new MaterialDesignThemes.Wpf.PackIcon
                 { Kind = MaterialDesignThemes.Wpf.PackIconKind.ArrowExpandRight };
+                btnDelete.Visibility = Visibility.Visible;
+                btnLoad.Visibility = Visibility.Visible;
+                btnOK.Visibility = Visibility.Visible;
             }
         }
     }

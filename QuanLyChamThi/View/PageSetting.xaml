@@ -13,7 +13,7 @@
         <local:BindingProxy x:Key="proxy" Data="{Binding}"/>
     </Page.Resources>
 
-    <Grid x:Name="mainGrid" Background="#FFEFEFEF">
+    <Grid x:Name="mainGrid" Background="WhiteSmoke">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -65,10 +65,10 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TabControl Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="29" Grid.RowSpan="14" Margin="10">
+        <TabControl Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="29" Grid.RowSpan="14">
             <TabItem Header="Tùy chỉnh độ khó" Padding="16">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -117,16 +117,16 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="7" Content="Số lượng độ khó"/>
+                    <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="7" Content="Số lượng độ khó:" Foreground="Black" FontWeight="Bold"/>
                     <TextBox x:Name="cbDifficultyNumber"
-                             Grid.Column="3" 
-                             Grid.Row="2" 
-                             Grid.ColumnSpan="4"
+                             Grid.Column="1" 
+                             Grid.Row="2"
+                             Grid.ColumnSpan="7"
                              VerticalAlignment="Center"
-                             TextAlignment="Center"
+                             TextAlignment="Left"
                              Text="{Binding NumberOfDifficulty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                    <Button x:Name="btnUpdateDifficulty" Command="{Binding UpdateNumberDifficultyCommand}" Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="4" Content="Cập nhật"/>
-                    <DataGrid x:Name="dgDifficultyList" ItemsSource="{Binding ListDifficulty}" Grid.Column="10" Grid.Row="1" Grid.ColumnSpan="18" Grid.RowSpan="10" CanUserAddRows="False" AutoGenerateColumns="False">
+                    <Button x:Name="btnUpdateDifficulty" Command="{Binding UpdateNumberDifficultyCommand}" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="7" Content="Cập nhật"/>
+                    <DataGrid x:Name="dgDifficultyList" ItemsSource="{Binding ListDifficulty}" Grid.Column="9" Grid.Row="1" Grid.ColumnSpan="19" Grid.RowSpan="10" CanUserAddRows="False" AutoGenerateColumns="False" Padding="10">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Độ khó" Binding="{Binding Name}" Width="8.5*"/>
                         </DataGrid.Columns>
@@ -182,7 +182,18 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <DataGrid x:Name="dgSubjectList" ItemsSource="{Binding ListSubject, Mode=TwoWay}" Grid.Column="10" Grid.Row="1" Grid.ColumnSpan="18" Grid.RowSpan="10" AutoGenerateColumns="False">
+                    <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="7" Content="Số lượng môn học:" Foreground="Black" FontWeight="Bold"/>
+                    <TextBox x:Name="tbDSubjectNumber"
+                             Grid.Column="1" 
+                             Grid.Row="2"
+                             Grid.ColumnSpan="7"
+                             VerticalAlignment="Center"
+                             TextAlignment="Left"
+                             Text="{Binding NumberOfSubject, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             />
+
+                    <Button x:Name="btnUpdateSubject" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="7" Content="Cập nhật"/>
+                    <DataGrid x:Name="dgSubjectList" Padding="10" ItemsSource="{Binding ListSubject, Mode=TwoWay}" Grid.Column="9" Grid.Row="1" Grid.ColumnSpan="19" Grid.RowSpan="10" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="STT" Width="1*"/>
                             <DataGridTextColumn Header="Mã môn học" Binding="{Binding IDSubject, Mode=TwoWay}" Width="3*"/>
@@ -240,14 +251,25 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
+                    <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="7" Content="Số lượng lớp học:" Foreground="Black" FontWeight="Bold"/>
+                    <TextBox x:Name="cbClassNumber"
+                             Grid.Column="1" 
+                             Grid.Row="2"
+                             Grid.ColumnSpan="7"
+                             VerticalAlignment="Center"
+                             TextAlignment="Left"
+                             Text="{Binding NumberOfClass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             />
 
-                    <Label Grid.Column="10" Grid.Row="1" Grid.ColumnSpan="3" Content="Năm học" HorizontalContentAlignment="Right"/>
-                    <ComboBox Grid.Column="13" ItemsSource="{Binding Year}" SelectedItem="{Binding SelectedYear}" Grid.Row="1" Grid.ColumnSpan="3"/>
+                    <Button x:Name="btnUpdateClass" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="7" Content="Cập nhật"/>
 
-                    <Label Grid.Column="17" Grid.Row="1" Grid.ColumnSpan="3" Content="Học kỳ" HorizontalContentAlignment="Right"/>
+                    <Label Grid.Column="9" Grid.Row="1" Grid.ColumnSpan="3" Content="Năm học:" Foreground="Black" FontWeight="Bold"/>
+                    <ComboBox Grid.Column="12" ItemsSource="{Binding Year}" SelectedItem="{Binding SelectedYear}" Grid.Row="1" Grid.ColumnSpan="3"/>
+
+                    <Label Grid.Column="17" Grid.Row="1" Grid.ColumnSpan="3" Content="Học kỳ:" Foreground="Black" FontWeight="Bold"/>
                     <ComboBox Grid.Column="20" ItemsSource="{Binding Semester}" SelectedItem="{Binding SelectedSemester}" Grid.Row="1" Grid.ColumnSpan="3"/>
 
-                    <DataGrid x:Name="dgClassList"  ItemsSource="{Binding ListClass}" AutoGenerateColumns="False" Grid.Column="10" Grid.Row="2" Grid.ColumnSpan="18" Grid.RowSpan="19" CanUserAddRows="True">
+                    <DataGrid x:Name="dgClassList"  ItemsSource="{Binding ListClass}" AutoGenerateColumns="False" Grid.Column="9" Grid.Row="2" Grid.ColumnSpan="19" Grid.RowSpan="9" CanUserAddRows="True" Padding="10" Margin="0,12,0,0">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Tên lớp học" Binding="{Binding ClassName}" Width="2*"/>
                             <DataGridTemplateColumn Header="Tên môn học" Width="6*">
@@ -311,26 +333,26 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" Content="Số lượng câu hỏi tối đa" HorizontalContentAlignment="Left"/>
-                    <TextBox Text="{Binding MaxQuestionAmount, Mode=TwoWay}" Grid.Column="7" Grid.Row="1" Grid.ColumnSpan="3"/>
-                    
-                    <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="5" Content="Thời lượng tối đa cho đề thi" HorizontalContentAlignment="Left"/>
-                    <TextBox Text="{Binding MaxTestDuration, Mode=TwoWay}" Grid.Column="7" Grid.Row="2" Grid.ColumnSpan="3"/>
+                    <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" Content="Số lượng câu hỏi tối đa" HorizontalContentAlignment="Left" Foreground="Black" FontWeight="Bold" VerticalAlignment="Bottom"/>
+                    <TextBox Text="{Binding MaxQuestionAmount, Mode=TwoWay}" Grid.Column="7" Grid.Row="1" Grid.ColumnSpan="4" VerticalAlignment="Bottom"/>
 
-                    <Label Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="5" Content="Thời lượng tối thiểu cho đề thi" HorizontalContentAlignment="Left"/>
-                    <TextBox Text="{Binding MinTestDuration, Mode=TwoWay}" Grid.Column="7" Grid.Row="3" Grid.ColumnSpan="3"/>
+                    <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="5" Content="Thời lượng tối đa cho đề thi" HorizontalContentAlignment="Left" Foreground="Black" FontWeight="Bold" VerticalAlignment="Bottom"/>
+                    <TextBox Text="{Binding MaxTestDuration, Mode=TwoWay}" Grid.Column="7" Grid.Row="2" Grid.ColumnSpan="4" VerticalAlignment="Bottom"/>
 
-                    <Label Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="5" Content="Số điểm tối đa" HorizontalContentAlignment="Left"/>
-                    <TextBox Text="{Binding MaxTestScore, Mode=TwoWay}" Grid.Column="7" Grid.Row="4" Grid.ColumnSpan="3"/>
+                    <Label Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="5" Content="Thời lượng tối thiểu cho đề thi" HorizontalContentAlignment="Left" Foreground="Black" FontWeight="Bold" VerticalAlignment="Bottom"/>
+                    <TextBox Text="{Binding MinTestDuration, Mode=TwoWay}" Grid.Column="7" Grid.Row="3" Grid.ColumnSpan="4" VerticalAlignment="Bottom"/>
 
-                    <Label Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="5" Content="Số điểm tối thiểu" HorizontalContentAlignment="Left"/>
-                    <TextBox Text="{Binding MinTestScore, Mode=TwoWay}" Grid.Column="7" Grid.Row="5" Grid.ColumnSpan="3"/>
+                    <Label Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="5" Content="Số điểm tối đa" HorizontalContentAlignment="Left" Foreground="Black" FontWeight="Bold" VerticalAlignment="Bottom"/>
+                    <TextBox Text="{Binding MaxTestScore, Mode=TwoWay}" Grid.Column="7" Grid.Row="4" Grid.ColumnSpan="4" VerticalAlignment="Bottom"/>
+
+                    <Label Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="5" Content="Số điểm tối thiểu" HorizontalContentAlignment="Left" Foreground="Black" FontWeight="Bold" VerticalAlignment="Bottom"/>
+                    <TextBox Text="{Binding MinTestScore, Mode=TwoWay}" Grid.Column="7" Grid.Row="5" Grid.ColumnSpan="4" VerticalAlignment="Bottom"/>
                 </Grid>
             </TabItem>
         </TabControl>
 
-        <Button x:Name="btnOK" Command="{Binding OKCommand}" Grid.Column="27" Grid.Row="15" Grid.ColumnSpan="3" Content="Lưu"/>
-        <Button x:Name="btnCancel" Command="{Binding CancelCommand}" Grid.Column="23" Grid.Row="15" Grid.ColumnSpan="3" Content="Hủy"/>
-        
+        <Button x:Name="btnOK" Command="{Binding OKCommand}" Grid.Column="27" Grid.Row="16" Grid.ColumnSpan="3" Content="Lưu"/>
+        <Button x:Name="btnCancel" Style="{StaticResource MaterialDesignOutlinedButton}" Command="{Binding CancelCommand}" Grid.Column="23" Grid.Row="16" Grid.ColumnSpan="3" Content="Hủy"/>
+
     </Grid>
 </Page>

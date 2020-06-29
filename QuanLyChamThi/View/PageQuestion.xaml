@@ -109,9 +109,9 @@
             </local:UserControlQuestionList>
         </DockPanel>
 
-        <Button Command="{Binding CancelEditingCommand}" Style="{StaticResource MaterialDesignOutlinedButton}" x:Name="btnCancel" Grid.Column="14" Grid.Row="15" Grid.ColumnSpan="5" VerticalAlignment="Center" Content="Huỷ" Panel.ZIndex="3" Margin="23.8,22.2,25.2,22.6" Grid.RowSpan="3"/>
-        <Button x:Name="btnOK" Command="{Binding AddQuestionCommand}" Grid.Column="27" Grid.Row="15" Grid.ColumnSpan="3" VerticalAlignment="Center" Content="{Binding AddButtonContent}" Panel.ZIndex="3" Margin="0,22.2,0.4,22.6" Grid.RowSpan="3"/>
-        <Button x:Name="btnDelete" Command="{Binding DeleteSelectedQuestionsCommand}" Grid.Column="18" Grid.Row="15" Grid.ColumnSpan="5" VerticalAlignment="Center" Content="Xoá" Panel.ZIndex="3" Margin="24.4,22.2,26.2,22.6" Grid.RowSpan="3"/>
-        <Button x:Name="btnLoad" Command="{Binding LoadSelectedQuestionCommand}" Grid.Column="22" Grid.Row="15" Grid.ColumnSpan="5" VerticalAlignment="Center" Content="Xem" Panel.ZIndex="3" Margin="26.2,22.2,26,22.6" Grid.RowSpan="3"/>
+        <Button Command="{Binding CancelEditingCommand}" Style="{StaticResource MaterialDesignOutlinedButton}" x:Name="btnCancel" Grid.Column="1" Grid.Row="16" Grid.ColumnSpan="3" VerticalAlignment="Center" Content="Huỷ" Padding="0"/>
+        <Button x:Name="btnOK" Command="{Binding AddQuestionCommand}" Grid.Column="25" Grid.Row="16" Grid.ColumnSpan="3" VerticalAlignment="Center" Content="{Binding AddButtonContent}" Padding="0"/>
+        <Button x:Name="btnDelete" Command="{Binding DeleteSelectedQuestionsCommand}" Grid.Column="21" Grid.Row="16" Grid.ColumnSpan="3" VerticalAlignment="Center" Content="Xoá" Padding="0"/>
+        <Button x:Name="btnLoad" Command="{Binding LoadSelectedQuestionCommand}" Grid.Column="17" Grid.Row="16" Grid.ColumnSpan="3" VerticalAlignment="Center" Content="Xem" Padding="0"/>
     </Grid>
 </Page>
