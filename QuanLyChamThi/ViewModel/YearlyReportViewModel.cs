@@ -1,6 +1,7 @@
 ﻿using Microsoft.Office.Interop.Excel;
 using QuanLyChamThi.Command;
 using QuanLyChamThi.Model;
+using QuanLyChamThi.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -103,6 +104,7 @@ namespace QuanLyChamThi.ViewModel
             set
             {
                 _strSelectedYear = value;
+                isUpToDate = false;
                 OnPropertyChange("StrSelectedYear");
             }
         }
@@ -164,9 +166,7 @@ namespace QuanLyChamThi.ViewModel
 
         private void MakeReportFunction()
         {
-            model.Year = this.SelectedYear;
-            model.UpdateFromDB();
-            ListReport = model.Data;
+            refresh();
         }
         #endregion
 
@@ -202,6 +202,8 @@ namespace QuanLyChamThi.ViewModel
         
         private void SaveAsFileFunction()
         {
+            remindUpdate();
+
             var dlg = new Microsoft.Win32.SaveFileDialog();
             dlg.DefaultExt = ".xlsx";
             dlg.Filter = "Microsoft Office Excel documents|*.xlsx";
@@ -210,16 +212,21 @@ namespace QuanLyChamThi.ViewModel
             if (userAcceptSaving==null || !userAcceptSaving.Value)
                 return;
 
-            if (! dlg.ValidateNames )
-            {
-                // MORECODE
-                return;
-            }
-
             string fileName = dlg.FileName;
 
             var dataToSave = createReportTable(ListReport);
-            QuanLyChamThi.Utilities.ExcelExporter.Export(dataToSave, fileName);
+            bool saveSuccess = QuanLyChamThi.Utilities.ExcelExporter.Export(dataToSave, fileName);
+
+            if(! saveSuccess)
+            {
+                ViewExtension.MessageOK(null, "Lỗi: lưu tệp tin không thành công", ViewExtension.MessageType.Error);
+                return;
+            }
+            else
+            {
+                ViewExtension.Message(null, "Thông báo: tệp tin được lưu thành công!", "", ViewExtension.MessageType.Notification);
+            }
+
         }
 
         private ICommand _saveAsFileCommand = null;
@@ -243,6 +250,8 @@ namespace QuanLyChamThi.ViewModel
         #region button Print
         private void printFunction(System.Windows.Controls.DataGrid dataGrid)
         {
+            remindUpdate();
+
             System.Windows.Controls.PrintDialog dlg = new System.Windows.Controls.PrintDialog();
             dlg.PrintVisual(dataGrid, "Báo cáo năm");
             dlg.ShowDialog();
@@ -267,6 +276,25 @@ namespace QuanLyChamThi.ViewModel
 
         #region Internal business logic
         YearlyReportModel model = null;
+        private bool isUpToDate = true;
+
+        private void remindUpdate()
+        {
+            if(isUpToDate)
+                return;
+            int veResult = ViewExtension.Confirm(null, "Cảnh báo: dữ liệu chưa được cập nhật. Bạn có muốn cập nhật dữ liệu không?");
+
+            if(veResult == 1)
+                refresh();
+        }
+
+        private void refresh()
+        {
+            model.Year = this.SelectedYear;
+            model.UpdateFromDB();
+            ListReport = model.Data;
+            isUpToDate = true;
+        }
         #endregion
 
         #region tbTotalTest and tbTotalTestResult
@@ -300,7 +328,7 @@ namespace QuanLyChamThi.ViewModel
 
         public void Receive(object sender, List<DatabaseCommand> commands)
         {
-            // MORECODE
+            isUpToDate = false;
         }
 
         private void InitializeModel()

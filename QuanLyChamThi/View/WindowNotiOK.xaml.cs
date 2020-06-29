@@ -20,10 +20,21 @@ namespace QuanLyChamThi.View
     /// </summary>
     public partial class WindowNotiOK : Window
     {
-        public WindowNotiOK(string message)
+        public WindowNotiOK(string message, ViewExtension.MessageType messageType)
         {
             InitializeComponent();
             tbNotification.Text = message;
+
+            if (messageType == ViewExtension.MessageType.Error) //falure
+            {
+                imgIcon.Kind = MaterialDesignThemes.Wpf.PackIconKind.Cancel;
+                border.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#F44336"));
+            }
+            else if (messageType == ViewExtension.MessageType.Warning) //warning
+            {
+                imgIcon.Kind = MaterialDesignThemes.Wpf.PackIconKind.Warning;
+                border.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF9800"));
+            }
             FadeIn();
         }
 

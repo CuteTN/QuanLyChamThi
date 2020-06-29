@@ -16,8 +16,8 @@
                 </StackPanel>
 
                 <StackPanel DockPanel.Dock="Top" VerticalAlignment="Center" Orientation="Vertical" Margin="0,0,20,0">
-                    <TextBlock x:Name="tbNotification" Foreground="White" FontWeight="Bold"/>
-                    <TextBlock x:Name="tbDetail"  Foreground="White" FontStyle="Italic"/>
+                    <TextBlock x:Name="tbNotification" Foreground="White" FontWeight="Bold" TextAlignment="Center" TextWrapping="Wrap"/>
+                    <TextBlock x:Name="tbDetail"  Foreground="White" FontStyle="Italic" TextAlignment="Center" TextWrapping="Wrap"/>
                 </StackPanel>
             </DockPanel>
         </Border>
