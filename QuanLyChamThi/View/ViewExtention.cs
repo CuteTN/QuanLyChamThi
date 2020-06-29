@@ -14,7 +14,7 @@ namespace QuanLyChamThi.View
             if (sender != null) sender.Opacity = 0.5;
             WindowNotification windowNotification = new WindowNotification(message, detail, messageType);
             bool result = (windowNotification.ShowDialog() == true);
-            if (sender != null) sender.Opacity = 0.5;
+            if (sender != null) sender.Opacity = 1;
 
             return result;
         }
@@ -24,7 +24,7 @@ namespace QuanLyChamThi.View
             if (sender != null) sender.Opacity = 0.5;
             WindowConfirm windowConfirm = new WindowConfirm(message);
             windowConfirm.ShowDialog();
-            if (sender != null) sender.Opacity = 0.5;
+            if (sender != null) sender.Opacity = 1;
 
             return windowConfirm.GetConfirmState();
         }
