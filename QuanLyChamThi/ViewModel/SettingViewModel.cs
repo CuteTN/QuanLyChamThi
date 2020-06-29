@@ -398,7 +398,7 @@ namespace QuanLyChamThi.ViewModel
 
         #endregion
 
-        // HANHBADCODE
+        // NGHIA_BADCODE
         #region Subject setting
 
         #region DataGrid List Subject
@@ -468,20 +468,29 @@ namespace QuanLyChamThi.ViewModel
         // Forgive me for what I'm about to do...
         // but I'm gonna check validation here!
         private ObservableCollection<SUBJECT> BackupListSubject = null;
-        private void saveSubjectsFunction()
-        {
-            // MORECODE: pop up notification
 
-            BackupListSubject = selectSubject();
+        private bool canSaveForSubject()
+        {
             var msg = validateSubject();
 
-            if(msg != SubjectValidationMessage.Valid)
-                HandleInvalidInput(msg);
-            else
-            {
-                List<DatabaseCommand> commands = createSaveSubjectsCommands(ListSubject);
-                NotifyToMediator(commands);
-            }
+            if(msg == SubjectValidationMessage.Valid)
+                return true;
+
+            if(msg == SubjectValidationMessage.DuplicatedID)
+                ViewExtension.MessageOK(null, "Lỗi: một số mã môn học bị trùng nhau", ViewExtension.MessageType.Error);
+            if(msg == SubjectValidationMessage.EmptyID)
+                ViewExtension.MessageOK(null, "Lỗi: vui lòng điền đầy đủ mã môn học", ViewExtension.MessageType.Error);
+            if(msg == SubjectValidationMessage.EmptyName)
+                ViewExtension.MessageOK(null, "Lỗi: vui lòng điền đầy đủ tên môn học", ViewExtension.MessageType.Error);
+            return false;
+        }
+
+        private void saveSubjectsFunction()
+        {
+            // SAVE WITHOUT CHECKING
+            BackupListSubject = selectSubject();
+            List<DatabaseCommand> commands = createSaveSubjectsCommands(ListSubject);
+            NotifyToMediator(commands);
         }
 
         private List<DatabaseCommand> createSaveSubjectsCommands(ObservableCollection<SUBJECT> newSubjects)
@@ -648,6 +657,9 @@ namespace QuanLyChamThi.ViewModel
         
         private void cancelFunction()
         {
+            if(ViewExtension.Confirm(null, "Bạn có chắc muốn huỷ các thay đổi không?") == 0)
+                return;
+
             cancelSujectChangeFunction();
             CancelEditingDifficulty();
             CancelEditingClass();
@@ -675,23 +687,25 @@ namespace QuanLyChamThi.ViewModel
             
         private void OKFunction()
         {
+            bool canSaveAll = canSaveForSubject() && CanSaveForClass(); 
+
+            if(!canSaveAll)
+                return;
+
+            if(ViewExtension.Confirm(null, "Thông báo: thông tin hợp lệ. Bạn có chắc muốn lưu không?") == 0)
+                return;
+
             saveSubjectsFunction();
             SaveChangeDifficulty();
-            if(CanSaveForClass())
-                SaveChangeClass();
+            SaveChangeClass();
             SaveChangePrinciple();
             
+            ViewExtension.MessageOK(null, "Thông báo: thiết lập cài đặt thành công!", ViewExtension.MessageType.Notification);
         }
 
             #endregion
 
         #region Internal business logic (CuteTN)
-        private void HandleInvalidInput(SubjectValidationMessage message)
-        {
-            // MORECODE
-            MessageBox.Show(message.ToString());
-        }
-
         private void NotifyToMediator(List<DatabaseCommand> commands)
         {
             ViewModelMediator.Ins.Receive(this, commands);
