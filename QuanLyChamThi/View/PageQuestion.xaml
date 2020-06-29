@@ -71,7 +71,7 @@
         <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" VerticalAlignment="Bottom" Content="Môn học:" Foreground="Black" FontWeight="Bold"/>
         <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="5" VerticalAlignment="Bottom" Content="Độ khó:" Foreground="Black" FontWeight="Bold"/>
         <Label Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="5" VerticalAlignment="Bottom" Content="Nội dung câu hỏi:" Foreground="Black" FontWeight="Bold"/>
-        
+
         <ComboBox x:Name="cbSubject" ItemsSource="{Binding ListSubject}" SelectedItem="{Binding SelectedSubject}" Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="12" VerticalAlignment="Bottom">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
@@ -105,11 +105,13 @@
                         <i:InvokeCommandAction Command="{Binding Path=Data.LoadSelectedQuestionCommand, Source={StaticResource proxy}}"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
-                
+
             </local:UserControlQuestionList>
         </DockPanel>
 
-        <Button Command="{Binding CancelEditingCommand}" Style="{StaticResource MaterialDesignOutlinedButton}" x:Name="btnCancel" Grid.Column="23" Grid.Row="16" Grid.ColumnSpan="3" VerticalAlignment="Center" Content="Huỷ" Panel.ZIndex="3"/>
-        <Button x:Name="btnOK" Command="{Binding AddQuestionCommand}" Grid.Column="27" Grid.Row="16" Grid.ColumnSpan="3" VerticalAlignment="Center" Content="Thêm" Panel.ZIndex="3"/>
+        <Button Command="{Binding CancelEditingCommand}" Style="{StaticResource MaterialDesignOutlinedButton}" x:Name="btnCancel" Grid.Column="14" Grid.Row="15" Grid.ColumnSpan="5" VerticalAlignment="Center" Content="Huỷ" Panel.ZIndex="3" Margin="23.8,22.2,25.2,22.6" Grid.RowSpan="3"/>
+        <Button x:Name="btnOK" Command="{Binding AddQuestionCommand}" Grid.Column="27" Grid.Row="15" Grid.ColumnSpan="3" VerticalAlignment="Center" Content="{Binding AddButtonContent}" Panel.ZIndex="3" Margin="0,22.2,0.4,22.6" Grid.RowSpan="3"/>
+        <Button x:Name="btnDelete" Command="{Binding DeleteSelectedQuestionsCommand}" Grid.Column="18" Grid.Row="15" Grid.ColumnSpan="5" VerticalAlignment="Center" Content="Xoá" Panel.ZIndex="3" Margin="24.4,22.2,26.2,22.6" Grid.RowSpan="3"/>
+        <Button x:Name="btnLoad" Command="{Binding LoadSelectedQuestionCommand}" Grid.Column="22" Grid.Row="15" Grid.ColumnSpan="5" VerticalAlignment="Center" Content="Xem" Panel.ZIndex="3" Margin="26.2,22.2,26,22.6" Grid.RowSpan="3"/>
     </Grid>
 </Page>

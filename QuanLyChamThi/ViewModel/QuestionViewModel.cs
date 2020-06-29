@@ -167,6 +167,24 @@ namespace QuanLyChamThi.ViewModel
             }
             set { _addQuestionCommand = value; }
         }
+
+        #region Add Button Content
+        private string _addButtonContent = "Thêm";
+        public string AddButtonContent
+        {
+            get
+            {
+                return _addButtonContent;
+            }
+            set
+            {
+                _addButtonContent = value;
+                OnPropertyChange("AddButtonContent");
+            }
+        }
+
+        #endregion
+
         #endregion
 
         #region Internal Business logics
@@ -189,6 +207,8 @@ namespace QuanLyChamThi.ViewModel
                     }
                     SelectedSubject = editingQuestionDBModel.SUBJECT;
                 }
+
+                AddButtonContent = _editingQuestion==null? "Thêm" : "Sửa";
             }
         }
         private QuestionModel createQuestion()
@@ -328,6 +348,12 @@ namespace QuanLyChamThi.ViewModel
 
         void LoadSelectedQuestion()
         {
+            if (QuestionListViewModel.SelectedQuestions.Count != 1)
+            { 
+                ViewExtension.MessageOK(null, "Lỗi: Không thể sửa nhiều câu hỏi. Vui lòng chọn một câu hỏi để xoá", ViewExtension.MessageType.Error);
+                return;
+            }
+
             if (Content != null && Content != "" && Content != EditingQuestion?.Content)
             {
                 int userConfirmed = ViewExtension.Confirm(null, "Việc tải câu hỏi khác sẽ xoá mọi thay đổi của câu hỏi đang nhập. Tiếp tục tải câu hỏi?");
@@ -337,10 +363,11 @@ namespace QuanLyChamThi.ViewModel
             }
 
             resetInputContent();
-            if (QuestionListViewModel.SelectedQuestions.Count != 0)
-                EditingQuestion = QuestionListViewModel.SelectedQuestions[0];
+            EditingQuestion = QuestionListViewModel.SelectedQuestions[0];
         }
         #endregion
+
+
 
         public void Receive(object sender, List<DatabaseCommand> commands)
         {
