@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using QuanLyChamThi.ViewModel;
 using System.Windows;
+using QuanLyChamThi.View;
 
 namespace QuanLyChamThi.Model
 {
@@ -72,7 +73,14 @@ namespace QuanLyChamThi.Model
                     AddItem(item.add);
                 else
                 {
-                    DB.Entry(item.delete).CurrentValues.SetValues(item.add);
+                    try 
+                    { 
+                        DB.Entry(item.delete).CurrentValues.SetValues(item.add);
+                    }
+                    catch(Exception e)
+                    {
+                        ViewExtension.MessageOK(null, "Một lỗi không xác định đã xảy ra: " + e.Message, ViewExtension.MessageType.Error);
+                    }
                 }
             }
             try
