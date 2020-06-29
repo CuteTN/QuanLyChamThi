@@ -530,13 +530,89 @@ namespace QuanLyChamThi.ViewModel
             return SubjectValidationMessage.Valid;
         }
 
-            #endregion
+        #endregion
 
+        #endregion
+
+        // LONGCODE
+        #region Principle setting
+        private int _maxQuestionAmount;
+        public int MaxQuestionAmount
+        {
+            get { return _maxQuestionAmount; }
+            set { _maxQuestionAmount = value; OnPropertyChange("MaxQuestionAmount"); }
+        }
+        private int _maxTestDuration;
+        public int MaxTestDuration
+        {
+            get { return _maxTestDuration; }
+            set { _maxTestDuration = value; OnPropertyChange("MaxQuestionAmount"); }
+        }
+        private int _minTestDuration;
+        public int MinTestDuration
+        {
+            get { return _minTestDuration; }
+            set { _minTestDuration = value; OnPropertyChange("MaxQuestionAmount"); }
+        }
+        private int _minTestScore;
+        public int MinTestScore
+        {
+            get { return _minTestScore; }
+            set { _minTestScore = value; OnPropertyChange("MaxQuestionAmount"); }
+        }
+        private int _maxTestScore;
+        public int MaxTestScore
+        {
+            get { return _maxTestScore; }
+            set { _maxTestScore = value; OnPropertyChange("MaxQuestionAmount"); }
+        }
+        PRINCIPLE _principle;
+        PRINCIPLE Principle
+        {
+            get {
+                if (_principle == null)
+                    _principle = DataProvider.Ins.DB.PRINCIPLE.FirstOrDefault();
+                return _principle;
+            }
+            set { _principle = value; }
+        }
+        void LoadPrinciple()
+        {
+            MaxQuestionAmount = Principle?.MaxNumberOfQuestion ?? 5;
+            MaxTestDuration = Principle?.MaxTimeForTest ?? 180;
+            MinTestDuration = Principle?.MinTimeForTest ?? 30;
+            MaxTestScore = Principle?.MaxScore ?? 10;
+            MinTestScore = Principle?.MinScore ?? 0;
+        }
+        void CancelEditingPrinciple()
+        {
+            LoadPrinciple();
+        }
+        void SaveChangePrinciple()
+        {
+            List<DatabaseCommand> cmdList = new List<DatabaseCommand>();
+            PRINCIPLE newPrinciple = new PRINCIPLE
+            {
+                MaxNumberOfQuestion = MaxQuestionAmount,
+                MaxTimeForTest = MaxTestDuration,
+                MinTimeForTest = MinTestDuration,
+                MaxScore = MaxTestScore,
+                MinScore = MinTestScore,
+                id = Principle?.id ?? 0
+            };
+            DatabaseCommand cmd = new DatabaseCommand();
+            cmd.add = newPrinciple;
+            cmd.delete = Principle;
+            cmdList.Add(cmd);
+            ViewModelMediator.Ins.Receive(this, cmdList);
+            Principle = null;
+            LoadPrinciple();
+        }
         #endregion
 
         #region Common
 
-            #region button Cancel
+        #region button Cancel
         private ICommand _cancelCommand = null;
         public ICommand CancelCommand
         {
@@ -558,6 +634,7 @@ namespace QuanLyChamThi.ViewModel
             cancelSujectChangeFunction();
             CancelEditingDifficulty();
             CancelEditingClass();
+            CancelEditingPrinciple();
         }
 
         #endregion
@@ -584,6 +661,7 @@ namespace QuanLyChamThi.ViewModel
             saveSubjectsFunction();
             SaveChangeDifficulty();
             SaveChangeClass();
+            SaveChangePrinciple();
             //bool nothing = ViewExtension.MessageOK()
             // NOT WORK
             // DataProvider.Ins.DB.SaveChanges();
@@ -608,6 +686,8 @@ namespace QuanLyChamThi.ViewModel
 
         public void Receive(object sender, List<DatabaseCommand> commands)
         {
+            if (commands.Any((DatabaseCommand item) => item.add is PRINCIPLE || item.delete is PRINCIPLE))
+                LoadPrinciple();
             // MORECODE
         }
 
@@ -615,6 +695,7 @@ namespace QuanLyChamThi.ViewModel
         {
             ViewModelMediator.Ins.AddUserModel(this);
             ListClass.CollectionChanged += View_CollectionChanged;
+            LoadPrinciple();
         }
 
         private void View_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)

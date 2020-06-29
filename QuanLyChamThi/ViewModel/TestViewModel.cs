@@ -44,6 +44,8 @@ namespace QuanLyChamThi.ViewModel
                 OnPropertyChange("TempSemester");
                 OnPropertyChange("TempTestID");
                 OnPropertyChange("TempSubjectID");
+                OnPropertyChange("TempDuration");
+                OnPropertyChange("TempTestDate");
             }
         }
         public string TempSubjectID
@@ -69,7 +71,17 @@ namespace QuanLyChamThi.ViewModel
             get { return TempTest.Year; }
             set { TempTest.Year = value; OnPropertyChange("TempYear"); }
         }
-        TestModel.TestDetailModel _selectedItem;
+        public int TempDuration
+        {
+            get { return TempTest.Duration; }
+            set { TempTest.Duration = value; OnPropertyChange("TempDuration"); }
+        }
+        public DateTime? TempTestDate
+        {
+            get { return TempTest.TestDate; }
+            set { TempTest.TestDate = value; OnPropertyChange("TempTestDate"); }
+        }
+        private TestModel.TestDetailModel _selectedItem;
         public TestModel.TestDetailModel SelectedItem
         {
             get { return _selectedItem; }
@@ -135,6 +147,31 @@ namespace QuanLyChamThi.ViewModel
             _testID = (from u in DataProvider.Ins.DB.TEST select u.IDTest).ToList();
             _testID.Add((string)(new TestModel().TestID).Clone());
         }
+        private int? _upperLimitTestDuration;
+        public int? UpperLimitTestDuration
+        {
+            get { return _upperLimitTestDuration; }
+            set { _upperLimitTestDuration = value; }
+        }
+        private int? _lowerLimitTestDuration;
+        public int? LowerLimitTestDuration
+        {
+            get { return _lowerLimitTestDuration; }
+            set { _lowerLimitTestDuration = value; }
+        }
+        private int? _upperLimitTestQuestion;
+        public int? UpperLimitTestQuestion
+        {
+            get { return _upperLimitTestQuestion; }
+            set { _upperLimitTestQuestion = value; }
+        }
+        void LoadConstraint()
+        {
+            var principle = DataProvider.Ins.DB.PRINCIPLE.FirstOrDefault();
+            UpperLimitTestDuration = principle?.MaxTimeForTest;
+            LowerLimitTestDuration = principle?.MinTimeForTest;
+            UpperLimitTestQuestion = principle?.MaxNumberOfQuestion;
+        }
         #endregion
 
         #region View Mode: Edit or New
@@ -194,6 +231,16 @@ namespace QuanLyChamThi.ViewModel
                     MessageBox.Show("Không nhận được ID câu hỏi");
                     return false;
                 }
+            }
+            if (LowerLimitTestDuration != null && TempTest.Duration < LowerLimitTestDuration)
+            {
+                MessageBox.Show("Thời lượng đề thi quá ngắn.");
+                return false;
+            }
+            if (UpperLimitTestDuration != null && TempTest.Duration > UpperLimitTestDuration)
+            {
+                MessageBox.Show("Thời lượng đề thi quá dài.");
+                return false;
             }
             return true;
         }
@@ -399,13 +446,32 @@ namespace QuanLyChamThi.ViewModel
         public TestViewModel()
         {
             ViewModelMediator.Ins.AddUserModel(this);
+            LoadConstraint();
         }
-
+        public bool ReadyToAcceptData()
+        {
+            if (TempTest.SubjectID == null)
+            {
+                MessageBox.Show("Vui lòng nhập môn học trước khi nhập câu hỏi");
+                return false;
+            }
+            return true;
+        }
         public void AcceptData(List<QuestionModel> questions)
         {
             TempTestDetail.Clear();
-            TempTestDetail = new ObservableCollection<TestModel.TestDetailModel>(
-                questions.Select((QuestionModel question, int i) => new TestModel.TestDetailModel(question, i + 1)));
+
+            int addAmount = UpperLimitTestQuestion??int.MaxValue;
+            int stt = 0;
+
+            foreach(var item in questions)
+            {
+                if (item.IDSubject == TempTest.SubjectID && stt < addAmount)
+                {
+                    TempTestDetail.Add(new TestModel.TestDetailModel(item, stt + 1));
+                    stt++;
+                }
+            }
         }
 
         public void Receive(object sender, List<DatabaseCommand> commands)
@@ -431,7 +497,17 @@ namespace QuanLyChamThi.ViewModel
             {
                 LoadTestID();
             }
-
+            if (commands.Any((DatabaseCommand item) => item.add is PRINCIPLE || item.delete is PRINCIPLE))
+            {
+                LoadConstraint();
+            }
+        }
+        void Refresh()
+        {
+            LoadConstraint();
+            LoadTestID();
+            LoadSubjectID();
+            ViewMode("");
         }
         #endregion
     }

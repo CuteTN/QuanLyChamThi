@@ -85,7 +85,7 @@
                  Grid.Column="4" Grid.Row="14" Grid.ColumnSpan="6" VerticalAlignment="Bottom"/>
         <TextBox x:Name="tbDuration" md:HintAssist.Hint="Tất cả" Text="{Binding FilterTestDuration}"
                  Grid.Column="4" Grid.Row="15" Grid.ColumnSpan="6" VerticalAlignment="Bottom"/>
-        <DatePicker x:Name="datepickerTestDate" md:HintAssist.Hint="Mọi lúc" Grid.Column="4"
+        <DatePicker x:Name="datepickerTestDate" SelectedDate="{Binding FilterTestDate}" md:HintAssist.Hint="Mọi lúc" Grid.Column="4"
                     Grid.Row="16" Grid.ColumnSpan="6" VerticalAlignment="Bottom"/>
         
         <Button x:Name="btnFind" 
@@ -99,7 +99,7 @@
         <Button x:Name="btnNew" Command="{Binding  NewTestCommand}"  Grid.Column="16" Grid.Row="14" Grid.RowSpan="3" Grid.ColumnSpan="14" VerticalAlignment="Stretch" Height="Auto" Content="Tạo đề thi mới"  Margin="10,15,0,0"/>
 
 
-        <md:Badged x:Name="badgedelete" Badge="2" BadgeColorZoneMode="Dark" Grid.Column="14" Grid.Row="14" Grid.RowSpan="3" Grid.ColumnSpan="2" Margin="10,15,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+        <md:Badged x:Name="badgedelete" Badge="{Binding NumberSelectedItem}" BadgeColorZoneMode="Dark" Grid.Column="14" Grid.Row="14" Grid.RowSpan="3" Grid.ColumnSpan="2" Margin="10,15,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
             <Button x:Name="btnDelete" Padding="0,0,0,0"  Command="{Binding DeleteCommand}" Content="{md:PackIcon Kind=Delete,Size=30}" Width="{Binding ActualWidth, ElementName=badgedelete, Mode=OneWay}" ToolTip="Xoá đề thi đã chọn"  Style="{StaticResource MaterialDesignOutlinedButton}" Height="{Binding ActualHeight, ElementName=badgedelete, Mode=OneWay}" Foreground="White" Background="#F44336" BorderBrush="#F44336"/>
 
         </md:Badged>
@@ -107,21 +107,22 @@
                 Content="{md:PackIcon Kind=Edit,Size=30}"
                 ToolTip="Sửa đề thi" Grid.Column="12" Grid.Row="14"
                 Grid.ColumnSpan="2" Grid.RowSpan="3"
+                Command="{Binding EditTestCommand}"
                 Style="{StaticResource MaterialDesignOutlinedButton}" Height="{Binding ActualHeight, ElementName=badgedelete, Mode=OneWay}"
                 Foreground="White" Background="#FF9800" BorderBrush="#FF9800"/>
 
 
         <ScrollViewer x:Name="svGrid" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="29" Grid.RowSpan="13" VerticalScrollBarVisibility="Auto">
-            <DataGrid Margin="0,0,0,12" Padding="10" Style="{StaticResource MaterialDesignDataGrid}" x:Name="dgReport"
+            <local:CustomDataGrid Margin="0,0,0,12" Padding="10" Style="{StaticResource MaterialDesignDataGrid}" x:Name="dgReport"
                       ItemsSource="{Binding ListTest, Mode=TwoWay}" AutoGenerateColumns="False" Width="{Binding ElementName=svGrid, Path=ActualWidth}"
-                      CanUserResizeColumns="True" CanUserReorderColumns="True" CanUserSortColumns="True" CanUserAddRows="False" Background="White">
+                      CanUserResizeColumns="True" CanUserReorderColumns="True" CanUserSortColumns="True" CanUserAddRows="False" Background="White"
+                      SelectedItemsList="{Binding SelectedTest, Mode=TwoWay}">
                 <DataGrid.Columns>
                     <DataGridTemplateColumn x:Name="colTestID" Header="Mã số đề thi" Width="3*" CellTemplate="{StaticResource mycolumn}"/>
                     <DataGridTextColumn x:Name="colDuration" Header="Thời lượng" Width="2*" Binding="{Binding TestDuration, Mode=OneWay}"/>
                     <DataGridTextColumn x:Name="colTestDate" Header="Ngày thi" Width="5*" Binding="{Binding TestDate, Mode=OneWay}"/>
-                    <DataGridCheckBoxColumn x:Name="colCheckbox" Header="" Width="10" Binding="{Binding Selected, Mode=TwoWay}"/>
                 </DataGrid.Columns>
-            </DataGrid>
+            </local:CustomDataGrid>
         </ScrollViewer>
     </Grid>
 </Page>

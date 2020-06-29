@@ -31,15 +31,15 @@ namespace QuanLyChamThi.View
 
         private void btnChooseQuestion_Click(object sender, RoutedEventArgs e)
         {
+            var viewModel = DataContext as TestViewModel;
+            if (!viewModel.ReadyToAcceptData())
+            { 
+                return;
+            }
             List<QuestionModel> selectedQuestions = new List<QuestionModel>();
             var windowQuestionList = new WindowQuestionList(selectedQuestions);
             windowQuestionList.ShowDialog();
-            (DataContext as TestViewModel).AcceptData(selectedQuestions);
-        }
-
-        private void dgReport_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
+            viewModel.AcceptData(selectedQuestions);
         }
     }
 }

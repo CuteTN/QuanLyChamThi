@@ -104,6 +104,22 @@ namespace QuanLyChamThi.Model
             get { return _testdate; }
             set {_testdate = value; _pSource = null; OnPropertyChange("TestDate"); }
         }
+
+        public TestModel Clone
+        {
+            get
+            {
+                TestModel newModel = new TestModel();
+                newModel.Duration = this.Duration;
+                newModel.Semester = this.Semester;
+                newModel.SubjectID = this.SubjectID;
+                newModel.TestDate = this.TestDate;
+                newModel.TestID = this.TestID;
+                newModel.Year = this.Year;
+                newModel.pSource = this.pSource;
+                return newModel;
+            }
+        }
         #endregion
 
         // TEST MODEL DO NOT CONTAIN A LIST OF TEST DETAIL.
@@ -177,21 +193,6 @@ namespace QuanLyChamThi.Model
         }
         #endregion
 
-        public TestModel Clone
-        {
-            get
-            {
-                TestModel newModel = new TestModel();
-                newModel.Duration = this.Duration;
-                newModel.Semester = this.Semester;
-                newModel.SubjectID = this.SubjectID;
-                newModel.TestDate = this.TestDate;
-                newModel.TestID = this.TestID;
-                newModel.Year = this.Year;
-                newModel.pSource = this.pSource;
-                return newModel;
-            }
-        }
         #region Event
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChange(string propertyName)

@@ -81,6 +81,11 @@ namespace QuanLyChamThi.ViewModel
             get{ return _filterTestDate; }
             set { _filterTestDate = value; }
         }
+        public int NumberSelectedItem
+        {
+            get { return SelectedTest.Count; }
+            set { OnPropertyChange("NumberSelectedItem"); }
+        }
         #endregion
 
         #region Data
@@ -107,16 +112,19 @@ namespace QuanLyChamThi.ViewModel
             }
             set { _listTest = value; OnPropertyChange("ListTest"); }
         }
-        private ObservableCollection<TestSearchModel> _selectedTest;
-        public ObservableCollection<TestSearchModel> SelectedTest
+        private IList<TestSearchModel> _selectedTest;
+        public IList<TestSearchModel> SelectedTest
         {
             get
             {
                 if (_selectedTest == null)
-                    _selectedTest = new ObservableCollection<TestSearchModel>();
+                    _selectedTest = new List<TestSearchModel>();
                 return _selectedTest;
             }
-            set { _selectedTest = value; OnPropertyChange("SelectedTest"); }
+            set { _selectedTest = value;
+                OnPropertyChange("SelectedTest");
+                OnPropertyChange("NumberSelectedItem");
+            }
         }
         #endregion
 
@@ -173,7 +181,27 @@ namespace QuanLyChamThi.ViewModel
             set { _newTestCommand = value; }
         }
         #endregion
-        
+
+        #region EditTestCommand
+        private ICommand _editTestCommand;
+        public ICommand EditTestCommand
+        {
+            get
+            {
+                if (_editTestCommand == null)
+                    _editTestCommand = new RelayCommand(param => EditTestButton());
+                return _editTestCommand;
+            }
+            set { _editTestCommand = value; }
+        }
+
+        void EditTestButton()
+        {
+            if (SelectedTest.Count == 1)
+                MainWindowViewModel.Ins.SwitchView(9, SelectedTest[0].TestID);
+        }
+        #endregion
+
         #region Delete Button
         private ICommand _deleteCommand;
         public ICommand DeleteCommand
@@ -207,10 +235,13 @@ namespace QuanLyChamThi.ViewModel
         {
             if (sender == this || commands.Exists((DatabaseCommand it) => it.add is TEST || it.delete is TEST))
             {
-                _test = new BindingList<TEST>((from u in DataProvider.Ins.DB.TEST select u).ToList());
-                // TODO: test removing this line
-                Search(Filter);
+                Refresh();
             }
+        }
+        public void Refresh()
+        {
+            _test = new BindingList<TEST>((from u in DataProvider.Ins.DB.TEST select u).ToList());
+            Search(Filter);
         }
     }
 }
