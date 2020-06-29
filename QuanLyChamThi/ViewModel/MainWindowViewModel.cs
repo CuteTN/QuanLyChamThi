@@ -158,6 +158,7 @@ namespace QuanLyChamThi.ViewModel
                         break; 
                     }
                 case 4: SelectedPage = listPage[1]; break;
+                case 5: Logout(); break;
                 case 6: SelectedPage = listPage[7]; break;
                 // Thanh - Editing Test Result
                 case 7: break;
@@ -190,7 +191,7 @@ namespace QuanLyChamThi.ViewModel
                         break;
                     }
                 case 4: SelectedPage = listPage[1]; break;
-                case 5: break;
+                case 5: Logout(); break;
                 case 6: break;
                 // Thanh - Editing Test Result
                 case 7:
@@ -204,6 +205,11 @@ namespace QuanLyChamThi.ViewModel
                 case 10: FinishEditingTest(); break;
                 default: return;
             }
+        }
+
+        public void Logout()
+        {
+            System.Windows.Forms.Application.Restart();
         }
     }
 }

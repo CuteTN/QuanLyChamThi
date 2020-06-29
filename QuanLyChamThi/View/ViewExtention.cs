@@ -29,10 +29,10 @@ namespace QuanLyChamThi.View
             return windowConfirm.GetConfirmState();
         }
 
-        public static bool MessageOK(Window sender, string message)
+        public static bool MessageOK(Window sender, string message, int messageType) //messageType: 0: falure, 1: notification, 2: warning
         {
             if (sender != null) sender.Opacity = 0.5;
-            WindowNotiOK windowNotiOK = new WindowNotiOK(message);
+            WindowNotiOK windowNotiOK = new WindowNotiOK(message, messageType);
             bool result = (windowNotiOK.ShowDialog() == true);
             if (sender != null) sender.Opacity = 1;
 
