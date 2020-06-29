@@ -1,4 +1,7 @@
-﻿using QuanLyChamThi.Model;
+﻿using Microsoft.Office.Interop.Excel;
+using QuanLyChamThi.Command;
+using QuanLyChamThi.Model;
+using QuanLyChamThi.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -6,7 +9,10 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
+using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace QuanLyChamThi.ViewModel
 {
@@ -98,6 +104,7 @@ namespace QuanLyChamThi.ViewModel
             set
             {
                 _strSelectedYear = value;
+                isUpToDate = false;
                 OnPropertyChange("StrSelectedYear");
             }
         }
@@ -132,23 +139,210 @@ namespace QuanLyChamThi.ViewModel
                 }
                 return _listReport;
             }
-            set { _listReport = value; OnPropertyChange("ListReport"); }
+            set 
+            { 
+                _listReport = value; 
+                OnPropertyChange("ListReport");
+            }
+        }
+        #endregion
+
+        #region button Make Report
+        private ICommand _makeReportCommand = null;
+        public ICommand MakeReportCommand
+        {
+            get
+            {
+                if(_makeReportCommand == null)
+                    _makeReportCommand = new RelayCommand(param => MakeReportFunction(), null);
+                return _makeReportCommand;
+            }
+            set
+            {
+                _makeReportCommand = value;
+                OnPropertyChange("MakeReportCommand");
+            }
+        }
+
+        private void MakeReportFunction()
+        {
+            refresh();
+        }
+        #endregion
+
+        #region button Save As File
+        // this is for exporting to excel
+        private List<List<string>> createReportTable(ObservableCollection<SubjectYearlyReportModel> listReport)
+        {
+            // BADCODE
+            List<List<string>> result = new List<List<string>>();
+
+            // Index - Subject - NOTest - NOTestResult - RTest - RTestsult
+            
+            // header
+            result.Add(new List<string>());
+            string[] headers = "STT/Tên môn học/Số lượng đề thi/Số lượng bài chấm/Tỉ lệ đề thi/Tỉ lệ bài chấm".Split('/');
+            result[0].AddRange(headers);
+
+            // content
+            foreach(var report in listReport)
+            {
+                result.Add(new List<string>());
+
+                result.Last().Add(report.Index.ToString());
+                result.Last().Add(report.Subject);
+                result.Last().Add(report.TestCount.ToString());
+                result.Last().Add(report.TestResultCount.ToString());
+                result.Last().Add(report.TestRatio.ToString());
+                result.Last().Add(report.TestResultRatio.ToString());
+            }
+
+            return result;
+        }
+        
+        private void SaveAsFileFunction()
+        {
+            remindUpdate();
+
+            var dlg = new Microsoft.Win32.SaveFileDialog();
+            dlg.DefaultExt = ".xlsx";
+            dlg.Filter = "Microsoft Office Excel documents|*.xlsx";
+            bool? userAcceptSaving = dlg.ShowDialog();
+
+            if (userAcceptSaving==null || !userAcceptSaving.Value)
+                return;
+
+            string fileName = dlg.FileName;
+
+            var dataToSave = createReportTable(ListReport);
+            bool saveSuccess = QuanLyChamThi.Utilities.ExcelExporter.Export(dataToSave, fileName);
+
+            if(! saveSuccess)
+            {
+                ViewExtension.MessageOK(null, "Lỗi: lưu tệp tin không thành công", 2);
+                return;
+            }
+            else
+            {
+                ViewExtension.Message(null, "Thông báo: tệp tin được lưu thành công!", "", 1);
+            }
+
+        }
+
+        private ICommand _saveAsFileCommand = null;
+        public ICommand SaveAsFileCommand
+        {
+            get
+            {
+                if (_saveAsFileCommand == null)
+                    _saveAsFileCommand = new RelayCommand(param => SaveAsFileFunction(), null);
+                return _saveAsFileCommand;
+            }
+            set
+            {
+                _saveAsFileCommand = value;
+                OnPropertyChange("SaveAsFileCommand");
+            }
+        }
+
+        #endregion
+
+        #region button Print
+        private void printFunction(System.Windows.Controls.DataGrid dataGrid)
+        {
+            remindUpdate();
+
+            System.Windows.Controls.PrintDialog dlg = new System.Windows.Controls.PrintDialog();
+            dlg.PrintVisual(dataGrid, "Báo cáo năm");
+            dlg.ShowDialog();
+        }
+
+        private ICommand _printCommand;
+        public ICommand PrintCommand
+        {
+            get
+            {
+                if(_printCommand == null)
+                    _printCommand = new RelayCommand(param => printFunction(param as System.Windows.Controls.DataGrid));
+                return _printCommand;
+            }
+            set
+            {
+                _printCommand = value;
+                OnPropertyChange("PrintCommand");
+            }
         }
         #endregion
 
         #region Internal business logic
         YearlyReportModel model = null;
+        private bool isUpToDate = true;
+
+        private void remindUpdate()
+        {
+            if(isUpToDate)
+                return;
+            int veResult = ViewExtension.Confirm(null, "Cảnh báo: dữ liệu chưa được cập nhật. Bạn có muốn cập nhật dữ liệu không?");
+
+            if(veResult == 1)
+                refresh();
+        }
+
+        private void refresh()
+        {
+            model.Year = this.SelectedYear;
+            model.UpdateFromDB();
+            ListReport = model.Data;
+            isUpToDate = true;
+        }
+        #endregion
+
+        #region tbTotalTest and tbTotalTestResult
+        public int TotalTestCount
+        {
+            get { return model.TotalTestCount; }
+            set { /* can't set this */ }
+        }
+        public int TotalTestResultCount
+        {
+            get { return model.TotalTestResultCount; }
+            set { /* can't set this */ }
+        }
+
+        public void OnTotalTestCountChange(Object sender, EventArgs args)
+        {
+            // just to be sure...
+            if(sender != model)
+                return;
+            OnPropertyChange("TotalTestCount");
+        }
+
+        public void OnTotalTestResultCountChange(Object sender, EventArgs args)
+        {
+            // just to be sure...
+            if(sender != model)
+                return;
+            OnPropertyChange("TotalTestResultCount");
+        }
         #endregion
 
         public void Receive(object sender, List<DatabaseCommand> commands)
         {
-            // MORECODE
+            isUpToDate = false;
+        }
+
+        private void InitializeModel()
+        {
+            model = new YearlyReportModel(SelectedYear);
+
+            model.TotalTestCountChange += OnTotalTestCountChange;
+            model.TotalTestResultCountChange += OnTotalTestResultCountChange;
         }
 
         public YearlyReportViewModel()
         {
             ViewModelMediator.Ins.AddUserModel(this);
-            model = new YearlyReportModel(SelectedYear);
+            InitializeModel();
         }
     }
 }

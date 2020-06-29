@@ -23,18 +23,23 @@ namespace QuanLyChamThi.View
     /// </summary>
     public partial class WindowNotification : Window
     {
-        DoubleAnimation fadeIn = new DoubleAnimation { From = 0, To = 1, FillBehavior = FillBehavior.Stop, BeginTime = TimeSpan.FromSeconds(0), Duration = new Duration(TimeSpan.FromSeconds(0.5)) };
-        DoubleAnimation hold = new DoubleAnimation { From = 1, To = 1, FillBehavior = FillBehavior.Stop, BeginTime = TimeSpan.FromSeconds(0.5), Duration = new Duration(TimeSpan.FromSeconds(1)) };
-        DoubleAnimation fadeOut = new DoubleAnimation { From = 1, To = 0, FillBehavior = FillBehavior.Stop, BeginTime = TimeSpan.FromSeconds(1.5), Duration = new Duration(TimeSpan.FromSeconds(0.5)) };
+        DoubleAnimation fadeIn = new DoubleAnimation { From = 0, To = 1, FillBehavior = FillBehavior.Stop, BeginTime = TimeSpan.FromSeconds(0), Duration = new Duration(TimeSpan.FromSeconds(0.25)) };
+        DoubleAnimation hold = new DoubleAnimation { From = 1, To = 1, FillBehavior = FillBehavior.Stop, BeginTime = TimeSpan.FromSeconds(0.25), Duration = new Duration(TimeSpan.FromSeconds(1)) };
+        DoubleAnimation fadeOut = new DoubleAnimation { From = 1, To = 0, FillBehavior = FillBehavior.Stop, BeginTime = TimeSpan.FromSeconds(1.25), Duration = new Duration(TimeSpan.FromSeconds(0.25)) };
 
-        public WindowNotification(string notification, string detail, float stayTime)
+        public WindowNotification(string notification, string detail, int messageType)
         {
             InitializeComponent();
 
             /** GET NOTIFICATION **/
             tbNotification.Text = notification;
             tbDetail.Text = detail;
-            hold.Duration = new Duration(TimeSpan.FromSeconds(stayTime));
+             
+            if (messageType == 0) 
+            {
+                imgIcon.Kind = MaterialDesignThemes.Wpf.PackIconKind.Cancel;
+                border.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#F44336"));
+            }
 
             FadeInThenOut();
         }
@@ -61,11 +66,6 @@ namespace QuanLyChamThi.View
         private void mainGrid_MouseDown(object sender, MouseButtonEventArgs e)
         {
             this.Close();
-        }
-
-        private void PackIcon_ColorChanged(object sender, RoutedPropertyChangedEventArgs<Color> e)
-        {
-
         }
     }
 }

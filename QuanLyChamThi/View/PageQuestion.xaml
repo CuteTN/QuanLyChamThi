@@ -105,6 +105,7 @@
                         <i:InvokeCommandAction Command="{Binding Path=Data.LoadSelectedQuestionCommand, Source={StaticResource proxy}}"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
+                
             </local:UserControlQuestionList>
         </DockPanel>
 

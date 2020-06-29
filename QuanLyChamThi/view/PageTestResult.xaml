@@ -108,14 +108,14 @@
         </ComboBox>
 
         <Button x:Name="btnAdd" Command="{Binding AddNewTestResultCommand}" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3" Grid.RowSpan="2"
-                VerticalAlignment="Top"  Content="Thêm học sinh để thêm điểm của học sinh đó" Padding="0" Margin="0,12,0,0"/>
+                VerticalAlignment="Top"  Content="Thêm điểm HS" Padding="0" Margin="0,12,0,0"/>
         <Button x:Name="btnDelete" Command="{Binding DeleteSelectedResultsCommand}" Grid.Column="5" Grid.Row="3" Margin="0,12,0,0" Grid.RowSpan="2"
                 Grid.ColumnSpan="3" VerticalAlignment="Top" Content="Xoá" Style="{StaticResource MaterialDesignOutlinedButton}" Foreground="White" Background="#F44336" BorderBrush="#F44336"/>
 
         <DataGrid x:Name="dgListTestResult" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="29" Grid.RowSpan="11  "
                   ItemsSource="{Binding ListTestResult, Mode=TwoWay}" AutoGenerateColumns="False" CanUserResizeColumns="False"
                   CanUserReorderColumns="False" CanUserSortColumns="False" CanUserAddRows="False" Margin="0,18,0,0" Padding="10"
-                  Style="{StaticResource MaterialDesignDataGrid}" Background="White">
+                  Style="{StaticResource MaterialDesignDataGrid}" Background="White" PreviewKeyDown="grid_PreviewKeyDown">
             <DataGrid.Resources>
                 <DataTemplate x:Key="test">
                     <CheckBox>

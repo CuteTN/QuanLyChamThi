@@ -9,7 +9,7 @@
     Title="Đăng nhập" Height="600" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"  >
 
 
-    <Grid x:Name="mainGrid" Background="WhiteSmoke">
+    <Grid x:Name="mainGrid" KeyDown="mainGrid_KeyDown" Background="WhiteSmoke">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
