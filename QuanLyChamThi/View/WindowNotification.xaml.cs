@@ -34,11 +34,11 @@ namespace QuanLyChamThi.View
             /** GET NOTIFICATION **/
             tbNotification.Text = notification;
             tbDetail.Text = detail;
-
-            if (messageType == 0)
+             
+            if (messageType == 0) 
             {
                 imgIcon.Kind = MaterialDesignThemes.Wpf.PackIconKind.Cancel;
-                border.Background = new SolidColorBrush(Colors.Red);
+                border.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#F44336"));
             }
 
             FadeInThenOut();

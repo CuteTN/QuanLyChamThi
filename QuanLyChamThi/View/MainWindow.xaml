@@ -178,7 +178,7 @@
             </WrapPanel>
 
             <WrapPanel DockPanel.Dock="Bottom" Margin="0,5,0,5">
-                <Button Style="{StaticResource MaterialDesignIconButton}"  Command="{Binding SwitchViewCommand}" Width="{Binding ActualWidth, ElementName=pnlSideBar, Mode=OneWay}" Height="{Binding ElementName=pnlSideBar, Path=ActualWidth}" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0">
+                <Button Style="{StaticResource MaterialDesignIconButton}"  Command="{Binding SwitchViewCommand}" Width="{Binding ActualWidth, ElementName=pnlSideBar, Mode=OneWay}" Height="{Binding ElementName=pnlSideBar, Path=ActualWidth}" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0" Click="Button_Click">
 
                     <md:PackIcon Kind="ExitToApp" Foreground="White" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="30" Height="30" />
 
