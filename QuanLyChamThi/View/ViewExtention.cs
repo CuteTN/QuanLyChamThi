@@ -26,6 +26,12 @@ namespace QuanLyChamThi.View
             return result;
         }
 
+        /// <summary>
+        /// Return value: 0: Cancel, 1: Confirm
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="message"></param>
+        /// <returns></returns>
         public static int Confirm(Window sender, string message)
         {
             if (sender != null) sender.Opacity = 0.5;

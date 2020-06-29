@@ -115,7 +115,7 @@
         <DataGrid x:Name="dgListTestResult" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="29" Grid.RowSpan="11  "
                   ItemsSource="{Binding ListTestResult, Mode=TwoWay}" AutoGenerateColumns="False" CanUserResizeColumns="False"
                   CanUserReorderColumns="False" CanUserSortColumns="False" CanUserAddRows="False" Margin="0,18,0,0" Padding="10"
-                  Style="{StaticResource MaterialDesignDataGrid}" Background="White" PreviewKeyDown="grid_PreviewKeyDown">
+                  Style="{StaticResource MaterialDesignDataGrid}" Background="White" PreviewKeyDown="grid_PreviewKeyDown" SelectionUnit="Cell">
             <DataGrid.Resources>
                 <DataTemplate x:Key="test">
                     <CheckBox>

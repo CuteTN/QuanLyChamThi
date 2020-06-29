@@ -12,6 +12,7 @@ using System.Data.Entity.Core.Objects;
 using System.Windows.Input;
 using System.Collections.Specialized;
 using System.Windows;
+using QuanLyChamThi.View;
 
 namespace QuanLyChamThi.ViewModel
 {
@@ -97,6 +98,9 @@ namespace QuanLyChamThi.ViewModel
         }
         void DeleteSelectedResultDetail()
         {
+            if (ViewExtension.Confirm(null, "Bạn có chắc muốn xóa những bài chấm được chọn không?") == 0)
+                return;
+
             if (SelectedResultDetails == null)
                 return;
             List<DatabaseCommand> commands = new List<DatabaseCommand>();

@@ -133,19 +133,12 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" Text="Các môn đang dạy" Style="{StaticResource MaterialDesignHeadline6TextBlock}" Margin="22,15,15,0"/>
-                <ListView Grid.Row="1" Foreground="White" Margin="15,0,15,15">
-                    <ListViewItem>
-                        MA.001.K11
-                    </ListViewItem>
-                    <ListViewItem>
-                        MA.002.K12
-                    </ListViewItem>
-                    <ListViewItem>
-                        MA.003.K13
-                    </ListViewItem>
-                    <ListViewItem>
-                        MA.004.K14
-                    </ListViewItem>
+                <ListView ItemsSource="{Binding ListSubject}" Grid.Row="1" Foreground="White" Margin="15,0,15,15">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"></TextBlock>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
                 </ListView>
             </Grid>            
         </md:Card>
@@ -159,22 +152,12 @@
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" Text="Các lớp đang dạy" Style="{StaticResource MaterialDesignHeadline6TextBlock}" Margin="22,15,15,0"/>
 
-                <ListView Grid.Row="1" Foreground="White" Margin="15,0,15,15">
-                    <ListViewItem>
-                        Lớp 1
-                    </ListViewItem>
-                    <ListViewItem>
-                        Lớp 2
-                    </ListViewItem>
-                    <ListViewItem>
-                        Lớp 3
-                    </ListViewItem>
-                    <ListViewItem>
-                        Lớp 4
-                    </ListViewItem>
-                    <ListViewItem>
-                        Lớp 5
-                    </ListViewItem>
+                <ListView ItemsSource="{Binding ListClass}" Grid.Row="1" Foreground="White" Margin="15,0,15,15">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"></TextBlock>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
                 </ListView>
             </Grid>
         </md:Card>

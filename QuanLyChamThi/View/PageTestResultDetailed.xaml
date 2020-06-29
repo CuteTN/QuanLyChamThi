@@ -103,7 +103,7 @@
                                   Width="{Binding ElementName=svGrid, Path=ActualWidth}" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False" CanUserAddRows="False" IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn x:Name="colSubjectName" Binding="{Binding SubjectName}" Header="Tên môn thi" Width="1*"/>
-                    <DataGridTextColumn x:Name="colClassID" Binding="{Binding IDClass}" Header="Mã lớp" Width="1*"/>
+                    <DataGridTextColumn x:Name="colClassID" Binding="{Binding ClassFullName}" Header="Mã lớp" Width="1*"/>
                     <DataGridTextColumn x:Name="colLecturerName" Binding="{Binding UserFullName}" Header="Tên giảng viên" Width="1*"/>
                     <DataGridTextColumn x:Name="colTestID" Binding="{Binding IDTest}" Header="Mã đề thi" Width="1*"/>
                 </DataGrid.Columns>

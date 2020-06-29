@@ -160,6 +160,7 @@
     <Compile Include="Model\YearlyReportModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="Utilities\ExcelExporter.cs" />
+    <Compile Include="ViewModel\PageMainViewModel.cs" />
     <Compile Include="ViewModel\SettingViewModel.cs" />
     <Compile Include="ViewModel\UCQuestionListViewModel.cs" />
     <Compile Include="Model\UserModelBase.cs" />

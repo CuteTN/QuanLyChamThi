@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Data.Entity.Validation;
 using System.Data.Entity.Infrastructure;
 using System.Windows;
+using QuanLyChamThi.View;
+using System.Windows.Forms;
 
 namespace QuanLyChamThi.ViewModel
 {
@@ -298,7 +300,9 @@ namespace QuanLyChamThi.ViewModel
 
         void Save()
         {
-            
+            if (ValidateDuplicatedTestResult() == false)
+                return;
+
             foreach (var testResult in _listTestResult)
             {
                 if (!ValidTestResult(testResult))
@@ -313,14 +317,23 @@ namespace QuanLyChamThi.ViewModel
                 ViewModelMediator.Ins.Receive(this, studentCommands);
                 ViewModelMediator.Ins.Receive(this, changedCommands);
             }
-            catch(Exception)
+            catch(Exception e)
             {
+                if(e.InnerException != null)
+                {
+                    ViewExtension.MessageOK(null, "Lỗi: " + e.InnerException.Message, ViewExtension.MessageType.Error);
+                }
+                else
+                {
+                    ViewExtension.MessageOK(null, "Lỗi: Không xác định.\n Error code: 0x0001", ViewExtension.MessageType.Error);
+                }
 
             }
 
             MainWindowViewModel.Ins.SwitchView(8);
         }
 
+        
         string GenerateIDTestResultForAllResults()
         {
             string IDTestResult;
@@ -335,6 +348,7 @@ namespace QuanLyChamThi.ViewModel
             return IDTestResult;
         }
 
+        #region Ganerate DBCommands
         // Auto generate student in db if student is new
         List<DatabaseCommand> GenerateStudentCommands()
         {
@@ -444,6 +458,7 @@ namespace QuanLyChamThi.ViewModel
             }
             return commands;
         }
+        #endregion
 
         bool CanSave()
         {
@@ -453,13 +468,14 @@ namespace QuanLyChamThi.ViewModel
             return true;
         }
 
+        #region Validate Funtion
         bool ValidTestResult(TestResultModel testResult)
         {
             STUDENT student = DataProvider.Ins.DB.STUDENT.Find(testResult.StudentID);
             if (student != null && student.FullName != testResult.StudentName)
             {
                 // Warn user that student with given id have wrong name // TODO
-                MessageBox.Show("student with " + testResult.StudentID.ToString() + " ID have wrong name");
+                ViewExtension.MessageOK(null, "Lỗi: Học sinh với mssv " + student.IDStudent + " bị sai tên\n Tên đúng là " + student.FullName, ViewExtension.MessageType.Error);
                 //////////////////////////////////////////////////////////
                 return false;
             }
@@ -467,9 +483,23 @@ namespace QuanLyChamThi.ViewModel
                testResult.ScoreNumber > DataProvider.Ins.DB.PRINCIPLE.ToList()[0].MaxScore)
             {
                 // Notify user that the score is not in principle // TODO
-                MessageBox.Show("student with " + testResult.StudentID.ToString() + " ID have score not in principle");
+                ViewExtension.MessageOK(null, "Lỗi: Học sinh với mssv " + student.IDStudent + " có điểm không nằm trong khoảng quy định\n Khoảng quy định: " + DataProvider.Ins.DB.PRINCIPLE.First().MinScore + "...." + DataProvider.Ins.DB.PRINCIPLE.First().MaxScore, ViewExtension.MessageType.Error);
                 ////////////////////////////////////////////////////
                 return false;
+            }
+            return true;
+        }
+        #endregion
+
+        bool ValidateDuplicatedTestResult()
+        {
+            foreach(var testResult in ListTestResult)
+            {
+                if(ListTestResult.Where(param => param.StudentID == testResult.StudentID).ToList().Count > 1)
+                {
+                    ViewExtension.MessageOK(null, "Lỗi: Không thể tồn tại 2 bài chấm với cùng 1 MSSV\n" + "MSSV bị trùng: " + testResult.StudentID, ViewExtension.MessageType.Error);
+                    return false;
+                }
             }
             return true;
         }
@@ -489,6 +519,8 @@ namespace QuanLyChamThi.ViewModel
         }
         void Cancel()
         {
+            if (ViewExtension.Confirm(null, "Bạn có chắc muốn hủy các thay đổi không?") == 0)
+                return;
             MainWindowViewModel.Ins.SwitchView(8);
         }
         #endregion

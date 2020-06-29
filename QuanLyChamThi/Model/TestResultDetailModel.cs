@@ -26,11 +26,23 @@ namespace QuanLyChamThi.Model
             set { _subjectName = value; }
         }
 
-        string _idClass;
-        public string IDClass
+        private CLASS _class;
+        public CLASS Class
         {
-            get { return _idClass; }
-            set { _idClass = value; }
+            get
+            {
+                if (_class == null)
+                    _class = new CLASS();
+                return _class;
+            }
+            set { _class = value; }
+        }
+
+        string _classFullName;
+        public string ClassFullName
+        {
+            get { _classFullName = Class.Name + "_" + Class.Year + "_" + Class.Semester; return _classFullName; }
+            set { _classFullName = value; }
         }
 
         string _userFullName;
@@ -68,7 +80,7 @@ namespace QuanLyChamThi.Model
                                                                              {
                                                                                  IDTestResult = u.IDTestResult,
                                                                                  SubjectName = y.Name,
-                                                                                 IDClass = g == null ? string.Empty : (g.IDClass ?? string.Empty),
+                                                                                 Class = g,
                                                                                  UserFullName = v.FullName,
                                                                                  IDTest = u.IDTest
                                                                              }).ToList());
