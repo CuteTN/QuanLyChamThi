@@ -181,19 +181,7 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-
-                    <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="7" Content="Số lượng môn học:" Foreground="Black" FontWeight="Bold"/>
-                    <TextBox x:Name="tbDSubjectNumber"
-                             Grid.Column="1" 
-                             Grid.Row="2"
-                             Grid.ColumnSpan="7"
-                             VerticalAlignment="Center"
-                             TextAlignment="Left"
-                             Text="{Binding NumberOfSubject, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                             />
-
-                    <Button x:Name="btnUpdateSubject" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="7" Content="Cập nhật"/>
-                    <DataGrid x:Name="dgSubjectList" Padding="10" ItemsSource="{Binding ListSubject, Mode=TwoWay}" Grid.Column="9" Grid.Row="1" Grid.ColumnSpan="19" Grid.RowSpan="10" AutoGenerateColumns="False">
+                    <DataGrid x:Name="dgSubjectList" Padding="10" ItemsSource="{Binding ListSubject, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="27" Grid.RowSpan="10" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="STT" Width="1*"/>
                             <DataGridTextColumn Header="Mã môn học" Binding="{Binding IDSubject, Mode=TwoWay}" Width="3*"/>
@@ -251,25 +239,13 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="7" Content="Số lượng lớp học:" Foreground="Black" FontWeight="Bold"/>
-                    <TextBox x:Name="cbClassNumber"
-                             Grid.Column="1" 
-                             Grid.Row="2"
-                             Grid.ColumnSpan="7"
-                             VerticalAlignment="Center"
-                             TextAlignment="Left"
-                             Text="{Binding NumberOfClass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                             />
+                    <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Content="Năm học:" Foreground="Black" FontWeight="Bold" VerticalAlignment="Bottom"/>
+                    <ComboBox Grid.Column="4" ItemsSource="{Binding Year}" SelectedItem="{Binding SelectedYear}" Grid.Row="1" Grid.ColumnSpan="3"/>
 
-                    <Button x:Name="btnUpdateClass" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="7" Content="Cập nhật"/>
+                    <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" Content="Học kỳ:" Foreground="Black" FontWeight="Bold"/>
+                    <ComboBox Grid.Column="4" ItemsSource="{Binding Semester}" SelectedItem="{Binding SelectedSemester}" Grid.Row="2" Grid.ColumnSpan="3"/>
 
-                    <Label Grid.Column="9" Grid.Row="1" Grid.ColumnSpan="3" Content="Năm học:" Foreground="Black" FontWeight="Bold"/>
-                    <ComboBox Grid.Column="12" ItemsSource="{Binding Year}" SelectedItem="{Binding SelectedYear}" Grid.Row="1" Grid.ColumnSpan="3"/>
-
-                    <Label Grid.Column="17" Grid.Row="1" Grid.ColumnSpan="3" Content="Học kỳ:" Foreground="Black" FontWeight="Bold"/>
-                    <ComboBox Grid.Column="20" ItemsSource="{Binding Semester}" SelectedItem="{Binding SelectedSemester}" Grid.Row="1" Grid.ColumnSpan="3"/>
-
-                    <DataGrid x:Name="dgClassList"  ItemsSource="{Binding ListClass}" AutoGenerateColumns="False" Grid.Column="9" Grid.Row="2" Grid.ColumnSpan="19" Grid.RowSpan="9" CanUserAddRows="True" Padding="10" Margin="0,12,0,0">
+                    <DataGrid x:Name="dgClassList"  ItemsSource="{Binding ListClass}" AutoGenerateColumns="False" Grid.Column="9" Grid.Row="1" Grid.ColumnSpan="19" Grid.RowSpan="10" CanUserAddRows="True" Padding="10">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Tên lớp học" Binding="{Binding ClassName}" Width="2*"/>
                             <DataGridTemplateColumn Header="Tên môn học" Width="6*">
