@@ -350,7 +350,7 @@ namespace QuanLyChamThi.ViewModel
         {
             if (QuestionListViewModel.SelectedQuestions.Count != 1)
             { 
-                ViewExtension.MessageOK(null, "Lỗi: Không thể sửa nhiều câu hỏi. Vui lòng chọn một câu hỏi để xoá", ViewExtension.MessageType.Error);
+                ViewExtension.MessageOK(null, "Lỗi: vui lòng chọn 1 câu hỏi để xem", ViewExtension.MessageType.Error);
                 return;
             }
 
