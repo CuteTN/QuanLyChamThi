@@ -10,7 +10,7 @@
         xmlns:page="clr-namespace:QuanLyChamThi.View"
         xmlns:s="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="MainWindow" Height="720" Width="1280" MinHeight="360" MinWidth="640" WindowStartupLocation="CenterScreen">
+        Title="PHẦN MỀM QUẢN LÝ VIỆC RA ĐỀ VÀ CHẤM THI CỦA GIẢNG VIÊN" Height="720" Width="1280" MinHeight="360" MinWidth="640" WindowStartupLocation="CenterScreen">
     <Grid x:Name="mainGrid" Background="#3F51B5">
         <!--3F51B5-->
         <Grid.ColumnDefinitions>
@@ -70,7 +70,6 @@
     md:ShadowAssist.ShadowEdges="None" Grid.Column="1"
     Grid.ColumnSpan="33" Grid.RowSpan="1" Background="#303F9F">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <md:PackIcon Kind="ArrowBack" Name="btnBack" Foreground="White" Height="35" Width="35"/>
                 <TextBlock Foreground="White" VerticalAlignment="Center" Style="{DynamicResource MaterialDesignHeadline6TextBlock}" FontSize="16">
                     <TextBlock.Text>
                         <MultiBinding StringFormat="     {0}     ">

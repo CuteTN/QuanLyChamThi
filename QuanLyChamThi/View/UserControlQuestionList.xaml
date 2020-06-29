@@ -13,7 +13,6 @@
         <DockPanel LastChildFill="True">
             <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
                 <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Content="Danh sách câu hỏi:" Foreground="Black" FontWeight="Bold"/>
-                <Button x:Name="btnFilter" Content="Tuỳ chọn" HorizontalAlignment="Right" VerticalAlignment="Center"/>
             </StackPanel>
 
             <ScrollViewer x:Name="svGrid" VerticalScrollBarVisibility="Auto">

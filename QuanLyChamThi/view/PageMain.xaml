@@ -69,7 +69,7 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="2*" />
                 </Grid.RowDefinitions>
-                <Image Source="E:\Projects\Quan Ly Cham Thi\QuanLyChamThi\Resources\hau.jpg" Stretch="UniformToFill"  VerticalAlignment="Center" Grid.Row="0" IsEnabled="True"/>
+                <Image Stretch="UniformToFill"  VerticalAlignment="Center" Grid.Row="0" IsEnabled="True" Source="/QuanLyChamThi;component/Resources/hau.jpg"/>
                 <Button
                     Grid.Row="0"
                     Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
@@ -170,6 +170,11 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" Text="Tin tức" Style="{StaticResource MaterialDesignHeadline6TextBlock}" Margin="22,15,15,0"/>
+                <Image Grid.Row="1" Source="/QuanLyChamThi;component/Resources/Advertisement.png" Margin="22,0,15,15">
+                    <Image.Effect>
+                        <DropShadowEffect/>
+                    </Image.Effect>
+                </Image>
             </Grid>
         </md:Card>
 

@@ -8,10 +8,11 @@
         mc:Ignorable="d"
         Title="THÔNG BÁO" Height="125" Width="300" WindowStartupLocation="CenterScreen" AllowsTransparency="True" WindowStyle="None" Background="Transparent">
     <Grid x:Name="mainGrid" Background="Transparent">
-        <Border x:Name="border" BorderThickness="2" Background="WhiteSmoke" CornerRadius="20" BorderBrush="DarkBlue">
+        <Border x:Name="border" BorderThickness="0.5" Background="WhiteSmoke" CornerRadius="20" BorderBrush="DarkBlue">
             <DockPanel LastChildFill="True">
                 <StackPanel DockPanel.Dock="Top" VerticalAlignment="Center" Orientation="Vertical" Margin="10">
                     <TextBlock x:Name="tbContent" FontWeight="Bold" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap" Text="THÔNG BÁO"/>
+                    <Separator Background="Transparent"/>
                     <TextBlock FontStyle="Italic" Text="Vui lòng xác nhận" TextAlignment="Center"/>
 
                     <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Margin="10">

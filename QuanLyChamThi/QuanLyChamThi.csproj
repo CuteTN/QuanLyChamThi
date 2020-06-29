@@ -399,6 +399,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="icon.ico" />
+    <Resource Include="Icon\logo.ico" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>
@@ -410,6 +411,7 @@
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
     <Resource Include="Resources\hau.jpg" />
+    <Resource Include="Resources\Advertisement.png" />
     <Content Include="SQLQuery1.sql" />
   </ItemGroup>
   <ItemGroup>
