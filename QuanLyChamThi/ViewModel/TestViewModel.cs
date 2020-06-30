@@ -4,6 +4,7 @@ using QuanLyChamThi.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -21,11 +22,22 @@ namespace QuanLyChamThi.ViewModel
         {
             get
             {
-                if (_tempTestDetail == null)
+                if (_tempTestDetail == null) { 
                     _tempTestDetail = new ObservableCollection<TestModel.TestDetailModel>();
+                    TempTestDetail.CollectionChanged += collectionChanged;
+                }
                 return _tempTestDetail;
             }
-            set { _tempTestDetail = value; OnPropertyChange("TempTestDetail"); }
+            set { _tempTestDetail = value; OnPropertyChange("TempTestDetail"); TempTestDetailResetOrder();}
+        }
+
+        void TempTestDetailResetOrder()
+        {
+            for (int i = 0; i < TempTestDetail.Count; i++)
+            {
+                TestModel.TestDetailModel item = (TestModel.TestDetailModel)TempTestDetail[i];
+                item.Stt = i+1;
+            }
         }
 
         private TestModel _tempTest;
@@ -240,7 +252,8 @@ namespace QuanLyChamThi.ViewModel
 
         public void SyncToView()
         {
-            TempTestDetail = new ObservableCollection<TestModel.TestDetailModel>(TestDetail);
+            TempTestDetail = new ObservableCollection<TestModel.TestDetailModel>(TestDetail);       
+            TempTestDetail.CollectionChanged += collectionChanged;
             TempTest = _test?.Clone;
         }
         #endregion
@@ -502,6 +515,12 @@ namespace QuanLyChamThi.ViewModel
             ViewModelMediator.Ins.AddUserModel(this);
             LoadConstraint();
         }
+        
+        void collectionChanged(object sender, NotifyCollectionChangedEventArgs arg)
+        {
+            TempTestDetailResetOrder();
+        }
+
         public bool ReadyToAcceptData()
         {
             if (TempTest.SubjectID == null)
