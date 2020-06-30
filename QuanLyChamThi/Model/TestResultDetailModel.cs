@@ -71,11 +71,12 @@ namespace QuanLyChamThi.Model
             {
                 if (_data == null)
                     _data = new ObservableCollection<TestResultDetailModel>((from u in DataProvider.Ins.DB.TESTRESULTDETAIL
-                                                                             join v in DataProvider.Ins.DB.USER on u.Username equals v.Username
-                                                                             join t in DataProvider.Ins.DB.TEST on u.IDTest equals t.IDTest
-                                                                             join y in DataProvider.Ins.DB.SUBJECT on t.IDSubject equals y.IDSubject
                                                                              join x in DataProvider.Ins.DB.CLASS on u.IDClass equals x.IDClass into gj
                                                                              from g in gj.DefaultIfEmpty()
+                                                                             join v in DataProvider.Ins.DB.USER on u.Username equals v.Username
+                                                                             join y in DataProvider.Ins.DB.SUBJECT on g.IDSubject equals y.IDSubject
+                                                                             join t in DataProvider.Ins.DB.TEST on u.IDTest equals t.IDTest into hj
+                                                                             from h in hj.DefaultIfEmpty()
                                                                              select new TestResultDetailModel
                                                                              {
                                                                                  IDTestResult = u.IDTestResult,
