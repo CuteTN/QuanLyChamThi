@@ -33,7 +33,7 @@
                         <Style TargetType="{x:Type DataGridRow}">
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding First, Converter={StaticResource selectedConverter}}" Value="true">
-                                    <Setter Property="Background" Value="Red"/>
+                                    <Setter Property="Background" Value="#FFFFAB00"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
